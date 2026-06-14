@@ -1,0 +1,1 @@
+﻿# Adverthinking AI - Landing Page

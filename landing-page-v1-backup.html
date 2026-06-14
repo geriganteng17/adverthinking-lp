@@ -1,0 +1,2302 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Adverthinking AI - 20 Tools AI Marketing dalam 1 Studio</title>
+    <meta name="description" content="20 AI marketing tools dalam 1 studio: copy iklan, foto produk, banner, thumbnail, video, sampai landing page. Tinggal isi form, salin prompt, hasil jadi. Sekali bayar Rp150rb (atau Rp100rb dengan kode diskon), akses selamanya.">
+
+    <!-- Open Graph (preview pas link di-share di Meta Ads / WA / FB / IG) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="20 Tools AI Marketing dalam 1 Studio — Cuma Rp150rb">
+    <meta property="og:description" content="Bikin copy iklan, foto produk, banner, thumbnail, sampai landing page sendiri — tanpa desainer. Sekali bayar, akses selamanya. Early Access Batch 1 (100 slot pertama).">
+    <!-- og:image: taruh file 'og-image.jpg' (1200x630, poster/screenshot app terbaik) di folder yg sama. Setelah deploy, ganti ke URL absolut (mis. https://domainmu.com/og-image.jpg) biar preview muncul. -->
+    <meta property="og:image" content="og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="20 Tools AI Marketing dalam 1 Studio — Cuma Rp150rb">
+    <meta name="twitter:description" content="Bikin materi marketing kelas agensi sendiri. Sekali bayar, akses selamanya.">
+    <meta name="twitter:image" content="og-image.jpg">
+
+    <!-- ============================================================
+         META PIXEL (tracking iklan) — WAJIB diisi sebelum jalanin Meta Ads!
+         CARA: buka Meta Events Manager → buat Dataset/Pixel → copy ID-nya (angka)
+         → ganti GANTI_PIXEL_ID di bawah dengan ID itu. Selesai.
+         Tanpa ID, script ini diam (gak error). Dengan ID → otomatis lacak:
+         PageView (semua pengunjung) + InitiateCheckout (klik tombol beli).
+         ============================================================ -->
+    <script>
+      window.ADV_PIXEL_ID = 'GANTI_PIXEL_ID'; // ← ganti dengan ID Pixel Meta kamu
+      (function(){
+        if (!window.ADV_PIXEL_ID || window.ADV_PIXEL_ID.indexOf('GANTI') === 0) return; // belum diisi → skip
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', window.ADV_PIXEL_ID);
+        fbq('track', 'PageView');
+      })();
+    </script>
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <style>
+        /* --- VARIABLES --- */
+        :root {
+            --bg-dark: #0A0A0A;
+            --bg-card: rgba(20, 14, 10, 0.6);
+            --primary: #FF6B35;
+            --secondary: #F5A623;
+            --text-light: #f8fafc;
+        }
+
+        /* --- BASIC RESET --- */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            padding-bottom: 80px;
+        }
+        h1, h2, h3, h4, .font-display { font-family: 'Space Grotesk', sans-serif; }
+
+        /* --- BACKGROUND --- */
+        .page-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(255, 107, 53, 0.14), transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(245, 166, 35, 0.10), transparent 40%),
+                linear-gradient(to bottom, #0A0A0A 0%, #110A05 100%);
+        }
+
+        /* --- COMPONENTS --- */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(255, 107, 53, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+        }
+
+        /* --- STICKY HEADER --- */
+        .glass-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* --- BUTTONS --- */
+        .btn-cta {
+            background: linear-gradient(135deg, #FF6B35 0%, #F5A623 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 24px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            color: #ffffff !important;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(245, 166, 35, 0.5);
+            filter: brightness(1.1);
+        }
+
+        /* --- UTILITIES --- */
+        .text-gradient {
+            background: linear-gradient(135deg, #FF8C5A, #F5A623);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Pricing */
+        .pricing-card {
+            background: rgba(18, 12, 8, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 20px 50px -10px rgba(0,0,0,0.5);
+        }
+
+        /* Countdown Styles */
+        .countdown-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 8px 10px;
+            text-align: center;
+            min-width: 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .countdown-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1;
+        }
+        .countdown-label {
+            font-size: 8px;
+            color: #94a3b8;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        /* Sticky Footer Countdown */
+        .countdown-box-small {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            padding: 4px 8px;
+            min-width: 32px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .countdown-number-small {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        /* Checklist */
+        .feature-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 6px 0;
+        }
+        .feature-check .icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(34, 197, 94, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: #4ade80;
+            font-size: 10px;
+            margin-top: 1px;
+        }
+
+        /* FAQ */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            opacity: 0;
+        }
+        .faq-answer.open {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 10px;
+            border-radius: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            width: 97.8%;
+            border-radius: 100px;
+            background: linear-gradient(90deg, #FF6B35, #F5A623);
+        }
+
+        /* --- FAKE ORDER NOTIFICATION --- */
+        .af-notification {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 107, 53, 0.15);
+            border-radius: 14px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.1), 0 4px 12px rgba(0,0,0,0.06);
+            width: 280px;
+            transform: translateX(-150%);
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            pointer-events: auto;
+            position: relative;
+        }
+        .af-notification.active { transform: translateX(0); }
+        .af-notification::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #FF6B35, #FF8C5A, #F5A623, #F7B940);
+            border-radius: 14px 14px 0 0;
+        }
+        .af-icon-circle {
+            background: linear-gradient(135deg, #FF6B35 0%, #F5A623 100%);
+            width: 38px;
+            height: 38px;
+            min-width: 38px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+        .af-icon-circle::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25), transparent 60%);
+            pointer-events: none;
+        }
+        .af-noti-details {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .af-buyer-name {
+            color: #0f0f15 !important;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin: 0 !important;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .af-buy-msg {
+            color: #5b6675 !important;
+            font-size: 0.73rem;
+            margin: 2px 0 !important;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .af-buy-time {
+            background: linear-gradient(90deg, #FF6B35, #F5A623);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- STICKY FOOTER --- */
+        .sticky-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            z-index: 50;
+            background: rgba(10, 8, 5, 0.88);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-top: 1px solid rgba(255, 107, 53, 0.15);
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- HERO SLIDER --- */
+        .hero-slider-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1098 / 618;
+            overflow: hidden;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(255, 107, 53, 0.20);
+            background-color: #000;
+        }
+        .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, transform 6s ease;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+        }
+        .slide.active { opacity: 1; z-index: 2; transform: scale(1.05); }
+        .slide img { width: 100%; height: 100%; object-fit: contain; }
+        .slider-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+        .dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .dot.active {
+            background: #FF6B35;
+            width: 20px;
+            border-radius: 10px;
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* Prevent any image overflow */
+        img { max-width: 100%; height: auto; }
+
+        /* Hide Scrollbar */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Sticky footer desktop fix */
+        @media (min-width: 768px) {
+            .sticky-footer { height: 80px; }
+            body { padding-bottom: 80px; }
+        }
+
+        /* --- RESPONSIVE --- */
+
+        /* Extra small phones (< 380px) */
+        @media (max-width: 380px) {
+            h1 { font-size: 1.65rem !important; line-height: 1.2; }
+            h2 { font-size: 1.35rem !important; }
+            .btn-cta { font-size: 11px !important; padding-left: 14px; padding-right: 14px; }
+            .countdown-number { font-size: 16px !important; }
+            .countdown-box { min-width: 44px !important; padding: 6px 8px !important; }
+            .logo-text { font-size: 0.85rem !important; }
+        }
+
+        /* Mobile (≤ 640px) */
+        @media (max-width: 640px) {
+            h1 { font-size: 1.9rem; line-height: 1.2; }
+            h2 { font-size: 1.6rem; }
+            .header-nav { padding: 0.5rem 1rem; }
+            .logo-text { font-size: 0.9rem !important; }
+            .logo-icon { width: 28px !important; height: 28px !important; }
+            .header-btn { padding: 8px 14px !important; font-size: 11px !important; }
+            .header-badge { display: none; }
+            .sticky-footer { height: 70px; }
+            .footer-promo-text { font-size: 9px !important; }
+            .countdown-number-small { font-size: 12px !important; }
+            .countdown-box-small { min-width: 28px !important; padding: 2px 6px !important; }
+            .glass-card { padding: 1.25rem; }
+            .ugc-container { padding-left: 1rem; padding-right: 1rem; }
+            .hero-slider-container { aspect-ratio: 4/3; }
+            .pricing-badge { font-size: 9px !important; padding: 4px 10px !important; }
+            .section-px { padding-left: 1rem; padding-right: 1rem; }
+        }
+
+        @media (max-width: 640px) {
+            #af-noti-group {
+                bottom: 80px;
+                left: 10px;
+                right: 10px;
+                align-items: center;
+            }
+            .af-notification {
+                width: 100%;
+                max-width: 300px;
+                padding: 10px;
+            }
+            .af-icon-circle { width: 34px; height: 34px; min-width: 34px; }
+        }
+
+        /* Small tablets / large phones (641px – 767px) */
+        @media (min-width: 641px) and (max-width: 767px) {
+            h1 { font-size: 2.6rem; }
+            h2 { font-size: 2rem; }
+            .sm-grid-2 { grid-template-columns: repeat(2, 1fr) !important; }
+            .sm-grid-3 { grid-template-columns: repeat(3, 1fr) !important; }
+        }
+
+        /* Tablet (768px – 1023px) */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .ugc-container { padding-left: 2rem; padding-right: 2rem; }
+        }
+
+        /* Desktop wide — center content, cap max-width */
+        @media (min-width: 1280px) {
+            .hero-slider-container { max-width: 900px; margin-left: auto; margin-right: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background -->
+    <div class="page-background"></div>
+
+    <!-- ===== POPUP VOUCHER (exit-intent) ===== -->
+    <div id="voucherPop" style="position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:99999;padding:20px;">
+      <div style="width:100%;max-width:380px;background:linear-gradient(165deg,#11151f,#0a0d14);border:1px solid rgba(255,107,53,.3);border-radius:24px;padding:30px 26px;text-align:center;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.6);">
+        <button onclick="closeVoucher()" style="position:absolute;top:16px;right:16px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.08);border:none;color:#94a3b8;cursor:pointer;font-size:14px;">✕</button>
+        <div style="width:64px;height:64px;margin:0 auto 16px;border-radius:18px;background:rgba(255,107,53,.12);display:flex;align-items:center;justify-content:center;font-size:30px;">🎁</div>
+        <span style="display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#FF8C5A;border:1px solid rgba(255,107,53,.35);border-radius:100px;padding:4px 14px;margin-bottom:16px;">● Early Access · Batch 1</span>
+        <h3 class="font-display" style="font-size:22px;font-weight:700;margin-bottom:8px;">Ada Diskon Spesial Buat Kamu!</h3>
+        <p style="color:#8b97a8;font-size:13px;line-height:1.5;margin-bottom:16px;">Khusus 100 slot pertama (Early Access Batch 1). Salin kode di bawah, masukin pas checkout buat potong Rp50.000.</p>
+        <div class="font-display" style="font-size:42px;font-weight:700;line-height:1;background:linear-gradient(135deg,#FF6B35,#F5A623);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">DISKON 50RB</div>
+        <div style="color:#FF6B35;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:2px;margin:8px 0 14px;">Potongan Langsung · Sekali Bayar</div>
+        <div style="display:flex;align-items:stretch;margin-bottom:6px;border:1.5px dashed rgba(245,166,35,.6);border-radius:12px;overflow:hidden;background:rgba(245,166,35,.06);">
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:8px 14px;text-align:left;">
+            <span style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8b97a8;">Kode Diskon Kamu</span>
+            <span id="advVoucherCode" class="font-display" style="font-size:20px;font-weight:800;letter-spacing:2px;color:#fff;">HEMAT50</span>
+          </div>
+          <button onclick="advCopyVoucher(this)" style="border:none;background:linear-gradient(135deg,#FF6B35,#F5A623);color:#fff;font-weight:700;font-size:12px;padding:0 18px;cursor:pointer;white-space:nowrap;">Salin</button>
+        </div>
+        <p style="color:#5b6675;font-size:10px;margin-bottom:16px;">Masukin kode <b style="color:#F5A623;">HEMAT50</b> di kolom voucher pas checkout.</p>
+        <a href="#pricing" onclick="closeVoucher()" style="display:block;width:100%;background:#fff;color:#0a0d14;font-weight:700;border:none;border-radius:12px;padding:14px;font-size:14px;cursor:pointer;text-decoration:none;margin-bottom:10px;">Amankan Slot Batch 1 →</a>
+        <p style="color:#5b6675;font-size:10px;margin-top:14px;line-height:1.4;">Kuota batch 1 terbatas 100 pembeli pertama.</p>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="glass-header">
+        <!-- Top Banner -->
+        <div style="background: linear-gradient(90deg, rgba(255,107,53,0.15), rgba(245,166,35,0.08), transparent); border-bottom: 1px solid rgba(255,107,53,0.1);">
+            <div class="max-w-7xl mx-auto px-4 py-1.5 text-center text-[10px] md:text-xs font-semibold uppercase tracking-wider" style="color: #FF8C5A;">
+                ⚡ Early Access Batch 1 — cuma Rp150.000 sekali bayar · punya kode dari iklan? Diskon Rp50.000
+            </div>
+        </div>
+        <!-- Main Nav -->
+        <nav class="header-nav max-w-7xl mx-auto px-4 h-16 md:h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="logo-icon w-8 h-8 md:w-10 md:h-10 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform" style="background: linear-gradient(135deg, #FF6B35, #F5A623);">
+                    <i class="fa-solid fa-lightbulb text-white text-xs md:text-sm"></i>
+                </div>
+                <span class="logo-text font-display font-bold text-lg md:text-xl text-white tracking-tight">Adverthinking<span style="color: #FF6B35;">AI</span></span>
+            </a>
+            <!-- Right Side -->
+            <div class="flex items-center gap-2 md:gap-4">
+                <div class="header-badge hidden md:flex items-center gap-2 px-3 py-1 rounded-full" style="background: rgba(255,107,53,0.1); border: 1px solid rgba(255,107,53,0.2);">
+                    <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse" style="box-shadow: 0 0 8px #22c55e;"></div>
+                    <span class="text-[10px] md:text-xs font-bold uppercase" style="color: #FF8C5A;">Harga Perdana</span>
+                </div>
+                <a href="#pricing" class="header-btn btn-cta">Akses Sekarang</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-28 pb-16 md:pt-36 md:pb-24 px-4 relative z-10">
+        <style>
+          @keyframes heroFloatA { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+          @keyframes heroFloatB { 0%,100%{transform:translateY(0)} 50%{transform:translateY(13px)} }
+          @keyframes heroFloatC { 0%,100%{transform:translateY(0) rotate(-4deg)} 50%{transform:translateY(-11px) rotate(-4deg)} }
+          @keyframes heroPulse { 0%,100%{opacity:.55} 50%{opacity:1} }
+          .float-card{position:absolute;z-index:5;background:rgba(20,14,10,0.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,107,53,0.3);border-radius:16px;padding:11px 15px;box-shadow:0 14px 34px rgba(0,0,0,0.55);display:flex;align-items:center;gap:9px;white-space:nowrap;}
+          .float-card i{color:#FF8C5A;font-size:15px;}
+          .float-card span{font-size:12px;font-weight:700;color:#fff;}
+        </style>
+        <div class="max-w-6xl mx-auto text-center">
+            <span class="reveal badge mb-6 backdrop-blur-sm" style="background: rgba(255,107,53,0.08); border-color: rgba(255,107,53,0.2); color: #FF8C5A;">
+                🔥 Tools AI Khusus untuk <span class="font-bold ml-1" style="color: #F5A623;">Iklan yang Convert</span>
+            </span>
+
+            <h1 class="reveal reveal-delay-1 font-display text-[1.9rem] sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.15] mb-6 md:mb-8">
+                <span class="text-white">SATU TOOLS AI BUAT</span><br>
+                <span class="text-gradient">SEMUA KONTEN IKLAN KAMU</span>
+            </h1>
+
+            <p class="reveal reveal-delay-2 text-base md:text-xl text-gray-400 max-w-3xl mx-auto mb-10 md:mb-12 leading-relaxed font-light">
+                Cukup input data produk kamu, biarkan tools ini yang <span class="text-white font-semibold" style="border-bottom: 1px solid rgba(255,107,53,0.4); padding-bottom: 1px;">BIKIN KONTEN IKLAN, COPY ADS, SCRIPT VIDEO</span>, dan visual marketing siap deploy ke Meta Ads, TikTok, dan marketplace kamu.
+            </p>
+
+            <!-- HERO VISUAL + FLOATING CARDS (motion graphic / CSS) -->
+            <div class="reveal reveal-delay-3 relative max-w-4xl mx-auto mb-10 md:mb-14" style="perspective:1400px;">
+                <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(255,107,53,0.3);box-shadow:0 -10px 70px rgba(255,107,53,0.22), 0 30px 60px rgba(0,0,0,0.5);transform:rotateX(13deg);transform-origin:center top;">
+                    <img src="images/app-dashboard.png" alt="Dashboard Adverthinking AI" loading="eager" style="width:100%;display:block;">
+                </div>
+                <!-- Floating cards (desktop) -->
+                <div class="float-card hidden md:flex" style="top:4%;left:-3%;animation:heroFloatA 5s ease-in-out infinite;">
+                    <i class="fa-solid fa-image"></i><span>Banner Iklan</span>
+                </div>
+                <div class="float-card hidden md:flex" style="top:34%;right:-4%;animation:heroFloatB 6s ease-in-out infinite;">
+                    <i class="fa-brands fa-youtube" style="color:#f87171;"></i><span>Thumbnail YT</span>
+                </div>
+                <div class="float-card hidden md:flex" style="bottom:8%;left:4%;animation:heroFloatC 5.5s ease-in-out infinite;">
+                    <i class="fa-solid fa-bolt"></i><span>&lt; 30 detik</span>
+                </div>
+                <div class="float-card hidden md:flex" style="bottom:18%;right:2%;animation:heroFloatA 6.5s ease-in-out infinite;">
+                    <i class="fa-solid fa-wand-magic-sparkles" style="color:#c084fc;"></i><span>20 AI Tools</span>
+                </div>
+            </div>
+
+            <!-- Micro-bullets trust -->
+            <div class="reveal reveal-delay-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mb-7 text-xs md:text-sm text-gray-400 font-medium">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check" style="color:#4ade80;"></i> Sekali bayar, akses selamanya</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check" style="color:#4ade80;"></i> 20 AI tools</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check" style="color:#4ade80;"></i> Pakai API gratis sendiri</span>
+            </div>
+
+            <!-- Dual CTA -->
+            <div class="reveal reveal-delay-4 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-xl mx-auto">
+                <a href="#pricing" class="btn-cta w-full sm:w-auto px-8 py-4 text-base shadow-xl" style="box-shadow: 0 15px 40px rgba(255,107,53,0.3);">YA, MAU LIFETIME DEAL-NYA!</a>
+                <a href="#demo" class="w-full sm:w-auto px-8 py-4 text-base font-bold rounded-full border border-white/15 text-white hover:bg-white/5 transition-all flex items-center justify-center gap-2"><i class="fa-solid fa-play text-xs" style="color:#FF8C5A;"></i> Lihat Demo Tools</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personas Marquee (running text ala Auto Feeds) -->
+    <section class="py-8 md:py-12 relative z-10 overflow-hidden">
+        <style>
+          @keyframes afMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+          .af-marquee-mask { -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+          .af-marquee-track { display:flex; gap:12px; width:max-content; animation: afMarquee 35s linear infinite; }
+          .af-marquee-track:hover { animation-play-state: paused; }
+          .af-tag { display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border:1px solid rgba(255,107,53,0.25); border-radius:100px; background:rgba(255,107,53,0.04); white-space:nowrap; font-size:11px; md:font-size:12px; font-weight:700; letter-spacing:0.05em; color:#e5e7eb; text-transform:uppercase; }
+          .af-tag .dot { width:6px; height:6px; border-radius:50%; background:#FF6B35; box-shadow:0 0 8px rgba(255,107,53,0.8); flex-shrink:0; }
+        </style>
+        <p class="text-center text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-gray-500 mb-5 md:mb-6">Dipakai Berbagai Jenis Bisnis</p>
+        <div class="af-marquee-mask">
+            <div class="af-marquee-track">
+                <span class="af-tag"><span class="dot"></span>Seller Online</span>
+                <span class="af-tag"><span class="dot"></span>Affiliater</span>
+                <span class="af-tag"><span class="dot"></span>Dropshipper</span>
+                <span class="af-tag"><span class="dot"></span>UMKM</span>
+                <span class="af-tag"><span class="dot"></span>Brand Owner</span>
+                <span class="af-tag"><span class="dot"></span>Content Creator</span>
+                <span class="af-tag"><span class="dot"></span>Digital Marketer</span>
+                <span class="af-tag"><span class="dot"></span>Agency</span>
+                <span class="af-tag"><span class="dot"></span>F&amp;B</span>
+                <span class="af-tag"><span class="dot"></span>Skincare</span>
+                <span class="af-tag"><span class="dot"></span>Fashion</span>
+                <span class="af-tag"><span class="dot"></span>Otomotif</span>
+                <!-- duplikat buat loop mulus -->
+                <span class="af-tag"><span class="dot"></span>Seller Online</span>
+                <span class="af-tag"><span class="dot"></span>Affiliater</span>
+                <span class="af-tag"><span class="dot"></span>Dropshipper</span>
+                <span class="af-tag"><span class="dot"></span>UMKM</span>
+                <span class="af-tag"><span class="dot"></span>Brand Owner</span>
+                <span class="af-tag"><span class="dot"></span>Content Creator</span>
+                <span class="af-tag"><span class="dot"></span>Digital Marketer</span>
+                <span class="af-tag"><span class="dot"></span>Agency</span>
+                <span class="af-tag"><span class="dot"></span>F&amp;B</span>
+                <span class="af-tag"><span class="dot"></span>Skincare</span>
+                <span class="af-tag"><span class="dot"></span>Fashion</span>
+                <span class="af-tag"><span class="dot"></span>Otomotif</span>
+            </div>
+        </div>
+    </section>
+
+<section class="py-16 md:py-24 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="reveal badge bg-red-500/10 border-red-500/20 text-red-400 mb-4">KAMI NGERTI RASANYA</span>
+                <h2 class="reveal reveal-delay-1 font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3">Masalah yang Sering Bikin Iklan Zonk</h2>
+                <p class="reveal reveal-delay-2 text-gray-400 text-base md:text-lg">Suka atau tidak, ini realita yang dialami pebisnis digital setiap hari...</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                <div class="reveal reveal-delay-1 glass-card p-6 md:p-8 group">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.15);"><i class="fa-solid fa-pen-nib text-xl text-red-400"></i></div>
+                    <h3 class="font-display text-lg md:text-xl font-bold text-white mb-3">Bingung Bikin Copy</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Punya produk bagus, tapi nggak tau cara nulis copy iklan yang bikin orang mau beli.</p>
+                </div>
+                <div class="reveal reveal-delay-2 glass-card p-6 md:p-8 group">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: rgba(255,107,53,0.1); border: 1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-hourglass-half text-xl" style="color:#FF8C5A;"></i></div>
+                    <h3 class="font-display text-lg md:text-xl font-bold text-white mb-3">Konten Makan Waktu</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">1 konten iklan bisa makan waktu 2-3 jam untuk nulis copy, bikin visual, dan revisi.</p>
+                </div>
+                <div class="reveal reveal-delay-3 glass-card p-6 md:p-8 group">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2);"><i class="fa-solid fa-money-bill-wave text-xl text-yellow-400"></i></div>
+                    <h3 class="font-display text-lg md:text-xl font-bold text-white mb-3">Budget Habis, Zonk</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Udah keluar budget iklan tapi CTR kecil, penjualan sepi, dan nggak tau harus ngapain.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="py-16 md:py-24 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <span class="reveal badge mb-4" style="background: rgba(255,107,53,0.1); border-color: rgba(255,107,53,0.2); color: #FF8C5A;">SOLUSINYA SIMPEL BANGET</span>
+            <h2 class="reveal reveal-delay-1 font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-12">3 Langkah, Iklan Siap Deploy</h2>
+            <div class="grid grid-cols-3 gap-3 md:gap-6 max-w-4xl mx-auto">
+                <div class="reveal reveal-delay-1 relative bg-white/[0.02] border border-white/10 rounded-2xl p-4 md:p-6 flex flex-col items-center text-center">
+                    <span class="absolute top-2.5 right-2.5 text-[9px] md:text-[10px] font-black text-white rounded-md px-1.5 py-0.5" style="background:#FF6B35;">01</span>
+                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mb-3 md:mb-4" style="background: rgba(255,107,53,0.1); border:1px solid rgba(255,107,53,0.25);">
+                        <i class="fa-solid fa-pen text-lg md:text-2xl" style="color:#FF6B35;"></i>
+                    </div>
+                    <h3 class="font-display text-xs md:text-lg font-bold text-white mb-1">Input Produk</h3>
+                    <p class="text-gray-400 text-[10px] md:text-sm leading-snug">Isi info produk & target.</p>
+                </div>
+                <div class="reveal reveal-delay-2 relative bg-white/[0.02] border border-white/10 rounded-2xl p-4 md:p-6 flex flex-col items-center text-center">
+                    <span class="absolute top-2.5 right-2.5 text-[9px] md:text-[10px] font-black text-white rounded-md px-1.5 py-0.5" style="background:#F5A623;">02</span>
+                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mb-3 md:mb-4" style="background: rgba(245,166,35,0.1); border:1px solid rgba(245,166,35,0.25);">
+                        <i class="fa-solid fa-wand-magic-sparkles text-lg md:text-2xl" style="color:#F5A623;"></i>
+                    </div>
+                    <h3 class="font-display text-xs md:text-lg font-bold text-white mb-1">Pilih Tool</h3>
+                    <p class="text-gray-400 text-[10px] md:text-sm leading-snug">Copy, foto, video — 20 tool siap.</p>
+                </div>
+                <div class="reveal reveal-delay-3 relative bg-white/[0.02] border border-white/10 rounded-2xl p-4 md:p-6 flex flex-col items-center text-center">
+                    <span class="absolute top-2.5 right-2.5 text-[9px] md:text-[10px] font-black text-white rounded-md px-1.5 py-0.5" style="background:#22c55e;">03</span>
+                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mb-3 md:mb-4" style="background: rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.25);">
+                        <i class="fa-solid fa-rocket text-lg md:text-2xl text-green-400"></i>
+                    </div>
+                    <h3 class="font-display text-xs md:text-lg font-bold text-white mb-1">Generate &amp; Deploy</h3>
+                    <p class="text-gray-400 text-[10px] md:text-sm leading-snug">Hasil siap posting, detik itu juga.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="py-16 md:py-24 px-4 scroll-mt-24 overflow-hidden" style="background: linear-gradient(to bottom, transparent, rgba(255,107,53,0.03), transparent);">
+        <style>
+          .dm-tab { padding:8px 16px; border-radius:99px; font-size:11px; font-weight:800; letter-spacing:.04em; color:#9ca3af; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); cursor:pointer; transition:all .25s; }
+          .dm-tab.on { color:#fff; background:rgba(255,107,53,0.15); border-color:rgba(255,107,53,0.55); }
+          .dm-panel { position:relative; height:480px; }
+          @media (max-width:640px){ .dm-panel { height:440px; } }
+          .dm-layer { position:absolute; inset:0; padding:16px; opacity:0; pointer-events:none; transition:opacity .45s ease; overflow:hidden; }
+          .dm-layer.show { opacity:1; }
+          .dm-field { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:9px 12px; margin-bottom:10px; }
+          .dm-label { font-size:9px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:#9ca3af; margin-bottom:3px; display:flex; align-items:center; gap:5px; }
+          .dm-text { font-size:11.5px; color:#f3f4f6; font-weight:500; line-height:1.45; min-height:16px; opacity:0; transform:translateY(4px); transition:all .4s ease; }
+          .dm-text.fill { opacity:1; transform:none; }
+          .dm-btn { width:100%; padding:12px; border-radius:12px; font-weight:800; font-size:13px; color:#fff; background:linear-gradient(135deg,#FF6B35,#F5A623); text-align:center; transition:transform .2s; }
+          .dm-btn.press { transform:scale(0.95); box-shadow:0 0 0 5px rgba(255,107,53,0.3); }
+          .dm-load { margin-top:12px; opacity:0; transition:opacity .3s; }
+          .dm-load.show { opacity:1; }
+          .dm-loadbar { height:5px; border-radius:99px; background:rgba(255,255,255,0.07); overflow:hidden; }
+          .dm-loadbar > div { height:100%; width:0%; border-radius:99px; background:linear-gradient(90deg,#F5A623,#FF6B35); transition:width 1.5s ease-in-out; }
+          .dm-res-img { position:absolute; aspect-ratio:1/1; object-fit:cover; border-radius:12px; border:1px solid rgba(255,255,255,0.15); box-shadow:0 14px 30px rgba(0,0,0,0.5); opacity:0; transform:scale(0.3); transition:all .5s cubic-bezier(.2,1.4,.4,1); width:21%; }
+          .dm-res-img.pop { opacity:0.92; transform:scale(1) var(--rot); }
+          .dm-res-big { position:absolute; aspect-ratio:1/1; object-fit:cover; left:50%; top:50%; width:58%; transform:translate(-50%,-50%) scale(0.4); opacity:0; transition:all .7s cubic-bezier(.2,1.4,.4,1); z-index:2; border-radius:16px; border:2px solid rgba(255,107,53,0.55); box-shadow:0 30px 70px rgba(0,0,0,0.65), 0 0 50px rgba(255,107,53,0.25); }
+          .dm-res-big.pop { opacity:1; transform:translate(-50%,-50%) scale(1); }
+          .dm-badge { position:absolute; z-index:3; left:50%; transform:translateX(-50%); bottom:14px; font-size:9px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; color:#fff; padding:5px 14px; border-radius:99px; background:linear-gradient(90deg,#FF6B35,#F5A623); box-shadow:0 6px 16px rgba(255,107,53,0.5); opacity:0; transition:opacity .4s; }
+          .dm-badge.pop { opacity:1; }
+        </style>
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-8 md:mb-10 max-w-3xl mx-auto">
+                <span class="reveal badge mb-4" style="background: rgba(255,107,53,0.1); border-color: rgba(255,107,53,0.2); color: #FF8C5A;"><i class="fa-solid fa-circle-play"></i> LIHAT CARA KERJANYA</span>
+                <h2 class="reveal reveal-delay-1 font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3">Form Keisi &rarr; Generate &rarr; <span class="text-gradient">Hasil Jadi</span></h2>
+                <p class="reveal reveal-delay-2 text-gray-400 text-base md:text-lg">Form-nya persis seperti di dalam app, dan hasilnya = hasil generate asli dari tool itu.</p>
+            </div>
+            <div class="flex justify-center gap-2 mb-5 flex-wrap" id="dmTabs"></div>
+            <div class="reveal max-w-xl mx-auto rounded-2xl overflow-hidden border border-white/10 d-shadowcard" style="background:#121212;">
+                <div class="flex items-center gap-2 px-4 py-3" style="background:#0C0C0C; border-bottom:1px solid rgba(255,255,255,0.06);">
+                    <span class="w-2.5 h-2.5 rounded-full" style="background:#ff5f57;"></span>
+                    <span class="w-2.5 h-2.5 rounded-full" style="background:#febc2e;"></span>
+                    <span class="w-2.5 h-2.5 rounded-full" style="background:#28c840;"></span>
+                    <span class="ml-2 text-[10px] font-bold text-gray-400 tracking-wide truncate" id="dmTitle">Adverthinking AI</span>
+                </div>
+                <div class="dm-panel">
+                    <div class="dm-layer" id="dmForm"></div>
+                    <div class="dm-layer" id="dmResult"></div>
+                </div>
+            </div>
+            <p class="text-center text-gray-500 text-xs md:text-sm mt-7">Semua gambar &amp; video hasil di demo ini = output asli dari tool-nya. Tinggal isi form sesuai produk/brand kamu.</p>
+            <div class="text-center mt-6">
+                <a href="#pricing" class="btn-cta inline-block px-8 py-4 text-base shadow-xl" style="box-shadow: 0 15px 40px rgba(255,107,53,0.3);">GAS, SAYA MAU BIKIN KAYAK GINI &rarr;</a>
+            </div>
+        </div>
+        <script>
+        (function(){
+          var DEMOS = [
+            { id:'avatar', tab:'Model & Avatar AI', title:'Adverthinking AI — Model & Avatar AI',
+              fields:[
+                {ic:'fa-solid fa-user', lb:'Deskripsi Fisik Inti', v:'Wanita Indonesia, 25 th, senyum hangat, rambut hitam, kulit cerah'},
+                {ic:'fa-solid fa-shirt', lb:'Gaya Pakaian Dasar', v:'Outfit kasual kekinian buat konten UGC & selfie natural'},
+                {ic:'fa-solid fa-person', lb:'Pose', v:'Casual'},
+                {ic:'fa-solid fa-image', lb:'Background', v:'Minimalist Room'}],
+              imgs:['images/model-hijab.png','images/showcase/model-01.jpg','images/showcase/model-02.jpg','images/showcase/model-03.jpg','images/ugc/ugc-10.png'] },
+            { id:'poster', tab:'Desain Poster Feed', title:'Adverthinking AI — Desain Poster Feed',
+              fields:[
+                {ic:'fa-solid fa-table-cells-large', lb:'Tipe Poster', v:'Promo / Diskon'},
+                {ic:'fa-solid fa-store', lb:'Nama Bisnis & Produk', v:'Kopi Senja — Es Kopi Gula Aren'},
+                {ic:'fa-solid fa-tag', lb:'Penawaran', v:'Promo Gajian: beli 2 gratis 1, khusus weekend'},
+                {ic:'fa-solid fa-palette', lb:'Palet Warna', v:'Earthy Coffee (cokelat-krem)'}],
+              imgs:['images/showcase/poster-feed-01.jpg','images/showcase/poster-01.jpg','images/showcase/poster-02.jpg','images/showcase/poster-03.jpg','images/showcase/poster-04.jpg'] },
+            { id:'modelproduk', tab:'Model + Produk AI', title:'Adverthinking AI — Model + Produk AI',
+              fields:[
+                {ic:'fa-solid fa-camera', lb:'Foto Produk', v:'serum-glow.jpg &middot; ter-upload'},
+                {ic:'fa-solid fa-user', lb:'Deskripsi Model', v:'Wanita Indonesia 25 th, senyum hangat, outfit kasual kekinian'},
+                {ic:'fa-solid fa-hand-holding-heart', lb:'Interaksi', v:'Memegang produk ke arah kamera'},
+                {ic:'fa-solid fa-wand-magic-sparkles', lb:'Gaya Foto', v:'UGC Selfie (ala TikTok)'}],
+              imgs:['images/showcase/modelproduk-05.jpg','images/showcase/modelproduk-02.jpg','images/showcase/modelproduk-06.jpg','images/showcase/modelproduk-08.jpg','images/showcase/modelproduk-09.jpg'],
+              pool:['images/showcase/modelproduk-01.jpg','images/showcase/modelproduk-02.jpg','images/showcase/modelproduk-03.jpg','images/showcase/modelproduk-05.jpg','images/showcase/modelproduk-06.jpg','images/showcase/modelproduk-07.jpg','images/showcase/modelproduk-08.jpg','images/showcase/modelproduk-09.jpg','images/showcase/modelproduk-10.jpg','images/showcase/modelproduk-11.jpg'] },
+            { id:'produk', tab:'Foto Produk AI', title:'Adverthinking AI — Foto Produk AI',
+              fields:[
+                {ic:'fa-solid fa-camera', lb:'Foto Produk', v:'foto-sepatu.jpg &middot; ter-upload'},
+                {ic:'fa-solid fa-lightbulb', lb:'Pencahayaan', v:'Terang (high-key studio)'},
+                {ic:'fa-solid fa-mountain-sun', lb:'Suasana / Latar', v:'Studio bersih, podium minimalis'},
+                {ic:'fa-solid fa-maximize', lb:'Rasio', v:'1:1 (feed Instagram)'}],
+              imgs:['images/showcase/produk-01.jpg','images/showcase/produk-02.jpg','images/showcase/produk-03.jpg','images/showcase/produk-04.jpg','images/showcase/produk-05.jpg'] },
+            { id:'videougc', tab:'Video UGC Kreator', title:'Adverthinking AI — Video UGC Kreator',
+              fields:[
+                {ic:'fa-solid fa-box-open', lb:'Produk', v:'Serum wajah — review jujur ala kreator'},
+                {ic:'fa-solid fa-user', lb:'Model / Kreator', v:'Wanita Indonesia 25 th, vibe ramah & relatable'},
+                {ic:'fa-solid fa-clapperboard', lb:'Gaya Video', v:'UGC selfie handheld ala TikTok'},
+                {ic:'fa-solid fa-mobile-screen-button', lb:'Format', v:'9:16 (Reels/TikTok)'}],
+              vids:['videos/ugc-1.mp4','videos/ugc-2.mp4','videos/ugc-3.mp4','videos/ugc-4.mp4'],
+              pos:[ {l:'2%',t:'34%',r:'-7deg'}, {l:'74%',t:'34%',r:'6deg'}, {l:'39%',t:'2%',r:'-3deg'} ] },
+          ];
+          var POS = [ {l:'3%',t:'6%',r:'-7deg'}, {l:'73%',t:'4%',r:'6deg'}, {l:'5%',t:'62%',r:'5deg'}, {l:'71%',t:'60%',r:'-6deg'} ];
+          var tabsEl = document.getElementById('dmTabs'), formEl = document.getElementById('dmForm'),
+              resEl = document.getElementById('dmResult'), titleEl = document.getElementById('dmTitle');
+          if (!tabsEl) return;
+          var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          var avail = [], timers = [], cur = 0, gen = 0;
+
+          function probe(demo, cb){
+            if (demo.vids) { var vd = document.createElement('video'); vd.muted = true; vd.preload = 'metadata';
+              vd.onloadedmetadata = function(){ cb(true); }; vd.onerror = function(){ cb(false); }; vd.src = demo.vids[0]; return; }
+            var im = new Image(); im.onload = function(){ cb(true); }; im.onerror = function(){ cb(false); }; im.src = demo.imgs[0]; }
+          function shuffle(a){ for (var i = a.length - 1; i > 0; i--){ var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+          function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
+          function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
+
+          function renderForm(d){
+            var h = '';
+            d.fields.forEach(function(f){
+              h += '<div class="dm-field"><div class="dm-label"><i class="' + f.ic + '" style="color:#FF8C5A;"></i> ' + f.lb + '</div><div class="dm-text">' + f.v + '</div></div>';
+            });
+            h += '<div class="dm-btn" aria-hidden="true">\u2728 Generate</div>';
+            h += '<div class="dm-load"><div class="flex items-center justify-between text-[9px] font-bold uppercase tracking-widest text-gray-500 mb-1.5" style="display:flex;justify-content:space-between;"><span>Membuat hasil...</span><span style="color:#FF8C5A;">AI Working</span></div><div class="dm-loadbar"><div></div></div></div>';
+            formEl.innerHTML = h;
+          }
+          function renderResult(d){
+            var h = '', srcs = d.vids || d.imgs, P = d.pos || POS;
+            // video = format 1:1, subjek di tengah (object-fit cover + center)
+            function media(cls, src, style){
+              if (d.vids) return '<video class="' + cls + '" src="' + src + '" autoplay muted loop playsinline preload="metadata" style="' + style + 'object-position:center;background:#140E0A;" onerror="this.remove()"></video>';
+              return '<img class="' + cls + '" src="' + src + '" loading="lazy" alt="Hasil generate" style="' + style + '" onerror="this.remove()">';
+            }
+            srcs.slice(1).forEach(function(src, i){
+              var p = P[i]; if (!p) return;
+              h += media('dm-res-img', src, 'left:' + p.l + ';top:' + p.t + ';--rot:rotate(' + p.r + ');');
+            });
+            h += media('dm-res-big', srcs[0], '');
+            h += '<span class="dm-badge">\u2726 Hasil Generate Asli</span>';
+            resEl.innerHTML = h;
+            // bug Chromium: atribut muted gak kebawa dari innerHTML — set manual biar autoplay jalan;
+            // + daftarin ke observer global (play saat keliatan) biar kebal pause intervention Chrome
+            [].forEach.call(resEl.querySelectorAll('video'), function(v){ v.muted = true; if (window.vObs) vObs.observe(v); v.play().catch(function(){}); });
+          }
+          function play(idx){
+            clearTimers(); gen++;
+            var myGen = gen, d = avail[idx]; cur = idx;
+            // hasil acak tiap putaran (dari pool) biar keliatan generate beda-beda, bukan demo kaleng
+            if (d.pool && d.pool.length >= 5 && !d.vids) { d.imgs = shuffle(d.pool.slice()).slice(0, 5); }
+            [].forEach.call(tabsEl.children, function(b, i){ b.classList.toggle('on', i === idx); });
+            titleEl.textContent = d.title;
+            renderForm(d); renderResult(d);
+            resEl.classList.remove('show'); formEl.classList.add('show');
+            var texts = formEl.querySelectorAll('.dm-text');
+            if (reduced) {
+              [].forEach.call(texts, function(t){ t.classList.add('fill'); });
+              formEl.classList.remove('show'); resEl.classList.add('show');
+              [].forEach.call(resEl.children, function(el){ el.classList.add('pop'); });
+              [].forEach.call(resEl.querySelectorAll('video'), function(v){ v.muted = true; v.play().catch(function(){}); });
+              return;
+            }
+            [].forEach.call(texts, function(t, i){ later(function(){ t.classList.add('fill'); }, 350 + i * 480); });
+            var btn = formEl.querySelector('.dm-btn');
+            later(function(){ btn.classList.add('press'); }, 2500);
+            later(function(){ btn.classList.remove('press'); formEl.querySelector('.dm-load').classList.add('show'); formEl.querySelector('.dm-loadbar > div').style.width = '100%'; }, 2800);
+            later(function(){
+              if (myGen !== gen) return;
+              formEl.classList.remove('show'); resEl.classList.add('show');
+              // Chrome pause muted-autoplay yang belum ke-render — resume pas layer tampil
+              [].forEach.call(resEl.querySelectorAll('video'), function(v){ v.muted = true; v.play().catch(function(){}); });
+              var kids = resEl.querySelectorAll('.dm-res-img');
+              [].forEach.call(kids, function(el, i){ later(function(){ el.classList.add('pop'); }, 150 + i * 140); });
+              later(function(){ var b = resEl.querySelector('.dm-res-big'); if (b) b.classList.add('pop'); }, 700);
+              later(function(){ var bd = resEl.querySelector('.dm-badge'); if (bd) bd.classList.add('pop'); }, 1200);
+            }, 4600);
+            later(function(){ if (myGen === gen) play((cur + 1) % avail.length); }, 11500);
+          }
+          var pending = DEMOS.length;
+          DEMOS.forEach(function(d){
+            probe(d, function(ok){
+              if (ok) avail.push(d);
+              if (--pending === 0) {
+                avail.sort(function(a,b){ return DEMOS.indexOf(a) - DEMOS.indexOf(b); });
+                avail.forEach(function(dd, i){
+                  var b = document.createElement('button');
+                  b.className = 'dm-tab'; b.type = 'button'; b.textContent = dd.tab;
+                  b.addEventListener('click', function(){ play(i); });
+                  tabsEl.appendChild(b);
+                });
+                if (avail.length) play(0);
+              }
+            });
+          });
+        })();
+        </script>
+    </section>
+
+    <!-- ============ MARQUEE HASIL GENERATE (running results ala Auto Feeds) ============
+         Gambar = hasil generate ASLI dari tools (folder images/ + images/showcase/).
+         Slot Jumat: file images/showcase/poster-XX.png — kalau file belum ada, kartunya
+         otomatis ngilang (onerror), jadi aman; begitu file ditaruh, langsung muncul. -->
+    <section class="py-10 md:py-14 relative z-10 overflow-hidden">
+        <style>
+          @keyframes shcL { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+          @keyframes shcR { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+          .shc-track { display:flex; gap:14px; width:max-content; }
+          .shc-a { animation: shcL 144s linear infinite; }
+          .shc-b { animation: shcR 136s linear infinite; }
+          .shc-track:hover { animation-play-state: paused; }
+          .shc { position:relative; width:200px; height:200px; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.09); flex-shrink:0; background:#140E0A; }
+          .shc img { width:100%; height:100%; object-fit:cover; display:block; }
+          .shc .tag { position:absolute; left:8px; bottom:8px; padding:3px 10px; border-radius:99px; font-size:9px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:#fff; background:rgba(10,10,10,0.72); border:1px solid rgba(255,107,53,0.45); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); }
+          @media (max-width:640px){ .shc { width:150px; height:150px; } }
+          @media (prefers-reduced-motion: reduce){ .shc-a,.shc-b { animation:none; } }
+        </style>
+        <div class="text-center mb-6 md:mb-8 px-4">
+            <h2 class="reveal font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white">Semua Ini <span class="text-gradient">Hasil Generate</span></h2>
+            <p class="reveal reveal-delay-1 text-gray-400 text-sm md:text-base mt-2">Bukan stock photo — semuanya dibuat pakai tools di dalam.</p>
+        </div>
+        <div class="space-y-7 md:space-y-9">
+        <style>
+          .shg-track { display:flex; gap:14px; width:max-content; }
+          .shg-track:hover { animation-play-state: paused !important; }
+          .shg { border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.09); flex-shrink:0; background:#140E0A; }
+          .shg img { width:100%; height:100%; object-fit:cover; display:block; }
+          .r-sq .shg { width:180px; height:180px; }
+          .r-pt .shg { width:150px; height:267px; }
+          .r-ls .shg { width:300px; height:169px; }
+          .shg-label { font-size:10px; font-weight:900; letter-spacing:.2em; text-transform:uppercase; color:#FF8C5A; }
+          .shg-label .fmt { color:#6b7280; margin-left:6px; letter-spacing:.12em; }
+          @media (max-width:640px){
+            .r-sq .shg { width:140px; height:140px; }
+            .r-pt .shg { width:118px; height:210px; }
+            .r-ls .shg { width:240px; height:135px; }
+          }
+          @media (prefers-reduced-motion: reduce){ .shg-track { animation:none !important; } }
+        </style>
+            <div>
+                <p class="shg-label max-w-6xl mx-auto px-4 mb-2.5">✦ Desain Poster Feed<span class="fmt">format 1:1 · 12 hasil</span></p>
+                <div class="af-marquee-mask r-sq">
+                    <div class="shg-track" style="animation: shcL 137s linear infinite;">
+                    <div class="shg"><img src="images/showcase/poster-feed-01.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-01.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-02.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-03.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-04.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-06.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-07.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-08.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-09.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-10.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-11.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-12.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <!-- ulang buat loop mulus -->
+                    <div class="shg"><img src="images/showcase/poster-feed-01.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-01.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-02.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-03.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-04.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-06.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-07.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-08.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-09.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-10.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-11.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-12.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <!-- ulang buat loop mulus -->
+                    <div class="shg"><img src="images/showcase/poster-feed-01.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-01.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-02.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-03.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-04.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-06.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-07.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-08.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-09.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-10.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-11.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-12.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <!-- ulang buat loop mulus -->
+                    <div class="shg"><img src="images/showcase/poster-feed-01.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-01.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-02.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-03.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-04.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-06.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-07.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-08.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-09.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-10.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-11.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/poster-12.jpg" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p class="shg-label max-w-6xl mx-auto px-4 mb-2.5">✦ Thumbnail YouTube<span class="fmt">format 16:9 · 9 hasil</span></p>
+                <div class="af-marquee-mask r-ls">
+                    <div class="shg-track" style="animation: shcR 166s linear infinite;">
+                    <div class="shg"><img src="images/showcase/thumb-01.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-02.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-03.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-04.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-05.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-06.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-07.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-08.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-09.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <!-- ulang buat loop mulus -->
+                    <div class="shg"><img src="images/showcase/thumb-01.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-02.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-03.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-04.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-05.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-06.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-07.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-08.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-09.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <!-- ulang buat loop mulus -->
+                    <div class="shg"><img src="images/showcase/thumb-01.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-02.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-03.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-04.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-05.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-06.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-07.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-08.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-09.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <!-- ulang buat loop mulus -->
+                    <div class="shg"><img src="images/showcase/thumb-01.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-02.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-03.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-04.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-05.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-06.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-07.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-08.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/thumb-09.jpg" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p class="shg-label max-w-6xl mx-auto px-4 mb-2.5">✦ Model & Avatar AI<span class="fmt">format 9:16 · 10 hasil</span></p>
+                <div class="af-marquee-mask r-pt">
+                    <div class="shg-track" style="animation: shcL 96s linear infinite;">
+                    <div class="shg"><img src="images/showcase/model-01.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-02.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-03.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-04.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-05.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-06.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-07.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/model-hijab.png" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/ugc/ugc-8.png" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/ugc/ugc-10.png" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <!-- ulang buat loop mulus -->
+                    <div class="shg"><img src="images/showcase/model-01.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-02.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-03.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-04.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-05.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-06.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-07.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/model-hijab.png" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/ugc/ugc-8.png" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/ugc/ugc-10.png" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <!-- ulang buat loop mulus -->
+                    <div class="shg"><img src="images/showcase/model-01.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-02.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-03.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-04.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-05.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-06.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-07.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/model-hijab.png" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/ugc/ugc-8.png" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/ugc/ugc-10.png" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <!-- ulang buat loop mulus -->
+                    <div class="shg"><img src="images/showcase/model-01.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-02.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-03.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-04.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-05.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-06.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/model-07.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/model-hijab.png" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/ugc/ugc-8.png" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/ugc/ugc-10.png" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p class="shg-label max-w-6xl mx-auto px-4 mb-2.5">✦ Foto Produk AI<span class="fmt">format 1:1 · 9 hasil</span></p>
+                <div class="af-marquee-mask r-sq">
+                    <div class="shg-track" style="animation: shcR 103s linear infinite;">
+                    <div class="shg"><img src="images/showcase/produk-01.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-02.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-03.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-04.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-05.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-06.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-07.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-08.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-09.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <!-- ulang buat loop mulus -->
+                    <div class="shg"><img src="images/showcase/produk-01.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-02.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-03.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-04.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-05.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-06.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-07.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-08.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-09.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <!-- ulang buat loop mulus -->
+                    <div class="shg"><img src="images/showcase/produk-01.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-02.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-03.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-04.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-05.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-06.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-07.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-08.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-09.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <!-- ulang buat loop mulus -->
+                    <div class="shg"><img src="images/showcase/produk-01.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-02.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-03.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-04.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-05.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-06.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-07.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-08.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/produk-09.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p class="shg-label max-w-6xl mx-auto px-4 mb-2.5">✦ Model + Produk AI<span class="fmt">format 9:16 · 10 hasil</span></p>
+                <div class="af-marquee-mask r-pt">
+                    <div class="shg-track" style="animation: shcL 96s linear infinite;">
+                    <div class="shg"><img src="images/showcase/modelproduk-01.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-02.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-03.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-05.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-06.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-07.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-08.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-09.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-10.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-11.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <!-- ulang buat loop mulus -->
+                    <div class="shg"><img src="images/showcase/modelproduk-01.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-02.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-03.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-05.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-06.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-07.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-08.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-09.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-10.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-11.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <!-- ulang buat loop mulus -->
+                    <div class="shg"><img src="images/showcase/modelproduk-01.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-02.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-03.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-05.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-06.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-07.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-08.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-09.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-10.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-11.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <!-- ulang buat loop mulus -->
+                    <div class="shg"><img src="images/showcase/modelproduk-01.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-02.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-03.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-05.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-06.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-07.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-08.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-09.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-10.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase/modelproduk-11.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="max-w-4xl mx-auto h-px my-8" style="background: linear-gradient(90deg, transparent, rgba(255,107,53,0.15), transparent);"></div>
+
+    <!-- Problem Section -->
+    
+
+    <!-- Steps Section -->
+    
+
+    <!-- ============ DEMO ANIMASI 1-PANEL (3 tool, auto-rotate) ============
+         Semua kejadian di SATU panel: form keisi -> generate -> panel berganti jadi hasil (1 besar + 4 kecil).
+         Tab tool yang gambarnya belum ada (slot Jumat) otomatis ngumpet; muncul sendiri pas file ditaruh. -->
+    
+
+    <section id="tool-hasil" class="py-16 md:py-24 px-4 scroll-mt-24">
+        <style>
+          .th-kicker { font-size:10px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:#FF8C5A; }
+          .th-chip { display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:99px; font-size:10.5px; font-weight:700; color:#d1d5db; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); }
+          .th-img { border-radius:18px; border:1px solid rgba(255,255,255,0.1); box-shadow:0 24px 50px -12px rgba(0,0,0,0.6); width:100%; height:auto; display:block; }
+          .th-badge { position:absolute; top:12px; left:12px; padding:5px 12px; border-radius:99px; font-size:9.5px; font-weight:900; letter-spacing:.07em; text-transform:uppercase; color:#fff; background:rgba(10,10,10,0.78); border:1px solid rgba(255,107,53,0.5); backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px); }
+        </style>
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
+                <span class="reveal badge mb-4" style="background: rgba(255,107,53,0.1); border-color: rgba(255,107,53,0.2); color: #FF8C5A;">BUKTI, BUKAN JANJI</span>
+                <h2 class="reveal reveal-delay-1 font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3">5 Tool Andalan + <span class="text-gradient">Hasil Aslinya</span></h2>
+                <p class="reveal reveal-delay-2 text-gray-400 text-base md:text-lg">Biar kamu gak perlu bayangin — tiap tool langsung dipajang bareng hasil generate aslinya.</p>
+            </div>
+
+            <div class="space-y-14 md:space-y-20">
+
+                <!-- 01 — DESAIN POSTER FEED (landscape: teks atas, showcase bawah) -->
+                <div class="rounded-3xl p-4 pt-6 md:p-8 md:pt-9" style="background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.09);">
+                    <div class="reveal relative">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+                        <img src="images/showcase/poster-feed-01.jpg" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase/poster-01.jpg" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase/poster-03.jpg" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase/poster-04.jpg" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase/poster-02.jpg" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase/poster-06.jpg" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase/poster-08.jpg" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase/poster-09.jpg" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        </div>
+                        <span class="th-badge" style="top:-14px;">✦ Hasil Generate Asli</span>
+                    </div>
+                    <div class="reveal reveal-delay-1 max-w-3xl mx-auto text-center mt-6 md:mt-8">
+                        <p class="th-kicker mb-2">Tool 01 — Visual &amp; Media</p>
+                        <h3 class="font-display text-xl md:text-2xl font-bold text-white mb-3">Desain Poster Feed</h3>
+                        <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-4">9 tipe poster (promo, katalog, review, launching, edukasi...) &times; 18 industri. Pilih tipe, isi nama produk &amp; harga, pilih palet warna — prompt poster kelas desainer langsung jadi. Semua di bawah ini hasil generate-nya:</p>
+                        <div class="flex flex-wrap gap-2 justify-center"><span class="th-chip"><i class="fa-solid fa-pen text-[9px]" style="color:#FF8C5A;"></i> Isi form</span><span class="th-chip"><i class="fa-solid fa-wand-magic-sparkles text-[9px]" style="color:#FF8C5A;"></i> Generate</span><span class="th-chip"><i class="fa-solid fa-image text-[9px]" style="color:#FF8C5A;"></i> Poster jadi</span></div>
+                    </div>
+                </div>
+
+                <!-- 02 — FOTO PRODUK AI (landscape: teks atas, showcase bawah) -->
+                <div class="rounded-3xl p-4 pt-6 md:p-8 md:pt-9" style="background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.09);">
+                    <div class="reveal relative">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+                        <img src="images/showcase/produk-01.jpg" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase/produk-02.jpg" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase/produk-03.jpg" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase/produk-04.jpg" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase/produk-05.jpg" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase/produk-06.jpg" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase/produk-07.jpg" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase/produk-08.jpg" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        </div>
+                        <span class="th-badge" style="top:-14px;">✦ Hasil Generate Asli</span>
+                    </div>
+                    <div class="reveal reveal-delay-1 max-w-3xl mx-auto text-center mt-6 md:mt-8">
+                        <p class="th-kicker mb-2">Tool 02 — Visual &amp; Media</p>
+                        <h3 class="font-display text-xl md:text-2xl font-bold text-white mb-3">Foto Produk AI</h3>
+                        <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-4">Upload foto produk seadanya &rarr; dapat prompt foto studio profesional: lighting, angle, dan suasana yang bikin produk keliatan premium. Contoh di bawah: sneakers, setrika, case, parfum, skincare — semua difoto ulang gaya studio.</p>
+                        <div class="flex flex-wrap gap-2 justify-center"><span class="th-chip"><i class="fa-solid fa-camera text-[9px]" style="color:#FF8C5A;"></i> Upload produk</span><span class="th-chip"><i class="fa-solid fa-wand-magic-sparkles text-[9px]" style="color:#FF8C5A;"></i> Generate</span><span class="th-chip"><i class="fa-solid fa-store text-[9px]" style="color:#FF8C5A;"></i> Siap marketplace</span></div>
+                    </div>
+                </div>
+
+                <!-- 03 — MODEL &amp; AVATAR AI (landscape: teks atas, showcase bawah) -->
+                <div class="rounded-3xl p-4 pt-6 md:p-8 md:pt-9" style="background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.09);">
+                    <div class="reveal relative">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+                        <img src="images/showcase/model-01.jpg" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase/model-02.jpg" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase/model-03.jpg" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase/model-04.jpg" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase/model-05.jpg" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/model-hijab.png" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/ugc/ugc-8.png" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/ugc/ugc-10.png" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        </div>
+                        <span class="th-badge" style="top:-14px;">✦ Hasil Generate Asli</span>
+                    </div>
+                    <div class="reveal reveal-delay-1 max-w-3xl mx-auto text-center mt-6 md:mt-8">
+                        <p class="th-kicker mb-2">Tool 03 — Studio Kreatif</p>
+                        <h3 class="font-display text-xl md:text-2xl font-bold text-white mb-3">Model &amp; Avatar AI</h3>
+                        <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-4">Butuh model buat konten tapi gak ada budget photoshoot? Deskripsikan modelnya — pose, ekspresi, outfit, background — dan dapatkan foto model AI yang konsisten buat semua konten brand kamu.</p>
+                        <div class="flex flex-wrap gap-2 justify-center"><span class="th-chip"><i class="fa-solid fa-user text-[9px]" style="color:#FF8C5A;"></i> Deskripsi model</span><span class="th-chip"><i class="fa-solid fa-wand-magic-sparkles text-[9px]" style="color:#FF8C5A;"></i> Generate</span><span class="th-chip"><i class="fa-solid fa-images text-[9px]" style="color:#FF8C5A;"></i> Konten konsisten</span></div>
+                    </div>
+                </div>
+
+                <!-- 04 — VIDEO UGC KREATOR (showcase penuh: 8 video) -->
+                <div class="rounded-3xl p-4 pt-6 md:p-8 md:pt-9" style="background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.09);">
+                    <div class="reveal relative">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+                                                <div class="reveal relative rounded-[18px] overflow-hidden aspect-[9/16] bg-gray-900 ugc-card cursor-pointer" style="border:2px solid rgba(255,107,53,0.3);" onclick="advUgcAudio(this)">
+                            <video src="videos/ugc-1.mp4" autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 1"></video>
+                            <div class="ugc-spk" aria-hidden="true"><i class="fa-solid fa-volume-xmark"></i></div>
+                        </div>
+                        <div class="reveal relative rounded-[18px] overflow-hidden aspect-[9/16] bg-gray-900 ugc-card cursor-pointer" style="border:2px solid rgba(255,107,53,0.3);" onclick="advUgcAudio(this)">
+                            <video src="videos/ugc-2.mp4" autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 2"></video>
+                            <div class="ugc-spk" aria-hidden="true"><i class="fa-solid fa-volume-xmark"></i></div>
+                        </div>
+                        <div class="reveal relative rounded-[18px] overflow-hidden aspect-[9/16] bg-gray-900 ugc-card cursor-pointer" style="border:2px solid rgba(255,107,53,0.3);" onclick="advUgcAudio(this)">
+                            <video src="videos/ugc-3.mp4" autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 3"></video>
+                            <div class="ugc-spk" aria-hidden="true"><i class="fa-solid fa-volume-xmark"></i></div>
+                        </div>
+                        <div class="reveal relative rounded-[18px] overflow-hidden aspect-[9/16] bg-gray-900 ugc-card cursor-pointer" style="border:2px solid rgba(255,107,53,0.3);" onclick="advUgcAudio(this)">
+                            <video src="videos/ugc-4.mp4" autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 4"></video>
+                            <div class="ugc-spk" aria-hidden="true"><i class="fa-solid fa-volume-xmark"></i></div>
+                        </div>
+                        <div class="reveal relative rounded-[18px] overflow-hidden aspect-[9/16] bg-gray-900 ugc-card cursor-pointer" style="border:2px solid rgba(255,107,53,0.3);" onclick="advUgcAudio(this)">
+                            <video src="videos/ugc-5.mp4" autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 5"></video>
+                            <div class="ugc-spk" aria-hidden="true"><i class="fa-solid fa-volume-xmark"></i></div>
+                        </div>
+                        <div class="reveal relative rounded-[18px] overflow-hidden aspect-[9/16] bg-gray-900 ugc-card cursor-pointer" style="border:2px solid rgba(255,107,53,0.3);" onclick="advUgcAudio(this)">
+                            <video src="videos/ugc-6.mp4" autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 6"></video>
+                            <div class="ugc-spk" aria-hidden="true"><i class="fa-solid fa-volume-xmark"></i></div>
+                        </div>
+                        <div class="reveal relative rounded-[18px] overflow-hidden aspect-[9/16] bg-gray-900 ugc-card cursor-pointer" style="border:2px solid rgba(255,107,53,0.3);" onclick="advUgcAudio(this)">
+                            <video src="videos/ugc-7.mp4" autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 7"></video>
+                            <div class="ugc-spk" aria-hidden="true"><i class="fa-solid fa-volume-xmark"></i></div>
+                        </div>
+                        <div class="reveal relative rounded-[18px] overflow-hidden aspect-[9/16] bg-gray-900 ugc-card cursor-pointer" style="border:2px solid rgba(255,107,53,0.3);" onclick="advUgcAudio(this)">
+                            <video src="videos/ugc-8.mp4" autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 8"></video>
+                            <div class="ugc-spk" aria-hidden="true"><i class="fa-solid fa-volume-xmark"></i></div>
+                        </div>
+                        </div>
+                        <span class="th-badge" style="top:-14px;">✦ Hasil Generate Asli</span>
+                    </div>
+                    <div class="reveal reveal-delay-1 max-w-3xl mx-auto text-center mt-6 md:mt-8">
+                        <p class="th-kicker mb-2">Tool 04 — Video</p>
+                        <h3 class="font-display text-xl md:text-2xl font-bold text-white mb-3">Video UGC Kreator</h3>
+                        <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-4">Storyboard video UGC lengkap: alur scene, gerakan kamera, sampai voice over Bahasa Indonesia. Alur 2 langkah — bikin gambar kunci dulu, lalu animasikan — hasilnya konten kayak di bawah ini.</p>
+                        <p class="text-[11px] md:text-xs font-semibold mb-4" style="color:#FF8C5A;"><i class="fa-solid fa-volume-high mr-1"></i> Klik salah satu video buat dengerin voice over-nya</p>
+                        <div class="flex flex-wrap gap-2 justify-center"><span class="th-chip"><i class="fa-solid fa-clapperboard text-[9px]" style="color:#FF8C5A;"></i> Isi brief</span><span class="th-chip"><i class="fa-solid fa-film text-[9px]" style="color:#FF8C5A;"></i> 2 langkah</span><span class="th-chip"><i class="fa-solid fa-video text-[9px]" style="color:#FF8C5A;"></i> Video jadi</span></div>
+                    </div>
+                </div>
+
+                <!-- 05 — COPYWRITING IKLAN (landscape: teks atas, 2 kartu hasil bawah) -->
+                <div class="rounded-3xl p-4 pt-6 md:p-8 md:pt-9" style="background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.09);">
+                    <div class="reveal relative">
+                        <div class="grid md:grid-cols-2 gap-4 md:gap-5">
+                        <div class="rounded-2xl overflow-hidden border border-white/10 d-shadowcard" style="background:#121212;">
+                            <div class="flex items-center gap-2 px-4 py-3" style="background:#0C0C0C; border-bottom:1px solid rgba(255,255,255,0.06);">
+                                <span class="w-2.5 h-2.5 rounded-full" style="background:#ff5f57;"></span><span class="w-2.5 h-2.5 rounded-full" style="background:#febc2e;"></span><span class="w-2.5 h-2.5 rounded-full" style="background:#28c840;"></span>
+                                <span class="ml-2 text-[10px] font-bold text-gray-400 tracking-wide">Hasil — Copywriting Iklan</span>
+                                <i class="fa-regular fa-copy ml-auto text-xs text-gray-500"></i>
+                            </div>
+                            <div class="p-5 space-y-3 text-left">
+                                <p class="text-[10px] font-black uppercase tracking-widest" style="color:#FF8C5A;">Variasi 1 — Angle: Problem/Solusi</p>
+                                <p class="text-white font-bold text-sm md:text-base leading-snug">"Jualan tiap hari tapi yang beli itu-itu aja? Masalahnya bukan produkmu — tapi kontenmu."</p>
+                                <p class="text-gray-400 text-xs md:text-sm leading-relaxed">Konten yang menarik perhatian itu bukan bakat — ada polanya. Dan sekarang polanya bisa kamu pakai tanpa nyewa agency...</p>
+                                <p class="text-xs md:text-sm font-bold" style="color:#F5A623;">👉 Klik &amp; mulai sekarang — sebelum kompetitormu duluan.</p>
+                            </div>
+                        </div>
+                        <div class="rounded-2xl overflow-hidden border border-white/10 d-shadowcard" style="background:#121212;">
+                            <div class="flex items-center gap-2 px-4 py-3" style="background:#0C0C0C; border-bottom:1px solid rgba(255,255,255,0.06);">
+                                <span class="w-2.5 h-2.5 rounded-full" style="background:#ff5f57;"></span><span class="w-2.5 h-2.5 rounded-full" style="background:#febc2e;"></span><span class="w-2.5 h-2.5 rounded-full" style="background:#28c840;"></span>
+                                <span class="ml-2 text-[10px] font-bold text-gray-400 tracking-wide">Hasil — Copywriting Iklan</span>
+                                <i class="fa-regular fa-copy ml-auto text-xs text-gray-500"></i>
+                            </div>
+                            <div class="p-5 space-y-3 text-left">
+                                <p class="text-[10px] font-black uppercase tracking-widest" style="color:#FF8C5A;">Variasi 2 — Angle: Efisiensi Waktu</p>
+                                <p class="text-white font-bold text-sm md:text-base leading-snug">"2 jam buat 1 konten? Kompetitormu udah posting 10 hari ini."</p>
+                                <p class="text-gray-400 text-xs md:text-sm leading-relaxed">Setiap hari nunda, makin jauh ketinggalan. Copy, visual, sampai video — semua kelar dalam hitungan menit, bukan jam...</p>
+                                <p class="text-xs md:text-sm font-bold" style="color:#F5A623;">👉 Amankan akses lifetime-nya hari ini.</p>
+                            </div>
+                        </div>
+                        </div>
+                        <span class="th-badge" style="top:-14px;">✦ Hasil Generate Asli</span>
+                    </div>
+                    <div class="reveal reveal-delay-1 max-w-3xl mx-auto text-center mt-6 md:mt-8">
+                        <p class="th-kicker mb-2">Tool 05 — Konten &amp; Copy</p>
+                        <h3 class="font-display text-xl md:text-2xl font-bold text-white mb-3">Copywriting Iklan</h3>
+                        <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-4">Isi data produk &amp; target market — keluar beberapa variasi copy iklan lengkap: hook, body, CTA. Pakai bahasa pasar Indonesia yang ngena, bukan terjemahan kaku.</p>
+                        <div class="flex flex-wrap gap-2 justify-center"><span class="th-chip"><i class="fa-solid fa-box text-[9px]" style="color:#FF8C5A;"></i> Data produk</span><span class="th-chip"><i class="fa-solid fa-wand-magic-sparkles text-[9px]" style="color:#FF8C5A;"></i> Generate</span><span class="th-chip"><i class="fa-solid fa-copy text-[9px]" style="color:#FF8C5A;"></i> Tinggal tempel</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-14">
+                <a href="#pricing" class="btn-cta inline-block px-8 py-4 text-base shadow-xl" style="box-shadow: 0 15px 40px rgba(255,107,53,0.3);">SAYA MAU 20 TOOLS INI →</a>
+                <p class="text-gray-500 text-xs mt-3">+ 15 tool lainnya di dalam: hook, thumbnail, menu F&amp;B, landing page, strategi iklan, dll.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="fitur" class="py-16 md:py-24 px-4 scroll-mt-24">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12 max-w-3xl mx-auto">
+                <h2 class="reveal font-display text-2xl sm:text-3xl md:text-4xl font-bold mb-6 leading-tight">
+                    <span class="text-gradient">SEMUA 20 TOOLS</span> + CONTOH HASILNYA
+                </h2>
+                <p class="reveal reveal-delay-1 text-gray-400 text-base md:text-lg">Nama & fungsi persis seperti di dalam app — lengkap dengan contoh output tiap tool.</p>
+            </div>
+
+            <!-- Video Features -->
+            <div class="reveal reveal-delay-2 max-w-4xl mx-auto mb-12 rounded-2xl overflow-hidden shadow-2xl" style="border: 1px solid rgba(255,107,53,0.2); box-shadow: 0 25px 50px rgba(255,107,53,0.1);">
+                <div class="aspect-video bg-gray-900 relative">
+                    <iframe
+                        data-src="https://www.youtube.com/embed/qaEVTDk4rmI?autoplay=1&mute=1&loop=1&playlist=qaEVTDk4rmI&controls=1&rel=0&playsinline=1"
+                        class="yt-lazy w-full h-full absolute inset-0"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        title="Adverthinking AI Features Demo">
+                    </iframe>
+                </div>
+            </div>
+
+<style>
+  .tg-imgwrap { position:relative; aspect-ratio:1/1; background:#140E0A; border-bottom:1px solid rgba(255,255,255,0.06); }
+  .tg-imgwrap img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+  .tg-imgwrap .tg-soon { display:none; }
+  .tg-vid { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; background:#140E0A; }
+  .tg-vidbadge { display:none; position:absolute; top:8px; left:8px; align-items:center; gap:5px; padding:4px 10px; border-radius:99px; font-size:9px; font-weight:800; letter-spacing:.04em; color:#fff; background:rgba(10,10,10,0.72); border:1px solid rgba(255,107,53,0.5); }
+  .tg-imgwrap.novid .tg-vidbadge { display:inline-flex; }
+  .tg-imgwrap.tg-pending .tg-soon { display:inline-flex; align-items:center; gap:7px; position:absolute; inset:0; justify-content:center; font-size:11px; font-weight:700; color:#9ca3af; background:repeating-linear-gradient(45deg, rgba(255,107,53,0.04), rgba(255,107,53,0.04) 12px, transparent 12px, transparent 24px); }
+  .tg-snip { margin:14px 14px 0; padding:12px 14px; border-radius:12px; background:rgba(0,0,0,0.35); border:1px solid rgba(255,255,255,0.07); font-size:11px; color:#9ca3af; line-height:1.55; min-height:96px; }
+  .tg-snip .snip-label { font-size:8.5px; font-weight:900; letter-spacing:.12em; color:#FF8C5A; margin-bottom:4px; }
+  .wa-bub { background:#1f2c34; border-radius:10px 10px 10px 2px; padding:7px 10px; margin-bottom:6px; max-width:88%; color:#e5e7eb; }
+  .wa-bub.wa-out { background:#005c4b; border-radius:10px 10px 2px 10px; margin-left:auto; }
+  .vo-player { display:flex; align-items:center; gap:10px; }
+  .vo-wave { display:flex; align-items:center; gap:2.5px; flex:1; height:26px; }
+  .vo-wave span { width:3px; border-radius:2px; background:linear-gradient(#F5A623,#FF6B35); height:30%; }
+  .vo-wave span:nth-child(2n){height:75%;} .vo-wave span:nth-child(3n){height:50%;} .vo-wave span:nth-child(5n){height:95%;}
+  .vo-player:hover .vo-ic { transform:scale(1.12); }
+  @keyframes voBounce { 0%,100%{transform:scaleY(.45)} 50%{transform:scaleY(1)} }
+  .vo-player.playing .vo-wave span { animation: voBounce .9s ease-in-out infinite; transform-origin:center; }
+  .vo-player.playing .vo-wave span:nth-child(2n){ animation-delay:.15s; }
+  .vo-player.playing .vo-wave span:nth-child(3n){ animation-delay:.3s; }
+  .vo-player.playing .vo-wave span:nth-child(5n){ animation-delay:.45s; }
+</style>
+            <div class="mb-10 md:mb-14">
+            <div class="reveal flex items-center gap-3 mb-6 rounded-2xl px-3.5 py-3 md:px-5 md:py-4" style="background:linear-gradient(90deg, rgba(255,107,53,0.13), rgba(245,166,35,0.05) 55%, rgba(255,255,255,0.01)); border:1px solid rgba(255,107,53,0.25);">
+                <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.25);"><i class="fa-solid fa-image text-sm" style="color:#FF8C5A;"></i></div>
+                <div>
+                    <h3 class="font-display text-lg md:text-xl font-black tracking-wide text-white leading-tight">Tools Visual</h3>
+                    <p class="text-gray-500 text-[11px] md:text-xs">Hasilnya: desain & foto siap pakai</p>
+                </div>
+                <span class="ml-auto text-[10px] font-black tracking-widest text-gray-500 border border-white/10 rounded-full px-3 py-1 shrink-0">9 TOOLS</span>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+<div class="reveal reveal-delay-1 glass-card overflow-hidden flex flex-col">
+  <div class="tg-imgwrap"><img src="images/tools/model_avatar.png" alt="Contoh hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.classList.add('tg-pending');this.remove();"><span class="tg-soon"><i class="fa-solid fa-hourglass-half"></i> Contoh hasil segera</span></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-user-astronaut text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 03</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Model & Avatar AI</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">Foto model AI yang konsisten: atur pose, ekspresi, outfit, background — tanpa photoshoot, tanpa bayar model.</p>
+  </div>
+</div>
+<div class="reveal reveal-delay-2 glass-card overflow-hidden flex flex-col">
+  <div class="tg-imgwrap"><img src="images/tools/foto_produk.png" alt="Contoh hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.classList.add('tg-pending');this.remove();"><span class="tg-soon"><i class="fa-solid fa-hourglass-half"></i> Contoh hasil segera</span></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-camera-retro text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 08</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Foto Produk AI</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">Upload foto produk seadanya — jadi foto studio profesional: lighting, angle, suasana premium.</p>
+  </div>
+</div>
+<div class="reveal reveal-delay-3 glass-card overflow-hidden flex flex-col">
+  <div class="tg-imgwrap"><img src="images/tools/banner.png" alt="Contoh hasil Banner Iklan AI" loading="lazy" onerror="this.parentElement.classList.add('tg-pending');this.remove();"><span class="tg-soon"><i class="fa-solid fa-hourglass-half"></i> Contoh hasil segera</span></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-image text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 09</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Banner Iklan AI</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">Banner promo lengkap dengan headline & CTA — siap pasang di Meta Ads dan marketplace.</p>
+  </div>
+</div>
+<div class="reveal reveal-delay-1 glass-card overflow-hidden flex flex-col">
+  <div class="tg-imgwrap"><img src="images/tools/thumbnail.png" alt="Contoh hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.classList.add('tg-pending');this.remove();"><span class="tg-soon"><i class="fa-solid fa-hourglass-half"></i> Contoh hasil segera</span></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-brands fa-youtube text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 10</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Thumbnail YouTube</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">Thumbnail gaya CTR tinggi: teks gede, ekspresi nendang — video makin diklik.</p>
+  </div>
+</div>
+<div class="reveal reveal-delay-2 glass-card overflow-hidden flex flex-col">
+  <div class="tg-imgwrap"><img src="images/tools/tipografi.png" alt="Contoh hasil Poster Tipografi" loading="lazy" onerror="this.parentElement.classList.add('tg-pending');this.remove();"><span class="tg-soon"><i class="fa-solid fa-hourglass-half"></i> Contoh hasil segera</span></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-font text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 11</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Poster Tipografi</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">Poster berbasis tipografi premium — buat quote, promo, dan branding yang artistik.</p>
+  </div>
+</div>
+<div class="reveal reveal-delay-3 glass-card overflow-hidden flex flex-col">
+  <div class="tg-imgwrap"><img src="images/tools/menu_fnb.png" alt="Contoh hasil Menu F&B" loading="lazy" onerror="this.parentElement.classList.add('tg-pending');this.remove();"><span class="tg-soon"><i class="fa-solid fa-hourglass-half"></i> Contoh hasil segera</span></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-utensils text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 12</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Menu F&B</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">Desain menu resto/cafe siap cetak — isi menu & harga, langsung jadi desain premium.</p>
+  </div>
+</div>
+<div class="reveal reveal-delay-1 glass-card overflow-hidden flex flex-col">
+  <div class="tg-imgwrap"><img src="images/tools/face_card.png" alt="Contoh hasil Analisa Wajah & Gaya" loading="lazy" onerror="this.parentElement.classList.add('tg-pending');this.remove();"><span class="tg-soon"><i class="fa-solid fa-hourglass-half"></i> Contoh hasil segera</span></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-wand-magic-sparkles text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 13</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Analisa Wajah & Gaya</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">Upload 1 foto wajah → board analisa ala personal stylist: personal color, style, makeup.</p>
+  </div>
+</div>
+<div class="reveal reveal-delay-2 glass-card overflow-hidden flex flex-col">
+  <div class="tg-imgwrap"><img src="images/tools/photo_enhance.png" alt="Contoh hasil Edit Foto Jadi Pro" loading="lazy" onerror="this.parentElement.classList.add('tg-pending');this.remove();"><span class="tg-soon"><i class="fa-solid fa-hourglass-half"></i> Contoh hasil segera</span></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-photo-film text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 14</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Edit Foto Jadi Pro</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">Foto mentah di-upgrade jadi kelas pro — wajah, logo, dan produk dijaga tetap identik.</p>
+  </div>
+</div>
+<div class="reveal reveal-delay-3 glass-card overflow-hidden flex flex-col">
+  <div class="tg-imgwrap"><img src="images/tools/poster_feed.png" alt="Contoh hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.classList.add('tg-pending');this.remove();"><span class="tg-soon"><i class="fa-solid fa-hourglass-half"></i> Contoh hasil segera</span></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-table-cells-large text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 15</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Desain Poster Feed</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">9 tipe poster &times; 18 industri: promo, katalog, review, launching — feed bisnis langsung rapi.</p>
+  </div>
+</div>
+            </div>
+            </div>
+            <div class="mb-10 md:mb-14">
+            <div class="reveal flex items-center gap-3 mb-6 rounded-2xl px-3.5 py-3 md:px-5 md:py-4" style="background:linear-gradient(90deg, rgba(255,107,53,0.13), rgba(245,166,35,0.05) 55%, rgba(255,255,255,0.01)); border:1px solid rgba(255,107,53,0.25);">
+                <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.25);"><i class="fa-solid fa-clapperboard text-sm" style="color:#FF8C5A;"></i></div>
+                <div>
+                    <h3 class="font-display text-lg md:text-xl font-black tracking-wide text-white leading-tight">Tools Video</h3>
+                    <p class="text-gray-500 text-[11px] md:text-xs">Hasilnya: video iklan & konten UGC</p>
+                </div>
+                <span class="ml-auto text-[10px] font-black tracking-widest text-gray-500 border border-white/10 rounded-full px-3 py-1 shrink-0">3 TOOLS</span>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+<div class="reveal reveal-delay-1 glass-card overflow-hidden flex flex-col">
+  <div class="tg-imgwrap tg-hasvid"><video src="videos/video-sinematik.mp4" poster="images/tools/video_sinematik.png" muted loop playsinline autoplay controls preload="metadata" class="tg-vid ugc-auto" title="Contoh Video Iklan Sinematik" onerror="this.closest('.tg-imgwrap').classList.add('novid')"></video><span class="tg-vidbadge"><i class="fa-solid fa-clapperboard text-[9px]"></i> Video menyusul</span></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-clapperboard text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 16</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Video Iklan Sinematik</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">Alur 2 langkah: bikin gambar kunci → prompt motion buat Veo/Kling/CapCut. Video iklan kelas produksi.</p>
+  </div>
+</div>
+<div class="reveal reveal-delay-2 glass-card overflow-hidden flex flex-col">
+  <div class="tg-imgwrap tg-hasvid"><video src="videos/ugc-1.mp4" poster="" muted loop playsinline autoplay controls preload="metadata" class="tg-vid ugc-auto" title="Contoh Video UGC Kreator"></video></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-mobile-screen-button text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 17</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Video UGC Kreator</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">Storyboard video UGC lengkap: scene, gerakan kamera, sampai voice over Bahasa Indonesia.</p>
+  </div>
+</div>
+<div class="reveal reveal-delay-3 glass-card overflow-hidden flex flex-col">
+  <div class="tg-imgwrap tg-hasvid"><video src="videos/ugc-2.mp4" poster="" muted loop playsinline autoplay controls preload="metadata" class="tg-vid ugc-auto" title="Contoh Video Affiliate"></video></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-cart-shopping text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 18</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Video Affiliate</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">Video review produk gaya affiliate yang convert — alur 2 langkah yang sama gampangnya.</p>
+  </div>
+</div>
+            </div>
+            </div>
+            <div class="mb-0">
+            <div class="reveal flex items-center gap-3 mb-6 rounded-2xl px-3.5 py-3 md:px-5 md:py-4" style="background:linear-gradient(90deg, rgba(255,107,53,0.13), rgba(245,166,35,0.05) 55%, rgba(255,255,255,0.01)); border:1px solid rgba(255,107,53,0.25);">
+                <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.25);"><i class="fa-solid fa-pen-fancy text-sm" style="color:#FF8C5A;"></i></div>
+                <div>
+                    <h3 class="font-display text-lg md:text-xl font-black tracking-wide text-white leading-tight">Tools Teks & Strategi</h3>
+                    <p class="text-gray-500 text-[11px] md:text-xs">Hasilnya: script, copy & analisa siap pakai</p>
+                </div>
+                <span class="ml-auto text-[10px] font-black tracking-widest text-gray-500 border border-white/10 rounded-full px-3 py-1 shrink-0">8 TOOLS</span>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+<div class="reveal reveal-delay-1 glass-card overflow-hidden flex flex-col">
+  <div class="tg-snip"><p class="snip-label">HASIL — STRUKTUR CAMPAIGN</p><p>1 Campaign (CBO) &rarr; 3 Ad Set: Broad &middot; Interest &middot; Retargeting. Budget awal Rp50rb/hari, evaluasi hari ke-4...</p></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-chess text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 01</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Strategi Iklan AI</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">Strategi kampanye lengkap: target audiens, struktur campaign, alokasi budget — kayak punya media buyer sendiri.</p>
+  </div>
+</div>
+<div class="reveal reveal-delay-2 glass-card overflow-hidden flex flex-col">
+  <div class="tg-snip"><p class="snip-label">TANYA</p><p class="text-white">"Budget 50rb/hari mending boost post atau Ads Manager?"</p><p class="snip-label" style="margin-top:6px;">JAWAB</p><p>Ads Manager — kontrol target & penempatan penuh. Boost post cuma...</p></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-comments text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 02</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Konsultan Marketing</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">Tanya apa aja soal marketing & iklan — dijawab langsung di dalam app, kayak konsultan pribadi 24 jam.</p>
+  </div>
+</div>
+<div class="reveal reveal-delay-3 glass-card overflow-hidden flex flex-col">
+  <div class="tg-snip"><p class="snip-label">VARIASI 1 — HOOK</p><p class="text-white">"Jualan tiap hari tapi yang beli itu-itu aja?"</p><p>Masalahnya bukan produkmu — tapi kontenmu. Konten yang menarik itu ada polanya...</p></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-pen-fancy text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 04</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Copywriting Iklan</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">Beberapa variasi copy iklan lengkap (hook, body, CTA) pakai bahasa pasar Indonesia — langsung jadi di dalam app.</p>
+  </div>
+</div>
+<div class="reveal reveal-delay-1 glass-card overflow-hidden flex flex-col">
+  <div class="tg-snip"><p class="snip-label">3 DARI 10 HOOK</p><p>1. "Stop! Kalau kamu masih [cara lama], kamu rugi 2x."<br>2. "Gak nyangka modal segini hasilnya begini..."<br>3. "POV: kamu akhirnya nemu cara yang beneran works."</p></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-bolt text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 05</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Hook Pembuka Iklan</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">10 hook anti-scroll buat 3 detik pertama iklan, Reels, dan TikTok — langsung jadi di dalam app.</p>
+  </div>
+</div>
+<div class="reveal reveal-delay-2 glass-card overflow-hidden flex flex-col">
+  <div class="tg-snip"><div class="wa-bub"><p>Kak, paketnya udah sampe! Packingnya rapi banget 😍</p></div><div class="wa-bub wa-out"><p>Alhamdulillah~ ditunggu next ordernya kak 🙏</p></div></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-brands fa-whatsapp text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 06</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Testimoni Chat WA</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">Mockup chat WhatsApp testimoni pelanggan yang natural — social proof buat konten & iklan.</p>
+  </div>
+</div>
+<div class="reveal reveal-delay-3 glass-card overflow-hidden flex flex-col">
+  <div class="tg-snip"><button type="button" class="vo-player" onclick="advVoToggle(this)" aria-label="Putar contoh voice over" style="all:unset;display:flex;align-items:center;gap:10px;width:100%;cursor:pointer;"><i class="fa-solid fa-circle-play vo-ic" style="font-size:26px;color:#FF8C5A;transition:transform .2s;"></i><div class="vo-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="vo-time" style="font-size:10px;color:#9ca3af;">0:10</span></button><p style="margin-top:8px;">"Capek bikin konten tiap hari? Kenalin — asisten AI yang kerjain semuanya..."</p></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-microphone-lines text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 07</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Voice Over AI</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">Script + suara AI Bahasa Indonesia — audionya langsung jadi di dalam app, tinggal download.</p>
+  </div>
+</div>
+<div class="reveal reveal-delay-1 glass-card overflow-hidden flex flex-col">
+  <div class="tg-snip"><p class="snip-label">HASIL AUDIT</p><p>CTR 0,8% — di bawah benchmark (1,5%). Biang: hook visual lemah di 3 detik pertama. <span class="text-white">Rekomendasi: ganti opening jadi before/after...</span></p></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-chart-line text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 19</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Audit Performa Iklan</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">Masukkan data performa iklanmu → analisa + rekomendasi konkret langkah berikutnya.</p>
+  </div>
+</div>
+<div class="reveal reveal-delay-2 glass-card overflow-hidden flex flex-col">
+  <div class="tg-snip"><p class="snip-label">OUTPUT — KODE SIAP DEPLOY</p><p style="font-family:monospace;font-size:10.5px;color:#a5b4fc;">&lt;section class="hero"&gt;<br>&nbsp;&nbsp;&lt;h1&gt;Kopi Senja — Promo Gajian&lt;/h1&gt;<br>&nbsp;&nbsp;&lt;a class="cta"&gt;Pesan Sekarang&lt;/a&gt;...</p></div>
+  <div class="p-5 flex-1 flex flex-col">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-window-maximize text-sm" style="color:#FF8C5A;"></i></div>
+      <div><p class="text-[9px] font-black tracking-widest text-gray-500">TOOL 20</p>
+      <h3 class="font-display text-base font-bold text-white leading-tight">Pembuat Landing Page</h3></div>
+    </div>
+    <p class="text-gray-400 text-xs leading-relaxed">Build-prompt landing page utuh (copy + desain) — tempel ke AI gratis, keluar kode HTML siap deploy.</p>
+  </div>
+</div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    
+
+    <!-- Audience Section -->
+    
+
+    <!-- ============ 5 TOOL ANDALAN x HASIL (penjelasan + bukti, ala Auto Feeds) ============
+         Tiap baris: penjelasan tool + hasil generate ASLI di sebelahnya — orang gak perlu nebak.
+         Baris Poster Feed: gambarnya nunggu showcase Jumat (images/showcase/poster-feed-01.jpg);
+         sebelum file ada, otomatis tampil kartu "segera". -->
+    
+
+    <!-- UGC Section -->
+    
+
+    <!-- Foto Produk -->
+    
+
+    <!-- Foto Model + Produk -->
+    
+
+    <section class="py-16 md:py-24 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="reveal badge mb-4" style="background: rgba(255,107,53,0.1); border-color: rgba(255,107,53,0.2); color: #FF8C5A;">BEFORE / AFTER</span>
+                <h2 class="reveal reveal-delay-1 font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3">Cara Lama vs <span class="text-gradient">Cara Adverthinking AI</span></h2>
+                <p class="reveal reveal-delay-2 text-gray-400 text-base md:text-lg">Bedanya bukan cuma sedikit — ini beda dunia.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-5 md:gap-6">
+                <!-- Cara Lama -->
+                <div class="reveal reveal-delay-1 glass-card p-6 md:p-8" style="border-color: rgba(239,68,68,0.25);">
+                    <div class="flex items-center gap-3 mb-5 pb-5 border-b border-white/5">
+                        <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background: rgba(239,68,68,0.12); border:1px solid rgba(239,68,68,0.2);">
+                            <i class="fa-solid fa-hourglass-half text-red-400"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-red-400/80">/ 01 · Cara Konvensional</p>
+                            <h3 class="font-display text-lg font-bold text-white">Lambat &amp; Mahal</h3>
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="flex items-start gap-3 py-2.5 border-b border-white/5">
+                            <i class="fa-solid fa-xmark text-red-400 mt-1 text-sm w-4 text-center flex-shrink-0"></i>
+                            <div><p class="text-[11px] uppercase tracking-wide text-gray-500 font-semibold">Waktu bikin 1 konten</p><p class="text-gray-300 text-sm font-medium">2–3 jam / antri freelancer</p></div>
+                        </div>
+                        <div class="flex items-start gap-3 py-2.5 border-b border-white/5">
+                            <i class="fa-solid fa-xmark text-red-400 mt-1 text-sm w-4 text-center flex-shrink-0"></i>
+                            <div><p class="text-[11px] uppercase tracking-wide text-gray-500 font-semibold">Biaya per konten</p><p class="text-gray-300 text-sm font-medium">Rp 50–500rb (designer/copywriter)</p></div>
+                        </div>
+                        <div class="flex items-start gap-3 py-2.5 border-b border-white/5">
+                            <i class="fa-solid fa-xmark text-red-400 mt-1 text-sm w-4 text-center flex-shrink-0"></i>
+                            <div><p class="text-[11px] uppercase tracking-wide text-gray-500 font-semibold">Skill yang dibutuhkan</p><p class="text-gray-300 text-sm font-medium">Copywriting + desain + editing</p></div>
+                        </div>
+                        <div class="flex items-start gap-3 py-2.5 border-b border-white/5">
+                            <i class="fa-solid fa-xmark text-red-400 mt-1 text-sm w-4 text-center flex-shrink-0"></i>
+                            <div><p class="text-[11px] uppercase tracking-wide text-gray-500 font-semibold">Konsistensi hasil</p><p class="text-gray-300 text-sm font-medium">Tergantung mood &amp; orangnya</p></div>
+                        </div>
+                        <div class="flex items-start gap-3 py-2.5 border-b border-white/5">
+                            <i class="fa-solid fa-xmark text-red-400 mt-1 text-sm w-4 text-center flex-shrink-0"></i>
+                            <div><p class="text-[11px] uppercase tracking-wide text-gray-500 font-semibold">Revisi &amp; iterasi</p><p class="text-gray-300 text-sm font-medium">Bolak-balik berhari-hari</p></div>
+                        </div>
+                        <div class="flex items-start gap-3 py-2.5">
+                            <i class="fa-solid fa-xmark text-red-400 mt-1 text-sm w-4 text-center flex-shrink-0"></i>
+                            <div><p class="text-[11px] uppercase tracking-wide text-gray-500 font-semibold">Skala produksi</p><p class="text-gray-300 text-sm font-medium">Terbatas (capek &amp; mahal)</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cara Adverthinking AI -->
+                <div class="reveal reveal-delay-2 glass-card p-6 md:p-8" style="border-color: rgba(255,107,53,0.4); box-shadow: 0 0 35px rgba(255,107,53,0.12);">
+                    <div class="flex items-center gap-3 mb-5 pb-5 border-b border-white/10">
+                        <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #FF6B35, #F5A623);">
+                            <i class="fa-solid fa-bolt text-white"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-widest" style="color:#FF8C5A;">/ 02 · Cara Adverthinking AI</p>
+                            <h3 class="font-display text-lg font-bold text-white">Instan &amp; Hemat</h3>
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="flex items-start gap-3 py-2.5 border-b border-white/5">
+                            <i class="fa-solid fa-check mt-1 text-sm w-4 text-center flex-shrink-0" style="color:#4ade80;"></i>
+                            <div><p class="text-[11px] uppercase tracking-wide text-gray-500 font-semibold">Waktu bikin 1 konten</p><p class="text-white text-sm font-semibold">Di bawah 5 menit</p></div>
+                        </div>
+                        <div class="flex items-start gap-3 py-2.5 border-b border-white/5">
+                            <i class="fa-solid fa-check mt-1 text-sm w-4 text-center flex-shrink-0" style="color:#4ade80;"></i>
+                            <div><p class="text-[11px] uppercase tracking-wide text-gray-500 font-semibold">Biaya per konten</p><p class="text-white text-sm font-semibold">Termasuk paket — sekali bayar</p></div>
+                        </div>
+                        <div class="flex items-start gap-3 py-2.5 border-b border-white/5">
+                            <i class="fa-solid fa-check mt-1 text-sm w-4 text-center flex-shrink-0" style="color:#4ade80;"></i>
+                            <div><p class="text-[11px] uppercase tracking-wide text-gray-500 font-semibold">Skill yang dibutuhkan</p><p class="text-white text-sm font-semibold">Cuma isi form</p></div>
+                        </div>
+                        <div class="flex items-start gap-3 py-2.5 border-b border-white/5">
+                            <i class="fa-solid fa-check mt-1 text-sm w-4 text-center flex-shrink-0" style="color:#4ade80;"></i>
+                            <div><p class="text-[11px] uppercase tracking-wide text-gray-500 font-semibold">Konsistensi hasil</p><p class="text-white text-sm font-semibold">Stabil &amp; on-brand</p></div>
+                        </div>
+                        <div class="flex items-start gap-3 py-2.5 border-b border-white/5">
+                            <i class="fa-solid fa-check mt-1 text-sm w-4 text-center flex-shrink-0" style="color:#4ade80;"></i>
+                            <div><p class="text-[11px] uppercase tracking-wide text-gray-500 font-semibold">Revisi &amp; iterasi</p><p class="text-white text-sm font-semibold">Generate ulang instan</p></div>
+                        </div>
+                        <div class="flex items-start gap-3 py-2.5">
+                            <i class="fa-solid fa-check mt-1 text-sm w-4 text-center flex-shrink-0" style="color:#4ade80;"></i>
+                            <div><p class="text-[11px] uppercase tracking-wide text-gray-500 font-semibold">Skala produksi</p><p class="text-white text-sm font-semibold">Unlimited — gas sebanyak mau</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kenapa Adverthinking (kredibilitas jujur, ganti social proof palsu) -->
+    <section class="py-16 md:py-24 px-4">
+        <div class="max-w-5xl mx-auto reveal glass-card p-8 md:p-16 text-center border border-white/5 bg-black/20">
+            <span class="badge mb-6" style="background: rgba(255,107,53,0.1); border-color: rgba(255,107,53,0.2); color: #FF8C5A;"><i class="fa-solid fa-lightbulb"></i> KENAPA ADVERTHINKING AI</span>
+            <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Dibuat Orang yang Ngerti Iklan</h2>
+            <p class="text-gray-400 text-base md:text-lg mb-10 max-w-2xl mx-auto">Bukan sekadar bungkus AI. Tools ini lahir dari pengalaman nyata di dunia periklanan — biar hasilnya kepakai, bukan cuma keren di demo.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 text-left">
+                <div class="flex flex-col gap-2">
+                    <div class="text-3xl mb-1">🎯</div>
+                    <h3 class="font-display text-base md:text-lg font-bold text-white">Background Agency</h3>
+                    <p class="text-gray-400 text-sm">Dirancang dari pengalaman kerja di creative agency periklanan — paham apa yang bikin iklan jalan.</p>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <div class="text-3xl mb-1">🇮🇩</div>
+                    <h3 class="font-display text-base md:text-lg font-bold text-white">Konteks Pasar Indonesia</h3>
+                    <p class="text-gray-400 text-sm">Copy dan konten yang keluar pakai bahasa pasar Indonesia, bukan terjemahan kaku.</p>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <div class="text-3xl mb-1">♾️</div>
+                    <h3 class="font-display text-base md:text-lg font-bold text-white">Sekali Bayar, Selamanya</h3>
+                    <p class="text-gray-400 text-sm">Tanpa langganan bulanan. Bayar sekali di harga perdana, akses semua tools selamanya.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before / After Comparison -->
+    
+
+    <!-- Pricing Section -->
+    <!-- ===== SLOT TESTIMONI (AKTIFKAN setelah 5-10 pembeli pertama!) =====
+         Format paling convert: screenshot chat WA pembeli asli + nama depan + jenis bisnis.
+         Grid 2-3 kolom gambar screenshot. JANGAN pakai testimoni karangan. -->
+    <section id="pricing" class="py-16 md:py-24 px-4 pb-32">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-8">
+                <span class="reveal badge bg-red-500/10 border-red-500/30 text-red-400 mb-6"><i class="fa-solid fa-fire animate-pulse"></i> HARGA PERDANA</span>
+                <h2 class="reveal reveal-delay-1 font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Satu Harga, Akses Semua 20 Tools</h2>
+                <p class="reveal reveal-delay-2 text-gray-400 text-base md:text-lg">Sekali bayar, akses <span class="text-white font-bold">SELAMANYA</span>. Tanpa langganan bulanan.</p>
+            </div>
+
+            
+
+            <!-- SINGLE PRICING (100k) -->
+            <div class="flex justify-center reveal reveal-delay-3">
+                <div class="pricing-card p-6 md:p-8 w-full max-w-lg" style="border:2px solid rgba(255,107,53,0.5); box-shadow:0 0 0 1px rgba(255,107,53,0.2), 0 25px 60px -10px rgba(255,107,53,0.25);">
+                    <div class="pricing-badge absolute top-0 right-0 text-white text-[10px] md:text-xs font-bold px-3 md:px-4 py-1.5 md:py-2 rounded-bl-2xl shadow-lg uppercase tracking-wider" style="background: linear-gradient(90deg, #FF6B35, #F5A623);">⭐ Harga Perdana</div>
+                    <div class="mb-4 text-center pt-3">
+                        <h3 class="font-display text-xl font-bold text-white mb-1">ADVERTHINKING AI</h3>
+                        <p class="text-xs font-bold tracking-wide" style="color:#F5A623;">LIFETIME ACCESS — 20 AI TOOLS</p>
+                    </div>
+                    <div class="mb-5 text-center">
+                        <span class="block text-gray-500 text-base md:text-lg line-through">Rp 900.000</span>
+                        <div class="flex items-baseline justify-center gap-1 mt-1">
+                            <span class="text-gray-400 text-lg font-semibold self-start mt-1">Rp</span>
+                            <span class="font-display text-5xl md:text-6xl font-bold text-white">150</span>
+                            <span class="font-display text-xl font-bold text-gray-400 self-end mb-1">.000</span>
+                        </div>
+                        <p class="text-xs mt-2 font-semibold" style="color:#F5A623;"><i class="fa-solid fa-infinity"></i> Sekali bayar / Akses SELAMANYA</p>
+                    </div>
+                    <div class="mb-5 rounded-xl px-3 py-3 text-center" style="background:rgba(245,166,35,0.07); border:1.5px dashed rgba(245,166,35,0.5);">
+                        <p class="text-xs md:text-sm text-gray-300 leading-relaxed">💬 Punya <b class="text-white">kode diskon dari iklan kami</b>? Potongan <span class="font-bold" style="color:#F5A623;">Rp50.000</span> — bayar cuma <b class="text-white">Rp100.000!</b></p>
+                    </div>
+                    <div class="mb-6 space-y-2 text-xs md:text-sm">
+                        <div class="feature-check"><div class="icon"><i class="fa-solid fa-check"></i></div><span class="text-gray-300">Akses semua <b class="text-white">20 AI Tools</b> marketing</span></div>
+                        <div class="feature-check"><div class="icon"><i class="fa-solid fa-check"></i></div><span class="text-gray-300">Tiap tool kasih <b class="text-white">prompt siap salin-tempel</b></span></div>
+                        <div class="feature-check"><div class="icon"><i class="fa-solid fa-check"></i></div><span class="text-gray-300">Pakai AI gratis sendiri (Gemini/ChatGPT) — <b class="text-white">tanpa API key, tanpa biaya tambahan</b></span></div>
+                        <div class="feature-check"><div class="icon"><i class="fa-solid fa-check"></i></div><span class="text-gray-300">Panduan + contoh isian tiap tool</span></div>
+                        <div class="feature-check"><div class="icon"><i class="fa-solid fa-check"></i></div><span class="text-gray-300">Update tools selamanya + Grup Komunitas</span></div>
+                    </div>
+                    <a href="CHECKOUT_LINK_SCALEV" onclick="if(window.fbq)fbq(&quot;track&quot;,&quot;InitiateCheckout&quot;)" class="btn-cta w-full py-3 md:py-4 text-sm md:text-base shadow-lg" style="box-shadow: 0 8px 30px rgba(255,107,53,0.4);">AMBIL SEKARANG</a>
+                    <p class="text-center text-gray-400 text-[11px] mt-2.5">⚡ Harga <b style="color:#FF8C5A;">Early Access Batch 1</b> — naik permanen setelah 100 slot pertama habis.</p>
+                    <div class="flex flex-wrap justify-center gap-x-4 gap-y-1.5 mt-3 text-[10.5px] text-gray-400">
+                        <span><i class="fa-solid fa-bolt mr-1" style="color:#4ade80;"></i>Akses + kode lisensi dikirim otomatis</span>
+                        <span><i class="fa-brands fa-whatsapp mr-1" style="color:#4ade80;"></i>CS WhatsApp siap bantu</span>
+                        <span><i class="fa-solid fa-infinity mr-1" style="color:#4ade80;"></i>Update tools selamanya</span>
+                    </div>
+                    <div class="mt-4 pt-4" style="border-top:1px solid rgba(255,255,255,.06);">
+                        <div class="flex items-center justify-between text-[10px] font-bold uppercase tracking-widest mb-2">
+                            <span class="text-gray-500">Kuota Batch 1</span>
+                            <span id="kuotaText" style="color:#FF8C5A;">0 / 100 terisi</span>
+                        </div>
+                        <div style="height:8px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden;">
+                            <div id="kuotaBar" style="height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,#F5A623,#FF6B35);transition:width 1s ease;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Countdown + garansi (shared) -->
+            <div class="reveal reveal-delay-4 max-w-4xl mx-auto mt-8 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 mb-2">
+                <div class="flex items-center gap-3">
+                    <span class="text-xs font-bold uppercase tracking-wider" style="color:#FF6B35;"><i class="fa-solid fa-fire"></i> Promo Berakhir:</span>
+                    <div class="flex gap-2 countdown" data-time="36738">
+                        <div class="countdown-box"><div class="countdown-number hours">10</div><div class="countdown-label">JAM</div></div>
+                        <div class="text-gray-600 font-bold self-center">:</div>
+                        <div class="countdown-box"><div class="countdown-number minutes">12</div><div class="countdown-label">MENIT</div></div>
+                        <div class="text-gray-600 font-bold self-center">:</div>
+                        <div class="countdown-box"><div class="countdown-number seconds">18</div><div class="countdown-label">DETIK</div></div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 text-gray-400 text-xs"><span class="text-2xl">🛡️</span> <span>Garansi akses — ada kendala, dibantu sampai bisa.</span></div>
+            </div>
+            <div style="display:none;">
+                    <div class="mb-6 md:mb-8 space-y-0.5 text-xs md:text-sm">
+                        <div class="feature-check"><div class="icon"><i class="fa-solid fa-check"></i></div><span class="text-gray-300">Akses Full Tools ADVERTHINKING AI</span></div>
+                        <div class="feature-check"><div class="icon"><i class="fa-solid fa-check"></i></div><span class="text-gray-300">Unlimited generate konten iklan & visual</span></div>
+                        <div class="feature-check"><div class="icon"><i class="fa-solid fa-check"></i></div><span class="text-gray-300">Panduan & Video Tutorial Lengkap</span></div>
+                        <div class="feature-check"><div class="icon"><i class="fa-solid fa-check"></i></div><span class="text-gray-300">Akses Grup Komunitas Member Selamanya</span></div>
+                    </div>
+                    <!-- CTA -->
+                    <a href="CHECKOUT_LINK_SCALEV" onclick="if(window.fbq)fbq(&quot;track&quot;,&quot;InitiateCheckout&quot;)" class="btn-cta w-full py-3 md:py-4 text-xs md:text-base mb-3 shadow-lg" style="box-shadow: 0 8px 30px rgba(255,107,53,0.4);">AMBIL LIFETIME DEAL</a>
+                    <p class="text-center text-gray-500 text-[10px] md:text-xs flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-lock"></i> Pembayaran Aman & Akses Instan
+                    </p>
+                    <!-- Garansi -->
+                    <div class="mt-5 pt-5 border-t border-white/5 flex items-center gap-3">
+                        <div class="text-3xl flex-shrink-0">🛡️</div>
+                        <div class="text-left">
+                            <h4 class="font-display text-sm font-bold text-white">Garansi Akses</h4>
+                            <p class="text-gray-400 text-xs leading-relaxed">Ada kendala akses setelah bayar? Hubungi kami — dibantu sampai bisa, atau uang kembali.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catatan harga naik (jujur) -->
+            <div class="reveal reveal-delay-4 max-w-3xl mx-auto mt-10 md:mt-16 glass-card p-5 md:p-6 text-center" style="border: 1px solid rgba(255,107,53,0.2);">
+                <p class="text-sm md:text-base text-gray-300"><i class="fa-solid fa-circle-info mr-2" style="color:#F5A623;"></i> Ini <span class="text-white font-bold">harga perdana</span>. Setelah masa promo, harga akan naik ke harga normal. Amankan akses selamanya sekarang.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 md:py-24 px-4 bg-black/20">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="reveal font-display text-2xl md:text-3xl font-bold text-white text-center mb-10">Pertanyaan Yang Sering Diajukan</h2>
+            <div class="space-y-3 md:space-y-4">
+                <div class="reveal reveal-delay-1 glass-card border border-white/5">
+                    <button class="faq-toggle w-full px-5 md:px-6 py-4 md:py-5 flex justify-between items-center text-left font-display font-bold text-white text-sm md:text-base">
+                        <span>Apakah ini benar-benar sekali bayar?</span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300 text-xs" style="color: #FF6B35;"></i>
+                    </button>
+                    <div class="faq-answer px-5 md:px-6">
+                        <p class="text-gray-400 pb-5 md:pb-6 border-t border-white/5 pt-4 text-sm md:text-base leading-relaxed">Betul 100%! Ini lifetime deal — cukup bayar Rp150.000 sekali (harga Early Access Batch 1 — atau cuma Rp100.000 kalau kamu pakai kode diskon dari iklan/komentar kami), dan kamu bisa menikmati semua 20 tools Adverthinking AI selamanya, tanpa tagihan bulanan atau tahunan apapun.</p>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-2 glass-card border border-white/5">
+                    <button class="faq-toggle w-full px-5 md:px-6 py-4 md:py-5 flex justify-between items-center text-left font-display font-bold text-white text-sm md:text-base">
+                        <span>Apakah saya harus bisa nulis copy iklan dulu?</span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300 text-xs" style="color: #FF6B35;"></i>
+                    </button>
+                    <div class="faq-answer px-5 md:px-6">
+                        <p class="text-gray-400 pb-5 md:pb-6 border-t border-white/5 pt-4 text-sm md:text-base leading-relaxed">Tidak perlu sama sekali! Adverthinking AI dirancang untuk pemula. Sistem kami menggunakan form "Tinggal Isi" — kamu tinggal masukkan info produk, sisanya AI yang kerjain. Formula copywriting-nya sudah ditanam di dalam sistemnya.</p>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-3 glass-card border border-white/5">
+                    <button class="faq-toggle w-full px-5 md:px-6 py-4 md:py-5 flex justify-between items-center text-left font-display font-bold text-white text-sm md:text-base">
+                        <span>Bagaimana cara aksesnya setelah bayar?</span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300 text-xs" style="color: #FF6B35;"></i>
+                    </button>
+                    <div class="faq-answer px-5 md:px-6">
+                        <p class="text-gray-400 pb-5 md:pb-6 border-t border-white/5 pt-4 text-sm md:text-base leading-relaxed">Setelah pembayaran berhasil, kamu langsung diarahkan ke halaman konfirmasi yang berisi link akses tools dan panduan penggunaan lengkap. Akses instan — tidak perlu nunggu.</p>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-3 glass-card border border-white/5">
+                    <button class="faq-toggle w-full px-5 md:px-6 py-4 md:py-5 flex justify-between items-center text-left font-display font-bold text-white text-sm md:text-base">
+                        <span>Tools ini untuk platform iklan apa saja?</span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300 text-xs" style="color: #FF6B35;"></i>
+                    </button>
+                    <div class="faq-answer px-5 md:px-6">
+                        <p class="text-gray-400 pb-5 md:pb-6 border-t border-white/5 pt-4 text-sm md:text-base leading-relaxed">Konten yang dihasilkan cocok untuk Meta Ads (Facebook & Instagram), TikTok Ads, marketplace (Tokopedia, Shopee, Lazada), hingga caption organik di social media. Satu tools, semua platform terlayani.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 border-t text-center pb-24" style="border-color: rgba(255,107,53,0.1); background: rgba(0,0,0,0.4);">
+        <div class="flex items-center justify-center gap-2 mb-3">
+            <div class="w-6 h-6 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #FF6B35, #F5A623);">
+                <i class="fa-solid fa-lightbulb text-white text-xs"></i>
+            </div>
+            <p class="text-gray-400 font-bold text-sm">Adverthinking<span style="color: #FF6B35;">AI</span></p>
+        </div>
+        <p class="text-gray-600 text-xs">Copyright 2026 Adverthinking AI. All rights reserved.</p>
+    </footer>
+
+    <!-- STICKY FOOTER -->
+    <div class="sticky-footer">
+        <div class="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
+            <div class="flex flex-col justify-center">
+                <p class="footer-promo-text text-[10px] md:text-xs text-gray-400 font-bold uppercase tracking-wider mb-1">Promo berakhir dalam:</p>
+                <div class="flex gap-1 md:gap-2 items-center countdown" data-time="36738">
+                    <div class="countdown-box-small">
+                        <span class="countdown-number-small hours">10</span>
+                    </div>
+                    <span class="text-white/50 text-sm font-bold">:</span>
+                    <div class="countdown-box-small">
+                        <span class="countdown-number-small minutes">12</span>
+                    </div>
+                    <span class="text-white/50 text-sm font-bold">:</span>
+                    <div class="countdown-box-small">
+                        <span class="countdown-number-small seconds">18</span>
+                    </div>
+                </div>
+            </div>
+            <a href="#pricing" class="btn-cta text-xs md:text-sm py-2.5 md:py-3 px-4 md:px-8 shadow-lg animate-pulse" style="box-shadow: 0 4px 20px rgba(255,107,53,0.4);">
+                AMBIL PROMO SEKARANG
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // --- YOUTUBE IFRAME LAZY LOADING ---
+        const ytLazyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const iframe = entry.target;
+                    if (iframe.dataset.src) {
+                        iframe.src = iframe.dataset.src;
+                        iframe.removeAttribute('data-src');
+                    }
+                    ytLazyObserver.unobserve(iframe);
+                }
+            });
+        }, { rootMargin: '200px' });
+        document.querySelectorAll('.yt-lazy').forEach(iframe => ytLazyObserver.observe(iframe));
+
+        // --- HERO SLIDER ---
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+        let slideInterval;
+        function showSlides() {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            slideIndex++;
+            if (slideIndex > totalSlides) { slideIndex = 1; }
+            slides[slideIndex - 1].classList.add('active');
+            dots[slideIndex - 1].classList.add('active');
+            slideInterval = setTimeout(showSlides, 3000);
+        }
+        function currentSlide(n) {
+            clearTimeout(slideInterval);
+            slideIndex = n + 1;
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            slides[n].classList.add('active');
+            dots[n].classList.add('active');
+            slideInterval = setTimeout(showSlides, 3000);
+        }
+        document.addEventListener('DOMContentLoaded', () => { showSlides(); });
+
+        // --- REVEAL ANIMATION ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // --- COUNTER ANIMATION ---
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.dataset.target);
+                    let start = 0;
+                    const increment = target / 60;
+                    const timer = setInterval(() => {
+                        start += increment;
+                        el.textContent = Math.ceil(start).toLocaleString();
+                        if (start >= target) {
+                            el.textContent = target.toLocaleString();
+                            clearInterval(timer);
+                        }
+                    }, 30);
+                    statsObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('.stat-number').forEach(el => statsObserver.observe(el));
+
+        // --- FAQ TOGGLE ---
+        document.querySelectorAll('.faq-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const answer = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+                const isOpen = answer.classList.contains('open');
+                document.querySelectorAll('.faq-answer').forEach(a => {
+                    a.classList.remove('open');
+                    a.style.maxHeight = null;
+                });
+                document.querySelectorAll('.faq-toggle i').forEach(i => i.style.transform = 'rotate(0deg)');
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // --- COUNTDOWN TIMER ---
+        document.querySelectorAll('.countdown').forEach(container => {
+            let totalSeconds = parseInt(container.dataset.time) || 36738;
+            const hoursEl = container.querySelector('.hours');
+            const minutesEl = container.querySelector('.minutes');
+            const secondsEl = container.querySelector('.seconds');
+            function update() {
+                const h = Math.floor(totalSeconds / 3600);
+                const m = Math.floor((totalSeconds % 3600) / 60);
+                const s = totalSeconds % 60;
+                if (hoursEl) hoursEl.textContent = String(h).padStart(2, '0');
+                if (minutesEl) minutesEl.textContent = String(m).padStart(2, '0');
+                if (secondsEl) secondsEl.textContent = String(s).padStart(2, '0');
+                if (totalSeconds > 0) totalSeconds--;
+                else totalSeconds = 36738;
+            }
+            update();
+            setInterval(update, 1000);
+        });
+
+        // --- SALIN KUPON ---
+        function salinKupon() {
+            const kode = document.getElementById('kuponKode').textContent.trim();
+            const btn = document.getElementById('btnSalinKupon');
+            const done = () => {
+                const ori = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Tersalin!';
+                setTimeout(() => { btn.innerHTML = ori; }, 2000);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(kode).then(done).catch(() => fallbackCopy(kode, done));
+            } else { fallbackCopy(kode, done); }
+        }
+        function fallbackCopy(text, cb) {
+            const ta = document.createElement('textarea');
+            ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+            document.body.appendChild(ta); ta.focus(); ta.select();
+            try { document.execCommand('copy'); } catch (e) {}
+            document.body.removeChild(ta); if (cb) cb();
+        }
+
+        // --- POPUP VOUCHER (exit-intent + delay) ---
+        (function(){
+            var shown = false;
+            function showVoucher(){
+                if(shown) return;
+                shown = true;
+                var p = document.getElementById('voucherPop');
+                if(p) p.style.display = 'flex';
+            }
+            window.closeVoucher = function(){
+                var p = document.getElementById('voucherPop');
+                if(p) p.style.display = 'none';
+            };
+            window.advCopyVoucher = function(btn){
+                var code = (document.getElementById('advVoucherCode')||{}).textContent || 'HEMAT50';
+                code = code.trim();
+                var ok = function(){ var o=btn.textContent; btn.textContent='Tersalin!'; setTimeout(function(){btn.textContent=o;},1800); };
+                if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(code).then(ok).catch(function(){ok();}); }
+                else { var ta=document.createElement('textarea'); ta.value=code; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} ta.remove(); ok(); }
+            };
+            window.copyVoucher = function(){
+                var k = document.getElementById('vCode').textContent.trim();
+                var t = document.getElementById('vSalin');
+                var done = function(){ t.textContent='Tersalin!'; setTimeout(function(){t.textContent='Salin Kode';},2000); };
+                if(navigator.clipboard && navigator.clipboard.writeText){
+                    navigator.clipboard.writeText(k).then(done).catch(function(){fb(k,done);});
+                } else { fb(k,done); }
+                function fb(text,cb){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);if(cb)cb();}
+            };
+            // Desktop: exit-intent (mouse keluar atas)
+            document.addEventListener('mouseout', function(e){
+                if(e.clientY <= 0) showVoucher();
+            });
+            // HP/semua: muncul setelah 25 detik
+            setTimeout(showVoucher, 25000);
+            // HP: deteksi scroll cepat ke atas (mau keluar)
+            var lastY = window.scrollY;
+            window.addEventListener('scroll', function(){
+                if(window.scrollY < lastY - 60 && window.scrollY < 200) showVoucher();
+                lastY = window.scrollY;
+            }, {passive:true});
+        })();
+
+        // --- SMOOTH SCROLL ---
+        document.querySelectorAll('a[href="#pricing"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.getElementById('pricing');
+                if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+
+        // --- SECURITY ---
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('keydown', e => {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key.toUpperCase())) || (e.ctrlKey && ['U','S'].includes(e.key.toUpperCase()))) e.preventDefault();
+        });
+    </script>
+<script>
+  // === KUOTA BATCH 1 ===
+  // UPDATE MANUAL angka ini sesuai penjualan ASLI di Scalev (kejujuran = kepercayaan = konversi).
+  var BATCH1_TERISI = 0;
+  (function(){
+    var t=document.getElementById('kuotaText'), b=document.getElementById('kuotaBar');
+    if(t&&b){ t.textContent = BATCH1_TERISI + ' / 100 terisi'; setTimeout(function(){ b.style.width = Math.min(100, BATCH1_TERISI) + '%'; }, 400); }
+  })();
+</script>
+
+    <script>
+      // Player contoh Voice Over AI (hasil asli tool TTS di dalam app)
+      function advVoToggle(btn){
+        if (!window.__advVo) {
+          window.__advVo = new Audio('audio/vo-sample.wav');
+          window.__advVo.addEventListener('ended', function(){
+            btn.classList.remove('playing');
+            btn.querySelector('.vo-ic').className = 'fa-solid fa-circle-play vo-ic';
+          });
+        }
+        var a = window.__advVo, ic = btn.querySelector('.vo-ic');
+        if (a.paused) { a.play(); btn.classList.add('playing'); ic.className = 'fa-solid fa-circle-pause vo-ic'; }
+        else { a.pause(); a.currentTime = 0; btn.classList.remove('playing'); ic.className = 'fa-solid fa-circle-play vo-ic'; }
+      }
+    </script>
+
+    <style>
+      .ugc-scroll { scrollbar-width: thin; scrollbar-color: rgba(255,107,53,0.5) rgba(255,255,255,0.06); }
+      .ugc-scroll::-webkit-scrollbar { height: 8px; }
+      .ugc-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.06); border-radius: 99px; }
+      .ugc-scroll::-webkit-scrollbar-thumb { background: rgba(255,107,53,0.5); border-radius: 99px; }
+      .ugc-scroll::-webkit-scrollbar-thumb:hover { background: rgba(255,107,53,0.8); }
+      .ugc-spk { position:absolute; bottom:8px; right:8px; width:30px; height:30px; border-radius:50%; background:rgba(10,10,10,0.6); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,0.25); display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px; transition:all .2s; pointer-events:none; }
+      .ugc-card:hover .ugc-spk { background:rgba(255,107,53,0.85); border-color:rgba(255,107,53,1); }
+      .ugc-card.audio-on .ugc-spk { background:rgba(255,107,53,0.95); border-color:#fff; box-shadow:0 0 0 3px rgba(255,107,53,0.3); }
+    </style>
+    <script>
+      // video UGC: play saat keliatan, pause saat keluar layar (hemat resource)
+      // klik card UGC -> toggle audio (1 video bersuara, sisanya tetap muted autoplay)
+      function advUgcAudio(card){
+        var v = card.querySelector('video'); if(!v) return;
+        var ic = card.querySelector('.ugc-spk i');
+        var on = !v.muted;
+        // matiin semua dulu
+        document.querySelectorAll('.ugc-card').forEach(function(c){
+          var cv = c.querySelector('video'); if(cv){ cv.muted = true; }
+          c.classList.remove('audio-on');
+          var ci = c.querySelector('.ugc-spk i'); if(ci){ ci.className='fa-solid fa-volume-xmark'; }
+        });
+        if(!on){ // nyalain card ini
+          v.muted = false; v.currentTime = 0; v.play().catch(function(){});
+          card.classList.add('audio-on');
+          if(ic) ic.className='fa-solid fa-volume-high';
+        }
+      }
+      var vObs = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          var v = en.target;
+          if (en.isIntersecting) { v.play().catch(function(){}); } else { v.pause(); if(!v.muted){ v.muted=true; var c=v.closest('.ugc-card'); if(c){c.classList.remove('audio-on'); var ci=c.querySelector('.ugc-spk i'); if(ci)ci.className='fa-solid fa-volume-xmark';} } }
+        });
+      }, { threshold: 0.2 });
+      document.querySelectorAll('video.ugc-auto').forEach(function(v){ vObs.observe(v); });
+    </script>
+    <script>
+      // Acak urutan tiap baris marquee tiap halaman dibuka — biar gak keliatan berurutan/katalog,
+      // loop tetap mulus (semua salinan diisi urutan acak yang SAMA).
+      (function(){
+        document.querySelectorAll('.shg-track').forEach(function(track){
+          var cards = [].slice.call(track.children);
+          if (cards.length < 4) return;
+          var seen = {}, uniq = [];
+          cards.forEach(function(c){
+            var im = c.querySelector('img'); if(!im) return;
+            var s = im.getAttribute('src');
+            if(!seen[s]){ seen[s] = c.cloneNode(true); uniq.push(s); }
+          });
+          var setSize = uniq.length;
+          if (setSize < 2) return;
+          var copies = Math.max(2, Math.round(cards.length / setSize));
+          for (var i = uniq.length - 1; i > 0; i--){ var j = Math.floor(Math.random()*(i+1)); var t = uniq[i]; uniq[i] = uniq[j]; uniq[j] = t; }
+          var frag = document.createDocumentFragment();
+          for (var c2 = 0; c2 < copies; c2++){ uniq.forEach(function(s){ frag.appendChild(seen[s].cloneNode(true)); }); }
+          track.innerHTML = '';
+          track.appendChild(frag);
+        });
+      })();
+    </script>
+</body>
+</html>

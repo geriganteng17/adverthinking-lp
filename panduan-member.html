@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Member Adverthinking AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== SCREEN STYLES ===== */
+        :root {
+            --primary: #FF6B35;
+            --secondary: #F5A623;
+            --dark: #0A0A0A;
+            --card: #141414;
+            --border: rgba(255,255,255,0.08);
+            --text: #f1f5f9;
+            --muted: #6b7280;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; }
+
+        body {
+            background: #0A0A0A;
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 { font-family: 'Space Grotesk', sans-serif; }
+        img { max-width: 100%; }
+
+        /* --- Print Button (screen only) --- */
+        .print-bar {
+            position: fixed;
+            bottom: 24px; right: 24px;
+            z-index: 999;
+        }
+        .btn-print {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 22px; border-radius: 50px;
+            background: linear-gradient(135deg, #FF6B35, #F5A623);
+            color: white; font-weight: 700; font-size: 13px;
+            border: none; cursor: pointer;
+            box-shadow: 0 6px 24px rgba(255,107,53,0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-print:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(245,166,35,0.5); }
+
+        /* --- Layout --- */
+        .page-wrap {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        /* --- Cover --- */
+        .cover {
+            background: linear-gradient(135deg, rgba(255,107,53,0.12) 0%, rgba(245,166,35,0.06) 50%, transparent 100%);
+            border: 1px solid rgba(255,107,53,0.2);
+            border-radius: 24px;
+            padding: 48px 40px;
+            text-align: center;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cover::before {
+            content: '';
+            position: absolute; top: -60px; right: -60px;
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245,166,35,0.12), transparent 70%);
+        }
+        .cover-logo {
+            display: inline-flex; align-items: center; gap: 10px;
+            margin-bottom: 24px;
+        }
+        .cover-logo-icon {
+            width: 48px; height: 48px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, #FF6B35, #F5A623);
+            font-size: 20px; color: white;
+            box-shadow: 0 8px 20px rgba(255,107,53,0.4);
+        }
+        .cover-logo-text { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 800; color: white; }
+        .cover-logo-text span { color: #FF6B35; }
+        .cover-title { font-size: 28px; font-weight: 800; color: white; margin-bottom: 8px; line-height: 1.2; }
+        .cover-subtitle { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+        .cover-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 16px; border-radius: 100px;
+            background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25);
+            color: #4ade80; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        /* --- Section headers --- */
+        .section {
+            margin-bottom: 28px;
+        }
+        .section-title {
+            display: flex; align-items: center; gap: 10px;
+            font-size: 15px; font-weight: 800; color: white;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,107,53,0.15);
+        }
+        .section-icon {
+            width: 28px; height: 28px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; flex-shrink: 0;
+        }
+
+        /* --- Cards --- */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 12px;
+        }
+        .card-sm { padding: 14px 18px; border-radius: 12px; }
+
+        /* --- Links card --- */
+        .link-card {
+            display: flex; align-items: center; gap: 14px;
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 14px; padding: 14px 18px; margin-bottom: 10px;
+            text-decoration: none;
+        }
+        .link-icon {
+            width: 38px; height: 38px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; font-size: 16px;
+        }
+        .link-label { font-size: 12px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .link-url { font-size: 13px; color: white; font-weight: 700; word-break: break-all; }
+
+        /* --- Step list --- */
+        .step-list { list-style: none; }
+        .step-item {
+            display: flex; gap: 14px; align-items: flex-start;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .step-item:last-child { border-bottom: none; }
+        .step-num {
+            width: 28px; height: 28px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; font-weight: 800; color: white; flex-shrink: 0;
+            background: linear-gradient(135deg, #FF6B35, #F5A623);
+        }
+        .step-content h4 { font-size: 14px; font-weight: 700; color: white; margin-bottom: 3px; }
+        .step-content p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+        /* --- Feature grid --- */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .feature-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            display: flex; gap: 10px; align-items: flex-start;
+        }
+        .feature-item-icon {
+            width: 32px; height: 32px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; flex-shrink: 0;
+        }
+        .feature-item h4 { font-size: 12px; font-weight: 700; color: white; margin-bottom: 2px; }
+        .feature-item p { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+        /* --- Tips --- */
+        .tip-item {
+            display: flex; gap: 10px; align-items: flex-start;
+            padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .tip-item:last-child { border-bottom: none; }
+        .tip-num {
+            width: 20px; height: 20px; border-radius: 50%;
+            background: rgba(255,107,53,0.15); border: 1px solid rgba(255,107,53,0.25);
+            color: #FF8C5A; font-size: 10px; font-weight: 800;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .tip-item p { font-size: 12px; color: #9ca3af; line-height: 1.5; }
+        .tip-item strong { color: white; }
+
+        /* --- Warning --- */
+        .alert {
+            border-radius: 12px; padding: 14px 18px;
+            display: flex; gap: 12px; align-items: flex-start;
+        }
+        .alert-warning { background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.2); }
+        .alert-info { background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.2); }
+        .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+        .alert h4 { font-size: 12px; font-weight: 800; margin-bottom: 3px; }
+        .alert p { font-size: 11px; line-height: 1.5; color: var(--muted); }
+        .alert-warning h4 { color: #fbbf24; }
+        .alert-info h4 { color: #60a5fa; }
+
+        /* --- Checklist --- */
+        .checklist { list-style: none; }
+        .checklist li {
+            display: flex; gap: 8px; align-items: flex-start;
+            padding: 6px 0; font-size: 12px; color: #9ca3af;
+        }
+        .checklist li::before {
+            content: '✓';
+            color: #4ade80; font-weight: 800; font-size: 11px;
+            flex-shrink: 0; margin-top: 1px;
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            body { background: white !important; color: #1a1a1a !important; font-size: 11pt; }
+            .print-bar { display: none !important; }
+            .page-wrap { max-width: 100%; padding: 0; }
+
+            .cover {
+                background: linear-gradient(135deg, #fff5f0, #fffbf0) !important;
+                border: 2px solid #FF6B35 !important;
+                border-radius: 12px !important;
+                padding: 32px 28px !important;
+                margin-bottom: 20px !important;
+                -webkit-print-color-adjust: exact; print-color-adjust: exact;
+            }
+            .cover::before { display: none; }
+            .cover-logo-icon { background: #FF6B35 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .cover-logo-text { color: #1a1a1a !important; }
+            .cover-logo-text span { color: #FF6B35 !important; }
+            .cover-title { color: #1a1a1a !important; font-size: 22pt !important; }
+            .cover-subtitle { color: #6b7280 !important; }
+            .cover-badge { background: #dcfce7 !important; border-color: #86efac !important; color: #166534 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+            .section-title { color: #1a1a1a !important; border-bottom: 2px solid #FF6B35 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .card { background: #f9fafb !important; border: 1px solid #e5e7eb !important; color: #1a1a1a !important; }
+            .card-sm { background: #f9fafb !important; border: 1px solid #e5e7eb !important; }
+            .link-card { background: #f9fafb !important; border: 1px solid #e5e7eb !important; page-break-inside: avoid; }
+            .link-label { color: #6b7280 !important; }
+            .link-url { color: #FF6B35 !important; }
+
+            .step-num { background: #FF6B35 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .step-content h4 { color: #1a1a1a !important; }
+            .step-content p { color: #6b7280 !important; }
+            .step-item { border-bottom-color: #e5e7eb !important; }
+
+            .feature-item { background: #f9fafb !important; border: 1px solid #e5e7eb !important; page-break-inside: avoid; }
+            .feature-item h4 { color: #1a1a1a !important; }
+            .feature-item p { color: #6b7280 !important; }
+
+            .tip-item p { color: #6b7280 !important; }
+            .tip-item strong { color: #1a1a1a !important; }
+            .tip-num { background: #fff5f0 !important; border-color: #FF6B35 !important; color: #FF6B35 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .tip-item { border-bottom-color: #e5e7eb !important; }
+
+            .alert-warning { background: #fffbeb !important; border-color: #fcd34d !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .alert-warning h4 { color: #92400e !important; }
+            .alert-info { background: #eff6ff !important; border-color: #93c5fd !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .alert-info h4 { color: #1e40af !important; }
+            .alert p { color: #6b7280 !important; }
+
+            .section { page-break-inside: avoid; }
+            h1, h2, h3 { page-break-after: avoid; }
+
+            .checklist li { color: #6b7280 !important; }
+            .checklist li::before { color: #16a34a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+            @page { margin: 18mm 15mm; size: A4; }
+        }
+
+        @media (max-width: 600px) {
+            .cover { padding: 32px 20px; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .cover-title { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Print Button (screen only) -->
+    <div class="print-bar">
+        <button class="btn-print" onclick="window.print()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+            Download / Print PDF
+        </button>
+    </div>
+
+    <div class="page-wrap">
+
+        <!-- COVER -->
+        <div class="cover">
+            <div class="cover-logo">
+                <div class="cover-logo-icon">💡</div>
+                <div class="cover-logo-text">Adverthinking<span>AI</span></div>
+            </div>
+            <h1 class="cover-title">Panduan Member<br>Adverthinking AI</h1>
+            <p class="cover-subtitle">Panduan lengkap penggunaan tools AI untuk konten iklan yang convert</p>
+            <div class="cover-badge">
+                ✓ &nbsp;Member Resmi — Lifetime Access
+            </div>
+        </div>
+
+        <!-- SECTION 1: LINK PENTING -->
+        <div class="section">
+            <div class="section-title">
+                <div class="section-icon" style="background: rgba(255,107,53,0.12); color: #FF6B35;">🔗</div>
+                Link Penting — Simpan Ini
+            </div>
+            <a class="link-card" href="https://aistudio.google.com/apps/3592e170-f7b4-48ed-93d8-4f2c81b9eede" target="_blank">
+                <div class="link-icon" style="background: rgba(255,107,53,0.1);">💡</div>
+                <div>
+                    <div class="link-label">Akses Tools</div>
+                    <div class="link-url">aistudio.google.com/apps/3592e170-f7b4-48ed-93d8-4f2c81b9eede</div>
+                </div>
+            </a>
+            <a class="link-card" href="https://t.me/+HV_IH0PmaCM5MWI9" target="_blank">
+                <div class="link-icon" style="background: rgba(41,182,246,0.1); color: #29B6F6;">✈</div>
+                <div>
+                    <div class="link-label">Grup Komunitas Telegram</div>
+                    <div class="link-url">t.me/+HV_IH0PmaCM5MWI9</div>
+                </div>
+            </a>
+            <a class="link-card" href="https://t.me/adverthinkingai_bot" target="_blank">
+                <div class="link-icon" style="background: rgba(255,107,53,0.1);">🤖</div>
+                <div>
+                    <div class="link-label">Chatbot Support 24 Jam</div>
+                    <div class="link-url">@adverthinkingai_bot</div>
+                </div>
+            </a>
+        </div>
+
+        <!-- SECTION 2: FITUR YANG TERSEDIA -->
+        <div class="section">
+            <div class="section-title">
+                <div class="section-icon" style="background: rgba(245,166,35,0.12); color: #F5A623;">⚡</div>
+                Fitur yang Tersedia di Adverthinking AI
+            </div>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-item-icon" style="background: rgba(236,72,153,0.1);">📸</div>
+                    <div>
+                        <h4>Foto Produk 1 Klik</h4>
+                        <p>Foto produk kualitas studio dari berbagai angle & latar</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-icon" style="background: rgba(255,107,53,0.1);">✍️</div>
+                    <div>
+                        <h4>Script & Copy Iklan</h4>
+                        <p>Copy ads, caption, dan script video yang convert</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-icon" style="background: rgba(99,102,241,0.1);">🧑‍🚀</div>
+                    <div>
+                        <h4>Brand Ambassador AI</h4>
+                        <p>Buat karakter brand ambassador tanpa prompting manual</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-icon" style="background: rgba(16,185,129,0.1);">👕</div>
+                    <div>
+                        <h4>Virtual Try-On</h4>
+                        <p>Konten virtual try-on untuk fashion tanpa stok model</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-icon" style="background: rgba(245,158,11,0.1);">🏃</div>
+                    <div>
+                        <h4>Generator Pose Profesional</h4>
+                        <p>Berbagai pose untuk brand ambassador yang hidup</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-icon" style="background: rgba(239,68,68,0.1);">🍔</div>
+                    <div>
+                        <h4>F&amp;B Spesialis</h4>
+                        <p>Foto & konten iklan khusus produk makanan & minuman</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-icon" style="background: rgba(6,182,212,0.1);">🎙️</div>
+                    <div>
+                        <h4>Script & Voice Over AI</h4>
+                        <p>Script iklan dan voice over untuk video ads yang natural</p>
+                    </div>
+                </div>
+                <div class="feature-item" style="border-color: rgba(245,166,35,0.25);">
+                    <div class="feature-item-icon" style="background: rgba(245,166,35,0.12);">🎬</div>
+                    <div>
+                        <h4 style="color: #F5A623;">Grok Imagine Video</h4>
+                        <p>Bonus VIP — bikin video iklan gratis pakai model Grok</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: CARA MULAI -->
+        <div class="section">
+            <div class="section-title">
+                <div class="section-icon" style="background: rgba(34,197,94,0.12); color: #4ade80;">▶</div>
+                Cara Mulai Menggunakan Tools
+            </div>
+            <div class="card">
+                <ul class="step-list">
+                    <li class="step-item">
+                        <div class="step-num">1</div>
+                        <div class="step-content">
+                            <h4>Buka Link Tools</h4>
+                            <p>Akses melalui link di bagian atas panduan ini. Gunakan browser Chrome atau Edge untuk hasil terbaik. Pastikan kamu login dengan akun Google.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-num">2</div>
+                        <div class="step-content">
+                            <h4>Pilih Fitur yang Ingin Digunakan</h4>
+                            <p>Kamu akan melihat berbagai pilihan fitur di halaman utama. Untuk pemula, mulai dari <strong>"Foto Produk"</strong> atau <strong>"Script Iklan"</strong> — paling mudah dan paling sering dipakai.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-num">3</div>
+                        <div class="step-content">
+                            <h4>Isi Form yang Tersedia</h4>
+                            <p>Setiap fitur memiliki form isian sederhana. Masukkan info produk kamu: nama produk, deskripsi singkat, target audiens, dan foto produk (jika diperlukan).</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-num">4</div>
+                        <div class="step-content">
+                            <h4>Generate & Pilih Hasil Terbaik</h4>
+                            <p>Klik tombol generate dan tunggu beberapa detik. AI akan menghasilkan beberapa variasi — pilih yang paling cocok untuk audiens dan platform iklan kamu.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-num">5</div>
+                        <div class="step-content">
+                            <h4>Download & Deploy ke Platform Iklan</h4>
+                            <p>Simpan hasil konten (teks/gambar/video) dan langsung posting ke Meta Ads, TikTok Ads, marketplace, atau social media kamu.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SECTION 4: TIPS & TRICKS -->
+        <div class="section">
+            <div class="section-title">
+                <div class="section-icon" style="background: rgba(245,166,35,0.12); color: #F5A623;">💡</div>
+                Tips & Tricks Supaya Iklan Convert
+            </div>
+            <div class="card">
+                <div class="tip-item">
+                    <div class="tip-num">1</div>
+                    <p>Siapkan <strong>foto produk yang jelas</strong> sebelum mulai — makin detail fotonya, makin bagus hasil AI-nya</p>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-num">2</div>
+                    <p>Isi deskripsi produk dengan <strong>masalah yang diselesaikan</strong>, bukan sekadar fitur — AI akan buat copy yang lebih emosional</p>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-num">3</div>
+                    <p>Generate <strong>minimal 3 variasi copy</strong> setiap kali — lalu A/B test dua versi terbaik di iklan kamu</p>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-num">4</div>
+                    <p>Untuk foto produk, coba berbagai <strong>latar dan angle</strong> — pilih yang paling cocok dengan nuansa brand kamu</p>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-num">5</div>
+                    <p>Gabungkan <strong>foto produk AI + script iklan AI</strong> dalam satu iklan — hasilnya lebih konsisten dan lebih mudah discale</p>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-num">6</div>
+                    <p>Tanya di <strong>grup Telegram komunitas</strong> jika ada pertanyaan — banyak member yang sudah berpengalaman dan siap bantu</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: PLATFORM YANG DIDUKUNG -->
+        <div class="section">
+            <div class="section-title">
+                <div class="section-icon" style="background: rgba(99,102,241,0.12); color: #818cf8;">📱</div>
+                Platform Iklan yang Didukung
+            </div>
+            <div class="card">
+                <ul class="checklist">
+                    <li>Meta Ads (Facebook & Instagram) — copy ads, visual, script video</li>
+                    <li>TikTok Ads — script UGC, hook opener, video story</li>
+                    <li>Marketplace (Tokopedia, Shopee, Lazada) — foto produk, deskripsi, caption</li>
+                    <li>Google Display Ads — visual banner, headline iklan</li>
+                    <li>Organik Social Media — caption IG, post FB, konten TikTok</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SECTION 6: PERINGATAN & NOTES -->
+        <div class="section">
+            <div class="alert alert-warning" style="margin-bottom: 10px;">
+                <div class="alert-icon">⚠️</div>
+                <div>
+                    <h4>Simpan Link Akses Ini</h4>
+                    <p>Bookmark atau screenshot panduan ini. Link akses tools dan komunitas ada di halaman pertama — kamu butuh ini kapanpun mau akses ulang.</p>
+                </div>
+            </div>
+            <div class="alert alert-info">
+                <div class="alert-icon">ℹ️</div>
+                <div>
+                    <h4>Butuh Bantuan?</h4>
+                    <p>Tanya langsung ke chatbot support @adverthinkingai_bot di Telegram (24 jam) atau post di grup komunitas member.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06);">
+            <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <div style="width: 24px; height: 24px; border-radius: 7px; background: linear-gradient(135deg, #FF6B35, #F5A623); display: flex; align-items: center; justify-content: center; font-size: 11px;">💡</div>
+                <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 15px; color: white;">Adverthinking<span style="color: #FF6B35;">AI</span></span>
+            </div>
+            <p style="color: #4b5563; font-size: 11px; margin-top: 4px;">Tools AI Khusus untuk Konten Iklan yang Convert</p>
+            <p style="color: #374151; font-size: 10px; margin-top: 4px;">Copyright 2026 Adverthinking AI. All rights reserved.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Selamat! Akses Adverthinking AI Kamu Sudah Aktif 🎉</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <style>
+        :root {
+            --bg-dark: #0A0A0A;
+            --primary: #FF6B35;
+            --secondary: #F5A623;
+            --text-light: #f8fafc;
+        }
+
+        html, body {
+            margin: 0; padding: 0;
+            width: 100%; min-height: 100%;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, .font-display { font-family: 'Space Grotesk', sans-serif; }
+        img { max-width: 100%; height: auto; }
+
+        .page-background {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; z-index: -1;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.12), transparent 45%),
+                radial-gradient(circle at 80% 80%, rgba(245, 166, 35, 0.08), transparent 45%),
+                linear-gradient(to bottom, #0A0A0A 0%, #0F0A05 100%);
+        }
+
+        .glass-card {
+            background: rgba(20, 14, 10, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #FF6B35 0%, #F5A623 100%);
+            border: none; border-radius: 50px;
+            padding: 14px 28px;
+            font-weight: 700; font-size: 14px; letter-spacing: 0.4px;
+            color: #ffffff; text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 6px 25px rgba(255, 107, 53, 0.45);
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            text-decoration: none; width: 100%;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 35px rgba(245, 166, 35, 0.5); filter: brightness(1.08); }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 50px;
+            padding: 12px 28px; font-weight: 700; font-size: 14px;
+            color: #ffffff; cursor: pointer; transition: all 0.2s;
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            text-decoration: none; width: 100%;
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,107,53,0.3); }
+
+        .btn-pdf {
+            background: rgba(245, 166, 35, 0.1);
+            border: 1px solid rgba(245, 166, 35, 0.3); border-radius: 50px;
+            padding: 12px 24px; font-weight: 700; font-size: 13px;
+            color: #F5A623; cursor: pointer; transition: all 0.2s;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            text-decoration: none; width: 100%;
+        }
+        .btn-pdf:hover { background: rgba(245,166,35,0.18); border-color: rgba(245,166,35,0.5); }
+
+        /* Text gradient */
+        .text-gradient {
+            background: linear-gradient(135deg, #FF8C5A, #F5A623);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        /* Step cards */
+        .step-card {
+            display: flex; align-items: flex-start; gap: 16px;
+            padding: 20px; border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            transition: all 0.3s;
+        }
+        .step-card:hover { border-color: rgba(255, 107, 53, 0.2); background: rgba(255, 107, 53, 0.04); }
+
+        .step-number {
+            width: 42px; height: 42px; min-width: 42px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 800;
+            color: white; background: linear-gradient(135deg, #FF6B35, #F5A623);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.35); flex-shrink: 0;
+        }
+
+        /* Badges */
+        .success-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 20px; border-radius: 100px;
+            font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+            background: rgba(34, 197, 94, 0.12); border: 1px solid rgba(34, 197, 94, 0.25); color: #4ade80;
+        }
+
+        .new-badge {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 3px 10px; border-radius: 100px;
+            font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px;
+            background: rgba(255,107,53,0.15); border: 1px solid rgba(255,107,53,0.25); color: #FF8C5A;
+        }
+
+        /* Animations */
+        .confetti-emoji { font-size: 3rem; animation: bounce 1.2s ease-in-out infinite alternate; }
+        @keyframes bounce { from { transform: translateY(0px); } to { transform: translateY(-10px); } }
+
+        /* Dividers */
+        .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,107,53,0.15), transparent); margin: 1.5rem 0; }
+
+        /* Warning box */
+        .warning-box {
+            background: rgba(245, 158, 11, 0.07); border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 12px; padding: 14px 18px;
+        }
+
+        /* Feature tags */
+        .feature-tag {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 12px; border-radius: 8px;
+            font-size: 11px; font-weight: 600;
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+            color: #9ca3af;
+        }
+
+        /* Checklist */
+        .check-item { display: flex; align-items: flex-start; gap: 10px; }
+        .check-dot {
+            width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; margin-top: 1px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(34,197,94,0.15);
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            h1 { font-size: 1.65rem; }
+            .btn-primary, .btn-secondary, .btn-pdf { font-size: 13px; padding: 12px 18px; }
+            .step-card { padding: 14px; gap: 12px; }
+            .step-number { width: 36px; height: 36px; min-width: 36px; font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-background"></div>
+
+    <div class="min-h-screen py-10 px-4">
+        <div class="max-w-xl mx-auto">
+
+            <!-- Header Logo -->
+            <div class="text-center mb-8">
+                <a href="#" class="inline-flex items-center gap-2">
+                    <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #FF6B35, #F5A623);">
+                        <i class="fa-solid fa-lightbulb text-white text-sm"></i>
+                    </div>
+                    <span class="font-display font-bold text-xl text-white tracking-tight">Adverthinking<span style="color: #FF6B35;">AI</span></span>
+                </a>
+            </div>
+
+            <!-- Success Card -->
+            <div class="glass-card p-7 md:p-10 text-center mb-5">
+                <div class="confetti-emoji mb-4">🎉</div>
+                <div class="success-badge mb-5 mx-auto">
+                    <i class="fa-solid fa-circle-check"></i> Pembayaran Berhasil
+                </div>
+                <h1 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">
+                    Selamat! Kamu Resmi Jadi Member<br>
+                    <span class="text-gradient">Adverthinking AI</span>
+                </h1>
+                <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+                    Akses kamu sudah aktif. Ikuti langkah di bawah untuk mulai menggunakan tools dan bergabung ke komunitas member.
+                </p>
+            </div>
+
+            <!-- Steps -->
+            <div class="glass-card p-5 md:p-7 mb-5">
+                <h2 class="font-display text-base font-bold text-white mb-5">
+                    <i class="fa-solid fa-list-check mr-2" style="color: #FF6B35;"></i>
+                    3 Langkah Mulai Sekarang
+                </h2>
+                <div class="space-y-3">
+
+                    <!-- Step 1 -->
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="flex-1">
+                            <h3 class="font-display font-bold text-white text-sm md:text-base mb-1">Buka Tools Adverthinking AI</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed mb-3">Klik tombol di bawah untuk langsung akses tools. Simpan link-nya supaya gampang balik lagi kapanpun.</p>
+                            <a href="https://aistudio.google.com/apps/3592e170-f7b4-48ed-93d8-4f2c81b9eede" target="_blank" rel="noopener" class="btn-primary">
+                                <i class="fa-solid fa-lightbulb"></i>
+                                Buka Adverthinking AI
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="flex-1">
+                            <h3 class="font-display font-bold text-white text-sm md:text-base mb-1">Gabung Grup Komunitas Member</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed mb-3">Di grup ini kamu dapat update fitur terbaru, tips iklan, dan bisa tanya langsung ke sesama member. Wajib join!</p>
+                            <a href="https://t.me/+HV_IH0PmaCM5MWI9" target="_blank" rel="noopener" class="btn-secondary">
+                                <i class="fa-brands fa-telegram" style="color: #29B6F6; font-size: 16px;"></i>
+                                Gabung Grup Telegram
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="flex-1">
+                            <h3 class="font-display font-bold text-white text-sm md:text-base mb-1">Ada Pertanyaan? Tanya Chatbot</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed mb-3">Kalau ada kendala atau bingung cara penggunaan, DM chatbot kami di Telegram — siap bantu 24 jam.</p>
+                            <a href="https://t.me/adverthinkingai_bot" target="_blank" rel="noopener" class="btn-secondary">
+                                <i class="fa-solid fa-robot" style="color: #FF6B35; font-size: 15px;"></i>
+                                Chat dengan @adverthinkingai_bot
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Tutorial Video Card -->
+            <div class="glass-card p-5 md:p-7 mb-5" style="border-color: rgba(255,107,53,0.18);">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(255,107,53,0.1); border: 1px solid rgba(255,107,53,0.2);">
+                        <i class="fa-solid fa-clapperboard" style="color: #FF6B35;"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h2 class="font-display text-base font-bold text-white">Tutorial Penggunaan</h2>
+                            <span class="new-badge"><i class="fa-solid fa-fire" style="font-size: 8px;"></i> Wajib Tonton</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-0.5">Tonton ini dulu — 10 menit langsung paham semua fitur</p>
+                    </div>
+                </div>
+
+                <!-- Video Embed — ganti VIDEO_ID_TUTORIAL setelah video diupload ke YouTube -->
+                <div class="aspect-video rounded-2xl overflow-hidden relative mb-4" style="background: #111; border: 1px solid rgba(255,107,53,0.15);">
+                    <iframe
+                        id="tutorialVideo"
+                        data-src="https://www.youtube.com/embed/VIDEO_ID_TUTORIAL?rel=0&controls=1&playsinline=1"
+                        class="w-full h-full absolute inset-0"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        title="Tutorial Adverthinking AI">
+                    </iframe>
+                    <!-- Placeholder saat video belum diisi -->
+                    <div id="video-placeholder" class="absolute inset-0 flex flex-col items-center justify-center" style="background: rgba(12,8,5,0.95);">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-3" style="background: rgba(255,107,53,0.1); border: 2px solid rgba(255,107,53,0.2);">
+                            <i class="fa-solid fa-play text-2xl" style="color: rgba(255,107,53,0.5); margin-left: 3px;"></i>
+                        </div>
+                        <p class="text-gray-500 text-sm font-bold font-display">Video Tutorial</p>
+                        <p class="text-gray-600 text-xs mt-1">Segera hadir setelah rekaman selesai</p>
+                    </div>
+                </div>
+
+                <!-- Feature list -->
+                <div class="flex flex-wrap gap-2">
+                    <span class="feature-tag"><i class="fa-solid fa-image text-pink-400" style="font-size: 10px;"></i> Foto Produk</span>
+                    <span class="feature-tag"><i class="fa-solid fa-pen-nib text-orange-400" style="font-size: 10px;"></i> Script Iklan</span>
+                    <span class="feature-tag"><i class="fa-solid fa-user-astronaut text-blue-400" style="font-size: 10px;"></i> Brand Ambassador</span>
+                    <span class="feature-tag"><i class="fa-solid fa-shirt text-emerald-400" style="font-size: 10px;"></i> Virtual Try-On</span>
+                    <span class="feature-tag"><i class="fa-solid fa-video text-yellow-400" style="font-size: 10px;"></i> Grok Video</span>
+                </div>
+            </div>
+
+            <!-- PDF Guide Card -->
+            <div class="glass-card p-5 md:p-7 mb-5" style="border-color: rgba(245,166,35,0.2); background: linear-gradient(135deg, rgba(245,166,35,0.04), rgba(255,107,53,0.02), transparent);">
+                <div class="flex items-start gap-4">
+                    <div class="w-14 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, rgba(245,166,35,0.15), rgba(255,107,53,0.08)); border: 1px solid rgba(245,166,35,0.2);">
+                        <i class="fa-regular fa-file-pdf text-2xl" style="color: #F5A623;"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2 mb-1 flex-wrap">
+                            <h3 class="font-display font-bold text-white text-sm md:text-base">Panduan Member Adverthinking AI</h3>
+                            <span class="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full" style="background: rgba(245,166,35,0.12); color: #F5A623; border: 1px solid rgba(245,166,35,0.2);">PDF</span>
+                        </div>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-4">Panduan lengkap semua fitur, cara penggunaan step-by-step, dan tips ads yang convert. Simpan di HP buat referensi kapanpun.</p>
+                        <a href="panduan-member.html" target="_blank" class="btn-pdf">
+                            <i class="fa-solid fa-download"></i>
+                            Buka &amp; Download Panduan
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips Card -->
+            <div class="glass-card p-5 md:p-6 mb-5" style="border-color: rgba(255,107,53,0.12);">
+                <h3 class="font-display font-bold text-white text-sm mb-4">
+                    <i class="fa-solid fa-lightbulb mr-2" style="color: #F5A623;"></i>
+                    Tips Supaya Langsung Bisa Pakai
+                </h3>
+                <div class="space-y-3">
+                    <div class="check-item">
+                        <div class="check-dot"><i class="fa-solid fa-check text-green-400" style="font-size: 9px;"></i></div>
+                        <p class="text-gray-400 text-xs leading-relaxed">Siapkan dulu foto produk dan info singkat tentang produk kamu sebelum mulai generate</p>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-dot"><i class="fa-solid fa-check text-green-400" style="font-size: 9px;"></i></div>
+                        <p class="text-gray-400 text-xs leading-relaxed">Mulai dari fitur <strong class="text-white">"Foto Produk"</strong> atau <strong class="text-white">"Script Iklan"</strong> — dua fitur paling sering dipakai member baru</p>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-dot"><i class="fa-solid fa-check text-green-400" style="font-size: 9px;"></i></div>
+                        <p class="text-gray-400 text-xs leading-relaxed">Generate beberapa variasi lalu pilih yang paling cocok — lebih efektif dari edit manual</p>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-dot"><i class="fa-solid fa-check text-green-400" style="font-size: 9px;"></i></div>
+                        <p class="text-gray-400 text-xs leading-relaxed">Bookmark atau simpan halaman ini supaya gampang diakses kapanpun dari HP maupun laptop</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Warning Box -->
+            <div class="warning-box mb-8">
+                <div class="flex items-start gap-3">
+                    <i class="fa-solid fa-triangle-exclamation text-amber-400 mt-0.5 flex-shrink-0"></i>
+                    <div>
+                        <p class="text-amber-300 text-xs font-bold mb-1">PENTING: Simpan Halaman Ini</p>
+                        <p class="text-gray-400 text-xs leading-relaxed">Bookmark atau screenshot halaman ini. Link akses tools, grup komunitas, dan panduan PDF ada di sini — kamu butuh ini kalau mau balik lagi.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Footer -->
+            <div class="text-center pb-6">
+                <div class="flex items-center justify-center gap-2 mb-2">
+                    <div class="w-6 h-6 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #FF6B35, #F5A623);">
+                        <i class="fa-solid fa-lightbulb text-white text-xs"></i>
+                    </div>
+                    <span class="font-display font-bold text-sm text-white">Adverthinking<span style="color: #FF6B35;">AI</span></span>
+                </div>
+                <p class="text-gray-600 text-xs mb-1">Terima kasih sudah bergabung!</p>
+                <p class="text-gray-700 text-xs">Copyright 2026 Adverthinking AI. All rights reserved.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Load tutorial video if real ID is set
+        (function() {
+            const iframe = document.getElementById('tutorialVideo');
+            const placeholder = document.getElementById('video-placeholder');
+            if (iframe && iframe.dataset.src && !iframe.dataset.src.includes('VIDEO_ID_TUTORIAL')) {
+                iframe.src = iframe.dataset.src;
+                if (placeholder) placeholder.style.display = 'none';
+            }
+        })();
+    </script>
+</body>
+</html>
