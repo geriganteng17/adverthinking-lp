@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adverthinking AI — Checkout</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>body{margin:0;font-family:'Poppins',system-ui,Arial,sans-serif;background:#fff;}</style>
+</head>
+<body>
+<!-- ============================================================
+  CO PAGE + FORM ORDER — ADVERTHINKING AI (Scalev HTML Mode) v3.2
+  - Form pembayaran native via window.Scalev (createOrder), produk digital
+  - Box tagihan/harga GEDE & terhighlight
+  - Payment dropdown auto dari Scalev; sembunyiin opsi transfer manual (nama pribadi)
+  GANTI video ID (qaEVTDk4rmI) dengan demo + allow youtube.com di Frame Sources.
+============================================================ -->
+<div id="adv-checkout-wrapper" style="width: 100%; background: #ffffff; overflow: hidden; box-sizing: border-box; position: relative;">
+    <div class="adv-liquid-bg">
+        <div class="adv-blob adv-blob-1"></div><div class="adv-blob adv-blob-2"></div><div class="adv-blob adv-blob-3"></div><div class="adv-blob adv-blob-4"></div>
+    </div>
+    <section style="max-width: 1100px; margin: 0 auto; padding: 40px 20px; font-family: 'Poppins', 'Montserrat', sans-serif; box-sizing: border-box; position: relative; z-index: 2;">
+        <div style="text-align: center; margin-bottom: 14px;">
+            <span style="display:inline-block; background: rgba(255,107,53,0.1); border:1px solid rgba(255,107,53,0.25); color:#E55A2B; font-weight:700; font-size:0.8rem; letter-spacing:0.5px; padding:7px 16px; border-radius:999px; text-transform:uppercase;">💡 Early Access Batch 1 · Sekali Bayar, Akses Selamanya</span>
+        </div>
+        <div style="text-align: center; margin-bottom: 30px; box-sizing: border-box;">
+            <h2 style="font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 900; line-height: 1.1; text-transform: uppercase; margin: 0; color: #1a1a2e;">
+                <span class="adv-zoom-gradient">TINGGAL SATU LANGKAH LAGI</span> <br>
+                BUAT PUNYA <span class="adv-highlight-text">20+ TOOL AI MARKETING</span> DALAM 1 APP
+            </h2>
+            <p style="margin: 16px auto 0; max-width: 640px; font-size: clamp(0.95rem,2.5vw,1.1rem); color:#4b5563; font-weight:500; line-height:1.5;">Bikin konten jualan sendiri — copy iklan, foto produk, poster, sampai landing page — <b style="color:#1a1a2e;">tanpa desainer, tanpa ribet.</b></p>
+        </div>
+
+        <!-- ====== BOX HARGA / TAGIHAN (terhighlight) ====== -->
+        <div class="adv-hero-price" id="adv-hero-price">
+            <div class="adv-price-tag" id="adv-price-tag">🔥 Early Access — Harga Spesial</div>
+            <div class="adv-price-old" id="adv-price-old" style="display:none;"></div>
+            <div class="adv-price-big"><span class="adv-rp">Rp</span><span id="adv-total">150.000</span></div>
+            <div class="adv-price-sub">♾️ Sekali bayar · Akses selamanya · Tanpa langganan</div>
+        </div>
+
+        <div style="width: 100%; max-width: 1000px; margin: 0 auto 40px; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.5); box-shadow: 0 20px 50px rgba(255, 140, 60, 0.12), 0 0 0 1px rgba(255,255,255,0.6) inset; background: rgba(255,255,255,0.55); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);">
+            <div style="position: relative; padding-top: 56.25%;">
+                <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; background:#000;" src="https://adverthinking.site/demo-app.mp4" poster="https://adverthinking.site/demo-poster.jpg" controls playsinline preload="metadata"></video>
+            </div>
+        </div>
+        <div class="adv-content-stack">
+            <!-- (animasi prompt-demo diganti video demo di atas) -->
+            <div class="adv-glass-card">
+                <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 25px; color: #E55A2B; text-transform: uppercase;">Yang Kamu Dapatkan:</h3>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div class="adv-list-item"><span class="adv-bullet">✓</span> <span><b style="color: #1a1a2e;">20+ tool AI marketing</b> dalam 1 app — copy iklan, foto, poster, video, sampai landing page</span></div>
+                    <div class="adv-list-item"><span class="adv-bullet">✓</span> <span><b style="color: #1a1a2e;">Unlimited prompt siap-pakai</b> — tinggal isi form, salin, tempel ke ChatGPT/Gemini, hasil jadi</span></div>
+                    <div class="adv-list-item"><span class="adv-bullet">✓</span> <span><b style="color: #1a1a2e;">Strategi & angle iklan</b> yang CUAN — gak nembak buta lagi</span></div>
+                    <div class="adv-list-item"><span class="adv-bullet">✓</span> <span><b style="color: #1a1a2e;">Analisa iklan</b> biar gak boncos — tau persis mana yang harus dibenerin</span></div>
+                    <div class="adv-list-item"><span class="adv-bullet">✓</span> <span><b style="color: #1a1a2e;">Foto produk & poster kelas pro</b> — tanpa fotografer, tanpa desainer</span></div>
+                    <div class="adv-list-item"><span class="adv-bullet">✓</span> <span><b style="color: #1a1a2e;">Script video iklan & konten testimoni</b> yang bikin orang percaya & beli</span></div>
+                    <div class="adv-list-item"><span class="adv-bullet">✓</span> <span><b style="color: #1a1a2e;">Landing page siap jualan</b> — dari headline sampai CTA, tinggal pakai</span></div>
+                </div>
+            </div>
+            <div class="adv-glass-card adv-glass-guarantee">
+                <div style="font-size: 2.5rem; margin-bottom: 10px;">🛡️</div>
+                <h4 style="font-size: 1.4rem; font-weight: 900; margin: 0 0 10px 0; text-transform: uppercase; line-height: 1.2; color: #C2410C;">GARANSI AKSES 100%</h4>
+                <p style="margin: 0; font-size: 1rem; font-weight: 500; line-height: 1.5; color: #374151; max-width: 600px;">Kalau dalam 14 hari kamu gak bisa akses tool-nya, uang kamu kami kembalikan 100% tanpa potongan.</p>
+            </div>
+            <div class="adv-glass-card adv-order-card" id="adv-order">
+                <h3 style="font-size:1.5rem; font-weight:800; margin:0 0 4px; color:#E55A2B; text-transform:uppercase;">🛒 Lengkapi Data & Pesan</h3>
+                <p style="margin:0 0 18px; color:#4b5563; font-size:0.9rem;">Akses dikirim ke email/WhatsApp kamu setelah bayar.</p>
+                <!-- ringkasan tagihan dalam form -->
+                <div class="adv-order-summary">
+                    <div><div style="font-weight:700; color:#1a1a2e;">Adverthinking AI</div><div style="font-size:0.82rem; color:#6b7280;">Akses 20+ tool · selamanya</div></div>
+                    <div style="text-align:right;"><div class="adv-sum-old" id="adv-sum-old" style="display:none;"></div><div style="font-weight:900; font-size:1.3rem; color:#E55A2B;">Rp<span id="adv-total-2">150.000</span></div></div>
+                </div>
+                <form id="advOrderForm" onsubmit="advSubmitOrder(event)">
+                    <input name="name" type="text" required placeholder="Nama Lengkap">
+                    <input name="phone" type="tel" required placeholder="No WhatsApp (08xxxxxxxxxx)">
+                    <input name="email" type="email" required placeholder="Email aktif (buat kirim akses)">
+                    <div class="adv-discount-row">
+                        <input name="discount" id="advDiscount" type="text" placeholder="Punya kode diskon? Masukin di sini">
+                        <button type="button" onclick="advApplyDiscount()">Pakai</button>
+                    </div>
+                    <div id="advDiscountMsg"></div>
+                    <select name="payment" id="advPayment" required><option value="">Pilih metode pembayaran</option></select>
+                    <button type="submit" id="advBuyBtn">Beli Sekarang →</button>
+                    <div id="advError"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <style>
+        #adv-checkout-wrapper .adv-liquid-bg { position: absolute; top:0; left:0; right:0; bottom:0; z-index:0; overflow:hidden; background:#ffffff; pointer-events:none; }
+        #adv-checkout-wrapper .adv-blob { position:absolute; border-radius:50%; filter:blur(80px); opacity:0.45; animation: adv-float 12s ease-in-out infinite; }
+        #adv-checkout-wrapper .adv-blob-1 { width:500px;height:500px; background: radial-gradient(circle, rgba(255,107,53,0.4), rgba(255,107,53,0) 70%); top:-10%; left:-5%; animation-duration:14s; }
+        #adv-checkout-wrapper .adv-blob-2 { width:400px;height:400px; background: radial-gradient(circle, rgba(245,166,35,0.38), rgba(245,166,35,0) 70%); top:30%; right:-8%; animation-duration:18s; animation-delay:-4s; }
+        #adv-checkout-wrapper .adv-blob-3 { width:350px;height:350px; background: radial-gradient(circle, rgba(255,140,90,0.32), rgba(255,140,90,0) 70%); bottom:10%; left:15%; animation-duration:16s; animation-delay:-8s; }
+        #adv-checkout-wrapper .adv-blob-4 { width:300px;height:300px; background: radial-gradient(circle, rgba(255,107,53,0.25), rgba(255,107,53,0) 70%); top:60%; right:20%; animation-duration:20s; animation-delay:-2s; }
+        @keyframes adv-float { 0%,100%{transform:translate(0,0) scale(1);} 25%{transform:translate(30px,-40px) scale(1.1);} 50%{transform:translate(-20px,20px) scale(0.95);} 75%{transform:translate(15px,30px) scale(1.05);} }
+        #adv-checkout-wrapper .adv-glass-card { background: rgba(255,255,255,0.45); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-radius:24px; padding:35px; border:1px solid rgba(255,255,255,0.6); box-shadow: 0 8px 32px rgba(255,140,60,0.1), 0 0 0 1px rgba(255,255,255,0.5) inset, 0 1px 0 rgba(255,255,255,0.8) inset; box-sizing:border-box; position:relative; overflow:hidden; }
+        #adv-checkout-wrapper .adv-glass-card::before { content:''; position:absolute; top:0;left:0;right:0; height:1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent); }
+        #adv-checkout-wrapper .adv-glass-card::after { content:''; position:absolute; top:-50%;left:-50%; width:200%;height:200%; background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.25), transparent 60%); pointer-events:none; }
+        #adv-checkout-wrapper .adv-glass-guarantee { text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; background: rgba(255,107,53,0.07); border-color: rgba(255,107,53,0.18); box-shadow: 0 8px 32px rgba(255,107,53,0.07), 0 0 0 1px rgba(255,107,53,0.1) inset, 0 1px 0 rgba(255,255,255,0.7) inset; }
+        #adv-checkout-wrapper .adv-glass-guarantee::after { background: radial-gradient(ellipse at 50% 30%, rgba(255,107,53,0.08), transparent 60%); }
+        #adv-checkout-wrapper .adv-chip { background: rgba(255,107,53,0.1); border:1px solid rgba(255,107,53,0.22); color:#C2410C; font-size:0.78rem; font-weight:600; padding:5px 12px; border-radius:999px; }
+        #adv-checkout-wrapper .adv-prompt-box { background: rgba(26,26,46,0.95); border-radius:14px; padding:18px 20px; font-family:'SF Mono','Menlo','Consolas',monospace; font-size:0.9rem; line-height:1.75; color:#e5e7eb; position:relative; z-index:1; }
+        #adv-checkout-wrapper .adv-pline { display:block; opacity:0; }
+        #adv-checkout-wrapper .adv-caret { color:#FF8C5A; font-weight:700; animation: adv-blink 1s steps(1) infinite; }
+        #adv-checkout-wrapper .adv-pline-1 { animation: adv-stream1 7s infinite; }
+        #adv-checkout-wrapper .adv-pline-2 { animation: adv-stream2 7s infinite; }
+        #adv-checkout-wrapper .adv-pline-3 { animation: adv-stream3 7s infinite; }
+        #adv-checkout-wrapper .adv-pline-4 { animation: adv-stream4 7s infinite; }
+        @keyframes adv-blink { 0%,49%{opacity:1;} 50%,100%{opacity:0;} }
+        @keyframes adv-stream1 { 0%,4%{opacity:0;transform:translateY(5px);} 9%,90%{opacity:1;transform:translateY(0);} 99%,100%{opacity:0;} }
+        @keyframes adv-stream2 { 0%,13%{opacity:0;transform:translateY(5px);} 18%,90%{opacity:1;transform:translateY(0);} 99%,100%{opacity:0;} }
+        @keyframes adv-stream3 { 0%,22%{opacity:0;transform:translateY(5px);} 27%,90%{opacity:1;transform:translateY(0);} 99%,100%{opacity:0;} }
+        @keyframes adv-stream4 { 0%,31%{opacity:0;transform:translateY(5px);} 36%,90%{opacity:1;transform:translateY(0);} 99%,100%{opacity:0;} }
+        #adv-checkout-wrapper .adv-zoom-gradient { display:inline-block; background: linear-gradient(90deg, #FF6B35, #F5A623, #FF8C5A); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation: adv-pulse-zoom 2s infinite ease-in-out; transform-origin:center; }
+        #adv-checkout-wrapper .adv-highlight-text { background: linear-gradient(135deg, #FF6B35, #E55A2B); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        @keyframes adv-pulse-zoom { 0%,100%{transform:scale(1);} 50%{transform:scale(1.05);} }
+        #adv-checkout-wrapper .adv-content-stack { display:flex; flex-direction:column; gap:20px; max-width:1000px; margin:0 auto; }
+        #adv-checkout-wrapper .adv-list-item { display:flex; align-items:flex-start; gap:12px; font-size:1.1rem; line-height:1.4; color:#374151; position:relative; z-index:1; }
+        #adv-checkout-wrapper .adv-bullet { color:#FF6B35; font-weight:900; flex-shrink:0; font-size:1.2rem; }
+        /* BOX HARGA HERO */
+        #adv-checkout-wrapper .adv-hero-price { max-width:560px; margin:0 auto 30px; text-align:center; padding:26px 24px; border-radius:22px; background: linear-gradient(135deg, rgba(255,107,53,0.10), rgba(245,166,35,0.14)); border:1.5px solid rgba(255,107,53,0.28); box-shadow:0 12px 36px rgba(255,140,60,0.16); position:relative; z-index:2; }
+        #adv-checkout-wrapper .adv-price-tag { color:#E55A2B; font-weight:800; font-size:0.82rem; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:4px; }
+        #adv-checkout-wrapper .adv-price-old { text-decoration:line-through; color:#9ca3af; font-size:1.2rem; font-weight:700; margin-bottom:0; }
+        #adv-checkout-wrapper .adv-price-big { font-weight:900; line-height:0.95; color:#1a1a2e; display:flex; align-items:flex-start; justify-content:center; gap:4px; }
+        #adv-checkout-wrapper .adv-price-big .adv-rp { font-size:clamp(1.4rem,4vw,2rem); color:#E55A2B; margin-top:6px; }
+        #adv-checkout-wrapper .adv-price-big #adv-total { font-size:clamp(3rem,11vw,4.5rem); background:linear-gradient(135deg,#FF6B35,#E55A2B); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        #adv-checkout-wrapper .adv-price-sub { color:#6b7280; font-weight:600; font-size:0.9rem; margin-top:10px; }
+        /* RINGKASAN DALAM FORM */
+        #adv-checkout-wrapper .adv-order-card { position:relative; z-index:1; }
+        #adv-checkout-wrapper .adv-order-summary { display:flex; justify-content:space-between; align-items:center; gap:12px; background:rgba(255,107,53,0.06); border:1px solid rgba(255,107,53,0.18); border-radius:14px; padding:14px 16px; margin-bottom:18px; }
+        #adv-checkout-wrapper .adv-sum-old { text-decoration:line-through; color:#9ca3af; font-size:0.85rem; font-weight:600; }
+        #adv-checkout-wrapper .adv-order-card form { display:flex; flex-direction:column; gap:12px; position:relative; z-index:1; }
+        #adv-checkout-wrapper .adv-order-card input, #adv-checkout-wrapper .adv-order-card select { width:100%; padding:13px 16px; border-radius:12px; border:1.5px solid rgba(255,107,53,0.25); background:rgba(255,255,255,0.85); font-size:1rem; font-family:inherit; box-sizing:border-box; color:#1a1a2e; }
+        #adv-checkout-wrapper .adv-order-card input:focus, #adv-checkout-wrapper .adv-order-card select:focus { outline:none; border-color:#FF6B35; }
+        #adv-checkout-wrapper .adv-discount-row { display:flex; gap:8px; }
+        #adv-checkout-wrapper .adv-discount-row input { flex:1; }
+        #adv-checkout-wrapper .adv-discount-row button { padding:0 18px; border-radius:12px; border:1.5px solid #FF6B35; background:transparent; color:#E55A2B; font-weight:700; cursor:pointer; white-space:nowrap; }
+        #adv-checkout-wrapper #advDiscountMsg { font-size:0.85rem; }
+        #adv-checkout-wrapper #advBuyBtn { background:linear-gradient(135deg,#FF6B35,#F5A623); color:#fff; border:none; padding:16px; border-radius:14px; font-size:1.1rem; font-weight:800; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; box-shadow:0 8px 24px rgba(255,107,53,0.35); transition:transform .15s; margin-top:4px; }
+        #adv-checkout-wrapper #advBuyBtn:hover { transform:translateY(-2px); }
+        #adv-checkout-wrapper #advBuyBtn:disabled { opacity:0.6; cursor:not-allowed; }
+        #adv-checkout-wrapper #advError { font-size:0.9rem; text-align:center; }
+        @media (max-width:768px) { #adv-checkout-wrapper section { padding:30px 15px; } #adv-checkout-wrapper .adv-list-item { font-size:1rem; } #adv-checkout-wrapper .adv-glass-card { padding:25px; } #adv-checkout-wrapper .adv-blob { filter:blur(60px); opacity:0.35; } #adv-checkout-wrapper .adv-blob-1{width:300px;height:300px;} #adv-checkout-wrapper .adv-blob-2{width:250px;height:250px;} #adv-checkout-wrapper .adv-blob-3{width:200px;height:200px;} #adv-checkout-wrapper .adv-blob-4{width:180px;height:180px;} }
+    </style>
+    <script>
+    (function(){
+        var VARIANT=null, PRICE=150000, DISCOUNT=0;
+        function fmt(n){ return Number(n||0).toLocaleString('id-ID'); }
+        function setTotal(){
+            var net=PRICE-DISCOUNT;
+            var t=document.getElementById('adv-total'); if(t) t.textContent=fmt(net);
+            var t2=document.getElementById('adv-total-2'); if(t2) t2.textContent=fmt(net);
+            var heroOld=document.getElementById('adv-price-old'), sumOld=document.getElementById('adv-sum-old'), tag=document.getElementById('adv-price-tag');
+            if(DISCOUNT>0){
+                if(heroOld){ heroOld.style.display='block'; heroOld.textContent='Rp'+fmt(PRICE); }
+                if(sumOld){ sumOld.style.display='block'; sumOld.textContent='Rp'+fmt(PRICE); }
+                if(tag){ tag.textContent='🔥 Hemat Rp'+fmt(DISCOUNT)+'!'; }
+            } else {
+                if(heroOld) heroOld.style.display='none';
+                if(sumOld) sumOld.style.display='none';
+                if(tag) tag.textContent='🔥 Early Access — Harga Spesial';
+            }
+        }
+        function init(){
+            if(!window.Scalev || !Scalev.data){ return setTimeout(init,400); }
+            try{
+                var d=Scalev.data.get();
+                var prod=(d.store && d.store.products || [])[0];
+                var v=prod && prod.variants && prod.variants[0];
+                if(v){ VARIANT=v.uniqueId; PRICE=Number(v.price)||150000; }
+                setTotal();
+                var sel=document.getElementById('advPayment');
+                if(sel){ (d.store && d.store.paymentMethodOptions || []).filter(function(p){ return !/swasana|geri bintang|bt:/i.test((p.display||'')+' '+(p.value||'')); }).forEach(function(p){ var o=document.createElement('option'); o.value=p.value; o.textContent=p.display; sel.appendChild(o); }); }
+            }catch(e){}
+        }
+        init();
+        window.advApplyDiscount=async function(){
+            var inp=document.getElementById('advDiscount'), msg=document.getElementById('advDiscountMsg');
+            var code=(inp.value||'').trim().toUpperCase();
+            if(!code){ DISCOUNT=0; setTotal(); msg.textContent=''; return; }
+            try{
+                var pay=(document.getElementById('advPayment').value)||'invoice';
+                var r=await Scalev.checkout.validateDiscount({discountCode:code, grossRevenue:PRICE, netProductPrice:PRICE, shippingCost:0, paymentMethod:pay});
+                var disc=Number(r && r.discountCodeDiscount)||0;
+                if(r && r.isEligible && disc>0){ DISCOUNT=disc; setTotal(); msg.style.color='#16a34a'; msg.textContent='✓ Kode dipakai! Hemat Rp'+fmt(disc); }
+                else { DISCOUNT=0; setTotal(); msg.style.color='#dc2626'; msg.textContent='Kode belum bisa dipakai.'; }
+            }catch(e){ DISCOUNT=0; setTotal(); msg.style.color='#dc2626'; msg.textContent='Kode gak valid.'; }
+        };
+        window.advSubmitOrder=async function(e){
+            e.preventDefault();
+            var f=e.currentTarget, btn=document.getElementById('advBuyBtn'), err=document.getElementById('advError');
+            err.textContent='';
+            if(!VARIANT){ err.style.color='#dc2626'; err.textContent='Produk belum kebaca — refresh halaman dulu.'; return; }
+            if(!f.payment.value){ err.style.color='#dc2626'; err.textContent='Pilih metode pembayaran dulu.'; return; }
+            btn.disabled=true; btn.textContent='Memproses...';
+            var payload={ customer:{ name:f.name.value.trim(), phone:f.phone.value.trim(), email:f.email.value.trim() }, items:[{ type:'product', variantUniqueId:VARIANT, quantity:1 }], paymentMethod:f.payment.value };
+            var code=(f.discount.value||'').trim().toUpperCase(); if(code){ payload.discountCode=code; }
+            try{
+                var order=await Scalev.checkout.createOrder(payload);
+                var url=order && (order.paymentUrl || order.publicOrderUrl);
+                if(url){ window.location.href=url; }
+                else { err.style.color='#16a34a'; err.textContent='✓ Order dibuat! Cek email/WhatsApp buat instruksi pembayaran.'; btn.textContent='Order Dibuat ✓'; }
+            }catch(ex){ btn.disabled=false; btn.textContent='Beli Sekarang →'; err.style.color='#dc2626'; err.textContent='Gagal: '+((ex && ex.message)||'coba lagi ya'); }
+        };
+    })();
+    </script>
+</div>
+
+</body>
+</html>
