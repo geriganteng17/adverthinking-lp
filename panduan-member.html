@@ -38,7 +38,7 @@
         /* --- Print Button (screen only) --- */
         .print-bar {
             position: fixed;
-            bottom: 24px; right: 24px;
+            bottom: max(24px, env(safe-area-inset-bottom)); right: 24px;
             z-index: 999;
         }
         .btn-print {
@@ -458,7 +458,7 @@
                 <div class="alert-icon">⚠️</div>
                 <div>
                     <h4>Simpan Link Akses Ini</h4>
-                    <p>Bookmark atau screenshot panduan ini. Link akses tools dan komunitas ada di halaman pertama — kamu butuh ini kapanpun mau akses ulang.</p>
+                    <p>Bookmark atau screenshot panduan ini. Mau jadikan PDF? Klik tombol oranye di pojok kanan bawah → pilih <strong>Simpan sebagai PDF / Save as PDF</strong>. Link akses dan komunitas ada di halaman pertama — kamu butuh ini kapanpun.</p>
                 </div>
             </div>
             <div class="alert alert-info">
@@ -477,7 +477,7 @@
                 <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 15px; color: white;">Adverthinking<span style="color: #FF6B35;">AI</span></span>
             </div>
             <p style="color: #4b5563; font-size: 11px; margin-top: 4px;">Tools AI Khusus untuk Konten Iklan yang Convert</p>
-            <p style="color: #374151; font-size: 10px; margin-top: 4px;">Copyright 2026 Adverthinking AI. All rights reserved.</p>
+            <p style="color: #374151; font-size: 10px; margin-top: 4px;">© 2026 Adverthinking AI. All rights reserved.</p>
         </div>
 
     </div>
