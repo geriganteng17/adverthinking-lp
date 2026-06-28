@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Selamat! Akses Adverthinking AI Kamu Sudah Aktif 🎉</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -159,7 +161,34 @@
             .btn-primary, .btn-secondary, .btn-pdf { font-size: 13px; padding: 12px 18px; }
             .step-card { padding: 14px; gap: 12px; }
             .step-number { width: 36px; height: 36px; min-width: 36px; font-size: 15px; }
+            .cred-label { min-width: 70px; }
         }
+
+        /* Credentials box */
+        .cred-box {
+            background: rgba(255, 107, 53, 0.06);
+            border: 1px solid rgba(255, 107, 53, 0.28);
+            border-radius: 14px; padding: 14px 16px; margin: 6px 0 14px;
+            display: flex; flex-direction: column; gap: 11px;
+        }
+        .cred-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .cred-label {
+            font-size: 11px; font-weight: 800; color: #F5A623; text-transform: uppercase; letter-spacing: 0.5px;
+            min-width: 84px; display: inline-flex; align-items: center; gap: 6px;
+        }
+        .cred-val { font-size: 13px; color: #e5e7eb; font-weight: 500; }
+        .cred-pass {
+            font-family: 'Space Grotesk', monospace; letter-spacing: 0.5px; font-weight: 700; color: #fff;
+            background: rgba(255,255,255,0.06); padding: 4px 11px; border-radius: 8px;
+            border: 1px dashed rgba(255,255,255,0.2);
+        }
+        .copy-btn {
+            margin-left: auto; font-size: 11px; font-weight: 700; color: #FF8C5A;
+            background: rgba(255,107,53,0.1); border: 1px solid rgba(255,107,53,0.3);
+            border-radius: 8px; padding: 5px 12px; cursor: pointer; transition: all 0.2s;
+            display: inline-flex; align-items: center; gap: 5px;
+        }
+        .copy-btn:hover { background: rgba(255,107,53,0.2); }
     </style>
 </head>
 <body>
@@ -205,11 +234,23 @@
                     <div class="step-card">
                         <div class="step-number">1</div>
                         <div class="flex-1">
-                            <h3 class="font-display font-bold text-white text-sm md:text-base mb-1">Buka Tools Adverthinking AI</h3>
-                            <p class="text-gray-400 text-xs leading-relaxed mb-3">Login pakai <b style="color:#fff;">email &amp; password</b> yang kami kirim ke <b style="color:#fff;">WhatsApp/email</b> kamu (maks. 10 menit setelah bayar). Simpan link-nya supaya gampang balik kapanpun.</p>
+                            <h3 class="font-display font-bold text-white text-sm md:text-base mb-1">Buka Tools &amp; Login</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed mb-2">Ini detail login kamu — <b style="color:#fff;">catat / screenshot dulu</b> ya 👇</p>
+                            <div class="cred-box">
+                                <div class="cred-row">
+                                    <span class="cred-label"><i class="fa-solid fa-envelope"></i> Email</span>
+                                    <span class="cred-val">Email yang kamu pakai waktu order</span>
+                                </div>
+                                <div class="cred-row">
+                                    <span class="cred-label"><i class="fa-solid fa-key"></i> Password</span>
+                                    <span class="cred-val cred-pass" id="pw">AksesAdverthinking2026</span>
+                                    <button class="copy-btn" type="button" onclick="copyPw(this)"><i class="fa-regular fa-copy"></i> Salin</button>
+                                </div>
+                            </div>
+                            <p class="text-gray-400 text-xs leading-relaxed mb-3">Tinggal login, semua tools langsung kepakai. Bisa diakses dari HP maupun laptop.</p>
                             <a href="https://app.adverthinking.site" target="_blank" rel="noopener" class="btn-primary">
                                 <i class="fa-solid fa-lightbulb"></i>
-                                Buka Adverthinking AI
+                                Buka &amp; Login Adverthinking AI
                             </a>
                         </div>
                     </div>
@@ -220,9 +261,9 @@
                         <div class="flex-1">
                             <h3 class="font-display font-bold text-white text-sm md:text-base mb-1">Gabung Grup Komunitas Member</h3>
                             <p class="text-gray-400 text-xs leading-relaxed mb-3">Di grup ini kamu dapat update fitur terbaru, tips iklan, dan bisa tanya langsung ke sesama member. Wajib join!</p>
-                            <a href="https://t.me/+HV_IH0PmaCM5MWI9" target="_blank" rel="noopener" class="btn-secondary">
-                                <i class="fa-brands fa-telegram" style="color: #29B6F6; font-size: 16px;"></i>
-                                Gabung Grup Telegram
+                            <a href="https://chat.whatsapp.com/JKsLpF5B7Yl8nmQS8gKn4c" target="_blank" rel="noopener" class="btn-secondary">
+                                <i class="fa-brands fa-whatsapp" style="color: #25D366; font-size: 16px;"></i>
+                                Gabung Grup WhatsApp
                             </a>
                         </div>
                     </div>
@@ -231,11 +272,11 @@
                     <div class="step-card">
                         <div class="step-number">3</div>
                         <div class="flex-1">
-                            <h3 class="font-display font-bold text-white text-sm md:text-base mb-1">Ada Pertanyaan? Tanya Chatbot</h3>
-                            <p class="text-gray-400 text-xs leading-relaxed mb-3">Kalau ada kendala atau bingung cara penggunaan, DM chatbot kami di Telegram — siap bantu 24 jam.</p>
-                            <a href="https://t.me/adverthinkingai_bot" target="_blank" rel="noopener" class="btn-secondary">
-                                <i class="fa-solid fa-robot" style="color: #FF6B35; font-size: 15px;"></i>
-                                Chat dengan @adverthinkingai_bot
+                            <h3 class="font-display font-bold text-white text-sm md:text-base mb-1">Ada Kendala? Chat Admin</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed mb-3">Kalau ada kendala akses atau bingung cara pakai, chat admin kami langsung di WhatsApp — dibales secepatnya.</p>
+                            <a href="https://wa.me/6289530927685" target="_blank" rel="noopener" class="btn-secondary">
+                                <i class="fa-brands fa-whatsapp" style="color: #25D366; font-size: 16px;"></i>
+                                Chat Admin via WhatsApp
                             </a>
                         </div>
                     </div>
@@ -357,6 +398,16 @@
     </div>
 
     <script>
+        // Salin password ke clipboard
+        function copyPw(btn) {
+            const pw = (document.getElementById('pw').textContent || '').trim();
+            navigator.clipboard.writeText(pw).then(function () {
+                const orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Tersalin';
+                setTimeout(function () { btn.innerHTML = orig; }, 1600);
+            });
+        }
+
         // Load tutorial video if real ID is set
         (function() {
             const iframe = document.getElementById('tutorialVideo');
