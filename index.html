@@ -2208,12 +2208,22 @@
         });
     </script>
 <script>
-  // === KUOTA BATCH 1 ===
-  // UPDATE MANUAL angka ini sesuai penjualan ASLI di Scalev (kejujuran = kepercayaan = konversi).
+  // === KUOTA BATCH 1 (AUTO dari Supabase get_buyer_count) ===
+  // Angka asli ditarik real-time dari buyer Supabase. Hardcoded di bawah = FALLBACK kalau fetch gagal.
   var BATCH1_TERISI = 1;
   (function(){
     var t=document.getElementById('kuotaText'), b=document.getElementById('kuotaBar');
-    if(t&&b){ t.textContent = BATCH1_TERISI + ' / 100 terisi'; setTimeout(function(){ b.style.width = Math.min(100, BATCH1_TERISI) + '%'; }, 400); }
+    function render(n){
+      if(!t||!b) return;
+      t.textContent = n + ' / 100 terisi';
+      setTimeout(function(){ b.style.width = Math.min(100, n) + '%'; }, 400);
+    }
+    render(BATCH1_TERISI); // tampilkan fallback dulu (instan)
+    // tarik angka ASLI — auto-update tiap ada sale baru, gak usah edit manual lagi
+    fetch('https://qpphkgywomddclhkhwlq.supabase.co/rest/v1/rpc/get_buyer_count',{method:'POST',headers:{'apikey':'sb_publishable__5lT0J35x3Uog0pcu_nttA_TjW-D_ow','Content-Type':'application/json'},body:'{}'})
+      .then(function(r){ return r.json(); })
+      .then(function(n){ if(typeof n==='number'){ BATCH1_TERISI=n; render(n); } })
+      .catch(function(){});
   })();
 </script>
 
