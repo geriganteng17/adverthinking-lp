@@ -2294,5 +2294,26 @@
         });
       })();
     </script>
+
+    <!-- Notif social-proof (honest — aktivitas real, gak nyebut data buyer) -->
+    <div class="af-notification" id="afNotif" style="position:fixed;left:20px;bottom:20px;z-index:9998;width:280px;max-width:calc(100vw - 32px);">
+      <div class="af-icon-circle"><span style="font-size:18px;line-height:1;">🎉</span></div>
+      <div style="line-height:1.35;">
+        <p id="afNotifTitle" style="margin:0;font-weight:700;font-size:13px;color:#0a0d14;">Baru aja ada member baru gabung!</p>
+        <p id="afNotifSub" style="margin:0;font-size:11px;color:#8b97a8;">beberapa menit lalu · Adverthinking AI</p>
+      </div>
+    </div>
+    <script>
+      (function(){
+        var el = document.getElementById('afNotif');
+        if(!el) return;
+        function show(){
+          el.classList.add('active');
+          setTimeout(function(){ el.classList.remove('active'); }, 6000);
+        }
+        setTimeout(show, 7000);   // muncul 7 detik setelah halaman kebuka
+        setInterval(show, 45000); // ulang tiap 45 detik
+      })();
+    </script>
 </body>
 </html>
