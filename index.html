@@ -2307,7 +2307,10 @@
       (function(){
         var el = document.getElementById('afNotif');
         if(!el) return;
+        var sub = document.getElementById('afNotifSub');
+        var waktu = ['baru aja','2 menit lalu','5 menit lalu','8 menit lalu','13 menit lalu','21 menit lalu','34 menit lalu','1 jam lalu'];
         function show(){
+          if(sub){ sub.textContent = waktu[Math.floor(Math.random()*waktu.length)] + ' · Adverthinking AI'; }
           el.classList.add('active');
           setTimeout(function(){ el.classList.remove('active'); }, 6000);
         }
