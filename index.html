@@ -2299,6 +2299,35 @@
       })();
     </script>
 
-    <!-- social-proof notif dihapus 1 Jul (fokus ke data buyer real) -->
+    <!-- social-proof notif: NAMA buyer real (disensor). Tiap ada yg beli, tambah 1 nama ke array 'buyers' di script bawah. -->
+    <style>
+      #afNotif{position:fixed;left:20px;bottom:20px;z-index:9998;width:270px;max-width:calc(100vw - 32px);display:flex;align-items:center;gap:11px;padding:12px 14px;border-radius:14px;background:rgba(18,22,28,0.94);border:1px solid rgba(255,107,53,0.3);box-shadow:0 12px 32px rgba(0,0,0,0.45);transform:translateX(-130%);opacity:0;transition:transform .45s cubic-bezier(.2,.9,.3,1),opacity .4s;}
+      #afNotif.on{transform:translateX(0);opacity:1;}
+      #afNotif .af-ic{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#FF6B35,#F5A623);font-size:17px;line-height:1;}
+    </style>
+    <div id="afNotif" aria-hidden="true">
+      <div class="af-ic">🎉</div>
+      <div style="line-height:1.35;">
+        <p id="afNotifTitle" style="margin:0;font-weight:700;font-size:13px;color:#ffffff;">R****** E****** baru gabung!</p>
+        <p style="margin:0;font-size:11px;color:#9aa4b2;">member Batch 1 · Adverthinking AI</p>
+      </div>
+    </div>
+    <script>
+      (function(){
+        // === Nama buyer ASLI, disensor. Tiap ada yg beli, tambah 1 nama ke array ini. ===
+        var buyers = ['R****** E******', 'Y*****'];
+        var el = document.getElementById('afNotif'), t = document.getElementById('afNotifTitle');
+        if(!el || !t || !buyers.length){ if(el) el.style.display='none'; return; }
+        var i = 0;
+        function show(){
+          t.textContent = buyers[i % buyers.length] + ' baru gabung!';
+          i++;
+          el.classList.add('on');
+          setTimeout(function(){ el.classList.remove('on'); }, 5500);
+        }
+        setTimeout(show, 6000);   // muncul 6 detik setelah halaman kebuka
+        setInterval(show, 40000); // ganti nama tiap 40 detik
+      })();
+    </script>
 </body>
 </html>
