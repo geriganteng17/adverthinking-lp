@@ -2308,27 +2308,55 @@
       </div>
     </div>
     <script>
+      // === SOCIAL PROOF NOTIF — auto-fetch dari Supabase ===
       (function(){
         var el = document.getElementById('afNotif');
         if(!el) return;
         var title = document.getElementById('afNotifTitle');
-        var sub = document.getElementById('afNotifSub');
-        var msgs = [
-          {t:'R****** E****** baru gabung! 🎉', s:'member Batch 1 · Adverthinking AI'},
-          {t:'Y****** baru gabung! 🎉', s:'member Batch 1 · Adverthinking AI'},
+        var sub   = document.getElementById('afNotifSub');
+
+        var staticMsgs = [
           {t:'Slot harga perdana lagi keisi 🔥', s:'Batch 1 · 100 slot pertama'},
-          {t:'Kuota Batch 1 terbatas', s:'harga naik setelah 100 slot habis'}
+          {t:'Kuota Batch 1 terbatas ⏳',        s:'harga naik setelah 100 slot habis'}
         ];
+        var msgs = staticMsgs.slice();
         var i = 0;
+
         function show(){
+          if(!msgs.length) return;
           var m = msgs[i % msgs.length]; i++;
           if(title) title.textContent = m.t;
-          if(sub) sub.textContent = m.s;
+          if(sub)   sub.textContent   = m.s;
           el.classList.add('active');
           setTimeout(function(){ el.classList.remove('active'); }, 6000);
         }
-        setTimeout(show, 8000);   // muncul 8 detik setelah halaman kebuka
-        setInterval(show, 40000); // rotasi pesan tiap 40 detik
+
+        function start(){
+          setTimeout(show, 8000);
+          setInterval(show, 40000);
+        }
+
+        // Fetch nama buyer real dari Supabase (ter-mask di server, aman expose ke publik)
+        fetch('https://qpphkgywomddclhkhwlq.supabase.co/rest/v1/rpc/get_buyer_names', {
+          method: 'POST',
+          headers: {
+            'Content-Type':  'application/json',
+            'apikey':        'sb_publishable__5lT0J35x3Uog0pcu_nttA_TjW-D_ow',
+            'Authorization': 'Bearer sb_publishable__5lT0J35x3Uog0pcu_nttA_TjW-D_ow'
+          },
+          body: '{}'
+        })
+        .then(function(r){ return r.json(); })
+        .then(function(names){
+          if(Array.isArray(names) && names.length > 0){
+            var buyerMsgs = names.map(function(n){
+              return {t: n + ' baru gabung! 🎉', s: 'member Batch 1 · Adverthinking AI'};
+            });
+            msgs = buyerMsgs.concat(staticMsgs);
+          }
+          start();
+        })
+        .catch(function(){ start(); }); // fallback: tetap jalan pakai pesan statis
       })();
     </script>
 </body>
