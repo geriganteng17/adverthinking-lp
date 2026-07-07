@@ -608,10 +608,8 @@ Contoh pertanyaan chat: "Campaign mana yang ROAS-nya paling jelek dan kenapa? Sa
   </section>
 
 </div>
-<script src="https://cdn.jsdelivr.net/npm/lucide@0.454.0/dist/umd/lucide.min.js"></script>
 <script>
 (function(){
-  try{ if(window.lucide&&lucide.createIcons) lucide.createIcons(); }catch(e){}
   function showDetail(t){
     var d=document.getElementById(t); if(!d) return;
     var det=document.querySelectorAll('.detail'); for(var i=0;i<det.length;i++) det[i].hidden=true;
@@ -635,8 +633,10 @@ Contoh pertanyaan chat: "Campaign mana yang ROAS-nya paling jelek dan kenapa? Sa
     for(var k=0;k<grps.length;k++){ var vis=grps[k].querySelectorAll('.row'); var show=false; for(var m2=0;m2<vis.length;m2++){ if(vis[m2].style.display!=='none'){show=true;break;} } grps[k].style.display=show?'':'none'; }
     document.getElementById('noResult').style.display=(q&&!any)?'block':'none';
   }); }
-  var h=(location.hash||'').replace('#',''); if(h && document.getElementById(h)) showDetail(h);
+  var h=(location.hash||'').replace('#','').replace(/_/g,'-'); if(h && document.getElementById(h)) showDetail(h);
 })();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+<script>try{ if(window.lucide&&lucide.createIcons) lucide.createIcons(); }catch(e){}</script>
 </body>
 </html>
