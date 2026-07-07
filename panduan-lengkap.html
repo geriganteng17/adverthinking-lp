@@ -43,15 +43,14 @@ svg{stroke-width:2;}
 .cat-group-h{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.5px;margin-bottom:9px;padding-left:2px;}
 .cat-group-h svg{width:15px;height:15px;color:#F5A623;}
 .cat-group-desc{font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-size:11px;}
-.rows{display:flex;flex-direction:column;gap:1px;background:var(--border);border-radius:14px;overflow:hidden;}
-.row{display:flex;align-items:center;gap:12px;background:var(--card);border:none;padding:12px 14px;cursor:pointer;text-align:left;font-family:'Inter',sans-serif;width:100%;transition:background .15s;}
-.row:hover{background:#1c1c1c;}
-.row:active{background:#222;}
-.row-ic{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.row-ic svg{width:19px;height:19px;}
-.row-name{flex:1;font-size:14.5px;font-weight:600;color:#fff;}
-.row-type{font-size:11px;color:var(--muted);white-space:nowrap;}
-.row-chev{width:18px;height:18px;color:#5a5a5a;flex-shrink:0;}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+.tile{position:relative;border-radius:18px;padding:16px 15px 18px;min-height:120px;overflow:hidden;display:flex;flex-direction:column;text-align:left;border:none;cursor:pointer;color:#fff;font-family:'Inter',sans-serif;transition:transform .12s,filter .12s;}
+.tile:hover{filter:brightness(1.07);}
+.tile:active{transform:scale(0.97);}
+.tile-ic{position:absolute;right:-10px;bottom:-14px;opacity:0.3;line-height:0;}
+.tile-ic svg{width:84px;height:84px;stroke-width:1.7;color:#fff;}
+.tile-title{font-size:16.5px;font-weight:800;line-height:1.2;position:relative;z-index:1;}
+.tile-sub{font-size:12px;opacity:0.92;margin-top:5px;position:relative;z-index:1;line-height:1.35;max-width:86%;}
 .detail{animation:fade .2s ease;}
 @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
 .back-btn{display:inline-flex;align-items:center;gap:3px;background:var(--card);border:1px solid var(--border);color:#e5e7eb;font-size:13px;font-weight:600;padding:9px 15px 9px 11px;border-radius:50px;cursor:pointer;font-family:'Inter',sans-serif;margin-bottom:18px;}
@@ -81,7 +80,7 @@ svg{stroke-width:2;}
 .block-h{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:800;color:#F5A623;text-transform:uppercase;letter-spacing:.6px;margin-bottom:13px;}
 .block-h svg{width:17px;height:17px;}
 .step-list{list-style:none;}
-.step-item{display:flex;gap:12px;align-items:flex-start;padding:7px 0;}
+.step-item{display:flex;gap:13px;align-items:flex-start;padding:14px 15px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:13px;margin-bottom:10px;}
 .step-num{width:28px;height:28px;border-radius:50%;background:rgba(255,107,53,0.18);border:1px solid rgba(255,107,53,0.35);color:#FF8C5A;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .step-content p{font-size:14.5px;color:#e2e6ea;line-height:1.65;}
 .field-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border-radius:12px;overflow:hidden;}
@@ -126,91 +125,70 @@ svg{stroke-width:2;}
       <button class="quick-tile" data-target="d-dashboard"><span class="quick-ic"><i data-lucide="layout-dashboard"></i></span><span class="quick-tx">Kenalan Dashboard<span>Isi layar utama app</span></span></button>
     </div>
 
-    <div class="cat-group"><div class="cat-group-h"><i data-lucide="compass"></i> Utama <span class="cat-group-desc">Strategi &amp; konsultasi</span></div><div class="rows"><button class="row" data-target="d-strategist" data-name="strategi iklan ai">
-    <span class="row-ic" style="color:#4ade80;background:rgba(74,222,128,0.13)"><i data-lucide="target"></i></span>
-    <span class="row-name">Strategi Iklan AI</span>
-    <span class="row-type">Langsung di app</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button><button class="row" data-target="d-marketing-consultant" data-name="konsultan marketing">
-    <span class="row-ic" style="color:#4ade80;background:rgba(74,222,128,0.13)"><i data-lucide="message-circle"></i></span>
-    <span class="row-name">Konsultan Marketing</span>
-    <span class="row-type">Langsung di app</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button><button class="row" data-target="d-studio-ai" data-name="model &amp; avatar ai">
-    <span class="row-ic" style="color:#6db3f2;background:rgba(109,179,242,0.14)"><i data-lucide="bot"></i></span>
-    <span class="row-name">Model &amp; Avatar AI</span>
-    <span class="row-type">Salin ke Gemini</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button></div></div><div class="cat-group"><div class="cat-group-h"><i data-lucide="pen-line"></i> Konten &amp; Copy <span class="cat-group-desc">Teks &amp; suara iklan</span></div><div class="rows"><button class="row" data-target="d-copywriter" data-name="copywriting iklan">
-    <span class="row-ic" style="color:#4ade80;background:rgba(74,222,128,0.13)"><i data-lucide="pen-tool"></i></span>
-    <span class="row-name">Copywriting Iklan</span>
-    <span class="row-type">Langsung di app</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button><button class="row" data-target="d-hook-generator" data-name="hook pembuka iklan">
-    <span class="row-ic" style="color:#4ade80;background:rgba(74,222,128,0.13)"><i data-lucide="magnet"></i></span>
-    <span class="row-name">Hook Pembuka Iklan</span>
-    <span class="row-type">Langsung di app</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button><button class="row" data-target="d-testimonial" data-name="testimoni chat wa">
-    <span class="row-ic" style="color:#6db3f2;background:rgba(109,179,242,0.14)"><i data-lucide="message-square"></i></span>
-    <span class="row-name">Testimoni Chat WA</span>
-    <span class="row-type">Salin ke Gemini</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button><button class="row" data-target="d-audio" data-name="voice over ai">
-    <span class="row-ic" style="color:#4ade80;background:rgba(74,222,128,0.13)"><i data-lucide="mic"></i></span>
-    <span class="row-name">Voice Over AI</span>
-    <span class="row-type">Langsung di app</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button></div></div><div class="cat-group"><div class="cat-group-h"><i data-lucide="palette"></i> Visual &amp; Media <span class="cat-group-desc">Gambar, poster, foto, video</span></div><div class="rows"><button class="row" data-target="d-product-photo" data-name="foto produk ai">
-    <span class="row-ic" style="color:#6db3f2;background:rgba(109,179,242,0.14)"><i data-lucide="camera"></i></span>
-    <span class="row-name">Foto Produk AI</span>
-    <span class="row-type">Salin ke Gemini</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button><button class="row" data-target="d-content" data-name="banner iklan ai">
-    <span class="row-ic" style="color:#6db3f2;background:rgba(109,179,242,0.14)"><i data-lucide="image"></i></span>
-    <span class="row-name">Banner Iklan AI</span>
-    <span class="row-type">Salin ke Gemini</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button><button class="row" data-target="d-thumbnail" data-name="thumbnail youtube">
-    <span class="row-ic" style="color:#6db3f2;background:rgba(109,179,242,0.14)"><i data-lucide="youtube"></i></span>
-    <span class="row-name">Thumbnail YouTube</span>
-    <span class="row-type">Salin ke Gemini</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button><button class="row" data-target="d-typography" data-name="poster tipografi">
-    <span class="row-ic" style="color:#6db3f2;background:rgba(109,179,242,0.14)"><i data-lucide="type"></i></span>
-    <span class="row-name">Poster Tipografi</span>
-    <span class="row-type">Salin ke Gemini</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button><button class="row" data-target="d-menu-fnb" data-name="menu f&amp;b">
-    <span class="row-ic" style="color:#6db3f2;background:rgba(109,179,242,0.14)"><i data-lucide="utensils-crossed"></i></span>
-    <span class="row-name">Menu F&amp;B</span>
-    <span class="row-type">Salin ke Gemini</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button><button class="row" data-target="d-face-card" data-name="analisa wajah &amp; gaya">
-    <span class="row-ic" style="color:#6db3f2;background:rgba(109,179,242,0.14)"><i data-lucide="scan-face"></i></span>
-    <span class="row-name">Analisa Wajah &amp; Gaya</span>
-    <span class="row-type">Salin ke Gemini</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button><button class="row" data-target="d-photo-enhance" data-name="edit foto jadi pro">
-    <span class="row-ic" style="color:#6db3f2;background:rgba(109,179,242,0.14)"><i data-lucide="sparkles"></i></span>
-    <span class="row-name">Edit Foto Jadi Pro</span>
-    <span class="row-type">Salin ke Gemini</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button><button class="row" data-target="d-model-produk" data-name="model + produk ai">
-    <span class="row-ic" style="color:#6db3f2;background:rgba(109,179,242,0.14)"><i data-lucide="shirt"></i></span>
-    <span class="row-name">Model + Produk AI</span>
-    <span class="row-type">Salin ke Gemini</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button><button class="row" data-target="d-poster-feed" data-name="desain poster feed">
-    <span class="row-ic" style="color:#6db3f2;background:rgba(109,179,242,0.14)"><i data-lucide="layout-template"></i></span>
-    <span class="row-name">Desain Poster Feed</span>
-    <span class="row-type">Salin ke Gemini</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button><button class="row" data-target="d-vision" data-name="video iklan sinematik">
-    <span class="row-ic" style="color:#b0a8f0;background:rgba(176,168,240,0.15)"><i data-lucide="clapperboard"></i></span>
-    <span class="row-name">Video Iklan Sinematik</span>
-    <span class="row-type">2 langkah video</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button><button class="row" data-target="d-landing" data-name="pembuat landing page">
-    <span class="row-ic" style="color:#4ade80;background:rgba(74,222,128,0.13)"><i data-lucide="layout"></i></span>
-    <span class="row-name">Pembuat Landing Page</span>
-    <span class="row-type">Langsung di app</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button></div></div><div class="cat-group"><div class="cat-group-h"><i data-lucide="rocket"></i> Produksi &amp; Scale <span class="cat-group-desc">Video &amp; analisa</span></div><div class="rows"><button class="row" data-target="d-ugc" data-name="video ugc kreator">
-    <span class="row-ic" style="color:#b0a8f0;background:rgba(176,168,240,0.15)"><i data-lucide="users"></i></span>
-    <span class="row-name">Video UGC Kreator</span>
-    <span class="row-type">2 langkah video</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button><button class="row" data-target="d-affiliate" data-name="video affiliate">
-    <span class="row-ic" style="color:#b0a8f0;background:rgba(176,168,240,0.15)"><i data-lucide="shopping-bag"></i></span>
-    <span class="row-name">Video Affiliate</span>
-    <span class="row-type">2 langkah video</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button><button class="row" data-target="d-analytics" data-name="audit performa iklan">
-    <span class="row-ic" style="color:#4ade80;background:rgba(74,222,128,0.13)"><i data-lucide="bar-chart-3"></i></span>
-    <span class="row-name">Audit Performa Iklan</span>
-    <span class="row-type">Langsung di app</span>
-    <i data-lucide="chevron-right" class="row-chev"></i></button></div></div>
+    <div class="cat-group"><div class="cat-group-h"><i data-lucide="compass"></i> Utama <span class="cat-group-desc">Strategi &amp; konsultasi</span></div><div class="tiles"><button class="tile" style="background:#D9488A" data-target="d-strategist" data-name="strategi iklan ai">
+    <span class="tile-ic"><i data-lucide="target"></i></span>
+    <span class="tile-title">Strategi Iklan AI</span>
+    <span class="tile-sub">Rencana iklan Meta</span></button><button class="tile" style="background:#3B95D6" data-target="d-marketing-consultant" data-name="konsultan marketing">
+    <span class="tile-ic"><i data-lucide="message-circle"></i></span>
+    <span class="tile-title">Konsultan Marketing</span>
+    <span class="tile-sub">Tanya pakar marketing</span></button><button class="tile" style="background:#5A50D6" data-target="d-studio-ai" data-name="model &amp; avatar ai">
+    <span class="tile-ic"><i data-lucide="bot"></i></span>
+    <span class="tile-title">Model &amp; Avatar AI</span>
+    <span class="tile-sub">Model virtual AI</span></button></div></div><div class="cat-group"><div class="cat-group-h"><i data-lucide="pen-line"></i> Konten &amp; Copy <span class="cat-group-desc">Teks &amp; suara iklan</span></div><div class="tiles"><button class="tile" style="background:#2AA378" data-target="d-copywriter" data-name="copywriting iklan">
+    <span class="tile-ic"><i data-lucide="pen-tool"></i></span>
+    <span class="tile-title">Copywriting Iklan</span>
+    <span class="tile-sub">Tulisan iklan otomatis</span></button><button class="tile" style="background:#D9563C" data-target="d-hook-generator" data-name="hook pembuka iklan">
+    <span class="tile-ic"><i data-lucide="magnet"></i></span>
+    <span class="tile-title">Hook Pembuka Iklan</span>
+    <span class="tile-sub">Hook bikin nempel</span></button><button class="tile" style="background:#3AA9B0" data-target="d-testimonial" data-name="testimoni chat wa">
+    <span class="tile-ic"><i data-lucide="message-square"></i></span>
+    <span class="tile-title">Testimoni Chat WA</span>
+    <span class="tile-sub">Chat testimoni WA</span></button><button class="tile" style="background:#8E4FD6" data-target="d-audio" data-name="voice over ai">
+    <span class="tile-ic"><i data-lucide="mic"></i></span>
+    <span class="tile-title">Voice Over AI</span>
+    <span class="tile-sub">Suara buat video</span></button></div></div><div class="cat-group"><div class="cat-group-h"><i data-lucide="palette"></i> Visual &amp; Media <span class="cat-group-desc">Gambar, poster, foto, video</span></div><div class="tiles"><button class="tile" style="background:#C74A45" data-target="d-product-photo" data-name="foto produk ai">
+    <span class="tile-ic"><i data-lucide="camera"></i></span>
+    <span class="tile-title">Foto Produk AI</span>
+    <span class="tile-sub">Foto produk kece</span></button><button class="tile" style="background:#D97A2E" data-target="d-content" data-name="banner iklan ai">
+    <span class="tile-ic"><i data-lucide="image"></i></span>
+    <span class="tile-title">Banner Iklan AI</span>
+    <span class="tile-sub">Banner iklan</span></button><button class="tile" style="background:#2E9CC4" data-target="d-thumbnail" data-name="thumbnail youtube">
+    <span class="tile-ic"><i data-lucide="youtube"></i></span>
+    <span class="tile-title">Thumbnail YouTube</span>
+    <span class="tile-sub">Thumbnail YouTube</span></button><button class="tile" style="background:#4A5CD6" data-target="d-typography" data-name="poster tipografi">
+    <span class="tile-ic"><i data-lucide="type"></i></span>
+    <span class="tile-title">Poster Tipografi</span>
+    <span class="tile-sub">Poster teks</span></button><button class="tile" style="background:#C98A2E" data-target="d-menu-fnb" data-name="menu f&amp;b">
+    <span class="tile-ic"><i data-lucide="utensils-crossed"></i></span>
+    <span class="tile-title">Menu F&amp;B</span>
+    <span class="tile-sub">Desain menu resto</span></button><button class="tile" style="background:#D9488A" data-target="d-face-card" data-name="analisa wajah &amp; gaya">
+    <span class="tile-ic"><i data-lucide="scan-face"></i></span>
+    <span class="tile-title">Analisa Wajah &amp; Gaya</span>
+    <span class="tile-sub">Analisa wajah &amp; gaya</span></button><button class="tile" style="background:#3B95D6" data-target="d-photo-enhance" data-name="edit foto jadi pro">
+    <span class="tile-ic"><i data-lucide="sparkles"></i></span>
+    <span class="tile-title">Edit Foto Jadi Pro</span>
+    <span class="tile-sub">Foto jadi pro</span></button><button class="tile" style="background:#5A50D6" data-target="d-model-produk" data-name="model + produk ai">
+    <span class="tile-ic"><i data-lucide="shirt"></i></span>
+    <span class="tile-title">Model + Produk AI</span>
+    <span class="tile-sub">Model pakai produkmu</span></button><button class="tile" style="background:#2AA378" data-target="d-poster-feed" data-name="desain poster feed">
+    <span class="tile-ic"><i data-lucide="layout-template"></i></span>
+    <span class="tile-title">Desain Poster Feed</span>
+    <span class="tile-sub">Poster jualan</span></button><button class="tile" style="background:#D9563C" data-target="d-vision" data-name="video iklan sinematik">
+    <span class="tile-ic"><i data-lucide="clapperboard"></i></span>
+    <span class="tile-title">Video Iklan Sinematik</span>
+    <span class="tile-sub">Video sinematik</span></button><button class="tile" style="background:#3AA9B0" data-target="d-landing" data-name="pembuat landing page">
+    <span class="tile-ic"><i data-lucide="layout"></i></span>
+    <span class="tile-title">Pembuat Landing Page</span>
+    <span class="tile-sub">Halaman jualan</span></button></div></div><div class="cat-group"><div class="cat-group-h"><i data-lucide="rocket"></i> Produksi &amp; Scale <span class="cat-group-desc">Video &amp; analisa</span></div><div class="tiles"><button class="tile" style="background:#8E4FD6" data-target="d-ugc" data-name="video ugc kreator">
+    <span class="tile-ic"><i data-lucide="users"></i></span>
+    <span class="tile-title">Video UGC Kreator</span>
+    <span class="tile-sub">Video UGC review</span></button><button class="tile" style="background:#C74A45" data-target="d-affiliate" data-name="video affiliate">
+    <span class="tile-ic"><i data-lucide="shopping-bag"></i></span>
+    <span class="tile-title">Video Affiliate</span>
+    <span class="tile-sub">Video affiliate</span></button><button class="tile" style="background:#D97A2E" data-target="d-analytics" data-name="audit performa iklan">
+    <span class="tile-ic"><i data-lucide="bar-chart-3"></i></span>
+    <span class="tile-title">Audit Performa Iklan</span>
+    <span class="tile-sub">Audit iklan</span></button></div></div>
     <div class="no-result" id="noResult">Gak nemu tool itu &mdash; coba kata lain ya.</div>
 
     <div class="help-foot">Masih bingung setelah baca? Chat admin di Telegram <a href="https://t.me/adverthinking" target="_blank">@adverthinking</a> atau gabung <a href="https://t.me/+HV_IH0PmaCM5MWI9" target="_blank">grup komunitas</a> &mdash; dibantu sampai bisa. &#128588;</div>
@@ -622,15 +600,15 @@ Contoh pertanyaan chat: "Campaign mana yang ROAS-nya paling jelek dan kenapa? Sa
     document.getElementById('view-menu').hidden=false;
     if(history.replaceState) history.replaceState(null,'','#');
   };
-  var btns=document.querySelectorAll('.row,.quick-tile');
+  var btns=document.querySelectorAll('.tile,.quick-tile');
   for(var i=0;i<btns.length;i++){ btns[i].addEventListener('click',function(){ showDetail(this.getAttribute('data-target')); }); }
   var sb=document.getElementById('search');
   if(sb){ sb.addEventListener('input',function(){
     var q=sb.value.toLowerCase().trim(), any=false;
-    var rows=document.querySelectorAll('.row');
+    var rows=document.querySelectorAll('.tile');
     for(var j=0;j<rows.length;j++){ var m=rows[j].getAttribute('data-name').indexOf(q)>-1; rows[j].style.display=m?'':'none'; if(m) any=true; }
     var grps=document.querySelectorAll('.cat-group');
-    for(var k=0;k<grps.length;k++){ var vis=grps[k].querySelectorAll('.row'); var show=false; for(var m2=0;m2<vis.length;m2++){ if(vis[m2].style.display!=='none'){show=true;break;} } grps[k].style.display=show?'':'none'; }
+    for(var k=0;k<grps.length;k++){ var vis=grps[k].querySelectorAll('.tile'); var show=false; for(var m2=0;m2<vis.length;m2++){ if(vis[m2].style.display!=='none'){show=true;break;} } grps[k].style.display=show?'':'none'; }
     document.getElementById('noResult').style.display=(q&&!any)?'block':'none';
   }); }
   var h=(location.hash||'').replace('#','').replace(/_/g,'-'); if(h && document.getElementById(h)) showDetail(h);
