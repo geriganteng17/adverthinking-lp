@@ -550,12 +550,12 @@
         </style>
         <div class="max-w-6xl mx-auto text-center">
             <span class="reveal badge mb-6 backdrop-blur-sm" style="background: rgba(255,107,53,0.08); border-color: rgba(255,107,53,0.2); color: #FF8C5A;">
-                🔥 Tools AI Khusus untuk <span class="font-bold ml-1" style="color: #F5A623;">Iklan yang Convert</span>
+                🔥 Buat <span class="font-bold ml-1" style="color: #F5A623;">Seller, Affiliate &amp; UMKM</span>
             </span>
 
             <h1 class="reveal reveal-delay-1 font-display text-[1.9rem] sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.15] mb-6 md:mb-8">
-                <span class="text-white">SATU APP AI BUAT</span><br>
-                <span class="text-gradient">SEMUA KONTEN IKLAN KAMU</span>
+                <span class="text-white">SEMUA KONTEN IKLAN JADI</span><br>
+                <span class="text-gradient">10X LEBIH CEPAT PAKAI AI</span>
             </h1>
 
             <p class="reveal reveal-delay-2 text-base md:text-xl text-gray-400 max-w-3xl mx-auto mb-10 md:mb-12 leading-relaxed font-light">
@@ -1925,12 +1925,9 @@
                         <span><i class="fa-solid fa-infinity mr-1" style="color:#4ade80;"></i>Update tools selamanya</span>
                     </div>
                     <div class="mt-4 pt-4" style="border-top:1px solid rgba(255,255,255,.06);">
-                        <div class="flex items-center justify-between text-[10px] font-bold uppercase tracking-widest mb-2">
-                            <span class="text-gray-500">Kuota Batch 1</span>
-                            <span id="kuotaText" style="color:#FF8C5A;">0 / 100 terisi</span>
-                        </div>
-                        <div style="height:8px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden;">
-                            <div id="kuotaBar" style="height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,#F5A623,#FF6B35);transition:width 1s ease;"></div>
+                        <div class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg" style="background:rgba(255,107,53,.08);border:1px solid rgba(255,107,53,.22);">
+                            <i class="fa-solid fa-fire" style="color:#FF8C5A;font-size:12px;"></i>
+                            <span class="text-[11px] font-bold uppercase tracking-wider" style="color:#FF8C5A;">Harga Perdana Batch 1 &middot; Slot Terbatas</span>
                         </div>
                     </div>
                 </div>
@@ -2229,18 +2226,9 @@
                 } else { fb(k,done); }
                 function fb(text,cb){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);if(cb)cb();}
             };
-            // Desktop: exit-intent (mouse keluar atas)
-            document.addEventListener('mouseout', function(e){
-                if(e.clientY <= 0) showVoucher();
-            });
-            // HP/semua: muncul setelah 25 detik
-            setTimeout(showVoucher, 25000);
-            // HP: deteksi scroll cepat ke atas (mau keluar)
-            var lastY = window.scrollY;
-            window.addEventListener('scroll', function(){
-                if(window.scrollY < lastY - 60 && window.scrollY < 200) showVoucher();
-                lastY = window.scrollY;
-            }, {passive:true});
+            // --- POPUP DINONAKTIFKAN 20 Jul 2026 (req Bolo: mengganggu) ---
+            // Trigger exit-intent + timer 25 detik + scroll-ke-atas SEMUA dimatikan.
+            // showVoucher & closeVoucher tetap didefinisikan (aman) tapi tidak pernah auto-dipanggil.
         })();
 
         // --- SMOOTH SCROLL ---
@@ -2255,23 +2243,13 @@
         // (blok anti-inspect dihapus — bikin friksi long-press/paste di HP + kesan sketchy, proteksi ~nol)
     </script>
 <script>
-  // === KUOTA BATCH 1 (AUTO dari Supabase get_buyer_count) ===
-  // Angka asli ditarik real-time dari buyer Supabase. Hardcoded di bawah = FALLBACK kalau fetch gagal.
-  var BATCH1_TERISI = 1;
-  (function(){
-    var t=document.getElementById('kuotaText'), b=document.getElementById('kuotaBar');
-    function render(n){
-      if(!t||!b) return;
-      t.textContent = n + ' / 100 terisi';
-      setTimeout(function(){ b.style.width = Math.min(100, n) + '%'; }, 400);
-    }
-    render(BATCH1_TERISI); // tampilkan fallback dulu (instan)
-    // tarik angka ASLI — auto-update tiap ada sale baru, gak usah edit manual lagi
-    fetch('https://qpphkgywomddclhkhwlq.supabase.co/rest/v1/rpc/get_buyer_count',{method:'POST',headers:{'apikey':'sb_publishable__5lT0J35x3Uog0pcu_nttA_TjW-D_ow','Content-Type':'application/json'},body:'{}'})
-      .then(function(r){ return r.json(); })
-      .then(function(n){ if(typeof n==='number'){ BATCH1_TERISI=n; render(n); } })
-      .catch(function(){});
-  })();
+  // === KUOTA BATCH 1 (counter live) — DINONAKTIFKAN 20 Jul 2026 ===
+  // Alasan: angka masih rendah (mis. 8/100) = ANTI-social-proof (kesan "sepi", nurunin konversi).
+  // Diganti badge scarcity kualitatif ("Harga Perdana Batch 1, Slot Terbatas") di pricing card.
+  // NYALAIN LAGI nanti pas count udah tinggi (mis. >= 40/100) biar jadi ASET, bukan beban:
+  //   - balikin elemen <span id="kuotaText"> + <div id="kuotaBar"> di pricing card
+  //   - un-comment fetch get_buyer_count di bawah.
+  // (fetch Supabase sengaja dimatiin biar gak ada call sia-sia)
 </script>
 
     <script>
