@@ -1417,7 +1417,12 @@
   .vo-player.playing .vo-wave span:nth-child(2n){ animation-delay:.15s; }
   .vo-player.playing .vo-wave span:nth-child(3n){ animation-delay:.3s; }
   .vo-player.playing .vo-wave span:nth-child(5n){ animation-delay:.45s; }
+  #allToolsWrap.alltools-collapsed{ max-height:560px; overflow:hidden; position:relative; }
+  #allToolsFade{ display:none; }
+  #allToolsWrap.alltools-collapsed #allToolsFade{ display:block; position:absolute; left:0; right:0; bottom:0; height:170px; background:linear-gradient(to bottom, rgba(10,10,10,0), #0A0A0A 92%); pointer-events:none; z-index:2; }
+  #allToolsBtn:hover{ background:rgba(255,107,53,0.18) !important; }
 </style>
+            <div id="allToolsWrap" class="alltools-collapsed">
             <div class="mb-10 md:mb-14">
             <div class="reveal flex items-center gap-3 mb-6 rounded-2xl px-3.5 py-3 md:px-5 md:py-4" style="background:linear-gradient(90deg, rgba(255,107,53,0.13), rgba(245,166,35,0.05) 55%, rgba(255,255,255,0.01)); border:1px solid rgba(255,107,53,0.25);">
                 <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.25);"><i class="fa-solid fa-image text-sm" style="color:#FF8C5A;"></i></div>
@@ -1674,8 +1679,25 @@
 </div>
             </div>
             </div>
+              <div id="allToolsFade"></div>
+            </div>
+            <div class="text-center mt-2">
+              <button id="allToolsBtn" type="button" class="px-7 py-3 rounded-full font-bold text-sm" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.35);color:#FF8C5A;cursor:pointer;transition:background .2s;">Lihat semua 20 tools <i class="fa-solid fa-chevron-down ml-1 text-xs"></i></button>
+            </div>
         </div>
     </section>
+    <script>
+    (function(){
+      var w=document.getElementById('allToolsWrap'), b=document.getElementById('allToolsBtn');
+      if(!w||!b) return;
+      b.addEventListener('click', function(){
+        w.classList.remove('alltools-collapsed');
+        w.style.maxHeight='none';
+        w.querySelectorAll('.reveal').forEach(function(el){ el.style.opacity='1'; el.style.transform='none'; });
+        var bar=b.parentNode; if(bar) bar.style.display='none';
+      });
+    })();
+    </script>
 
     <!-- Technology Section -->
     
