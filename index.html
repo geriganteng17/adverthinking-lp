@@ -1889,66 +1889,40 @@
         </div>
     </section>
 
-    <!-- ===== TESTIMONI BERJALAN (diaktifkan 20 Jul 2026 — quote ASLI dari DM buyer, JANGAN pakai testimoni karangan) =====
-         Nambah quote baru: copy 1 blok .testi-card di DUA set (SET 1 + SET 2 harus identik biar loop mulus). -->
+    <!-- ===== TESTIMONI (rombak 20 Jul 2026 malam, req Bolo: tampilan CHAT + "yang ada aja dulu") =====
+         Quote ASLI verbatim dari DM Telegram buyer (JANGAN pakai testimoni karangan).
+         Masih 1 testimoni -> tampil statis 1 bubble, TANPA marquee & TANPA kartu filler.
+         Nambah testimoni baru: copy 1 blok .tg-chat di dalam .testi-list (grid auto-wrap). -->
     <style>
-        .testi-marquee { overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); }
-        .testi-track { display:flex; gap:16px; width:max-content; padding:8px 0 18px; animation:testi-scroll 36s linear infinite; }
-        .testi-marquee:hover .testi-track { animation-play-state:paused; }
-        @keyframes testi-scroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
-        @media (prefers-reduced-motion: reduce) { .testi-track { animation:none; flex-wrap:wrap; width:auto; justify-content:center; } }
-        .testi-card { position:relative; width:320px; flex-shrink:0; background:var(--bg-card); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:22px 22px 18px; display:flex; flex-direction:column; gap:14px; }
-        .testi-card .stars { color:var(--secondary); font-size:12px; letter-spacing:2px; }
-        .testi-card .quote { color:#d1d5db; font-size:14.5px; line-height:1.65; margin:0; flex:1; }
-        .testi-card .who { display:flex; align-items:center; gap:12px; border-top:1px solid rgba(255,255,255,0.07); padding-top:14px; }
-        .testi-card .ava { width:38px; height:38px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; color:#FF8C5A; background:rgba(255,107,53,0.12); border:1px solid rgba(255,107,53,0.22); font-family:'Space Grotesk',sans-serif; }
-        .testi-card .who b { display:block; color:#fff; font-size:14px; font-weight:600; }
-        .testi-card .who span.role { display:block; color:#6b7280; font-size:11px; text-transform:uppercase; letter-spacing:0.08em; margin-top:2px; }
-        .testi-card .verified { font-size:11px; color:#4ade80; margin-left:auto; white-space:nowrap; }
-        .testi-card.fact { border-color:rgba(245,166,35,0.25); }
-        .testi-card.fact .fact-ico { width:38px; height:38px; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#FF8C5A; background:rgba(255,107,53,0.12); border:1px solid rgba(255,107,53,0.22); font-size:15px; }
-        .testi-card.fact .fact-title { color:#fff; font-weight:700; font-size:16px; font-family:'Space Grotesk',sans-serif; }
+        .testi-list { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; padding:0 16px; }
+        .tg-chat { width:100%; max-width:480px; background:#17212b; border:1px solid rgba(255,255,255,0.07); border-radius:18px; padding:18px 16px 14px; text-align:left; box-shadow:0 18px 44px rgba(0,0,0,0.45); }
+        .tg-chat .tg-bubble { position:relative; background:#212d3b; color:#e7ecf1; border-radius:14px 14px 14px 4px; padding:12px 15px 20px; font-size:14.5px; line-height:1.6; max-width:94%; }
+        .tg-chat .tg-bubble p { margin:0; }
+        .tg-chat .tg-bubble .tg-sig { margin-top:10px; color:#aeb8c2; }
+        .tg-chat .tg-time { position:absolute; right:11px; bottom:5px; font-size:10.5px; color:#7a8791; }
+        .tg-chat .who { display:flex; align-items:center; gap:12px; margin-top:14px; padding-top:13px; border-top:1px solid rgba(255,255,255,0.07); }
+        .tg-chat .ava { width:38px; height:38px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; color:#FF8C5A; background:rgba(255,107,53,0.12); border:1px solid rgba(255,107,53,0.22); font-family:'Space Grotesk',sans-serif; }
+        .tg-chat .who b { display:block; color:#fff; font-size:14px; font-weight:600; }
+        .tg-chat .who span.role { display:block; color:#6b7280; font-size:11px; text-transform:uppercase; letter-spacing:0.08em; margin-top:2px; }
+        .tg-chat .verified { font-size:11px; color:#4ade80; margin-left:auto; white-space:nowrap; }
+        .tg-chat .tg-src { display:flex; align-items:center; gap:6px; font-size:11px; color:#7a8791; margin-bottom:10px; }
+        .tg-chat .tg-src i { color:#54a9eb; font-size:13px; }
     </style>
     <section id="testimoni" class="py-16 md:py-20 scroll-mt-24">
         <div class="max-w-6xl mx-auto px-4 text-center mb-9">
             <span class="badge mb-6" style="background:rgba(255,107,53,0.1); border-color:rgba(255,107,53,0.3); color:#FF8C5A;"><i class="fa-solid fa-comment-dots"></i> KATA PEMBELI BATCH 1</span>
             <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Yang udah pakai, ngomong sendiri.</h2>
-            <p class="text-gray-400 text-base md:text-lg">Kesan jujur dari pembeli early access. <span class="font-bold" style="color:#F5A623;">Bukan karangan</span>, kami tanya langsung satu-satu. Halaman ini nambah tiap ada jawaban baru.</p>
+            <p class="text-gray-400 text-base md:text-lg">Kesan jujur dari pembeli early access, ditulis mereka sendiri lewat DM. <span class="font-bold" style="color:#F5A623;">Bukan karangan</span> — halaman ini nambah tiap ada jawaban baru.</p>
         </div>
-        <div class="testi-marquee">
-            <div class="testi-track">
-                <!-- SET 1 -->
-                <div class="testi-card">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="quote">"Adverthinking AI keren banget ya. Mau buat konten jadi simpel, ngga rumit mikirin prompt lagi."</p>
-                    <div class="who"><div class="ava">ES</div><div><b>Eka Samodra</b><span class="role">Agency website dan SEO</span></div><span class="verified"><i class="fa-solid fa-circle-check"></i> Pembeli</span></div>
+        <div class="testi-list">
+            <div class="tg-chat">
+                <div class="tg-src"><i class="fa-brands fa-telegram"></i> Balasan asli di DM Telegram</div>
+                <div class="tg-bubble">
+                    <p>Adverthinking AI keren banget ya.<br>Mau buat konten jadi simpel, ngga rumit mikirin prompt lagi.</p>
+                    <p class="tg-sig">Eka Samodra - Agency Website dan SEO</p>
+                    <span class="tg-time">21:14</span>
                 </div>
-                <div class="testi-card fact">
-                    <div class="fact-ico"><i class="fa-solid fa-bolt"></i></div>
-                    <p class="fact-title">Akses otomatis</p>
-                    <p class="quote">Begitu pembayaran terkonfirmasi, akses masuk email kamu dalam hitungan menit. Gak nunggu admin online.</p>
-                </div>
-                <div class="testi-card fact">
-                    <div class="fact-ico"><i class="fa-solid fa-fire"></i></div>
-                    <p class="fact-title">Harga Perdana Batch 1</p>
-                    <p class="quote">Slot terbatas. Harga naik begitu kuota batch pertama penuh.</p>
-                </div>
-                <!-- SET 2 (identik SET 1, buat loop mulus) -->
-                <div class="testi-card">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="quote">"Adverthinking AI keren banget ya. Mau buat konten jadi simpel, ngga rumit mikirin prompt lagi."</p>
-                    <div class="who"><div class="ava">ES</div><div><b>Eka Samodra</b><span class="role">Agency website dan SEO</span></div><span class="verified"><i class="fa-solid fa-circle-check"></i> Pembeli</span></div>
-                </div>
-                <div class="testi-card fact">
-                    <div class="fact-ico"><i class="fa-solid fa-bolt"></i></div>
-                    <p class="fact-title">Akses otomatis</p>
-                    <p class="quote">Begitu pembayaran terkonfirmasi, akses masuk email kamu dalam hitungan menit. Gak nunggu admin online.</p>
-                </div>
-                <div class="testi-card fact">
-                    <div class="fact-ico"><i class="fa-solid fa-fire"></i></div>
-                    <p class="fact-title">Harga Perdana Batch 1</p>
-                    <p class="quote">Slot terbatas. Harga naik begitu kuota batch pertama penuh.</p>
-                </div>
+                <div class="who"><div class="ava">ES</div><div><b>Eka Samodra</b><span class="role">Agency website dan SEO</span></div><span class="verified"><i class="fa-solid fa-circle-check"></i> Pembeli</span></div>
             </div>
         </div>
     </section>
