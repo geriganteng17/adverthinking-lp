@@ -1889,10 +1889,71 @@
         </div>
     </section>
 
+    <!-- ===== TESTIMONI BERJALAN (diaktifkan 20 Jul 2026 — quote ASLI dari DM buyer, JANGAN pakai testimoni karangan) =====
+         Nambah quote baru: copy 1 blok .testi-card di DUA set (SET 1 + SET 2 harus identik biar loop mulus). -->
+    <style>
+        .testi-marquee { overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); }
+        .testi-track { display:flex; gap:16px; width:max-content; padding:8px 0 18px; animation:testi-scroll 36s linear infinite; }
+        .testi-marquee:hover .testi-track { animation-play-state:paused; }
+        @keyframes testi-scroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+        @media (prefers-reduced-motion: reduce) { .testi-track { animation:none; flex-wrap:wrap; width:auto; justify-content:center; } }
+        .testi-card { position:relative; width:320px; flex-shrink:0; background:var(--bg-card); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:22px 22px 18px; display:flex; flex-direction:column; gap:14px; }
+        .testi-card .stars { color:var(--secondary); font-size:12px; letter-spacing:2px; }
+        .testi-card .quote { color:#d1d5db; font-size:14.5px; line-height:1.65; margin:0; flex:1; }
+        .testi-card .who { display:flex; align-items:center; gap:12px; border-top:1px solid rgba(255,255,255,0.07); padding-top:14px; }
+        .testi-card .ava { width:38px; height:38px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; color:#FF8C5A; background:rgba(255,107,53,0.12); border:1px solid rgba(255,107,53,0.22); font-family:'Space Grotesk',sans-serif; }
+        .testi-card .who b { display:block; color:#fff; font-size:14px; font-weight:600; }
+        .testi-card .who span.role { display:block; color:#6b7280; font-size:11px; text-transform:uppercase; letter-spacing:0.08em; margin-top:2px; }
+        .testi-card .verified { font-size:11px; color:#4ade80; margin-left:auto; white-space:nowrap; }
+        .testi-card.fact { border-color:rgba(245,166,35,0.25); }
+        .testi-card.fact .fact-ico { width:38px; height:38px; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#FF8C5A; background:rgba(255,107,53,0.12); border:1px solid rgba(255,107,53,0.22); font-size:15px; }
+        .testi-card.fact .fact-title { color:#fff; font-weight:700; font-size:16px; font-family:'Space Grotesk',sans-serif; }
+    </style>
+    <section id="testimoni" class="py-16 md:py-20 scroll-mt-24">
+        <div class="max-w-6xl mx-auto px-4 text-center mb-9">
+            <span class="badge mb-6" style="background:rgba(255,107,53,0.1); border-color:rgba(255,107,53,0.3); color:#FF8C5A;"><i class="fa-solid fa-comment-dots"></i> KATA PEMBELI BATCH 1</span>
+            <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Yang udah pakai, ngomong sendiri.</h2>
+            <p class="text-gray-400 text-base md:text-lg">Kesan jujur dari pembeli early access. <span class="font-bold" style="color:#F5A623;">Bukan karangan</span>, kami tanya langsung satu-satu. Halaman ini nambah tiap ada jawaban baru.</p>
+        </div>
+        <div class="testi-marquee">
+            <div class="testi-track">
+                <!-- SET 1 -->
+                <div class="testi-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="quote">"Adverthinking AI keren banget ya. Mau buat konten jadi simpel, ngga rumit mikirin prompt lagi."</p>
+                    <div class="who"><div class="ava">ES</div><div><b>Eka Samodra</b><span class="role">Agency website dan SEO</span></div><span class="verified"><i class="fa-solid fa-circle-check"></i> Pembeli</span></div>
+                </div>
+                <div class="testi-card fact">
+                    <div class="fact-ico"><i class="fa-solid fa-bolt"></i></div>
+                    <p class="fact-title">Akses otomatis</p>
+                    <p class="quote">Begitu pembayaran terkonfirmasi, akses masuk email kamu dalam hitungan menit. Gak nunggu admin online.</p>
+                </div>
+                <div class="testi-card fact">
+                    <div class="fact-ico"><i class="fa-solid fa-fire"></i></div>
+                    <p class="fact-title">Harga Perdana Batch 1</p>
+                    <p class="quote">Slot terbatas. Harga naik begitu kuota batch pertama penuh.</p>
+                </div>
+                <!-- SET 2 (identik SET 1, buat loop mulus) -->
+                <div class="testi-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="quote">"Adverthinking AI keren banget ya. Mau buat konten jadi simpel, ngga rumit mikirin prompt lagi."</p>
+                    <div class="who"><div class="ava">ES</div><div><b>Eka Samodra</b><span class="role">Agency website dan SEO</span></div><span class="verified"><i class="fa-solid fa-circle-check"></i> Pembeli</span></div>
+                </div>
+                <div class="testi-card fact">
+                    <div class="fact-ico"><i class="fa-solid fa-bolt"></i></div>
+                    <p class="fact-title">Akses otomatis</p>
+                    <p class="quote">Begitu pembayaran terkonfirmasi, akses masuk email kamu dalam hitungan menit. Gak nunggu admin online.</p>
+                </div>
+                <div class="testi-card fact">
+                    <div class="fact-ico"><i class="fa-solid fa-fire"></i></div>
+                    <p class="fact-title">Harga Perdana Batch 1</p>
+                    <p class="quote">Slot terbatas. Harga naik begitu kuota batch pertama penuh.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Pricing Section -->
-    <!-- ===== SLOT TESTIMONI (AKTIFKAN setelah 5-10 pembeli pertama!) =====
-         Format paling convert: screenshot chat WA pembeli asli + nama depan + jenis bisnis.
-         Grid 2-3 kolom gambar screenshot. JANGAN pakai testimoni karangan. -->
     <section id="pricing" class="py-16 md:py-24 px-4 pb-32">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-8">
