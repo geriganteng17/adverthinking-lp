@@ -764,29 +764,29 @@
                 {ic:'fa-solid fa-shirt', lb:'Gaya Pakaian Dasar', v:'Outfit kasual kekinian buat konten UGC & selfie natural'},
                 {ic:'fa-solid fa-person', lb:'Pose', v:'Casual'},
                 {ic:'fa-solid fa-image', lb:'Background', v:'Minimalist Room'}],
-              imgs:['images/model-hijab.webp','images/showcase/model-01.jpg','images/showcase/model-02.jpg','images/showcase/model-03.jpg','images/ugc/ugc-10.webp'] },
+              imgs:['images/model-hijab.webp','images/showcase-sm/model-01.webp','images/showcase-sm/model-02.webp','images/showcase-sm/model-03.webp','images/ugc/ugc-10.webp'] },
             { id:'poster', tab:'Desain Poster Feed', title:'Adverthinking AI — Desain Poster Feed',
               fields:[
                 {ic:'fa-solid fa-table-cells-large', lb:'Tipe Poster', v:'Promo / Diskon'},
                 {ic:'fa-solid fa-store', lb:'Nama Bisnis & Produk', v:'Kopi Senja — Es Kopi Gula Aren'},
                 {ic:'fa-solid fa-tag', lb:'Penawaran', v:'Promo Gajian: beli 2 gratis 1, khusus weekend'},
                 {ic:'fa-solid fa-palette', lb:'Palet Warna', v:'Earthy Coffee (cokelat-krem)'}],
-              imgs:['images/showcase/poster-feed-01.webp','images/showcase/poster-01.webp','images/showcase/poster-02.webp','images/showcase/poster-03.webp','images/showcase/poster-04.webp'] },
+              imgs:['images/showcase-sm/poster-feed-01.webp','images/showcase-sm/poster-01.webp','images/showcase-sm/poster-02.webp','images/showcase-sm/poster-03.webp','images/showcase-sm/poster-04.webp'] },
             { id:'modelproduk', tab:'Model + Produk AI', title:'Adverthinking AI — Model + Produk AI',
               fields:[
                 {ic:'fa-solid fa-camera', lb:'Foto Produk', v:'serum-glow.jpg &middot; ter-upload'},
                 {ic:'fa-solid fa-user', lb:'Deskripsi Model', v:'Wanita Indonesia 25 th, senyum hangat, outfit kasual kekinian'},
                 {ic:'fa-solid fa-hand-holding-heart', lb:'Interaksi', v:'Memegang produk ke arah kamera'},
                 {ic:'fa-solid fa-wand-magic-sparkles', lb:'Gaya Foto', v:'UGC Selfie (ala TikTok)'}],
-              imgs:['images/showcase/modelproduk-05.jpg','images/showcase/modelproduk-02.jpg','images/showcase/modelproduk-06.jpg','images/showcase/modelproduk-08.jpg','images/showcase/modelproduk-09.jpg'],
-              pool:['images/showcase/modelproduk-01.jpg','images/showcase/modelproduk-02.jpg','images/showcase/modelproduk-03.jpg','images/showcase/modelproduk-05.jpg','images/showcase/modelproduk-06.jpg','images/showcase/modelproduk-07.jpg','images/showcase/modelproduk-08.jpg','images/showcase/modelproduk-09.jpg','images/showcase/modelproduk-10.jpg','images/showcase/modelproduk-11.jpg'] },
+              imgs:['images/showcase-sm/modelproduk-05.webp','images/showcase-sm/modelproduk-02.webp','images/showcase-sm/modelproduk-06.webp','images/showcase-sm/modelproduk-08.webp','images/showcase-sm/modelproduk-09.webp'],
+              pool:['images/showcase-sm/modelproduk-01.webp','images/showcase-sm/modelproduk-02.webp','images/showcase-sm/modelproduk-03.webp','images/showcase-sm/modelproduk-05.webp','images/showcase-sm/modelproduk-06.webp','images/showcase-sm/modelproduk-07.webp','images/showcase-sm/modelproduk-08.webp','images/showcase-sm/modelproduk-09.webp','images/showcase-sm/modelproduk-10.webp','images/showcase-sm/modelproduk-11.webp'] },
             { id:'produk', tab:'Foto Produk AI', title:'Adverthinking AI — Foto Produk AI',
               fields:[
                 {ic:'fa-solid fa-camera', lb:'Foto Produk', v:'foto-sepatu.jpg &middot; ter-upload'},
                 {ic:'fa-solid fa-lightbulb', lb:'Pencahayaan', v:'Terang (high-key studio)'},
                 {ic:'fa-solid fa-mountain-sun', lb:'Suasana / Latar', v:'Studio bersih, podium minimalis'},
                 {ic:'fa-solid fa-maximize', lb:'Rasio', v:'1:1 (feed Instagram)'}],
-              imgs:['images/showcase/produk-01.webp','images/showcase/produk-02.jpg','images/showcase/produk-03.jpg','images/showcase/produk-04.jpg','images/showcase/produk-05.jpg'] },
+              imgs:['images/showcase-sm/produk-01.webp','images/showcase-sm/produk-02.webp','images/showcase-sm/produk-03.webp','images/showcase-sm/produk-04.webp','images/showcase-sm/produk-05.webp'] },
             { id:'videougc', tab:'Video UGC Kreator', title:'Adverthinking AI — Video UGC Kreator',
               fields:[
                 {ic:'fa-solid fa-box-open', lb:'Produk', v:'Serum wajah — review jujur ala kreator'},
@@ -804,8 +804,13 @@
           var avail = [], timers = [], cur = 0, gen = 0;
 
           function probe(demo, cb){
-            if (demo.vids) { var vd = document.createElement('video'); vd.muted = true; vd.preload = 'metadata';
-              vd.onloadedmetadata = function(){ cb(true); }; vd.onerror = function(){ cb(false); }; vd.src = demo.vids[0]; return; }
+            // Dulu ini bikin <video> sekali-pakai cuma buat ngecek file ADA — akibatnya ugc-1.mp4
+            // (1,1 MB) keunduh 2x tiap load. HEAD request jawab pertanyaan yang sama dengan nol byte badan.
+            if (demo.vids) {
+              fetch(demo.vids[0], { method: 'HEAD' })
+                .then(function(r){ cb(r.ok); })
+                .catch(function(){ cb(false); });
+              return; }
             var im = new Image(); im.onload = function(){ cb(true); }; im.onerror = function(){ cb(false); }; im.src = demo.imgs[0]; }
           function shuffle(a){ for (var i = a.length - 1; i > 0; i--){ var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
           function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
@@ -824,7 +829,7 @@
             var h = '', srcs = d.vids || d.imgs, P = d.pos || POS;
             // video = format 1:1, subjek di tengah (object-fit cover + center)
             function media(cls, src, style){
-              if (d.vids) return '<video class="' + cls + '" src="' + src + '" autoplay muted loop playsinline preload="metadata" style="' + style + 'object-position:center;background:#140E0A;" onerror="this.remove()"></video>';
+              if (d.vids) return '<video class="' + cls + '" src="' + src + '" autoplay muted loop playsinline preload="none" style="' + style + 'object-position:center;background:#140E0A;" onerror="this.remove()"></video>';
               return '<img class="' + cls + '" src="' + src + '" loading="lazy" alt="Hasil generate" style="' + style + '" onerror="this.remove()">';
             }
             srcs.slice(1).forEach(function(src, i){
@@ -883,7 +888,21 @@
                   b.addEventListener('click', function(){ play(i); });
                   tabsEl.appendChild(b);
                 });
-                if (avail.length) play(0);
+                // Widget ini duduk ~2.500px di bawah layar. Dulu dia jalan begitu halaman dibuka
+                // dan (pas rotasi sampai tab video) narik ~4,8 MB video yang belum tentu dilihat orang.
+                // Sekarang: nyala pas kelihatan, tidur pas keluar layar.
+                if (avail.length) {
+                  var panggung = tabsEl.closest('section') || tabsEl.parentElement;
+                  if ('IntersectionObserver' in window && panggung) {
+                    var jalan = false;
+                    new IntersectionObserver(function(ens){
+                      ens.forEach(function(en){
+                        if (en.isIntersecting) { if (!jalan) { jalan = true; play(0); } }
+                        else if (jalan) { clearTimers(); gen++; }
+                      });
+                    }, { rootMargin: '200px 0px' }).observe(panggung);
+                  } else { play(0); }
+                }
               }
             });
           });
@@ -935,57 +954,57 @@
                 <p class="shg-label max-w-6xl mx-auto px-4 mb-2.5">✦ Desain Poster Feed<span class="fmt">format 1:1 · 12 hasil</span></p>
                 <div class="af-marquee-mask r-sq">
                     <div class="shg-track" style="animation: shcL 137s linear infinite;">
-                    <div class="shg"><img src="images/showcase/poster-feed-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-02.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-03.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-04.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-06.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-07.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-08.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-09.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-10.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-11.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-12.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-feed-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-02.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-03.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-04.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-06.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-07.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-08.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-09.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-10.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-11.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-12.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <!-- ulang buat loop mulus -->
-                    <div class="shg"><img src="images/showcase/poster-feed-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-02.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-03.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-04.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-06.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-07.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-08.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-09.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-10.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-11.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-12.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-feed-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-02.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-03.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-04.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-06.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-07.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-08.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-09.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-10.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-11.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-12.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <!-- ulang buat loop mulus -->
-                    <div class="shg"><img src="images/showcase/poster-feed-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-02.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-03.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-04.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-06.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-07.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-08.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-09.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-10.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-11.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-12.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-feed-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-02.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-03.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-04.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-06.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-07.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-08.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-09.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-10.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-11.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-12.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <!-- ulang buat loop mulus -->
-                    <div class="shg"><img src="images/showcase/poster-feed-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-02.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-03.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-04.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-06.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-07.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-08.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-09.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-10.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-11.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/poster-12.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-feed-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-02.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-03.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-04.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-06.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-07.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-08.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-09.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-10.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-11.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/poster-12.webp" alt="Hasil Desain Poster Feed" loading="lazy" onerror="this.parentElement.remove()"></div>
                     </div>
                 </div>
             </div>
@@ -993,45 +1012,45 @@
                 <p class="shg-label max-w-6xl mx-auto px-4 mb-2.5">✦ Thumbnail YouTube<span class="fmt">format 16:9 · 9 hasil</span></p>
                 <div class="af-marquee-mask r-ls">
                     <div class="shg-track" style="animation: shcR 166s linear infinite;">
-                    <div class="shg"><img src="images/showcase/thumb-01.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-02.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-03.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-04.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-05.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-06.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-07.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-08.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-09.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-01.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-02.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-03.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-04.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-05.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-06.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-07.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-08.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-09.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <!-- ulang buat loop mulus -->
-                    <div class="shg"><img src="images/showcase/thumb-01.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-02.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-03.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-04.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-05.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-06.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-07.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-08.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-09.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-01.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-02.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-03.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-04.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-05.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-06.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-07.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-08.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-09.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <!-- ulang buat loop mulus -->
-                    <div class="shg"><img src="images/showcase/thumb-01.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-02.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-03.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-04.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-05.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-06.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-07.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-08.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-09.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-01.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-02.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-03.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-04.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-05.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-06.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-07.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-08.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-09.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <!-- ulang buat loop mulus -->
-                    <div class="shg"><img src="images/showcase/thumb-01.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-02.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-03.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-04.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-05.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-06.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-07.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-08.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/thumb-09.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-01.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-02.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-03.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-04.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-05.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-06.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-07.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-08.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/thumb-09.webp" alt="Hasil Thumbnail YouTube" loading="lazy" onerror="this.parentElement.remove()"></div>
                     </div>
                 </div>
             </div>
@@ -1039,46 +1058,46 @@
                 <p class="shg-label max-w-6xl mx-auto px-4 mb-2.5">✦ Model & Avatar AI<span class="fmt">format 9:16 · 10 hasil</span></p>
                 <div class="af-marquee-mask r-pt">
                     <div class="shg-track" style="animation: shcL 96s linear infinite;">
-                    <div class="shg"><img src="images/showcase/model-01.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-02.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-03.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-04.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-05.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-06.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-07.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-01.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-02.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-03.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-04.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-05.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-06.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-07.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <div class="shg"><img src="images/model-hijab.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <div class="shg"><img src="images/ugc/ugc-8.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <div class="shg"><img src="images/ugc/ugc-10.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <!-- ulang buat loop mulus -->
-                    <div class="shg"><img src="images/showcase/model-01.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-02.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-03.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-04.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-05.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-06.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-07.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-01.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-02.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-03.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-04.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-05.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-06.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-07.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <div class="shg"><img src="images/model-hijab.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <div class="shg"><img src="images/ugc/ugc-8.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <div class="shg"><img src="images/ugc/ugc-10.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <!-- ulang buat loop mulus -->
-                    <div class="shg"><img src="images/showcase/model-01.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-02.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-03.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-04.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-05.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-06.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-07.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-01.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-02.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-03.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-04.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-05.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-06.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-07.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <div class="shg"><img src="images/model-hijab.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <div class="shg"><img src="images/ugc/ugc-8.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <div class="shg"><img src="images/ugc/ugc-10.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <!-- ulang buat loop mulus -->
-                    <div class="shg"><img src="images/showcase/model-01.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-02.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-03.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-04.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-05.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-06.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/model-07.jpg" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-01.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-02.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-03.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-04.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-05.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-06.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/model-07.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <div class="shg"><img src="images/model-hijab.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <div class="shg"><img src="images/ugc/ugc-8.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <div class="shg"><img src="images/ugc/ugc-10.webp" alt="Hasil Model & Avatar AI" loading="lazy" onerror="this.parentElement.remove()"></div>
@@ -1089,45 +1108,45 @@
                 <p class="shg-label max-w-6xl mx-auto px-4 mb-2.5">✦ Foto Produk AI<span class="fmt">format 1:1 · 9 hasil</span></p>
                 <div class="af-marquee-mask r-sq">
                     <div class="shg-track" style="animation: shcR 103s linear infinite;">
-                    <div class="shg"><img src="images/showcase/produk-01.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-02.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-03.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-04.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-05.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-06.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-07.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-08.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-09.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-01.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-02.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-03.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-04.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-05.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-06.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-07.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-08.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-09.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <!-- ulang buat loop mulus -->
-                    <div class="shg"><img src="images/showcase/produk-01.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-02.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-03.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-04.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-05.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-06.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-07.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-08.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-09.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-01.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-02.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-03.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-04.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-05.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-06.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-07.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-08.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-09.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <!-- ulang buat loop mulus -->
-                    <div class="shg"><img src="images/showcase/produk-01.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-02.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-03.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-04.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-05.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-06.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-07.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-08.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-09.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-01.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-02.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-03.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-04.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-05.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-06.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-07.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-08.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-09.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <!-- ulang buat loop mulus -->
-                    <div class="shg"><img src="images/showcase/produk-01.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-02.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-03.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-04.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-05.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-06.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-07.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-08.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/produk-09.jpg" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-01.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-02.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-03.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-04.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-05.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-06.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-07.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-08.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/produk-09.webp" alt="Hasil Foto Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     </div>
                 </div>
             </div>
@@ -1135,49 +1154,49 @@
                 <p class="shg-label max-w-6xl mx-auto px-4 mb-2.5">✦ Model + Produk AI<span class="fmt">format 9:16 · 10 hasil</span></p>
                 <div class="af-marquee-mask r-pt">
                     <div class="shg-track" style="animation: shcL 96s linear infinite;">
-                    <div class="shg"><img src="images/showcase/modelproduk-01.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-02.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-03.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-05.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-06.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-07.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-08.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-09.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-10.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-11.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-01.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-02.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-03.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-05.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-06.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-07.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-08.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-09.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-10.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-11.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <!-- ulang buat loop mulus -->
-                    <div class="shg"><img src="images/showcase/modelproduk-01.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-02.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-03.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-05.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-06.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-07.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-08.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-09.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-10.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-11.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-01.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-02.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-03.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-05.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-06.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-07.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-08.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-09.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-10.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-11.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <!-- ulang buat loop mulus -->
-                    <div class="shg"><img src="images/showcase/modelproduk-01.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-02.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-03.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-05.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-06.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-07.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-08.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-09.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-10.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-11.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-01.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-02.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-03.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-05.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-06.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-07.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-08.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-09.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-10.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-11.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     <!-- ulang buat loop mulus -->
-                    <div class="shg"><img src="images/showcase/modelproduk-01.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-02.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-03.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-05.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-06.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-07.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-08.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-09.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-10.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
-                    <div class="shg"><img src="images/showcase/modelproduk-11.jpg" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-01.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-02.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-03.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-05.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-06.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-07.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-08.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-09.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-10.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
+                    <div class="shg"><img src="images/showcase-sm/modelproduk-11.webp" alt="Hasil Model + Produk AI" loading="lazy" onerror="this.parentElement.remove()"></div>
                     </div>
                 </div>
             </div>
@@ -1217,14 +1236,14 @@
                 <div class="rounded-3xl p-4 pt-6 md:p-8 md:pt-9" style="background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.09);">
                     <div class="reveal relative">
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-                        <img src="images/showcase/poster-feed-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
-                        <img src="images/showcase/poster-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
-                        <img src="images/showcase/poster-03.webp" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
-                        <img src="images/showcase/poster-04.webp" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
-                        <img src="images/showcase/poster-02.webp" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
-                        <img src="images/showcase/poster-06.webp" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
-                        <img src="images/showcase/poster-08.webp" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
-                        <img src="images/showcase/poster-09.webp" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/poster-feed-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/poster-01.webp" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/poster-03.webp" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/poster-04.webp" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/poster-02.webp" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/poster-06.webp" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/poster-08.webp" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/poster-09.webp" alt="Hasil Desain Poster Feed" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
                         </div>
                         <span class="th-badge" style="top:-14px;">✦ Hasil Generate Asli</span>
                     </div>
@@ -1240,14 +1259,14 @@
                 <div class="rounded-3xl p-4 pt-6 md:p-8 md:pt-9" style="background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.09);">
                     <div class="reveal relative">
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-                        <img src="images/showcase/produk-01.webp" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
-                        <img src="images/showcase/produk-02.jpg" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
-                        <img src="images/showcase/produk-03.jpg" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
-                        <img src="images/showcase/produk-04.jpg" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
-                        <img src="images/showcase/produk-05.jpg" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
-                        <img src="images/showcase/produk-06.webp" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
-                        <img src="images/showcase/produk-07.jpg" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
-                        <img src="images/showcase/produk-08.webp" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/produk-01.webp" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/produk-02.webp" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/produk-03.webp" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/produk-04.webp" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/produk-05.webp" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/produk-06.webp" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/produk-07.webp" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/produk-08.webp" alt="Hasil Foto Produk AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
                         </div>
                         <span class="th-badge" style="top:-14px;">✦ Hasil Generate Asli</span>
                     </div>
@@ -1263,11 +1282,11 @@
                 <div class="rounded-3xl p-4 pt-6 md:p-8 md:pt-9" style="background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.09);">
                     <div class="reveal relative">
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-                        <img src="images/showcase/model-01.jpg" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
-                        <img src="images/showcase/model-02.jpg" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
-                        <img src="images/showcase/model-03.jpg" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
-                        <img src="images/showcase/model-04.jpg" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
-                        <img src="images/showcase/model-05.jpg" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/model-01.webp" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/model-02.webp" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/model-03.webp" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/model-04.webp" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
+                        <img src="images/showcase-sm/model-05.webp" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
                         <img src="images/model-hijab.webp" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
                         <img src="images/ugc/ugc-8.webp" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
                         <img src="images/ugc/ugc-10.webp" alt="Hasil Model &amp; Avatar AI" loading="lazy" class="w-full rounded-xl border border-white/10" style="aspect-ratio:1/1;object-fit:cover;box-shadow:0 10px 24px rgba(0,0,0,0.4);" onerror="this.style.visibility='hidden'">
@@ -1287,35 +1306,35 @@
                     <div class="reveal relative">
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
                                                 <div class="reveal relative rounded-[18px] overflow-hidden aspect-[9/16] bg-gray-900 ugc-card cursor-pointer" style="border:2px solid rgba(255,107,53,0.3);" onclick="advUgcAudio(this)">
-                            <video src="videos/ugc-1.mp4" autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 1"></video>
+                            <video poster="images/vposter/ugc-1.webp" data-src="videos/ugc-1.mp4" muted loop playsinline preload="none" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 1"></video>
                             <div class="ugc-spk" aria-hidden="true"><i class="fa-solid fa-volume-xmark"></i></div>
                         </div>
                         <div class="reveal relative rounded-[18px] overflow-hidden aspect-[9/16] bg-gray-900 ugc-card cursor-pointer" style="border:2px solid rgba(255,107,53,0.3);" onclick="advUgcAudio(this)">
-                            <video src="videos/ugc-2.mp4" autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 2"></video>
+                            <video poster="images/vposter/ugc-2.webp" data-src="videos/ugc-2.mp4" muted loop playsinline preload="none" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 2"></video>
                             <div class="ugc-spk" aria-hidden="true"><i class="fa-solid fa-volume-xmark"></i></div>
                         </div>
                         <div class="reveal relative rounded-[18px] overflow-hidden aspect-[9/16] bg-gray-900 ugc-card cursor-pointer" style="border:2px solid rgba(255,107,53,0.3);" onclick="advUgcAudio(this)">
-                            <video src="videos/ugc-3.mp4" autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 3"></video>
+                            <video poster="images/vposter/ugc-3.webp" data-src="videos/ugc-3.mp4" muted loop playsinline preload="none" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 3"></video>
                             <div class="ugc-spk" aria-hidden="true"><i class="fa-solid fa-volume-xmark"></i></div>
                         </div>
                         <div class="reveal relative rounded-[18px] overflow-hidden aspect-[9/16] bg-gray-900 ugc-card cursor-pointer" style="border:2px solid rgba(255,107,53,0.3);" onclick="advUgcAudio(this)">
-                            <video src="videos/ugc-4.mp4" autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 4"></video>
+                            <video poster="images/vposter/ugc-4.webp" data-src="videos/ugc-4.mp4" muted loop playsinline preload="none" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 4"></video>
                             <div class="ugc-spk" aria-hidden="true"><i class="fa-solid fa-volume-xmark"></i></div>
                         </div>
                         <div class="reveal relative rounded-[18px] overflow-hidden aspect-[9/16] bg-gray-900 ugc-card cursor-pointer" style="border:2px solid rgba(255,107,53,0.3);" onclick="advUgcAudio(this)">
-                            <video src="videos/ugc-5.mp4" autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 5"></video>
+                            <video poster="images/vposter/ugc-5.webp" data-src="videos/ugc-5.mp4" muted loop playsinline preload="none" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 5"></video>
                             <div class="ugc-spk" aria-hidden="true"><i class="fa-solid fa-volume-xmark"></i></div>
                         </div>
                         <div class="reveal relative rounded-[18px] overflow-hidden aspect-[9/16] bg-gray-900 ugc-card cursor-pointer" style="border:2px solid rgba(255,107,53,0.3);" onclick="advUgcAudio(this)">
-                            <video src="videos/ugc-6.mp4" autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 6"></video>
+                            <video poster="images/vposter/ugc-6.webp" data-src="videos/ugc-6.mp4" muted loop playsinline preload="none" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 6"></video>
                             <div class="ugc-spk" aria-hidden="true"><i class="fa-solid fa-volume-xmark"></i></div>
                         </div>
                         <div class="reveal relative rounded-[18px] overflow-hidden aspect-[9/16] bg-gray-900 ugc-card cursor-pointer" style="border:2px solid rgba(255,107,53,0.3);" onclick="advUgcAudio(this)">
-                            <video src="videos/ugc-7.mp4" autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 7"></video>
+                            <video poster="images/vposter/ugc-7.webp" data-src="videos/ugc-7.mp4" muted loop playsinline preload="none" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 7"></video>
                             <div class="ugc-spk" aria-hidden="true"><i class="fa-solid fa-volume-xmark"></i></div>
                         </div>
                         <div class="reveal relative rounded-[18px] overflow-hidden aspect-[9/16] bg-gray-900 ugc-card cursor-pointer" style="border:2px solid rgba(255,107,53,0.3);" onclick="advUgcAudio(this)">
-                            <video src="videos/ugc-8.mp4" autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 8"></video>
+                            <video poster="images/vposter/ugc-8.webp" data-src="videos/ugc-8.mp4" muted loop playsinline preload="none" class="w-full h-full object-cover ugc-auto" title="Contoh konten UGC 8"></video>
                             <div class="ugc-spk" aria-hidden="true"><i class="fa-solid fa-volume-xmark"></i></div>
                         </div>
                         </div>
@@ -1545,7 +1564,7 @@
             </div>
             <div class="grid grid-cols-2 lg:grid-cols-3 gap-2.5 md:gap-5">
 <div class="reveal reveal-delay-1 glass-card overflow-hidden flex flex-col">
-  <div class="tg-imgwrap tg-hasvid"><video src="videos/video-sinematik.mp4" poster="images/tools/video_sinematik.webp" muted loop playsinline autoplay controls preload="metadata" class="tg-vid ugc-auto" title="Contoh Video Iklan Sinematik" onerror="this.closest('.tg-imgwrap').classList.add('novid')"></video><span class="tg-vidbadge"><i class="fa-solid fa-clapperboard text-[9px]"></i> Video menyusul</span></div>
+  <div class="tg-imgwrap tg-hasvid"><video data-src="videos/video-sinematik.mp4" poster="images/tools/video_sinematik.webp" muted loop playsinline controls preload="none" class="tg-vid ugc-auto" title="Contoh Video Iklan Sinematik" onerror="this.closest('.tg-imgwrap').classList.add('novid')"></video><span class="tg-vidbadge"><i class="fa-solid fa-clapperboard text-[9px]"></i> Video menyusul</span></div>
   <div class="p-3.5 md:p-5 flex-1 flex flex-col">
     <div class="flex flex-col items-start gap-1.5 md:flex-row md:items-center md:gap-3 mb-2.5">
       <div class="w-8 h-8 md:w-9 md:h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-clapperboard text-sm" style="color:#FF8C5A;"></i></div>
@@ -1556,7 +1575,7 @@
   </div>
 </div>
 <div class="reveal reveal-delay-2 glass-card overflow-hidden flex flex-col">
-  <div class="tg-imgwrap tg-hasvid"><video src="videos/ugc-1.mp4" poster="" muted loop playsinline autoplay controls preload="metadata" class="tg-vid ugc-auto" title="Contoh Video UGC Kreator"></video></div>
+  <div class="tg-imgwrap tg-hasvid"><video data-src="videos/ugc-1.mp4" poster="images/vposter/ugc-1.webp" muted loop playsinline controls preload="none" class="tg-vid ugc-auto" title="Contoh Video UGC Kreator"></video></div>
   <div class="p-3.5 md:p-5 flex-1 flex flex-col">
     <div class="flex flex-col items-start gap-1.5 md:flex-row md:items-center md:gap-3 mb-2.5">
       <div class="w-8 h-8 md:w-9 md:h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-mobile-screen-button text-sm" style="color:#FF8C5A;"></i></div>
@@ -1567,7 +1586,7 @@
   </div>
 </div>
 <div class="reveal reveal-delay-3 glass-card overflow-hidden flex flex-col">
-  <div class="tg-imgwrap tg-hasvid"><video src="videos/ugc-2.mp4" poster="" muted loop playsinline autoplay controls preload="metadata" class="tg-vid ugc-auto" title="Contoh Video Affiliate"></video></div>
+  <div class="tg-imgwrap tg-hasvid"><video data-src="videos/ugc-2.mp4" poster="images/vposter/ugc-2.webp" muted loop playsinline controls preload="none" class="tg-vid ugc-auto" title="Contoh Video Affiliate"></video></div>
   <div class="p-3.5 md:p-5 flex-1 flex flex-col">
     <div class="flex flex-col items-start gap-1.5 md:flex-row md:items-center md:gap-3 mb-2.5">
       <div class="w-8 h-8 md:w-9 md:h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2);"><i class="fa-solid fa-cart-shopping text-sm" style="color:#FF8C5A;"></i></div>
@@ -1707,7 +1726,7 @@
 
     <!-- ============ 5 TOOL ANDALAN x HASIL (penjelasan + bukti, ala Auto Feeds) ============
          Tiap baris: penjelasan tool + hasil generate ASLI di sebelahnya — orang gak perlu nebak.
-         Baris Poster Feed: gambarnya nunggu showcase Jumat (images/showcase/poster-feed-01.webp);
+         Baris Poster Feed: gambarnya nunggu showcase Jumat (images/showcase-sm/poster-feed-01.webp);
          sebelum file ada, otomatis tampil kartu "segera". -->
     
 
@@ -2138,31 +2157,8 @@
         }, { rootMargin: '200px' });
         document.querySelectorAll('.yt-lazy').forEach(iframe => ytLazyObserver.observe(iframe));
 
-        // --- HERO SLIDER ---
-        let slideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-        const totalSlides = slides.length;
-        let slideInterval;
-        function showSlides() {
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            slideIndex++;
-            if (slideIndex > totalSlides) { slideIndex = 1; }
-            slides[slideIndex - 1].classList.add('active');
-            dots[slideIndex - 1].classList.add('active');
-            slideInterval = setTimeout(showSlides, 3000);
-        }
-        function currentSlide(n) {
-            clearTimeout(slideInterval);
-            slideIndex = n + 1;
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            slides[n].classList.add('active');
-            dots[n].classList.add('active');
-            slideInterval = setTimeout(showSlides, 3000);
-        }
-        document.addEventListener('DOMContentLoaded', () => { showSlides(); });
+        // (HERO SLIDER dicabut: elemen .slide sudah nol, showSlides() cuma melempar
+        //  TypeError 'Cannot read properties of undefined (reading classList)' tiap page load.)
 
         // --- REVEAL ANIMATION ---
         const observer = new IntersectionObserver((entries) => {
@@ -2329,17 +2325,26 @@
           var ci = c.querySelector('.ugc-spk i'); if(ci){ ci.className='fa-solid fa-volume-xmark'; }
         });
         if(!on){ // nyalain card ini
+          if (typeof nyalainVideo === 'function') nyalainVideo(v);
           v.muted = false; v.currentTime = 0; v.play().catch(function(){});
           card.classList.add('audio-on');
           if(ic) ic.className='fa-solid fa-volume-high';
         }
       }
+      // Video baru DIUNDUH pas mau keliatan (data-src -> src), bukan pas halaman dibuka.
+      // Sebelum ini 11 video autoplay narik ~10,5 MB di initial load walau nol yang keliatan.
+      function nyalainVideo(v){
+        if (!v.dataset.src || v.dataset.loaded) return;
+        v.dataset.loaded = '1';
+        v.src = v.dataset.src;
+        v.load();
+      }
       var vObs = new IntersectionObserver(function(entries){
         entries.forEach(function(en){
           var v = en.target;
-          if (en.isIntersecting) { v.play().catch(function(){}); } else { v.pause(); if(!v.muted){ v.muted=true; var c=v.closest('.ugc-card'); if(c){c.classList.remove('audio-on'); var ci=c.querySelector('.ugc-spk i'); if(ci)ci.className='fa-solid fa-volume-xmark';} } }
+          if (en.isIntersecting) { nyalainVideo(v); v.play().catch(function(){}); } else { v.pause(); if(!v.muted){ v.muted=true; var c=v.closest('.ugc-card'); if(c){c.classList.remove('audio-on'); var ci=c.querySelector('.ugc-spk i'); if(ci)ci.className='fa-solid fa-volume-xmark';} } }
         });
-      }, { threshold: 0.2 });
+      }, { threshold: 0.2, rootMargin: '300px 0px' });
       document.querySelectorAll('video.ugc-auto').forEach(function(v){ vObs.observe(v); });
     </script>
     <script>
@@ -2357,7 +2362,7 @@
           });
           var setSize = uniq.length;
           if (setSize < 2) return;
-          var copies = Math.max(2, Math.round(cards.length / setSize));
+          var copies = 2; // cukup 2 buat loop mulus; dulu bisa 4-6 -> 240 <img> di DOM
           for (var i = uniq.length - 1; i > 0; i--){ var j = Math.floor(Math.random()*(i+1)); var t = uniq[i]; uniq[i] = uniq[j]; uniq[j] = t; }
           var frag = document.createDocumentFragment();
           for (var c2 = 0; c2 < copies; c2++){ uniq.forEach(function(s){ frag.appendChild(seen[s].cloneNode(true)); }); }
