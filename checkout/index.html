@@ -1211,6 +1211,8 @@
     if(micro) micro.innerHTML = "<i></i>Akses diaktifkan maks 1 jam setelah bukti transfer diterima";
     var subEl = document.querySelector("#pay-manual") && document.querySelector("#pay-manual").parentNode.querySelector(".card-head .sub");
     if(subEl) subEl.textContent = "Sementara lewat transfer bank, tanpa biaya tambahan";
+    var sm = document.getElementById("sum-method"); if(sm) sm.textContent = "Metode: Transfer " + CFG.rekening.bank;
+    state.methodLabel = "Transfer " + CFG.rekening.bank;
   }
   if(!BUMP_TAYANG){
     var bs = document.getElementById("bump-section");
