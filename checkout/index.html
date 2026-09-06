@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout · Adverthinking AI</title>
+<meta name="robots" content="noindex">
+<!-- Konfigurasi (produk, harga tampilan, endpoint, key). Satu-satunya file yang
+     perlu diganti kalau checkout ini dipakai ulang buat produk/klien lain. -->
+<script src="config.js"></script>
+<style>
+  /* ============================================================
+     ADVERTHINKING AI — CHECKOUT SENDIRI
+     DNA: "Aurora Glass" (kandidat d) — kaca gelap, aurora oranye.
+     Pembayaran: Midtrans Snap (embed). Sandbox atau production
+     ditentukan CHECKOUT_CONFIG.produksi di config.js.
+     ============================================================ */
+  :root{
+    --bg-0:#07070D;
+    --bg-1:#0B0B12;
+    --ink-hi:#F4F2EF;
+    --ink-mid:rgba(238,233,226,.72);
+    --ink-low:rgba(232,226,218,.45);
+    --ink-faint:rgba(230,224,216,.28);
+    --brand:#F97316;
+    --brand-hot:#FB923C;
+    --amber:#F5B540;
+    --ember:#E8590C;
+    --success:#4ade80;
+    --danger:#F87171;
+    --glass:rgba(255,255,255,.045);
+    --glass-line:rgba(255,255,255,.10);
+    --glass-line-soft:rgba(255,255,255,.06);
+    --r-lg:22px;
+    --r-md:16px;
+    --r-sm:11px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:var(--bg-0);}
+  body{
+    font-family:"Segoe UI Variable Display","Segoe UI",-apple-system,"Helvetica Neue",Arial,sans-serif;
+    color:var(--ink-hi);
+    font-size:14px;
+    letter-spacing:.01em;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  ::selection{background:rgba(249,115,22,.35);}
+  button{font-family:inherit;cursor:pointer;}
+  a{color:var(--brand-hot);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  /* ---------- LATAR ---------- */
+  .stage{
+    position:relative;
+    min-height:100vh;
+    background:
+      radial-gradient(1200px 700px at 78% -10%, rgba(249,115,22,.16), transparent 55%),
+      radial-gradient(900px 600px at -8% 18%, rgba(232,89,12,.12), transparent 60%),
+      radial-gradient(700px 500px at 55% 108%, rgba(245,181,64,.08), transparent 60%),
+      radial-gradient(560px 420px at 102% 82%, rgba(74,222,128,.05), transparent 65%),
+      linear-gradient(175deg, var(--bg-1) 0%, var(--bg-0) 60%, #08080F 100%);
+    overflow:hidden;
+  }
+  .stage::after{
+    content:"";
+    position:absolute; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;
+    pointer-events:none;
+    z-index:1;
+  }
+  .aurora{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;}
+  .aurora.a1{width:520px;height:380px;top:-120px;left:44%;background:radial-gradient(closest-side,rgba(251,146,60,.32),transparent 70%);}
+  .aurora.a2{width:420px;height:420px;top:180px;right:-80px;background:radial-gradient(closest-side,rgba(232,89,12,.20),transparent 70%);}
+  .aurora.a3{width:380px;height:300px;top:640px;left:6%;background:radial-gradient(closest-side,rgba(245,181,64,.13),transparent 70%);}
+
+  .wrap{
+    position:relative;z-index:2;
+    max-width:1120px;
+    margin:0 auto;
+    padding:26px 28px 60px;
+  }
+
+  /* ---------- KACA ---------- */
+  .glass{
+    position:relative;
+    background:linear-gradient(160deg, rgba(255,255,255,.075) 0%, rgba(255,255,255,.03) 45%, rgba(255,255,255,.015) 100%);
+    border:1px solid var(--glass-line);
+    border-radius:var(--r-lg);
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+    box-shadow:
+      0 24px 60px -28px rgba(0,0,0,.7),
+      inset 0 1px 0 rgba(255,255,255,.14);
+  }
+  .glass::before{
+    content:"";
+    position:absolute;top:0;left:8%;right:8%;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.38),transparent);
+    pointer-events:none;
+    border-radius:1px;
+  }
+
+  .k-label{
+    font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+
+  /* ============================================================
+     1. HEADER
+     ============================================================ */
+  .topbar{
+    display:flex;align-items:center;gap:14px;
+    padding:2px 4px 22px;
+  }
+  .logo-row{display:flex;align-items:center;gap:12px;}
+  .logo-mark{
+    width:40px;height:40px;flex:none;border-radius:12px;
+    background:radial-gradient(120% 120% at 20% 15%, #FDBA74 0%, #F97316 45%, #C2410C 100%);
+    box-shadow:0 6px 22px -6px rgba(249,115,22,.65), inset 0 1px 1px rgba(255,255,255,.5), inset 0 -4px 8px rgba(120,40,0,.45);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .logo-name{font-size:16.5px;font-weight:700;letter-spacing:-.015em;line-height:1.1;}
+  .logo-name em{font-style:normal;background:linear-gradient(92deg,#FDBA74,#F97316);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .logo-sub{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin-top:3px;}
+  .secure-badge{
+    margin-left:auto;
+    display:flex;align-items:center;gap:8px;
+    padding:8px 14px;border-radius:99px;
+    font-size:12px;font-weight:600;letter-spacing:.02em;
+    color:#C9F5D6;
+    background:linear-gradient(140deg,rgba(74,222,128,.14),rgba(74,222,128,.04));
+    border:1px solid rgba(74,222,128,.3);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 8px 22px -12px rgba(74,222,128,.4);
+    backdrop-filter:blur(18px);
+  }
+  .secure-badge .pulse{width:7px;height:7px;border-radius:50%;background:var(--success);box-shadow:0 0 0 3px rgba(74,222,128,.18),0 0 10px rgba(74,222,128,.9);flex:none;}
+  .secure-badge span.sep{color:rgba(201,245,214,.4);}
+
+  /* ============================================================
+     LAYOUT 2 KOLOM
+     ============================================================ */
+  .checkout-grid{
+    display:grid;
+    grid-template-columns:1fr 396px;
+    gap:24px;
+    align-items:start;
+  }
+  .col-left{display:flex;flex-direction:column;gap:20px;min-width:0;}
+  .col-right{position:sticky;top:24px;display:flex;flex-direction:column;gap:16px;}
+
+  .card{padding:22px 24px;}
+  .card-head{display:flex;align-items:center;gap:11px;margin-bottom:16px;}
+  .step-ic{
+    width:30px;height:30px;border-radius:9px;flex:none;
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:700;color:#FDBA74;
+    background:rgba(249,115,22,.13);border:1px solid rgba(249,115,22,.3);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.1);
+  }
+  .card-head h2{font-size:15.5px;font-weight:650;letter-spacing:-.01em;}
+  .card-head .sub{font-size:11.5px;color:var(--ink-low);margin-top:2px;}
+
+  /* ============================================================
+     2. RINGKASAN PRODUK
+     ============================================================ */
+  .product-card{overflow:hidden;}
+  .product-inner{display:flex;gap:20px;align-items:flex-start;}
+  .product-visual{
+    width:120px;height:120px;flex:none;border-radius:var(--r-md);
+    background:
+      radial-gradient(90% 90% at 25% 20%, rgba(253,186,116,.35), transparent 60%),
+      linear-gradient(150deg, rgba(249,115,22,.28), rgba(232,89,12,.1) 60%, rgba(0,0,0,.2));
+    border:1px solid rgba(249,115,22,.35);
+    box-shadow:0 14px 34px -14px rgba(249,115,22,.5), inset 0 1px 0 rgba(255,255,255,.2);
+    display:flex;align-items:center;justify-content:center;
+    position:relative;overflow:hidden;
+  }
+  .product-visual svg{position:relative;z-index:1;}
+  .product-visual::after{
+    content:"";position:absolute;top:-24px;right:-24px;width:90px;height:90px;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(255,227,196,.4),transparent 70%);filter:blur(8px);
+  }
+  .product-info h1{font-size:20px;font-weight:700;letter-spacing:-.02em;line-height:1.2;}
+  .product-info h1 .glow{
+    background:linear-gradient(94deg,#FFE3C4 5%,#FDBA74 40%,#F97316 90%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .product-info p{margin-top:6px;font-size:13px;line-height:1.6;color:var(--ink-mid);max-width:480px;}
+  .perk-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px;}
+  .perk{
+    display:flex;align-items:center;gap:7px;
+    font-size:11.5px;font-weight:600;letter-spacing:.02em;
+    padding:5px 11px;border-radius:99px;
+    color:var(--ink-mid);
+    background:rgba(255,255,255,.035);
+    border:1px solid var(--glass-line-soft);
+  }
+  .perk svg{width:13px;height:13px;flex:none;color:var(--success);}
+  .perk.hot{color:#FFD9BC;background:rgba(249,115,22,.1);border-color:rgba(249,115,22,.32);}
+  .perk.hot svg{color:#FDBA74;}
+
+  /* ============================================================
+     3. FORM PEMBELI
+     ============================================================ */
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 14px;}
+  .field{display:flex;flex-direction:column;}
+  .field.full{grid-column:1 / -1;}
+  .field label{
+    display:flex;align-items:center;gap:6px;
+    font-size:12px;font-weight:600;color:var(--ink-mid);letter-spacing:.03em;margin-bottom:7px;
+  }
+  .field label .req{color:var(--brand-hot);font-weight:700;}
+  .input-wrap{position:relative;display:flex;align-items:center;}
+  .input{
+    width:100%;
+    background:rgba(0,0,0,.28);
+    border:1px solid var(--glass-line-soft);
+    border-radius:12px;
+    padding:11px 13px;
+    font-size:13.5px;
+    color:var(--ink-hi);
+    font-family:inherit;
+    letter-spacing:.005em;
+    box-shadow:inset 0 2px 6px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.03);
+    line-height:1.5;
+    outline:none;
+    transition:border-color .18s ease, box-shadow .18s ease;
+  }
+  .input::placeholder{color:var(--ink-faint);}
+  .input:focus{
+    border-color:rgba(249,115,22,.55);
+    box-shadow:inset 0 2px 6px rgba(0,0,0,.35), 0 0 0 3px rgba(249,115,22,.14), 0 0 24px -8px rgba(249,115,22,.5);
+  }
+  .input.invalid{
+    border-color:rgba(248,113,113,.6);
+    box-shadow:inset 0 2px 6px rgba(0,0,0,.35), 0 0 0 3px rgba(248,113,113,.12);
+  }
+  .hint{margin-top:6px;font-size:11px;color:var(--ink-faint);line-height:1.5;}
+  .hint.error{color:var(--danger);}
+
+  .eye-btn{
+    position:absolute;right:9px;
+    width:30px;height:30px;border-radius:9px;border:none;
+    background:rgba(255,255,255,.05);
+    color:var(--ink-low);
+    display:flex;align-items:center;justify-content:center;
+    transition:background .15s ease,color .15s ease;
+  }
+  .eye-btn:hover{background:rgba(255,255,255,.1);color:var(--ink-hi);}
+  .eye-btn svg{width:15px;height:15px;}
+
+  .pw-meter{display:flex;align-items:center;gap:10px;margin-top:8px;}
+  .pw-bars{display:flex;gap:5px;flex:1;max-width:180px;}
+  .pw-bar{height:4px;flex:1;border-radius:99px;background:rgba(255,255,255,.08);transition:background .25s ease, box-shadow .25s ease;}
+  .pw-bar.on-1{background:#F87171;box-shadow:0 0 8px rgba(248,113,113,.5);}
+  .pw-bar.on-2{background:var(--amber);box-shadow:0 0 8px rgba(245,181,64,.5);}
+  .pw-bar.on-3{background:var(--success);box-shadow:0 0 8px rgba(74,222,128,.5);}
+  .pw-label{font-size:11px;font-weight:600;color:var(--ink-faint);letter-spacing:.04em;min-width:64px;}
+  .pw-why{
+    margin-top:10px;
+    display:flex;gap:9px;align-items:flex-start;
+    font-size:11.5px;line-height:1.55;color:var(--ink-low);
+    background:rgba(249,115,22,.06);
+    border:1px solid rgba(249,115,22,.18);
+    border-radius:var(--r-sm);
+    padding:10px 12px;
+  }
+  .pw-why svg{width:14px;height:14px;flex:none;margin-top:1px;color:#FDBA74;}
+  .pw-why b{color:#FFD9BC;font-weight:600;}
+
+  /* ============================================================
+     4. ORDER BUMP
+     ============================================================ */
+  .bump{
+    border-radius:var(--r-md);
+    border:1.5px dashed rgba(245,181,64,.45);
+    background:linear-gradient(150deg, rgba(245,181,64,.09), rgba(249,115,22,.04) 55%, rgba(255,255,255,.015));
+    padding:16px 18px;
+    display:flex;gap:14px;align-items:flex-start;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    transition:border-color .2s ease, background .2s ease, box-shadow .2s ease;
+    user-select:none;
+  }
+  .bump::after{
+    content:"";position:absolute;top:-36px;right:-36px;width:120px;height:120px;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(245,181,64,.18),transparent 72%);
+    filter:blur(14px);pointer-events:none;
+  }
+  .bump:hover{border-color:rgba(245,181,64,.7);}
+  .bump.checked{
+    border-style:solid;
+    border-color:rgba(249,115,22,.65);
+    background:linear-gradient(150deg, rgba(249,115,22,.16), rgba(245,181,64,.06) 55%, rgba(255,255,255,.02));
+    box-shadow:0 12px 36px -14px rgba(249,115,22,.45), inset 0 1px 0 rgba(255,255,255,.12);
+  }
+  .bump-check{
+    width:22px;height:22px;flex:none;margin-top:2px;
+    border-radius:7px;
+    border:1.5px solid rgba(245,181,64,.55);
+    background:rgba(0,0,0,.3);
+    display:flex;align-items:center;justify-content:center;
+    transition:background .18s ease,border-color .18s ease, box-shadow .18s ease;
+  }
+  .bump-check svg{width:13px;height:13px;color:#2A1002;opacity:0;transform:scale(.5);transition:opacity .18s ease, transform .18s ease;}
+  .bump.checked .bump-check{
+    background:linear-gradient(130deg,#FDBA74,#F97316);
+    border-color:rgba(255,255,255,.4);
+    box-shadow:0 0 14px rgba(249,115,22,.6);
+  }
+  .bump.checked .bump-check svg{opacity:1;transform:scale(1);}
+  .bump-body{flex:1;min-width:0;position:relative;z-index:1;}
+  .bump-title-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+  .bump-title{font-size:14px;font-weight:700;letter-spacing:-.005em;color:#FFE3C9;}
+  .bump-price{
+    font-size:12.5px;font-weight:700;color:#FDBA74;
+    background:rgba(249,115,22,.13);border:1px solid rgba(249,115,22,.35);
+    padding:2px 9px;border-radius:99px;
+    font-variant-numeric:tabular-nums;
+  }
+  .bump-benefits{margin-top:8px;display:flex;flex-direction:column;gap:5px;}
+  .bump-benefit{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;line-height:1.5;color:var(--ink-mid);}
+  .bump-benefit svg{width:13px;height:13px;flex:none;margin-top:2.5px;color:var(--amber);}
+  .bump-note{margin-top:9px;font-size:10.5px;color:var(--ink-faint);letter-spacing:.03em;}
+
+  /* ============================================================
+     5. METODE BAYAR
+     ============================================================ */
+  .pay-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;}
+  .pay-opt{
+    display:flex;align-items:center;gap:12px;
+    padding:13px 15px;
+    border-radius:var(--r-sm);
+    border:1px solid var(--glass-line-soft);
+    background:rgba(255,255,255,.03);
+    cursor:pointer;
+    transition:border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    user-select:none;
+    position:relative;
+  }
+  .pay-opt:hover{background:rgba(255,255,255,.06);border-color:var(--glass-line);}
+  .pay-opt.selected{
+    border-color:rgba(249,115,22,.55);
+    background:linear-gradient(130deg,rgba(249,115,22,.15),rgba(249,115,22,.04));
+    box-shadow:0 0 22px -8px rgba(249,115,22,.5), inset 0 1px 0 rgba(255,255,255,.12);
+  }
+  .pay-radio{
+    width:17px;height:17px;flex:none;border-radius:50%;
+    border:1.5px solid rgba(255,255,255,.25);
+    display:flex;align-items:center;justify-content:center;
+    transition:border-color .18s ease;
+  }
+  .pay-radio i{width:8px;height:8px;border-radius:50%;background:linear-gradient(130deg,#FDBA74,#F97316);opacity:0;transform:scale(.4);transition:opacity .18s ease, transform .18s ease;box-shadow:0 0 8px rgba(249,115,22,.8);}
+  .pay-opt.selected .pay-radio{border-color:rgba(249,115,22,.7);}
+  .pay-opt.selected .pay-radio i{opacity:1;transform:scale(1);}
+  .pay-logo{
+    width:38px;height:26px;flex:none;border-radius:6px;
+    background:rgba(255,255,255,.06);
+    border:1px solid var(--glass-line-soft);
+    display:flex;align-items:center;justify-content:center;
+    font-size:9px;font-weight:800;letter-spacing:.04em;color:var(--ink-mid);
+  }
+  .pay-logo.qris{color:#FDBA74;border-color:rgba(249,115,22,.35);background:rgba(249,115,22,.1);}
+  .pay-name{font-size:13px;font-weight:600;letter-spacing:.005em;}
+  .pay-tag{
+    margin-left:auto;
+    font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    color:#A8EFC0;background:rgba(74,222,128,.09);border:1px solid rgba(74,222,128,.26);
+    padding:2px 8px;border-radius:99px;
+  }
+  .pay-foot{display:flex;align-items:center;gap:8px;margin-top:13px;font-size:11px;color:var(--ink-faint);}
+  .pay-foot svg{width:13px;height:13px;flex:none;opacity:.7;}
+
+  /* ============================================================
+     6. RINGKASAN PESANAN (STICKY)
+     ============================================================ */
+  .summary-card{padding:22px 22px 20px;}
+  .sum-rows{display:flex;flex-direction:column;gap:11px;margin-bottom:4px;}
+  .sum-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;font-size:13px;}
+  .sum-row .n{color:var(--ink-mid);line-height:1.45;}
+  .sum-row .n small{display:block;font-size:10.5px;color:var(--ink-faint);margin-top:2px;letter-spacing:.02em;}
+  .sum-row .v{font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .sum-row.bonus .v{color:var(--success);font-weight:600;}
+  .sum-row.bump-line{
+    overflow:hidden;
+    max-height:0;opacity:0;margin-top:-11px;
+    transition:max-height .3s ease, opacity .3s ease, margin-top .3s ease;
+  }
+  .sum-row.bump-line.show{max-height:60px;opacity:1;margin-top:0;}
+  .sum-row.bump-line .n{color:#FFD9BC;}
+  .sum-sep{height:1px;margin:14px 0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);}
+  .sum-total{display:flex;justify-content:space-between;align-items:baseline;}
+  .sum-total .t{font-size:12.5px;font-weight:600;color:var(--ink-mid);letter-spacing:.04em;}
+  .sum-total .amount{
+    font-size:26px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;
+    background:linear-gradient(94deg,#FFE3C4 5%,#FDBA74 45%,#F97316 95%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    transition:transform .2s ease;
+  }
+  .sum-total .amount.bump-pop{animation:pop .35s ease;}
+  @keyframes pop{0%{transform:scale(1);}40%{transform:scale(1.08);}100%{transform:scale(1);}}
+  .sum-method{margin-top:6px;font-size:11px;color:var(--ink-faint);text-align:right;letter-spacing:.02em;}
+
+  .btn-cta{
+    margin-top:16px;width:100%;
+    display:flex;align-items:center;justify-content:center;gap:9px;
+    padding:14px 18px;
+    border-radius:13px;
+    font-size:14.5px;font-weight:700;letter-spacing:.015em;
+    color:#2A1002;
+    background:linear-gradient(120deg,#FDBA74 0%,#F97316 55%,#E8590C 100%);
+    border:1px solid rgba(255,255,255,.25);
+    box-shadow:0 14px 34px -10px rgba(249,115,22,.65), inset 0 1px 0 rgba(255,255,255,.55), inset 0 -6px 12px rgba(140,50,0,.35);
+    position:relative;overflow:hidden;
+    transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  }
+  .btn-cta:hover{transform:translateY(-1px);filter:brightness(1.05);box-shadow:0 18px 40px -10px rgba(249,115,22,.75), inset 0 1px 0 rgba(255,255,255,.55), inset 0 -6px 12px rgba(140,50,0,.35);}
+  .btn-cta:active{transform:translateY(0);}
+  .btn-cta::after{
+    content:"";position:absolute;top:0;left:-45%;width:36%;height:100%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);
+    transform:skewX(-18deg);
+    animation:sheen 3.4s ease-in-out infinite;
+  }
+  @keyframes sheen{0%,62%{left:-45%;}82%,100%{left:120%;}}
+  .btn-cta svg{width:16px;height:16px;flex:none;}
+  .cta-micro{
+    margin-top:11px;display:flex;align-items:center;justify-content:center;gap:7px;
+    font-size:11.5px;color:var(--ink-low);letter-spacing:.01em;
+  }
+  .cta-micro i{width:5px;height:5px;border-radius:50%;background:var(--success);box-shadow:0 0 8px rgba(74,222,128,.8);flex:none;}
+  .honest-note{
+    margin-top:13px;
+    font-size:11px;line-height:1.55;color:var(--ink-faint);
+    border-top:1px solid var(--glass-line-soft);
+    padding-top:12px;
+    text-align:center;
+    letter-spacing:.015em;
+  }
+  .honest-note b{color:var(--ink-low);font-weight:600;}
+
+  .trust-card{padding:15px 18px;display:flex;flex-direction:column;gap:10px;border-radius:var(--r-md);}
+  .trust-line{display:flex;gap:10px;align-items:flex-start;font-size:12px;line-height:1.5;color:var(--ink-mid);}
+  .trust-line svg{width:15px;height:15px;flex:none;margin-top:1px;color:var(--success);}
+  .trust-line b{color:var(--ink-hi);font-weight:600;}
+
+  /* ============================================================
+     7. MODAL PEMBAYARAN (simulasi Snap embed)
+     ============================================================ */
+  .modal-backdrop{
+    position:fixed;inset:0;z-index:50;
+    background:rgba(4,4,8,.72);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    display:flex;align-items:center;justify-content:center;
+    padding:24px;
+    opacity:0;pointer-events:none;
+    transition:opacity .25s ease;
+  }
+  .modal-backdrop.open{opacity:1;pointer-events:auto;}
+  .modal{
+    width:min(440px,100%);
+    border-radius:var(--r-lg);
+    padding:0;
+    transform:translateY(14px) scale(.97);
+    transition:transform .3s cubic-bezier(.2,.9,.3,1.2);
+    max-height:calc(100vh - 48px);
+    overflow:auto;
+  }
+  .modal-backdrop.open .modal{transform:translateY(0) scale(1);}
+  .modal-head{
+    display:flex;align-items:center;gap:12px;
+    padding:18px 22px;
+    border-bottom:1px solid var(--glass-line-soft);
+    background:linear-gradient(90deg,rgba(249,115,22,.09),transparent 60%);
+    border-radius:var(--r-lg) var(--r-lg) 0 0;
+  }
+  .modal-head .m-title{font-size:15px;font-weight:700;letter-spacing:-.01em;}
+  .modal-head .m-sub{font-size:11px;color:var(--ink-low);margin-top:2px;}
+  .m-close{
+    margin-left:auto;width:32px;height:32px;flex:none;border-radius:10px;border:1px solid var(--glass-line-soft);
+    background:rgba(255,255,255,.04);color:var(--ink-low);
+    display:flex;align-items:center;justify-content:center;
+    transition:background .15s ease,color .15s ease;
+  }
+  .m-close:hover{background:rgba(255,255,255,.09);color:var(--ink-hi);}
+  .m-close svg{width:14px;height:14px;}
+  .modal-body{padding:22px;}
+  .m-amount-row{
+    display:flex;align-items:baseline;justify-content:space-between;
+    padding:12px 15px;margin-bottom:18px;
+    border-radius:var(--r-sm);
+    background:rgba(0,0,0,.26);
+    border:1px solid var(--glass-line-soft);
+    box-shadow:inset 0 2px 8px rgba(0,0,0,.35);
+  }
+  .m-amount-row .l{font-size:11.5px;color:var(--ink-low);letter-spacing:.05em;text-transform:uppercase;font-weight:600;}
+  .m-amount-row .a{font-size:19px;font-weight:800;letter-spacing:-.01em;font-variant-numeric:tabular-nums;color:#FFD9BC;}
+
+  .qr-holder{display:flex;flex-direction:column;align-items:center;gap:13px;}
+  .qr-frame{
+    width:216px;height:216px;border-radius:var(--r-md);
+    background:#FBF8F4;
+    padding:14px;
+    box-shadow:0 18px 44px -18px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.14), 0 0 40px -12px rgba(249,115,22,.35);
+  }
+  .qr-frame svg{width:100%;height:100%;display:block;}
+  .qr-cap{font-size:11.5px;color:var(--ink-low);text-align:center;line-height:1.55;max-width:280px;}
+  .qr-cap b{color:var(--ink-mid);font-weight:600;}
+
+  .va-holder{display:flex;flex-direction:column;gap:13px;}
+  .va-bank{display:flex;align-items:center;gap:11px;}
+  .va-bank .pay-logo{width:46px;height:30px;font-size:10px;}
+  .va-bank .bn{font-size:13px;font-weight:650;}
+  .va-bank .bs{font-size:11px;color:var(--ink-faint);margin-top:1px;}
+  .va-num-box{
+    display:flex;align-items:center;gap:12px;
+    padding:14px 16px;
+    border-radius:var(--r-sm);
+    background:rgba(0,0,0,.3);
+    border:1px solid rgba(249,115,22,.28);
+    box-shadow:inset 0 2px 8px rgba(0,0,0,.4), 0 0 24px -10px rgba(249,115,22,.35);
+  }
+  .va-num{
+    font-family:"Cascadia Code","Consolas",monospace;
+    font-size:19px;font-weight:700;letter-spacing:.08em;color:#FFD9BC;
+    font-variant-numeric:tabular-nums;
+  }
+  .btn-copy-va{
+    margin-left:auto;flex:none;
+    display:flex;align-items:center;gap:7px;
+    padding:7px 13px;border-radius:9px;
+    font-size:11.5px;font-weight:650;letter-spacing:.02em;
+    color:#FFD9BC;
+    background:linear-gradient(130deg,rgba(249,115,22,.24),rgba(249,115,22,.08));
+    border:1px solid rgba(249,115,22,.45);
+    transition:filter .15s ease;
+  }
+  .btn-copy-va:hover{filter:brightness(1.15);}
+  .btn-copy-va svg{width:13px;height:13px;}
+  .va-steps{display:flex;flex-direction:column;gap:7px;}
+  .va-step{display:flex;gap:9px;font-size:12px;line-height:1.5;color:var(--ink-low);}
+  .va-step i{
+    width:17px;height:17px;flex:none;border-radius:6px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:9.5px;font-weight:700;font-style:normal;color:#FDBA74;
+    background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.28);
+  }
+
+  .sim-strip{
+    margin-top:20px;
+    border-top:1px dashed rgba(255,255,255,.14);
+    padding-top:16px;
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .sim-tag{
+    align-self:center;
+    font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--amber);
+    background:rgba(245,181,64,.09);border:1px solid rgba(245,181,64,.3);
+    padding:3px 11px;border-radius:99px;
+  }
+  .btn-sim-ok{
+    width:100%;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    padding:12px 16px;border-radius:12px;
+    font-size:13.5px;font-weight:700;letter-spacing:.01em;
+    color:#06220F;
+    background:linear-gradient(120deg,#86efac,#4ade80 60%,#22c55e);
+    border:1px solid rgba(255,255,255,.3);
+    box-shadow:0 12px 30px -10px rgba(74,222,128,.5), inset 0 1px 0 rgba(255,255,255,.5);
+    transition:transform .15s ease, filter .15s ease;
+  }
+  .btn-sim-ok:hover{transform:translateY(-1px);filter:brightness(1.04);}
+  .btn-sim-ok svg{width:15px;height:15px;}
+  .sim-fail-link{
+    align-self:center;
+    font-size:11.5px;color:var(--ink-faint);
+    background:none;border:none;
+    text-decoration:underline dotted;
+    letter-spacing:.02em;
+    padding:2px 4px;
+    transition:color .15s ease;
+  }
+  .sim-fail-link:hover{color:var(--danger);}
+
+  /* modal: state GAGAL */
+  .fail-holder{display:flex;flex-direction:column;align-items:center;gap:13px;text-align:center;padding:8px 0 2px;}
+  .fail-ic{
+    width:58px;height:58px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(248,113,113,.1);
+    border:1px solid rgba(248,113,113,.35);
+    box-shadow:0 0 34px -8px rgba(248,113,113,.5);
+    color:var(--danger);
+  }
+  .fail-ic svg{width:26px;height:26px;}
+  .fail-holder h3{font-size:16px;font-weight:700;letter-spacing:-.01em;}
+  .fail-holder p{font-size:12.5px;line-height:1.6;color:var(--ink-low);max-width:300px;}
+  .btn-retry{
+    display:flex;align-items:center;gap:8px;
+    padding:10px 18px;border-radius:11px;
+    font-size:13px;font-weight:650;
+    color:#FFD9BC;
+    background:linear-gradient(130deg,rgba(249,115,22,.24),rgba(249,115,22,.08));
+    border:1px solid rgba(249,115,22,.45);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.14), 0 8px 22px -12px rgba(249,115,22,.55);
+    transition:filter .15s ease;
+  }
+  .btn-retry:hover{filter:brightness(1.12);}
+  .btn-retry svg{width:14px;height:14px;}
+
+  /* ============================================================
+     8. LAYAR SUKSES
+     ============================================================ */
+  .success-view{
+    position:fixed;inset:0;z-index:60;
+    overflow:auto;
+    background:
+      radial-gradient(1000px 620px at 50% -12%, rgba(74,222,128,.13), transparent 55%),
+      radial-gradient(800px 520px at 82% 30%, rgba(249,115,22,.1), transparent 60%),
+      linear-gradient(175deg, var(--bg-1) 0%, var(--bg-0) 60%, #08080F 100%);
+    display:none;
+  }
+  .success-view.open{display:block;}
+  .success-inner{
+    max-width:620px;margin:0 auto;
+    padding:52px 26px 60px;
+    display:flex;flex-direction:column;align-items:center;
+    text-align:center;
+  }
+  .ok-ic{
+    width:78px;height:78px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(120% 120% at 25% 20%, rgba(134,239,172,.35), rgba(74,222,128,.12) 60%);
+    border:1px solid rgba(74,222,128,.45);
+    box-shadow:0 0 50px -8px rgba(74,222,128,.55), inset 0 1px 0 rgba(255,255,255,.3);
+    color:#B7F7CC;
+    animation:okpop .5s cubic-bezier(.2,.9,.3,1.3);
+  }
+  @keyframes okpop{0%{transform:scale(.4);opacity:0;}100%{transform:scale(1);opacity:1;}}
+  .ok-ic svg{width:36px;height:36px;}
+  .success-inner h2{margin-top:20px;font-size:26px;font-weight:800;letter-spacing:-.02em;}
+  .success-inner h2 .glow{
+    background:linear-gradient(94deg,#D9FBE4 5%,#86efac 45%,#4ade80 95%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .success-inner > p{margin-top:8px;font-size:13.5px;color:var(--ink-mid);line-height:1.6;max-width:440px;}
+  .success-inner > p b{color:#FFD9BC;font-weight:600;}
+
+  .timeline{
+    margin-top:30px;width:100%;max-width:460px;
+    display:flex;flex-direction:column;
+    text-align:left;
+  }
+  .tl-item{
+    display:flex;gap:15px;
+    opacity:0;transform:translateY(10px);
+    transition:opacity .45s ease, transform .45s ease;
+  }
+  .tl-item.on{opacity:1;transform:translateY(0);}
+  .tl-rail{display:flex;flex-direction:column;align-items:center;flex:none;}
+  .tl-dot{
+    width:30px;height:30px;flex:none;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(74,222,128,.1);
+    border:1px solid rgba(74,222,128,.4);
+    color:#86efac;
+    box-shadow:0 0 16px -4px rgba(74,222,128,.5);
+  }
+  .tl-dot svg{width:14px;height:14px;}
+  .tl-line{width:1.5px;flex:1;min-height:22px;background:linear-gradient(180deg,rgba(74,222,128,.4),rgba(74,222,128,.08));margin:4px 0;}
+  .tl-item:last-child .tl-line{display:none;}
+  .tl-body{padding:4px 0 20px;}
+  .tl-body .t{font-size:13.5px;font-weight:650;letter-spacing:-.005em;}
+  .tl-body .d{margin-top:3px;font-size:11.5px;color:var(--ink-low);line-height:1.5;}
+  .tl-body .d b{color:#C9F5D6;font-weight:600;}
+
+  .btn-app{
+    margin-top:10px;
+    display:flex;align-items:center;justify-content:center;gap:9px;
+    padding:14px 34px;border-radius:13px;
+    font-size:14.5px;font-weight:700;letter-spacing:.015em;
+    color:#2A1002;
+    background:linear-gradient(120deg,#FDBA74 0%,#F97316 55%,#E8590C 100%);
+    border:1px solid rgba(255,255,255,.25);
+    box-shadow:0 14px 34px -10px rgba(249,115,22,.65), inset 0 1px 0 rgba(255,255,255,.55), inset 0 -6px 12px rgba(140,50,0,.35);
+    transition:transform .15s ease, filter .15s ease;
+  }
+  .btn-app:hover{transform:translateY(-1px);filter:brightness(1.05);text-decoration:none;}
+  .btn-app svg{width:16px;height:16px;}
+  .app-micro{margin-top:10px;font-size:11.5px;color:var(--ink-faint);}
+  .app-micro b{color:var(--ink-low);font-weight:600;}
+
+  .behind-card{
+    margin-top:30px;width:100%;max-width:460px;
+    padding:16px 18px;
+    border-radius:var(--r-md);
+    text-align:left;
+  }
+  .behind-card .k-label{display:flex;align-items:center;gap:8px;margin-bottom:11px;}
+  .behind-card .k-label i{width:6px;height:6px;border-radius:50%;background:var(--brand);box-shadow:0 0 8px rgba(249,115,22,.8);flex:none;}
+  .behind-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .bf-node{
+    font-size:11px;font-weight:600;letter-spacing:.02em;
+    color:var(--ink-mid);
+    background:rgba(255,255,255,.04);
+    border:1px solid var(--glass-line-soft);
+    padding:6px 11px;border-radius:99px;
+    white-space:nowrap;
+  }
+  .bf-arrow{color:var(--ink-faint);font-size:12px;flex:none;}
+  .behind-card p{margin-top:11px;font-size:11.5px;line-height:1.6;color:var(--ink-faint);}
+  .reset-link{
+    margin-top:26px;font-size:11.5px;color:var(--ink-faint);
+    background:none;border:none;text-decoration:underline dotted;
+    letter-spacing:.02em;
+  }
+  .reset-link:hover{color:var(--ink-mid);}
+
+  /* ============================================================
+     9. FOOTER
+     ============================================================ */
+  .page-foot{
+    margin-top:34px;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:16px;flex-wrap:wrap;
+    padding:2px 6px;
+    font-size:11px;color:var(--ink-faint);letter-spacing:.03em;
+  }
+  .page-foot .dot-sep{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .page-foot i{width:3px;height:3px;border-radius:50%;background:var(--ink-faint);display:inline-block;}
+  .page-foot a{color:var(--ink-low);}
+  .page-foot a:hover{color:var(--brand-hot);}
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width:960px){
+    .checkout-grid{grid-template-columns:1fr;}
+    .col-right{position:static;}
+    .product-inner{flex-direction:column;}
+    .product-visual{width:100%;height:110px;}
+  }
+  @media (max-width:600px){
+    .wrap{padding:18px 14px 44px;}
+    .form-grid{grid-template-columns:1fr;}
+    .pay-grid{grid-template-columns:1fr;}
+    .secure-badge{font-size:10.5px;padding:7px 11px;}
+    .card{padding:18px 16px;}
+  }
+
+  /* ===== tambahan versi live (Snap embed) ===== */
+  .spinner{
+    width:38px;height:38px;border-radius:50%;
+    border:3px solid rgba(255,255,255,.12);
+    border-top-color:var(--ember);
+    animation:spin .8s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .dots i{opacity:.25;animation:dotfade 1.2s infinite;font-style:normal;}
+  .dots i:nth-child(2){animation-delay:.2s;}
+  .dots i:nth-child(3){animation-delay:.4s;}
+  @keyframes dotfade{0%,60%,100%{opacity:.25;}30%{opacity:1;}}
+  /* Snap merender iframe-nya sendiri; kita cuma jamin lebarnya penuh. */
+  #snap-container iframe{width:100%!important;border:0;}
+  .btn-cta[disabled]{opacity:.6;cursor:progress;}
+  .form-error{
+    margin-top:12px;padding:11px 14px;border-radius:10px;
+    background:rgba(220,80,60,.12);border:1px solid rgba(220,80,60,.32);
+    color:#ffc9bd;font-size:13.5px;line-height:1.5;display:none;
+  }
+  .form-error.show{display:block;}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="aurora a1"></div>
+  <div class="aurora a2"></div>
+  <div class="aurora a3"></div>
+
+  <div class="wrap">
+
+    <!-- ================= 1. HEADER ================= -->
+    <header class="topbar">
+      <div class="logo-row">
+        <div class="logo-mark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-label="Adverthinking AI">
+            <path d="M12 2.2a7 7 0 0 0-4.55 12.3c.72.62 1.18 1.45 1.38 2.3h6.34c.2-.85.66-1.68 1.38-2.3A7 7 0 0 0 12 2.2z" fill="#FFF4E8" opacity="1"/>
+            <path d="M9.1 18.3h5.8v.9a2.9 2.9 0 0 1-5.8 0z" fill="#FFF4E8" opacity="1"/>
+            <path d="M8.3 9.4a4 4 0 0 1 2.9-3.2" stroke="#F97316" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="logo-name">Adverthinking <em>AI</em></div>
+          <div class="logo-sub">Checkout Aman</div>
+        </div>
+      </div>
+      <div class="secure-badge">
+        <span class="pulse"></span>Pembayaran Aman <span class="sep">·</span> <span id="badge-mode">Midtrans</span>
+      </div>
+    </header>
+
+    <div class="checkout-grid">
+      <!-- ================= KOLOM KIRI ================= -->
+      <div class="col-left">
+
+        <!-- ============ 2. RINGKASAN PRODUK ============ -->
+        <section class="glass card product-card">
+          <div class="product-inner">
+            <div class="product-visual">
+              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-label="Adverthinking AI">
+                <path d="M12 2.2a7 7 0 0 0-4.55 12.3c.72.62 1.18 1.45 1.38 2.3h6.34c.2-.85.66-1.68 1.38-2.3A7 7 0 0 0 12 2.2z" fill="#FFF4E8" opacity=".95"/>
+                <path d="M9.1 18.3h5.8v.9a2.9 2.9 0 0 1-5.8 0z" fill="#FFF4E8" opacity=".95"/>
+                <path d="M8.3 9.4a4 4 0 0 1 2.9-3.2" stroke="#F97316" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="product-info">
+              <h1>Adverthinking AI <span class="glow">Akses Seumur Hidup</span></h1>
+              <p>20+ tools AI marketing dalam satu app: hook, copy iklan, desain poster, foto produk, skrip UGC, dan strategi funnel. Bayar sekali Rp100.000, akses selamanya.</p>
+              <div class="perk-row">
+                <span class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>20+ tools AI marketing</span>
+                <span class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>Sekali bayar, akses selamanya</span>
+                <span class="perk hot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 2 L14.6 9.4 L22 12 L14.6 14.6 L12 22 L9.4 14.6 L2 12 L9.4 9.4 Z"/></svg>Bonus Amunisi Laris senilai Rp149.000</span>
+                <span class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>Garansi 14 hari uang kembali</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ 3. FORM PEMBELI ============ -->
+        <section class="glass card">
+          <div class="card-head">
+            <div class="step-ic">1</div>
+            <div>
+              <h2>Data Kamu</h2>
+              <div class="sub">Akses dikirim ke email dan WhatsApp ini, jadi pastikan benar</div>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label for="f-nama">Nama Lengkap <span class="req">*</span></label>
+              <input class="input" id="f-nama" type="text" placeholder="Nama kamu" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="f-email">Email <span class="req">*</span></label>
+              <input class="input" id="f-email" type="email" placeholder="nama@email.com" autocomplete="email">
+              <div class="hint" id="hint-email">Email ini jadi username login member area</div>
+            </div>
+            <div class="field">
+              <label for="f-wa">No. WhatsApp <span class="req">*</span></label>
+              <input class="input" id="f-wa" type="tel" placeholder="08xxxxxxxxxx" autocomplete="tel" inputmode="numeric">
+            </div>
+            <div class="field">
+              <label for="f-pass">Buat Password Member Area <span class="req">*</span></label>
+              <div class="input-wrap">
+                <input class="input" id="f-pass" type="password" placeholder="Minimal 8 karakter" autocomplete="new-password" style="padding-right:46px;">
+                <button type="button" class="eye-btn" id="eye-toggle" aria-label="Lihat password">
+                  <svg id="eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg id="eye-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="display:none;"><path d="M2 12s3.5-7 10-7c2.2 0 4 .8 5.5 1.8M22 12s-3.5 7-10 7c-2.2 0-4-.8-5.5-1.8"/><path d="m3 21 18-18"/></svg>
+                </button>
+              </div>
+              <div class="pw-meter">
+                <div class="pw-bars">
+                  <div class="pw-bar" id="pwb-1"></div>
+                  <div class="pw-bar" id="pwb-2"></div>
+                  <div class="pw-bar" id="pwb-3"></div>
+                </div>
+                <span class="pw-label" id="pw-label">&nbsp;</span>
+              </div>
+            </div>
+            <div class="field full">
+              <div class="pw-why">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>
+                <span><b>Kenapa bikin password sekarang?</b> Begitu pembayaran masuk, akun member kamu langsung aktif dengan password ini. Gak perlu nunggu email berisi password, langsung login.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ 4. ORDER BUMP ============ -->
+        <!-- Disembunyikan kalau CFG.tampilkanBump === false (T-027 belum di-ACC). -->
+        <section class="glass card" id="bump-section">
+          <div class="card-head">
+            <div class="step-ic">2</div>
+            <div>
+              <h2>Sekalian Upgrade?</h2>
+              <div class="sub">Opsional, bisa dilewati</div>
+            </div>
+          </div>
+          <div class="bump" id="bump" role="checkbox" aria-checked="false" tabindex="0">
+            <div class="bump-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="m5 13 4 4L19 7"/></svg>
+            </div>
+            <div class="bump-body">
+              <div class="bump-title-row">
+                <span class="bump-title">Upgrade Kuota AI 2x, Selamanya</span>
+                <span class="bump-price">+Rp39.000</span>
+              </div>
+              <div class="bump-benefits">
+                <div class="bump-benefit">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>
+                  <span>Kuota harian semua tools AI jadi 2x lipat, berlaku selamanya tanpa biaya bulanan</span>
+                </div>
+                <div class="bump-benefit">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>
+                  <span>Cocok kalau kamu produksi konten tiap hari untuk lebih dari satu brand</span>
+                </div>
+              </div>
+              <div class="bump-note">Penawaran khusus halaman ini · dicentang = langsung masuk tagihan di ringkasan</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ 5. METODE BAYAR ============ -->
+        <section class="glass card">
+          <div class="card-head">
+            <div class="step-ic">3</div>
+            <div>
+              <h2>Pilih Metode Bayar</h2>
+              <div class="sub">Semua metode tanpa biaya tambahan untukmu</div>
+            </div>
+          </div>
+          <div class="pay-grid" id="pay-grid">
+            <div class="pay-opt selected" data-method="qris" data-label="QRIS" role="radio" aria-checked="true" tabindex="0">
+              <span class="pay-radio"><i></i></span>
+              <span class="pay-logo qris">QRIS</span>
+              <span class="pay-name">QRIS</span>
+              <span class="pay-tag">Instan</span>
+            </div>
+            <div class="pay-opt" data-method="bca" data-label="VA BCA" role="radio" aria-checked="false" tabindex="0">
+              <span class="pay-radio"><i></i></span>
+              <span class="pay-logo">BCA</span>
+              <span class="pay-name">Virtual Account BCA</span>
+            </div>
+            <div class="pay-opt" data-method="bri" data-label="VA BRI" role="radio" aria-checked="false" tabindex="0">
+              <span class="pay-radio"><i></i></span>
+              <span class="pay-logo">BRI</span>
+              <span class="pay-name">Virtual Account BRI</span>
+            </div>
+            <div class="pay-opt" data-method="mandiri" data-label="VA Mandiri" role="radio" aria-checked="false" tabindex="0">
+              <span class="pay-radio"><i></i></span>
+              <span class="pay-logo">MDR</span>
+              <span class="pay-name">Virtual Account Mandiri</span>
+            </div>
+          </div>
+          <div class="pay-foot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+            Diproses payment gateway berlisensi Bank Indonesia. Kami tidak pernah menyimpan data pembayaranmu.
+          </div>
+        </section>
+      </div>
+
+      <!-- ================= KOLOM KANAN: 6. RINGKASAN ================= -->
+      <aside class="col-right">
+        <section class="glass summary-card">
+          <div class="card-head" style="margin-bottom:18px;">
+            <div class="step-ic">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+            <div><h2>Ringkasan Pesanan</h2></div>
+          </div>
+          <div class="sum-rows">
+            <div class="sum-row">
+              <span class="n">Adverthinking AI<small>Akses seumur hidup · 20+ tools</small></span>
+              <span class="v">Rp100.000</span>
+            </div>
+            <div class="sum-row bonus">
+              <span class="n">Bonus Amunisi Laris<small>Senilai Rp149.000</small></span>
+              <span class="v">GRATIS</span>
+            </div>
+            <div class="sum-row bump-line" id="sum-bump">
+              <span class="n">Upgrade Kuota AI 2x<small>Selamanya</small></span>
+              <span class="v">Rp39.000</span>
+            </div>
+          </div>
+          <div class="sum-sep"></div>
+          <div class="sum-total">
+            <span class="t">TOTAL BAYAR</span>
+            <span class="amount" id="total-amount">Rp100.000</span>
+          </div>
+          <div class="sum-method" id="sum-method">Metode: QRIS</div>
+          <button class="btn-cta" id="btn-pay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+            Bayar &amp; Aktifkan Akses
+          </button>
+          <div class="form-error" id="form-error" role="alert"></div>
+          <div class="cta-micro"><i></i>Akses terkirim otomatis dalam 1 menit setelah bayar</div>
+          <div class="honest-note">
+            Harga perdana <b>Batch 1</b> naik setelah 100 slot pertama terisi. Tanpa hitung mundur palsu, tanpa drama.
+          </div>
+        </section>
+
+        <section class="glass trust-card">
+          <div class="trust-line">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            <span><b>Garansi 14 hari uang kembali.</b> Gak cocok? Chat CS, uang balik tanpa interogasi.</span>
+          </div>
+          <div class="trust-line">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12c0 4-4 7-9 7-1.2 0-2.4-.2-3.4-.5L3 20l1.6-4C3.6 14.9 3 13.5 3 12c0-4 4-7 9-7s9 3 9 7z"/></svg>
+            <span><b>CS Telegram siap bantu</b> kalau ada kendala pembayaran atau akses.</span>
+          </div>
+        </section>
+      </aside>
+    </div>
+
+    <!-- ================= 9. FOOTER ================= -->
+    <footer class="page-foot">
+      <span>Garansi 14 hari uang kembali · Powered by Adverthinking</span>
+      <span class="dot-sep">
+        <a href="https://t.me/adverthinkingai_bot" target="_blank" rel="noopener">CS Telegram</a>
+        <i></i><span id="footer-mode">Adverthinking · adverthinking.site</span>
+      </span>
+    </footer>
+  </div>
+</div>
+
+<!-- ================= 7. MODAL SIMULASI PEMBAYARAN ================= -->
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="glass modal" role="dialog" aria-modal="true" aria-labelledby="m-title">
+    <div class="modal-head">
+      <div>
+        <div class="m-title" id="m-title">Selesaikan Pembayaran</div>
+        <div class="m-sub" id="m-sub">Diproses langsung di halaman ini — kamu tidak dialihkan ke mana-mana</div>
+      </div>
+      <button class="m-close" id="m-close" aria-label="Tutup">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="m-amount-row">
+        <span class="l">Total Bayar</span>
+        <span class="a" id="m-amount">Rp100.000</span>
+      </div>
+
+      <!-- state: NYIAPIN (nunggu token dari edge function) -->
+      <div id="pane-loading" style="display:none;">
+        <div class="qr-holder" style="gap:14px;">
+          <div class="spinner" aria-hidden="true"></div>
+          <div class="qr-cap">Menyiapkan pembayaran yang aman<span class="dots"><i>.</i><i>.</i><i>.</i></span></div>
+        </div>
+      </div>
+
+      <!-- state: BAYAR — di sinilah Snap nempel (QRIS / VA / e-wallet).
+           Sengaja EMBED, bukan redirect: pembeli gak pernah keluar dari domain
+           kita, jadi funnel-nya (bump, ringkasan, trust) tetap kelihatan. -->
+      <div id="snap-container" style="display:none;min-height:520px;"></div>
+
+      <!-- state: GAGAL / EXPIRED -->
+      <div id="pane-fail" style="display:none;">
+        <div class="fail-holder">
+          <div class="fail-ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v6"/><circle cx="12" cy="16.5" r=".5" fill="currentColor"/></svg>
+          </div>
+          <h3 id="fail-title">Pembayaran Belum Selesai</h3>
+          <p id="fail-msg">Pesanan kamu tetap tersimpan. Kamu bisa ulangi pembayaran tanpa isi ulang data.</p>
+          <button class="btn-retry" id="btn-retry">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 3v6h-6"/></svg>
+            Coba Bayar Lagi
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 8. LAYAR SUKSES ================= -->
+<div class="success-view" id="success-view">
+  <div class="stage" style="min-height:100vh;background:transparent;overflow:visible;">
+    <div class="success-inner">
+      <div class="ok-ic">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m5 13 4 4L19 7"/></svg>
+      </div>
+      <h2>Pembayaran <span class="glow">Diterima!</span></h2>
+      <p>Akun member kamu <b id="ok-name">sudah aktif</b>. Ini yang barusan terjadi, otomatis dalam hitungan detik:</p>
+
+      <div class="timeline" id="timeline">
+        <div class="tl-item">
+          <div class="tl-rail">
+            <div class="tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m5 13 4 4L19 7"/></svg></div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="tl-body">
+            <div class="t">Pembayaran diterima</div>
+            <div class="d" id="tl-pay-detail">Metode QRIS · Rp100.000 · terverifikasi otomatis</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-rail">
+            <div class="tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m5 13 4 4L19 7"/></svg></div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="tl-body">
+            <div class="t">Akun member dibuat otomatis</div>
+            <div class="d">Username = email yang kamu isi di form tadi</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-rail">
+            <div class="tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m5 13 4 4L19 7"/></svg></div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="tl-body">
+            <div class="t">Password yang kamu buat AKTIF sekarang</div>
+            <div class="d">Gak perlu nunggu email. Password dari checkout langsung jadi password login</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-rail">
+            <div class="tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m5 13 4 4L19 7"/></svg></div>
+          </div>
+          <div class="tl-body">
+            <div class="t">Siap dipakai di app.adverthinking.site</div>
+            <div class="d">Semua tools <b>plus bonus Amunisi Laris</b> sudah kebuka di akunmu</div>
+          </div>
+        </div>
+      </div>
+
+      <a class="btn-app" href="https://app.adverthinking.site" target="_blank" rel="noopener">
+        Masuk ke App
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <div class="app-micro">Login pakai <b>email + password</b> yang barusan kamu buat</div>
+
+      <section class="glass behind-card">
+        <div class="k-label"><i></i>Yang terjadi di belakang layar</div>
+        <div class="behind-flow">
+          <span class="bf-node">Webhook payment gateway</span>
+          <span class="bf-arrow">→</span>
+          <span class="bf-node">Verifikasi signature</span>
+          <span class="bf-arrow">→</span>
+          <span class="bf-node">Supabase bikin akun</span>
+          <span class="bf-arrow">→</span>
+          <span class="bf-node">Notif Telegram ke penjual</span>
+        </div>
+        <p>Rantai delivery ini sistem yang sama yang sudah melayani buyer Adverthinking sekarang. Di prototype ini semua disimulasikan di browser, tanpa server.</p>
+      </section>
+
+      <button class="reset-link" id="btn-reset">← kembali ke checkout (reset simulasi)</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============ KONFIG + STATE ============ */
+  var CFG = window.CHECKOUT_CONFIG;
+  if(!CFG){
+    document.body.innerHTML =
+      '<div style="max-width:520px;margin:80px auto;padding:24px;font-family:system-ui;color:#F4F2EF;' +
+      'background:#12121A;border-radius:14px;line-height:1.6">' +
+      '<h2 style="color:#F97316;margin:0 0 10px">config.js tidak termuat</h2>' +
+      '<p>Halaman checkout butuh <code>config.js</code> di folder yang sama. ' +
+      'Salin dari <code>config.contoh.js</code> lalu isi key-nya.</p></div>';
+    return;
+  }
+
+  var state = {
+    bump: false,
+    method: "qris",
+    methodLabel: "QRIS"
+  };
+  /* Angka di sini CUMA buat tampilan. Yang ditagih = hitungan server
+     (edge function create-order). Kalau keduanya beda, yang benar server. */
+  var BASE = CFG.harga;
+  var BUMP = CFG.hargaBump;
+  var BUMP_TAYANG = CFG.tampilkanBump !== false;
+  if(!BUMP_TAYANG){
+    var bs = document.getElementById("bump-section");
+    if(bs) bs.parentNode.removeChild(bs);
+    var sb = document.getElementById("sum-bump");
+    if(sb) sb.parentNode.removeChild(sb);
+  }
+
+  function rupiah(n){
+    return "Rp" + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+  function total(){ return BASE + (BUMP_TAYANG && state.bump ? BUMP : 0); }
+
+  var $ = function(id){ return document.getElementById(id); };
+
+  /* ============ 3. PASSWORD: toggle + kekuatan ============ */
+  var passInput = $("f-pass");
+  var eyeBtn = $("eye-toggle");
+  eyeBtn.addEventListener("click", function(){
+    var showing = passInput.type === "text";
+    passInput.type = showing ? "password" : "text";
+    $("eye-open").style.display = showing ? "" : "none";
+    $("eye-closed").style.display = showing ? "none" : "";
+  });
+
+  function pwScore(v){
+    if(!v) return 0;
+    var score = 0;
+    if(v.length >= 8) score++;
+    if(v.length >= 12) score++;
+    var variety = 0;
+    if(/[a-z]/.test(v)) variety++;
+    if(/[A-Z]/.test(v)) variety++;
+    if(/\d/.test(v)) variety++;
+    if(/[^A-Za-z0-9]/.test(v)) variety++;
+    if(variety >= 3) score++;
+    return Math.max(1, Math.min(3, score)); /* 1..3 kalau ada isi */
+  }
+  passInput.addEventListener("input", function(){
+    var v = passInput.value;
+    var s = v ? pwScore(v) : 0;
+    var labels = [" ", "Lemah", "Cukup", "Kuat"];
+    var bars = [$("pwb-1"), $("pwb-2"), $("pwb-3")];
+    bars.forEach(function(b, i){
+      b.className = "pw-bar" + (i < s ? " on-" + s : "");
+    });
+    var lbl = $("pw-label");
+    lbl.textContent = labels[s];
+    lbl.style.color = s === 1 ? "var(--danger)" : s === 2 ? "var(--amber)" : s === 3 ? "var(--success)" : "var(--ink-faint)";
+    passInput.classList.remove("invalid");
+  });
+
+  /* ============ 4. ORDER BUMP toggle ============ */
+  var bumpEl = $("bump");
+  function setBump(on){
+    if(!BUMP_TAYANG || !bumpEl) return;
+    state.bump = on;
+    bumpEl.classList.toggle("checked", on);
+    bumpEl.setAttribute("aria-checked", on ? "true" : "false");
+    $("sum-bump").classList.toggle("show", on);
+    renderTotal(true);
+  }
+  if(bumpEl){
+    bumpEl.addEventListener("click", function(){ setBump(!state.bump); });
+    bumpEl.addEventListener("keydown", function(e){
+      if(e.key === " " || e.key === "Enter"){ e.preventDefault(); setBump(!state.bump); }
+    });
+  }
+
+  /* ============ 5. METODE BAYAR ============ */
+  var payGrid = $("pay-grid");
+  payGrid.addEventListener("click", function(e){
+    var opt = e.target.closest(".pay-opt");
+    if(!opt) return;
+    selectMethod(opt);
+  });
+  payGrid.addEventListener("keydown", function(e){
+    var opt = e.target.closest(".pay-opt");
+    if(opt && (e.key === " " || e.key === "Enter")){ e.preventDefault(); selectMethod(opt); }
+  });
+  function selectMethod(opt){
+    Array.prototype.forEach.call(payGrid.children, function(c){
+      c.classList.remove("selected");
+      c.setAttribute("aria-checked", "false");
+    });
+    opt.classList.add("selected");
+    opt.setAttribute("aria-checked", "true");
+    state.method = opt.dataset.method;
+    state.methodLabel = opt.dataset.label;
+    $("sum-method").textContent = "Metode: " + state.methodLabel;
+  }
+
+  /* ============ 6. RINGKASAN LIVE ============ */
+  function renderTotal(pop){
+    var el = $("total-amount");
+    el.textContent = rupiah(total());
+    if(pop){
+      el.classList.remove("bump-pop");
+      void el.offsetWidth; /* restart animasi */
+      el.classList.add("bump-pop");
+    }
+  }
+
+  /* ============ VALIDASI FORM ============ */
+  function validate(){
+    var ok = true;
+    var nama = $("f-nama"), email = $("f-email"), wa = $("f-wa");
+    [nama, email, wa, passInput].forEach(function(i){ i.classList.remove("invalid"); });
+
+    if(!nama.value.trim()){ nama.classList.add("invalid"); ok = false; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim())){ email.classList.add("invalid"); ok = false; }
+    if(!/^0\d{8,13}$/.test(wa.value.replace(/[\s-]/g, ""))){ wa.classList.add("invalid"); ok = false; }
+    if(passInput.value.length < 8){ passInput.classList.add("invalid"); ok = false; }
+
+    if(!ok){
+      var first = document.querySelector(".input.invalid");
+      if(first){ first.focus(); first.scrollIntoView({ behavior: "smooth", block: "center" }); }
+    }
+    return ok;
+  }
+
+  /* ============ 7. MODAL + SNAP ============ */
+  var backdrop = $("modal-backdrop");
+  var orderAktif = null;   /* { order_id, token } — dipakai kalau pembeli ngulang bayar */
+  var snapSiap = false;
+  var lagiProses = false;
+
+  function tampilPane(nama){
+    $("pane-loading").style.display = nama === "loading" ? "" : "none";
+    $("snap-container").style.display = nama === "snap" ? "" : "none";
+    $("pane-fail").style.display = nama === "fail" ? "" : "none";
+  }
+
+  function bukaModal(){
+    $("m-amount").textContent = rupiah(total());
+    backdrop.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+  function tutupModal(){
+    backdrop.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+  function gagal(judul, pesan){
+    $("fail-title").textContent = judul;
+    $("fail-msg").textContent = pesan;
+    tampilPane("fail");
+  }
+  function errorForm(pesan){
+    var el = $("form-error");
+    el.textContent = pesan;
+    el.classList.add("show");
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+  function bersihkanErrorForm(){ $("form-error").classList.remove("show"); }
+
+  /* Muat snap.js sekali, pakai key dari config (sandbox vs production). */
+  function muatSnap(){
+    return new Promise(function(resolve, reject){
+      if(snapSiap && window.snap) return resolve();
+      var s = document.createElement("script");
+      s.src = CFG.snapUrl;
+      s.setAttribute("data-client-key", CFG.clientKey);
+      s.onload = function(){ snapSiap = true; resolve(); };
+      s.onerror = function(){ reject(new Error("snap.js gagal dimuat")); };
+      document.head.appendChild(s);
+    });
+  }
+
+  /* UTM dari URL — dibawa ke server biar order tau datangnya dari adset mana.
+     Ini yang bikin ROAS bisa dihitung per-adset, bukan cuma total. */
+  function ambilUtm(){
+    var q = new URLSearchParams(location.search);
+    var out = {};
+    ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","fbclid"].forEach(function(k){
+      var v = q.get(k);
+      if(v) out[k] = v.slice(0, 200);
+    });
+    return Object.keys(out).length ? out : null;
+  }
+
+  function pasangSnap(token){
+    tampilPane("snap");
+    $("snap-container").innerHTML = "";
+    window.snap.embed(token, {
+      embedId: "snap-container",
+      onSuccess: function(hasil){ tampilSukses(hasil); },
+      onPending: function(hasil){
+        /* VA / QRIS yang belum dibayar. JUJUR: jangan bilang "berhasil" —
+           akses baru kebuka setelah duitnya beneran masuk. */
+        tampilSukses(hasil, true);
+      },
+      onError: function(){
+        gagal(
+          "Pembayaran Gagal",
+          "Transaksinya gak berhasil diproses. Pesanan kamu tetap tersimpan — coba lagi, atau pakai metode bayar lain."
+        );
+      },
+      onClose: function(){
+        /* Pembeli nutup Snap tanpa nyelesein. Jangan hilangkan ordernya. */
+        gagal(
+          "Pembayaran Belum Selesai",
+          "Kamu keluar sebelum pembayaran selesai. Pesanan tetap tersimpan, tinggal klik tombol di bawah buat lanjut."
+        );
+      }
+    });
+  }
+
+  function mintaToken(){
+    var badan = {
+      nama: $("f-nama").value.trim(),
+      email: $("f-email").value.trim().toLowerCase(),
+      wa: $("f-wa").value.trim(),
+      password: passInput.value,
+      produk: CFG.produk,
+      bump: BUMP_TAYANG && state.bump,
+      metode: state.method,
+      utm: ambilUtm()
+    };
+    return fetch(CFG.endpointCreateOrder, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(badan)
+    }).then(function(r){
+      return r.json().then(function(j){ return { ok: r.ok, status: r.status, data: j }; });
+    });
+  }
+
+  $("btn-pay").addEventListener("click", function(){
+    if(lagiProses) return;
+    bersihkanErrorForm();
+    if(!validate()) return;
+
+    lagiProses = true;
+    var tombol = $("btn-pay");
+    tombol.disabled = true;
+    bukaModal();
+    tampilPane("loading");
+
+    muatSnap()
+      .then(mintaToken)
+      .then(function(res){
+        if(!res.ok || !res.data || !res.data.token){
+          var pesan = (res.data && res.data.error) || "Gagal menyiapkan pembayaran.";
+          if(res.data && res.data.detail){
+            var d = res.data.detail;
+            pesan = Object.keys(d).map(function(k){ return d[k]; }).join(" · ");
+            tutupModal();
+            errorForm(pesan);
+            return;
+          }
+          gagal("Gagal Menyiapkan Pembayaran", pesan + " Coba lagi sebentar ya.");
+          return;
+        }
+        orderAktif = { order_id: res.data.order_id, token: res.data.token };
+        pasangSnap(res.data.token);
+      })
+      .catch(function(e){
+        gagal(
+          "Koneksi Bermasalah",
+          "Gak bisa nyambung ke server pembayaran. Cek koneksi kamu lalu coba lagi."
+        );
+        if(window.console) console.error(e);
+      })
+      .then(function(){
+        lagiProses = false;
+        tombol.disabled = false;
+      });
+  });
+
+  $("m-close").addEventListener("click", tutupModal);
+  backdrop.addEventListener("click", function(e){ if(e.target === backdrop) tutupModal(); });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && backdrop.classList.contains("open")) tutupModal();
+  });
+
+  /* Ulangi bayar: pakai token yang SAMA kalau masih ada (order gak dobel). */
+  $("btn-retry").addEventListener("click", function(){
+    if(orderAktif && orderAktif.token){
+      pasangSnap(orderAktif.token);
+    } else {
+      tutupModal();
+    }
+  });
+
+  /* ============ 8. SUKSES ============ */
+  /* pending = duit BELUM masuk (VA/QRIS dibuat tapi belum dibayar).
+     Layar & teksnya sengaja dibedakan — bilang "akun aktif" padahal belum
+     dibayar itu janji yang gak ditepati barangnya. */
+  function tampilSukses(hasil, pending){
+    tutupModal();
+    var nama = $("f-nama").value.trim().split(/\s+/)[0];
+    var metode = (hasil && hasil.payment_type ? String(hasil.payment_type).replace(/_/g, " ") : state.methodLabel);
+
+    $("ok-name").textContent = pending
+      ? (nama ? ("atas nama " + nama + " menunggu pembayaran") : "menunggu pembayaran")
+      : (nama ? ("atas nama " + nama + " sedang diaktifkan") : "sedang diaktifkan");
+    $("tl-pay-detail").textContent = "Metode " + metode + " · " + rupiah(total()) +
+      (pending ? " · menunggu pembayaran masuk" : " · terverifikasi otomatis");
+
+    var sv = $("success-view");
+    sv.classList.add("open");
+    sv.scrollTop = 0;
+    document.body.style.overflow = "hidden";
+
+    var items = document.querySelectorAll("#timeline .tl-item");
+    items.forEach(function(it){ it.classList.remove("on"); });
+    items.forEach(function(it, i){
+      setTimeout(function(){ it.classList.add("on"); }, 420 + i * 520);
+    });
+
+    if(!pending && orderAktif) pantauAkun(orderAktif.order_id);
+  }
+
+  /* Tanya server: akunnya UDAH beneran jadi belum? Halaman sukses gak boleh
+     ngeklaim "akses aktif" cuma karena Snap bilang sukses — akunnya dibuat
+     webhook, dan itu jalan terpisah yang bisa telat atau gagal. Kita tanya
+     sampai 20x (±60 detik), lalu nyerah dengan jujur. */
+  function pantauAkun(orderId){
+    if(!CFG.endpointOrderStatus) return;
+    var sisa = 20;
+    var target = $("ok-name");
+    (function cek(){
+      if(sisa-- <= 0){
+        target.textContent = "sudah dibayar — aktivasinya lagi diproses";
+        return;
+      }
+      fetch(CFG.endpointOrderStatus + "?order_id=" + encodeURIComponent(orderId))
+        .then(function(r){ return r.json(); })
+        .then(function(j){
+          if(j && j.akun_dibuat){
+            var nama = $("f-nama").value.trim().split(/\s+/)[0];
+            target.textContent = nama ? ("atas nama " + nama + " SUDAH AKTIF") : "SUDAH AKTIF";
+            return;
+          }
+          setTimeout(cek, 3000);
+        })
+        .catch(function(){ setTimeout(cek, 3000); });
+    })();
+  }
+
+  $("btn-reset").addEventListener("click", function(){
+    $("success-view").classList.remove("open");
+    document.body.style.overflow = "";
+  });
+
+  /* init */
+  renderTotal(false);
+
+  /* Penanda SANDBOX otomatis. Dipasang dari config, bukan diketik manual —
+     supaya gak mungkin kelupaan kecopot pas naik production, dan gak mungkin
+     kelupaan kepasang pas lagi uji coba. */
+  if(!CFG.produksi){
+    $("badge-mode").textContent = "MODE SANDBOX · uang mainan";
+    $("footer-mode").textContent = "Mode sandbox — tidak ada uang berpindah";
+    document.title = "[SANDBOX] " + document.title;
+  }
+})();
+</script>
+</body>
+</html>
