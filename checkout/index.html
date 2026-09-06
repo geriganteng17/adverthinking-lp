@@ -1198,6 +1198,64 @@
      (edge function create-order). Kalau keduanya beda, yang benar server. */
   var BASE = CFG.harga;
   var BUMP = CFG.hargaBump;
+  /* ============ PRODUK dari URL (?produk=adv50|adv150|advup|adverthinking) ============
+     ULTIMATE APP (6 Sep 2026): 1 halaman checkout, banyak produk. Harga di sini CUMA tampilan —
+     server (katalog.ts) yang menagih. ?email= = prefill (upgrade), ?ref= = kode affiliate. */
+  var Q = new URLSearchParams(location.search);
+  var LIST = CFG.produkList || {};
+  var kodeQ = (Q.get("produk") || "").toLowerCase();
+  if (kodeQ && LIST[kodeQ]) {
+    CFG.produk = kodeQ;
+    CFG.harga = LIST[kodeQ].harga;
+  } else if (LIST[CFG.produk]) {
+    CFG.harga = LIST[CFG.produk].harga;
+  }
+  var PRODUK = LIST[CFG.produk] || { nama: "Adverthinking AI", harga: CFG.harga, tier: 2, upgrade: false, bonus: true };
+  var UPGRADE = PRODUK.upgrade === true;
+
+  /* ref affiliate: simpan 30 hari di localStorage biar tetap kebawa walau dia balik lagi */
+  var REF = (Q.get("ref") || "").toLowerCase().replace(/[^a-z0-9_-]/g, "");
+  try {
+    if (REF) localStorage.setItem("adv_ref", JSON.stringify({ ref: REF, t: Date.now() }));
+    else { var r0 = JSON.parse(localStorage.getItem("adv_ref") || "null"); if (r0 && Date.now() - r0.t < 30 * 864e5) REF = r0.ref; }
+  } catch (e) {}
+
+  (function terapkanProduk(){
+    function set(id, v){ var el = document.getElementById(id); if (el) el.textContent = v; }
+    var h1 = document.querySelector(".product-info h1");
+    if (h1) {
+      if (CFG.produk === "adv50") h1.innerHTML = "Adverthinking AI <span class=\"glow\">Prompt Builder</span>";
+      else if (CFG.produk === "adv150") h1.innerHTML = "Adverthinking AI <span class=\"glow\">Ultimate</span>";
+      else if (UPGRADE) h1.innerHTML = "Upgrade ke <span class=\"glow\">Ultimate</span>";
+    }
+    var p = document.querySelector(".product-info p");
+    if (p && PRODUK.deskripsi) p.textContent = PRODUK.deskripsi;
+    var perks = document.querySelector(".perk-row");
+    if (perks && PRODUK.perks) {
+      perks.innerHTML = PRODUK.perks.map(function(t, i){
+        var hot = /bonus/i.test(t);
+        return '<span class="perk' + (hot ? ' hot' : '') + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>' + t + '</span>';
+      }).join("");
+    }
+    var rows = document.querySelectorAll(".sum-rows .sum-row");
+    if (rows[0]) { rows[0].querySelector(".n").innerHTML = PRODUK.nama + "<small>" + (PRODUK.sub || "") + "</small>"; rows[0].querySelector(".v").textContent = rupiah(PRODUK.harga); }
+    var bonusRow = document.querySelector(".sum-row.bonus");
+    if (bonusRow && PRODUK.bonus === false) bonusRow.parentNode.removeChild(bonusRow);
+    var honest = document.querySelector(".honest-note");
+    if (honest && PRODUK.catatan) honest.innerHTML = PRODUK.catatan;
+    var emailQ = (Q.get("email") || "").trim().toLowerCase();
+    var fEmail = document.getElementById("f-email");
+    if (fEmail && emailQ) { fEmail.value = emailQ; }
+    if (UPGRADE) {
+      var hint = document.getElementById("hint-email"); if (hint) hint.textContent = "Pakai email yang SUDAH terdaftar di app — akunnya cuma dinaikkan, bukan dibuat baru";
+      var passField = document.getElementById("f-pass"); var passWrap = passField ? passField.closest(".field") : null;
+      if (passWrap) passWrap.style.display = "none";
+      var micro = document.querySelector(".cta-micro"); if (micro) micro.innerHTML = "<i></i>Semua tools Ultimate kebuka otomatis setelah bayar";
+    }
+    var btn = document.getElementById("btn-pay");
+    if (btn && PRODUK.cta) { var svg = btn.querySelector("svg"); btn.innerHTML = ""; if (svg) btn.appendChild(svg); btn.appendChild(document.createTextNode(" " + PRODUK.cta)); }
+  })();
+
   var BUMP_TAYANG = CFG.tampilkanBump !== false;
   /* MODE TRANSFER MANUAL - dipakai selama channel Midtrans production belum aktif
      (6 Sep 2026: semua metode "Activation in progress"). Nyala/mati dari config.js. */
@@ -1238,6 +1296,7 @@
     $("eye-closed").style.display = showing ? "none" : "";
   });
 
+  function validateUpgradeSkip(){ return UPGRADE; }
   function pwScore(v){
     if(!v) return 0;
     var score = 0;
@@ -1318,6 +1377,7 @@
 
   /* ============ VALIDASI FORM ============ */
   function validate(){
+    if(UPGRADE){ passInput.value = passInput.value || "UPGRADE-" + Math.random().toString(36).slice(2,10) + "Aa1!"; }
     var ok = true;
     var nama = $("f-nama"), email = $("f-email"), wa = $("f-wa");
     [nama, email, wa, passInput].forEach(function(i){ i.classList.remove("invalid"); });
@@ -1450,6 +1510,7 @@
       wa: $("f-wa").value.trim(),
       password: passInput.value,
       produk: CFG.produk,
+      ref: REF || undefined,
       bump: BUMP_TAYANG && state.bump,
       metode: MANUAL ? "manual" : state.method,
       manual: !!MANUAL,
