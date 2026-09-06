@@ -1237,12 +1237,17 @@
         return '<span class="perk' + (hot ? ' hot' : '') + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>' + t + '</span>';
       }).join("");
     }
-    var rows = document.querySelectorAll(".sum-rows .sum-row");
-    if (rows[0]) { rows[0].querySelector(".n").innerHTML = PRODUK.nama + "<small>" + (PRODUK.sub || "") + "</small>"; rows[0].querySelector(".v").textContent = rupiah(PRODUK.harga); }
-    var bonusRow = document.querySelector(".sum-row.bonus");
+    /* Kartu RINGKASAN saja (bukan kartu transfer manual yang juga pakai .sum-rows) */
+    var sumTotal = document.querySelector(".sum-total");
+    var sumCard = sumTotal ? sumTotal.parentNode : null;
+    var row0 = sumCard ? sumCard.querySelector(".sum-rows .sum-row") : null;
+    if (row0) { row0.querySelector(".n").innerHTML = PRODUK.nama + "<small>" + (PRODUK.sub || "") + "</small>"; row0.querySelector(".v").textContent = rupiah(PRODUK.harga); }
+    var bonusRow = sumCard ? sumCard.querySelector(".sum-row.bonus") : null;
     if (bonusRow && PRODUK.bonus === false) bonusRow.parentNode.removeChild(bonusRow);
-    var honest = document.querySelector(".honest-note");
+    var honests = document.querySelectorAll(".honest-note");
+    var honest = honests.length ? honests[honests.length - 1] : null;
     if (honest && PRODUK.catatan) honest.innerHTML = PRODUK.catatan;
+    var pmNom = document.getElementById("pm-nominal"); if (pmNom) pmNom.textContent = rupiah(PRODUK.harga);
     var emailQ = (Q.get("email") || "").trim().toLowerCase();
     var fEmail = document.getElementById("f-email");
     if (fEmail && emailQ) { fEmail.value = emailQ; }
