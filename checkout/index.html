@@ -924,6 +924,16 @@
               <div class="sub">Semua metode tanpa biaya tambahan untukmu</div>
             </div>
           </div>
+          <div id="pay-manual" style="display:none;">
+            <div class="honest-note" style="margin:0 0 12px;">
+              <b>Pembayaran otomatis (QRIS/VA) sedang proses aktivasi</b> dari pihak Midtrans, jadi sementara pembayaran lewat <b>transfer bank</b>. Klik tombol di bawah, nomor rekening &amp; kode pesanan langsung muncul.
+            </div>
+            <div class="sum-rows" style="border:1px solid rgba(249,115,22,.35);border-radius:12px;padding:6px 4px;">
+              <div class="sum-row"><span class="n">Bank<small>a.n. <span id="pm-atasnama"></span></small></span><span class="v" id="pm-bank"></span></div>
+              <div class="sum-row"><span class="n">Nominal<small>transfer persis segini</small></span><span class="v" id="pm-nominal">Rp100.000</span></div>
+              <div class="sum-row"><span class="n">Bukti transfer<small>kirim + email login kamu</small></span><span class="v">Telegram / Email</span></div>
+            </div>
+          </div>
           <div class="pay-grid" id="pay-grid">
             <div class="pay-opt selected" data-method="qris" data-label="QRIS" role="radio" aria-checked="true" tabindex="0">
               <span class="pay-radio"><i></i></span>
@@ -1049,6 +1059,25 @@
            kita, jadi funnel-nya (bump, ringkasan, trust) tetap kelihatan. -->
       <div id="snap-container" style="display:none;min-height:520px;"></div>
 
+      <!-- state: TRANSFER MANUAL (sementara channel Midtrans belum aktif) -->
+      <div id="pane-manual" style="display:none;">
+        <div class="sum-rows" style="margin-top:4px;">
+          <div class="sum-row"><span class="n">Bank</span><span class="v" id="pm2-bank"></span></div>
+          <div class="sum-row"><span class="n">No. rekening</span><span class="v" style="display:flex;gap:8px;align-items:center;"><b id="pm2-nomor" style="font-size:17px;letter-spacing:.04em;"></b><button type="button" id="pm2-copy" class="btn-retry" style="padding:6px 10px;font-size:11px;min-height:0;">Salin</button></span></div>
+          <div class="sum-row"><span class="n">Atas nama</span><span class="v" id="pm2-atasnama"></span></div>
+          <div class="sum-row"><span class="n">Nominal</span><span class="v" id="pm2-nominal"></span></div>
+          <div class="sum-row"><span class="n">Kode pesanan<small>tulis di berita transfer</small></span><span class="v"><b id="pm2-order"></b></span></div>
+        </div>
+        <p style="margin:14px 0 8px;font-size:13px;line-height:1.6;color:var(--ink-mid);">
+          Setelah transfer, kirim <b>bukti transfer + kode pesanan</b> lewat salah satu ini. Akun diaktifkan maksimal <b>1 jam</b> setelah bukti diterima (jam 08.00&ndash;22.00 WIB), lalu kamu login pakai email + password yang barusan dibuat.
+        </p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a class="btn-retry" id="pm2-tg" href="#" target="_blank" rel="noopener" style="text-decoration:none;">Kirim bukti via Telegram</a>
+          <a class="btn-retry" id="pm2-mail" href="#" style="text-decoration:none;">Kirim bukti via Email</a>
+        </div>
+        <p style="margin:12px 0 0;font-size:11.5px;color:var(--ink-faint);">Pesanan tersimpan atas email yang kamu isi. Kalau bukti belum sempat dikirim, cukup chat kami dengan kode pesanan di atas.</p>
+      </div>
+
       <!-- state: GAGAL / EXPIRED -->
       <div id="pane-fail" style="display:none;">
         <div class="fail-holder">
@@ -1170,6 +1199,19 @@
   var BASE = CFG.harga;
   var BUMP = CFG.hargaBump;
   var BUMP_TAYANG = CFG.tampilkanBump !== false;
+  /* MODE TRANSFER MANUAL - dipakai selama channel Midtrans production belum aktif
+     (6 Sep 2026: semua metode "Activation in progress"). Nyala/mati dari config.js. */
+  var MANUAL = CFG.bayarManual === true && CFG.rekening && CFG.rekening.nomor;
+  if(MANUAL){
+    var pg = document.getElementById("pay-grid"); if(pg) pg.style.display = "none";
+    var pmc = document.getElementById("pay-manual"); if(pmc) pmc.style.display = "";
+    document.getElementById("pm-bank").textContent = CFG.rekening.bank;
+    document.getElementById("pm-atasnama").textContent = CFG.rekening.atasNama;
+    var micro = document.querySelector(".cta-micro");
+    if(micro) micro.innerHTML = "<i></i>Akses diaktifkan maks 1 jam setelah bukti transfer diterima";
+    var subEl = document.querySelector("#pay-manual") && document.querySelector("#pay-manual").parentNode.querySelector(".card-head .sub");
+    if(subEl) subEl.textContent = "Sementara lewat transfer bank, tanpa biaya tambahan";
+  }
   if(!BUMP_TAYANG){
     var bs = document.getElementById("bump-section");
     if(bs) bs.parentNode.removeChild(bs);
@@ -1300,7 +1342,30 @@
     $("pane-loading").style.display = nama === "loading" ? "" : "none";
     $("snap-container").style.display = nama === "snap" ? "" : "none";
     $("pane-fail").style.display = nama === "fail" ? "" : "none";
+    $("pane-manual").style.display = nama === "manual" ? "" : "none";
   }
+
+  function tampilManual(orderId){
+    var r = CFG.rekening, k = CFG.kontak || {};
+    $("pm2-bank").textContent = r.bank;
+    $("pm2-nomor").textContent = r.nomor;
+    $("pm2-atasnama").textContent = r.atasNama;
+    $("pm2-nominal").textContent = rupiah(total());
+    $("pm2-order").textContent = orderId;
+    var teks = "Halo, saya sudah transfer " + rupiah(total()) + " untuk Adverthinking AI. Kode pesanan: " + orderId + ". Email login saya: " + $("f-email").value.trim();
+    if(k.telegram){ $("pm2-tg").href = k.telegram; } else { $("pm2-tg").style.display = "none"; }
+    if(k.email){
+      $("pm2-mail").href = "mailto:" + k.email + "?subject=" + encodeURIComponent("Bukti transfer " + orderId) + "&body=" + encodeURIComponent(teks + "\n\n(lampirkan bukti transfer)");
+    } else { $("pm2-mail").style.display = "none"; }
+    tampilPane("manual");
+  }
+  $("pm2-copy").addEventListener("click", function(){
+    var t = $("pm2-nomor").textContent;
+    var btn = $("pm2-copy");
+    function ok(){ btn.textContent = "Tersalin"; setTimeout(function(){ btn.textContent = "Salin"; }, 1600); }
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(ok, ok); }
+    else { var ta = document.createElement("textarea"); ta.value = t; document.body.appendChild(ta); ta.select(); try{ document.execCommand("copy"); }catch(e){} document.body.removeChild(ta); ok(); }
+  });
 
   function bukaModal(){
     $("m-amount").textContent = rupiah(total());
@@ -1384,7 +1449,8 @@
       password: passInput.value,
       produk: CFG.produk,
       bump: BUMP_TAYANG && state.bump,
-      metode: state.method,
+      metode: MANUAL ? "manual" : state.method,
+      manual: !!MANUAL,
       utm: ambilUtm()
     };
     return fetch(CFG.endpointCreateOrder, {
@@ -1407,9 +1473,14 @@
     bukaModal();
     tampilPane("loading");
 
-    muatSnap()
+    (MANUAL ? Promise.resolve() : muatSnap())
       .then(mintaToken)
       .then(function(res){
+        if(MANUAL && res.ok && res.data && res.data.order_id){
+          orderAktif = { order_id: res.data.order_id, token: null };
+          tampilManual(res.data.order_id);
+          return;
+        }
         if(!res.ok || !res.data || !res.data.token){
           var pesan = (res.data && res.data.error) || "Gagal menyiapkan pembayaran.";
           if(res.data && res.data.detail){
@@ -1446,6 +1517,7 @@
 
   /* Ulangi bayar: pakai token yang SAMA kalau masih ada (order gak dobel). */
   $("btn-retry").addEventListener("click", function(){
+    if(MANUAL && orderAktif && orderAktif.order_id){ tampilManual(orderAktif.order_id); return; }
     if(orderAktif && orderAktif.token){
       pasangSnap(orderAktif.token);
     } else {
