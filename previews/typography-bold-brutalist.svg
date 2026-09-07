@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320">
+  <rect width="320" height="320" fill="#F4F1EA"/>
+  <rect x="14" y="14" width="292" height="292" fill="none" stroke="#111111" stroke-width="10"/>
+  <rect x="19" y="19" width="282" height="88" fill="#111111"/>
+  <text x="34" y="88" font-family="Arial Black, Arial, sans-serif" font-size="62" font-weight="900" fill="#F4F1EA">SALE</text>
+  <text x="34" y="200" font-family="Arial Black, Arial, sans-serif" font-size="78" font-weight="900" fill="#111111">-50%</text>
+  <rect x="19" y="226" width="282" height="75" fill="#F97316"/>
+  <text x="34" y="278" font-family="Arial Black, Arial, sans-serif" font-size="30" font-weight="900" fill="#111111">HARI INI AJA &#8594;</text>
+</svg>

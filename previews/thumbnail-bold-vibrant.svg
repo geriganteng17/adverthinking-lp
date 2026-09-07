@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320">
+  <rect width="320" height="320" fill="#1F2430"/>
+  <clipPath id="bv-frame"><rect x="10" y="70" width="300" height="169" rx="12"/></clipPath>
+  <g clip-path="url(#bv-frame)">
+    <rect x="10" y="70" width="300" height="169" fill="#FACC15"/>
+    <circle cx="290" cy="220" r="120" fill="#F97316" opacity="0.55"/>
+    <!-- blok wajah abstrak -->
+    <circle cx="248" cy="142" r="34" fill="#7C2D12"/>
+    <path d="M196 239 q52 -64 104 0 Z" fill="#7C2D12"/>
+    <circle cx="248" cy="142" r="40" fill="none" stroke="#DC2626" stroke-width="5"/>
+    <!-- teks besar -->
+    <text x="30" y="172" font-family="Arial Black, Arial, sans-serif" font-size="58" font-weight="900" fill="#111111" stroke="#FFFFFF" stroke-width="2" paint-order="stroke">WOW!</text>
+    <path d="M120 192 l52 22 l-12 -22 Z" fill="#DC2626"/>
+  </g>
+  <rect x="10" y="70" width="300" height="169" rx="12" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.25"/>
+  <text x="160" y="48" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="3" fill="#FACC15">BOLD &amp; VIBRANT</text>
+  <text x="160" y="278" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#9CA3AF">16:9 &#183; warna nabrak &#183; teks gede + outline</text>
+</svg>

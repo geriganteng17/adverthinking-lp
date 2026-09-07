@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F6F1EB"/>
+    </linearGradient>
+    <linearGradient id="prod" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2A201A"/>
+      <stop offset="0.85" stop-color="#1A130E"/>
+      <stop offset="1" stop-color="#F59E0B"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#F59E0B" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#F59E0B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="320" height="320" fill="url(#bg)"/>
+  <circle cx="170" cy="170" r="130" fill="url(#halo)"/>
+  <ellipse cx="160" cy="248" rx="64" ry="8" fill="#1E293B" opacity="0.18"/>
+  <rect x="126" y="118" width="68" height="130" rx="12" fill="url(#prod)"/>
+  <rect x="190" y="124" width="3" height="118" rx="1.5" fill="#FBBF24" opacity="0.85"/>
+  <text x="32" y="70" font-family="Georgia, 'Times New Roman', serif" font-size="40" fill="#A8772B">Aa</text>
+</svg>

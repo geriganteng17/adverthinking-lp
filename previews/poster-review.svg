@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+<defs>
+<radialGradient id="preview-bg" cx="50%" cy="36%" r="80%"><stop offset="0%" stop-color="#242424"/><stop offset="100%" stop-color="#111111"/></radialGradient>
+<linearGradient id="preview-acc" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fb923c"/><stop offset="100%" stop-color="#ea580c"/></linearGradient>
+</defs>
+<rect width="320" height="320" fill="url(#preview-bg)"/>
+<text x="72" y="78" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#f97316">&#9733;</text>
+<text x="102" y="78" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#f97316">&#9733;</text>
+<text x="132" y="78" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#f97316">&#9733;</text>
+<text x="162" y="78" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#f97316">&#9733;</text>
+<text x="192" y="78" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#f97316">&#9733;</text>
+<rect x="40" y="100" width="184" height="124" rx="16" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.14" stroke-width="2"/>
+<text x="56" y="150" font-family="Georgia, 'Times New Roman', serif" font-size="56" font-weight="700" fill="#f97316">&#8220;</text>
+<rect x="62" y="156" width="130" height="8" rx="4" fill="#ffffff" fill-opacity="0.32"/>
+<rect x="62" y="172" width="142" height="8" rx="4" fill="#ffffff" fill-opacity="0.32"/>
+<rect x="62" y="188" width="98" height="8" rx="4" fill="#ffffff" fill-opacity="0.32"/>
+<rect x="206" y="86" width="78" height="30" rx="15" fill="url(#preview-acc)"/>
+<text x="245" y="106" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">1000+</text>
+<rect x="62" y="240" width="84" height="8" rx="4" fill="#ffffff" fill-opacity="0.92"/>
+<rect x="62" y="256" width="56" height="6" rx="3" fill="#ffffff" fill-opacity="0.32"/>
+<ellipse cx="262" cy="250" rx="24" ry="5" fill="#000000" fill-opacity="0.35"/>
+<rect x="254" y="158" width="16" height="18" rx="4" fill="#ffffff" fill-opacity="0.5"/>
+<rect x="246" y="172" width="32" height="76" rx="9" fill="#ffffff" fill-opacity="0.5"/>
+</svg>

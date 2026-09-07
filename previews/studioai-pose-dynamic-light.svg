@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+<defs>
+<radialGradient id="bgGlow" cx="50%" cy="36%" r="80%"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#F1F5F9"/></radialGradient>
+<linearGradient id="acc" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fb923c"/><stop offset="100%" stop-color="#ea580c"/></linearGradient>
+</defs>
+<rect width="320" height="320" fill="url(#bgGlow)"/>
+<path d="M60 210 A120 120 0 0 1 96 84" stroke="#f97316" stroke-opacity=".25" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M236 78 A120 120 0 0 1 266 196" stroke="#475569" stroke-opacity=".16" stroke-width="4" fill="none" stroke-linecap="round"/>
+<circle cx="86" cy="120" r="4" fill="#f97316" opacity=".5"/>
+<circle cx="244" cy="226" r="4" fill="#f97316" opacity=".4"/>
+<circle cx="106" cy="236" r="3" fill="#475569" opacity=".35"/>
+<ellipse cx="160" cy="286" rx="34" ry="9" fill="#1E293B" opacity="0.14"/>
+<circle cx="160" cy="58" r="24" fill="url(#acc)"/>
+<rect x="136" y="88" width="48" height="72" rx="24" fill="url(#acc)"/>
+<path d="M140 102 L108 66" stroke="#f97316" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="1"/>
+<path d="M180 102 L212 64" stroke="#f97316" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="1"/>
+<path d="M150 162 L128 196 L152 218" stroke="#ea580c" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="1"/>
+<path d="M172 164 L198 192 L182 220" stroke="#f97316" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="1"/>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FDE9D7"/>
+      <stop offset="1" stop-color="#EBD6C2"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFD9A0" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#FFD9A0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="prod" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C2410C"/>
+      <stop offset="1" stop-color="#7C2D12"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#DCC3AB"/>
+      <stop offset="1" stop-color="#C9AE94"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="320" fill="url(#bg)"/>
+  <circle cx="232" cy="88" r="92" fill="url(#sun)"/>
+  <rect y="232" width="320" height="88" fill="url(#floor)"/>
+  <ellipse cx="168" cy="240" rx="86" ry="13" fill="#3B2412" opacity="0.22"/>
+  <rect x="128" y="118" width="80" height="122" rx="14" fill="url(#prod)"/>
+  <rect x="140" y="134" width="18" height="64" rx="9" fill="#FFFFFF" opacity="0.28"/>
+  <ellipse cx="208" cy="128" rx="5" ry="5" fill="#FFF3E2" opacity="0.9"/>
+  <text x="34" y="74" font-family="Georgia, 'Times New Roman', serif" font-size="46" fill="#7C2D12">Aa</text>
+</svg>

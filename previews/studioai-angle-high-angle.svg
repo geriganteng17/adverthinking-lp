@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+<defs>
+<radialGradient id="bgGlow" cx="50%" cy="36%" r="80%"><stop offset="0%" stop-color="#242424"/><stop offset="100%" stop-color="#111111"/></radialGradient>
+<linearGradient id="acc" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fb923c"/><stop offset="100%" stop-color="#ea580c"/></linearGradient>
+</defs>
+<rect width="320" height="320" fill="url(#bgGlow)"/>
+<path d="M40 70 V46 H64 M280 70 V46 H256 M40 250 V274 H64 M280 250 V274 H256" stroke="#ffffff" stroke-opacity=".3" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M48 52 L148 246" stroke="#ffffff" stroke-opacity=".12" stroke-width="3"/>
+<path d="M272 52 L172 246" stroke="#ffffff" stroke-opacity=".12" stroke-width="3"/>
+<path d="M160 76 l-12 -18 h24 Z" fill="#f97316" opacity=".9"/>
+<ellipse cx="160" cy="270" rx="26" ry="9" fill="#000000" opacity="0.25"/>
+<g opacity="1"><circle cx="160" cy="196" r="12.959999999999999" fill="url(#acc)"/><path d="M160 217.6 V252.16" stroke="url(#acc)" stroke-width="24.48" stroke-linecap="round" fill="none"/></g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320">
+  <rect width="320" height="320" fill="#FFFFFF"/>
+  <rect x="18" y="18" width="284" height="284" fill="none" stroke="#C9A227" stroke-width="1.5"/>
+  <rect x="26" y="26" width="268" height="268" fill="none" stroke="#C9A227" stroke-width="0.75" opacity="0.6"/>
+  <text x="160" y="186" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="120" font-weight="400" fill="#8A7423">Aa</text>
+  <line x1="110" y1="216" x2="210" y2="216" stroke="#C9A227" stroke-width="1"/>
+  <text x="160" y="248" text-anchor="middle" font-family="Georgia, serif" font-size="14" letter-spacing="8" fill="#8A7423">LUXURY</text>
+  <text x="160" y="272" text-anchor="middle" font-family="Georgia, serif" font-size="10" letter-spacing="5" fill="#A8841C">PREMIUM EDITION</text>
+  <circle cx="160" cy="62" r="3" fill="#C9A227"/>
+</svg>

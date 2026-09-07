@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+<defs>
+<radialGradient id="bgGlow" cx="50%" cy="36%" r="80%"><stop offset="0%" stop-color="#242424"/><stop offset="100%" stop-color="#111111"/></radialGradient>
+<linearGradient id="acc" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fb923c"/><stop offset="100%" stop-color="#ea580c"/></linearGradient>
+</defs>
+<rect width="320" height="320" fill="url(#bgGlow)"/>
+<path d="M40 246 H280" stroke="#ffffff" stroke-opacity=".18" stroke-width="4" stroke-linecap="round"/>
+<rect x="86" y="78" width="56" height="72" rx="4" stroke="#ffffff" stroke-opacity=".25" stroke-width="4" fill="#ffffff" fill-opacity=".03"/>
+<path d="M96 134 L132 92" stroke="#f97316" stroke-opacity=".6" stroke-width="4" stroke-linecap="round"/>
+<path d="M204 218 H246 L240 248 H210 Z" fill="#ffffff" opacity=".12"/>
+<path d="M225 218 V182" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.35"/>
+<path d="M225 198 Q206 192 202 174" stroke="#ffffff" stroke-opacity=".3" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M225 192 Q244 186 248 168" stroke="#ffffff" stroke-opacity=".3" stroke-width="5" fill="none" stroke-linecap="round"/>
+<circle cx="225" cy="176" r="6" fill="url(#acc)"/>
+</svg>

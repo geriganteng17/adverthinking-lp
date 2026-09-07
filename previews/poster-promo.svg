@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+<defs>
+<radialGradient id="ppromo-bg" cx="50%" cy="36%" r="80%"><stop offset="0%" stop-color="#242424"/><stop offset="100%" stop-color="#111111"/></radialGradient>
+<linearGradient id="ppromo-acc" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fb923c"/><stop offset="100%" stop-color="#ea580c"/></linearGradient>
+</defs>
+<rect width="320" height="320" fill="url(#ppromo-bg)"/>
+<g stroke="#f97316" stroke-width="3" stroke-linecap="round" opacity="0.75">
+<line x1="96" y1="26" x2="96" y2="38"/>
+<line x1="150" y1="44" x2="142" y2="54"/>
+<line x1="42" y1="44" x2="50" y2="54"/>
+</g>
+<circle cx="96" cy="112" r="56" fill="url(#ppromo-acc)"/>
+<circle cx="96" cy="112" r="65" stroke="#f97316" stroke-opacity="0.35" stroke-width="2" fill="none"/>
+<text x="96" y="124" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="700" fill="#ffffff">50%</text>
+<rect x="180" y="84" width="104" height="16" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<rect x="180" y="108" width="78" height="16" rx="3" fill="#ffffff" fill-opacity="0.92"/>
+<rect x="180" y="144" width="62" height="9" rx="4" fill="#ffffff" fill-opacity="0.32"/>
+<line x1="174" y1="148" x2="248" y2="148" stroke="#f97316" stroke-width="3"/>
+<rect x="180" y="162" width="86" height="13" rx="4" fill="#f97316"/>
+<path d="M218 0 L320 102 L320 58 L262 0 Z" fill="#ea580c"/>
+<path d="M252 22 L262 32 M268 38 L278 48 M284 54 L294 64" stroke="#ffffff" stroke-opacity="0.55" stroke-width="3" stroke-linecap="round"/>
+<line x1="36" y1="214" x2="284" y2="214" stroke="#ffffff" stroke-opacity="0.10" stroke-width="2"/>
+<rect x="78" y="240" width="164" height="44" rx="22" fill="url(#ppromo-acc)"/>
+<rect x="124" y="258" width="72" height="9" rx="4" fill="#ffffff" opacity="0.95"/>
+</svg>
