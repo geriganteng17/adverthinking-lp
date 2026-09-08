@@ -1,6 +1,6 @@
 {
  "versi": 1,
- "diperbarui": "2026-09-08T19:26:43+07:00",
+ "diperbarui": "2026-09-08T19:46:43+07:00",
  "items": [
   {
    "id": "dummy-product_photo-20260908",
@@ -1788,6 +1788,32 @@
    "dibuat": "2026-09-08T19:26:43+07:00",
    "catatan": "Preset: Kopi susu literan · Sinematik Produk · frame awal = hasil Foto Produk AI kita, video lewat tool Videos (Veo) di Gemini akun Bolo (uji)",
    "sumber": "Gemini web > Videos (Veo), akun Bolo; frame dari stok Studio Foto",
+   "versi": "veo-web-1",
+   "vonis": "uji"
+  },
+  {
+   "id": "adv_video_ugc_kopi-susu-literan_rina_veo1",
+   "tool_id": "ugc",
+   "studio": "video",
+   "jalur": "gemini-web-videos",
+   "settingan": {
+    "brandName": "Kopi Laras",
+    "style": "review santai",
+    "karakter": "Mbak Rina — Wanita 27 tahun, rambut hitam sebahu, kulit sawo matang, senyum ramah, wajah oval, tinggi sedang",
+    "dialog1": "Ini Kopi Laras, kopi susu gula aren satu liter. Manisnya pas, kopinya kerasa banget. Buat stok di kulkas, seminggu aman.",
+    "ratio": "9:16",
+    "durasi": "10s"
+   },
+   "prompt_final": "UGC talking-head video, casual honest product review, natural handheld feel. The person from the reference image speaks directly to camera in Indonesian, lip-synced to this exact line: \"Ini Kopi Laras, kopi susu gula aren satu liter. Manisnya pas, kopinya kerasa banget. Buat stok di kulkas, seminggu aman.\". Product: Kopi Laras, a 1 liter glass bottle of palm sugar milk coffee with a cream paper label, held casually in her hand. Character (keep IDENTICAL in every output): Wanita 27 tahun, rambut hitam sebahu, kulit sawo matang, senyum ramah, wajah oval, tinggi sedang. Realistic smartphone footage look, soft indoor lighting in a cozy kitchen, shallow depth of field, subtle natural gestures, vertical 9:16 framing for Reels/TikTok. Keep the face, hair and outfit exactly consistent with the reference image. No text overlays, no captions, no subtitles, no watermark, no logos added.",
+   "file": "canvas/contoh/video/adv_video_ugc_kopi-susu-literan_rina_veo1.mp4",
+   "poster": "canvas/contoh/video/adv_video_ugc_kopi-susu-literan_rina_veo1.jpg",
+   "ratio": "9:16",
+   "kind": "video",
+   "durasi_detik": 10,
+   "resolusi": "720x1280",
+   "dibuat": "2026-09-08T19:46:43+07:00",
+   "catatan": "Preset: Kopi susu literan · UGC Express · karakter Mbak Rina dari tool Cast kita (frame = potongan tampak depan sheet), video lewat tool Videos (Veo) di Gemini akun Bolo (uji)",
+   "sumber": "Gemini web > Videos (Veo), akun Bolo; frame dari stok kita",
    "versi": "veo-web-1",
    "vonis": "uji"
   }
