@@ -24,7 +24,9 @@
       "ratio": "1:1",
       "kind": "image",
       "dibuat": "2026-09-08T00:00:00+07:00",
-      "catatan": "Item dummy untuk menguji contoh_build.py. Jangan dihapus sampai ada item asli; jangan pernah tampil di app."
+      "catatan": "Item dummy untuk menguji contoh_build.py. Jangan dihapus sampai ada item asli; jangan pernah tampil di app.",
+      "vonis": "bagus",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_product_photo_kopi-susu-literan_mtsbijzu_1",
@@ -50,7 +52,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:06:16+07:00",
       "catatan": "Preset: Kopi susu literan",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "bagus",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_content_skincare-serum_mtsbiuw7_1",
@@ -74,7 +78,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:06:16+07:00",
       "catatan": "Preset: Skincare serum",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "bagus",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_poster_feed_kelas-online-desain_mtsbjm7i_1",
@@ -102,7 +108,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:06:16+07:00",
       "catatan": "Preset: Kelas online desain",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "bagus",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_thumbnail_hijab-fashion_mtsbk0t2_1",
@@ -125,7 +133,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:06:16+07:00",
       "catatan": "Preset: Hijab & fashion",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "jelek",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_typography_frozen-food-rumahan_mtsbkbwz_1",
@@ -148,7 +158,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:06:16+07:00",
       "catatan": "Preset: Frozen food rumahan",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "jelek",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_logo_mockup_cafe-resto_mtsbkn81_1",
@@ -176,7 +188,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:06:16+07:00",
       "catatan": "Preset: Cafe / resto",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "bagus",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_slide_produk-digital-template_mtsbkyyb_1",
@@ -205,7 +219,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:06:16+07:00",
       "catatan": "Preset: Produk digital / template · 1/3",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "jelek",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_slide_produk-digital-template_mtsbn09v_3",
@@ -234,7 +250,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:06:16+07:00",
       "catatan": "Preset: Produk digital / template · 3/3",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "jelek",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_feed_nada_kopi-susu-literan_mtsbnaix_1",
@@ -264,7 +282,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:06:16+07:00",
       "catatan": "Preset: Kopi susu literan · 1/3",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "jelek",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_feed_nada_kopi-susu-literan_mtsbnlyr_2",
@@ -294,7 +314,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:06:16+07:00",
       "catatan": "Preset: Kopi susu literan · 2/3",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "jelek",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_feed_nada_kopi-susu-literan_mtsbnwvn_3",
@@ -324,7 +346,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:06:16+07:00",
       "catatan": "Preset: Kopi susu literan · 3/3",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "jelek",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_video_cast_isi_mtsbsiax_1",
@@ -476,7 +500,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:10:01+07:00",
       "catatan": "Preset: Kopi susu literan",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "jelek",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_product_photo_skincare-serum_mtsbq3bj_1",
@@ -502,7 +528,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:10:01+07:00",
       "catatan": "Preset: Skincare serum",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "bagus",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_content_kelas-online-desain_mtsbqd7r_1",
@@ -526,7 +554,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:10:01+07:00",
       "catatan": "Preset: Kelas online desain",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "bagus",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_poster_feed_hijab-fashion_mtsbqr0u_1",
@@ -554,7 +584,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:10:01+07:00",
       "catatan": "Preset: Hijab & fashion",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "bagus",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_thumbnail_frozen-food-rumahan_mtsbqzdw_1",
@@ -577,7 +609,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:10:02+07:00",
       "catatan": "Preset: Frozen food rumahan",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "jelek",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_typography_jasa-cleaning_mtsbsbr5_1",
@@ -600,7 +634,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:10:02+07:00",
       "catatan": "Preset: Jasa cleaning",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "jelek",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_logo_mockup_produk-digital-template_mtsbsm2u_1",
@@ -628,7 +664,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:10:02+07:00",
       "catatan": "Preset: Produk digital / template",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "bagus",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_menu_fnb_cafe-resto_mtsbt04q_1",
@@ -650,7 +688,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:10:02+07:00",
       "catatan": "Preset: Cafe / resto",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "jelek",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_product_photo_kelas-online-desain_mtsbtcxv_1",
@@ -676,7 +716,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:10:02+07:00",
       "catatan": "Preset: Kelas online desain",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "bagus",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_content_hijab-fashion_mtsbtqlk_1",
@@ -700,7 +742,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:10:02+07:00",
       "catatan": "Preset: Hijab & fashion",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "bagus",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_poster_feed_frozen-food-rumahan_mtsbu2tk_1",
@@ -728,7 +772,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:10:02+07:00",
       "catatan": "Preset: Frozen food rumahan",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "bagus",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_slide_skincare-serum_mtsbui0e_1",
@@ -757,7 +803,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:10:02+07:00",
       "catatan": "Preset: Skincare serum · 1/3",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "jelek",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_slide_skincare-serum_mtsbux4r_2",
@@ -786,7 +834,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:10:02+07:00",
       "catatan": "Preset: Skincare serum · 2/3",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "jelek",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_slide_skincare-serum_mtsbvoim_3",
@@ -815,7 +865,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:10:02+07:00",
       "catatan": "Preset: Skincare serum · 3/3",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "jelek",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_feed_nada_frozen-food-rumahan_mtsbvzma_1",
@@ -845,7 +897,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:10:02+07:00",
       "catatan": "Preset: Frozen food rumahan · 1/3",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "jelek",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_feed_nada_frozen-food-rumahan_mtsbwfdw_2",
@@ -875,7 +929,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:10:02+07:00",
       "catatan": "Preset: Frozen food rumahan · 2/3",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "jelek",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     },
     {
       "id": "adv_foto_feed_nada_frozen-food-rumahan_mtsbwuur_3",
@@ -905,7 +961,9 @@
       "kind": "image",
       "dibuat": "2026-09-08T14:10:02+07:00",
       "catatan": "Preset: Frozen food rumahan · 3/3",
-      "sumber": "jembatan operator Canvas (postMessage), akun Bolo"
+      "sumber": "jembatan operator Canvas (postMessage), akun Bolo",
+      "vonis": "jelek",
+      "vonis_oleh": "Bolo 8 Sep 2026 malam"
     }
   ]
 }

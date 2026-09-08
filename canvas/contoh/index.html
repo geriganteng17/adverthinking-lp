@@ -122,7 +122,7 @@ function renderFilters() {
   $('#stats').innerHTML = `<div class="stat"><b>${ITEMS.length}</b> contoh</div><div class="stat"><b>${tools}</b> tool punya contoh</div><div class="stat"><b>${studios}</b> studio</div><div class="stat">Terbaru <b>${esc(last.slice(0, 16).replace('T', ' '))}</b> WIB</div>`;
 }
 fetch('./stok.json', { cache: 'no-store' }).then(r => r.json()).then(j => {
-  ITEMS = (j.items || []).filter(it => !it.dummy && it.file && it.kind === 'image').sort((a, b) => String(b.dibuat || '').localeCompare(String(a.dibuat || '')));
+  ITEMS = (j.items || []).filter(it => !it.dummy && it.vonis !== 'jelek' && it.file && it.kind === 'image').sort((a, b) => String(b.dibuat || '').localeCompare(String(a.dibuat || '')));
   renderFilters(); render();
 }).catch(() => { $('#grid').innerHTML = '<div class="empty">Stok belum bisa dimuat. Coba muat ulang.</div>'; });
 </script>
