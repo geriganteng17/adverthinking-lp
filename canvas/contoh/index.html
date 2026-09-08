@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galeri Contoh Hasil · Adverthinking AI</title>
+<meta name="description" content="Contoh hasil nyata dari tool Adverthinking AI di Gemini Canvas: gambar, settingan, dan prompt-nya. Bertambah tiap hari.">
+<link rel="icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#F4F2EF; --muted:rgba(230,224,216,.62); --dim:rgba(230,224,216,.38); --line:rgba(255,255,255,.10); --ember:#F97316; }
+  * { box-sizing:border-box; }
+  html, body { margin:0; padding:0; min-height:100%; }
+  body { background:#07070D linear-gradient(180deg,#0B0B12 0%,#08080F 100%); color:var(--ink); font-family:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif; letter-spacing:.01em; -webkit-font-smoothing:antialiased; }
+  .grain { position:fixed; inset:0; pointer-events:none; z-index:-1; background-repeat:repeat; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"); }
+  .aurora { position:fixed; border-radius:50%; pointer-events:none; z-index:-1; }
+  .aurora-1 { width:720px; height:540px; top:-180px; left:40%; background:radial-gradient(closest-side, rgba(251,146,60,.26), rgba(251,146,60,.10) 45%, transparent 78%); }
+  .aurora-2 { width:620px; height:620px; top:60px; right:-160px; background:radial-gradient(closest-side, rgba(232,89,12,.18), rgba(232,89,12,.07) 45%, transparent 78%); }
+  .glass { position:relative; background:linear-gradient(160deg, rgba(255,255,255,.075), rgba(255,255,255,.015)); border:1px solid var(--line); border-radius:20px; }
+  .k-label { text-transform:uppercase; font-size:10.5px; letter-spacing:.16em; color:rgba(230,224,216,.28); font-weight:600; }
+  .text-ember { background:linear-gradient(90deg,#FFE3C4,#FDBA74,#F97316); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .wrap { max-width:1180px; margin:0 auto; padding:22px 20px 60px; }
+  .top { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
+  .logo { font-weight:800; font-size:18px; text-decoration:none; color:var(--ink); }
+  .btn { display:inline-flex; align-items:center; gap:6px; height:34px; padding:0 12px; border-radius:10px; border:1px solid var(--line); background:rgba(255,255,255,.04); color:var(--ink); font:inherit; font-size:12.5px; font-weight:600; cursor:pointer; text-decoration:none; }
+  .btn:hover { background:rgba(255,255,255,.09); }
+  .btn.on { border-color:rgba(249,115,22,.5); background:rgba(249,115,22,.14); color:#FDBA74; }
+  .btn.ember { border:0; color:#2A1002; background:linear-gradient(90deg,#FDBA74,#F97316,#E8590C); font-weight:800; }
+  .hero { padding:8px 0 18px; }
+  .hero h1 { margin:6px 0 8px; font-size:32px; line-height:1.1; letter-spacing:-.02em; font-weight:800; }
+  .hero p { margin:0; color:var(--muted); font-size:15px; max-width:640px; }
+  .stats { display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 18px; }
+  .stat { padding:8px 12px; border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.03); font-size:12.5px; color:var(--muted); }
+  .stat b { color:var(--ink); }
+  .filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(250px,1fr)); gap:14px; }
+  .card { overflow:hidden; display:flex; flex-direction:column; }
+  .card .box { position:relative; width:100%; background:#000; }
+  .card .box img { display:block; width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+  .card .meta { padding:10px 12px 12px; display:flex; flex-direction:column; gap:8px; }
+  .card .tool { font-size:13.5px; font-weight:700; }
+  .card .cap { font-size:12px; color:var(--muted); line-height:1.4; }
+  .card .acts { display:flex; gap:6px; flex-wrap:wrap; }
+  .card .acts .btn { height:28px; padding:0 9px; font-size:11.5px; }
+  .prompt { display:none; margin:0; padding:10px 12px 10px 16px; position:relative; background:rgba(0,0,0,.55); border-radius:10px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10.5px; line-height:1.5; color:rgba(244,242,239,.85); white-space:pre-wrap; word-break:break-word; max-height:220px; overflow:auto; }
+  .prompt::before { content:""; position:absolute; left:0; top:0; bottom:0; width:2.5px; background:var(--ember); box-shadow:0 0 12px rgba(249,115,22,.8); border-radius:2px; }
+  .prompt.open { display:block; }
+  .set { display:none; font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .set.open { display:block; }
+  .set b { color:#FDBA74; font-weight:600; }
+  .chip { display:inline-block; font-size:10px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; padding:3px 9px; border-radius:999px; border:1px solid rgba(249,115,22,.35); color:#FDBA74; background:rgba(249,115,22,.1); }
+  .empty { padding:30px; text-align:center; color:var(--muted); }
+  .lightbox { position:fixed; inset:0; background:rgba(0,0,0,.88); display:none; align-items:center; justify-content:center; z-index:50; padding:20px; cursor:zoom-out; }
+  .lightbox.open { display:flex; }
+  .lightbox img { max-width:100%; max-height:100%; border-radius:12px; }
+  footer { text-align:center; padding:26px; color:var(--dim); font-size:12px; }
+  @media (max-width:600px) { .hero h1 { font-size:26px; } .wrap { padding:16px 14px 50px; } }
+</style>
+</head>
+<body>
+<div class="grain"></div><div class="aurora aurora-1"></div><div class="aurora aurora-2"></div>
+<div class="wrap">
+  <div class="top">
+    <a class="logo" href="/">Adverthinking <span class="text-ember">AI</span></a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="btn" href="/canvas">Gemini Canvas</a>
+      <a class="btn ember" href="/">Ke beranda</a>
+    </div>
+  </div>
+  <section class="hero">
+    <div class="k-label">Galeri contoh hasil</div>
+    <h1>Hasil <span class="text-ember">nyata</span> dari tool kita</h1>
+    <p>Semua gambar di bawah dibuat pakai Studio Foto dan Studio Video di Gemini Canvas, bukan mockup. Tiap contoh menyimpan settingan dan prompt lengkapnya, dan stoknya bertambah tiap hari.</p>
+    <div class="stats" id="stats"></div>
+  </section>
+  <div class="filters" id="filters"></div>
+  <div class="grid" id="grid"><div class="empty">Memuat contoh…</div></div>
+</div>
+<div class="lightbox" id="lb" onclick="this.classList.remove('open')"><img id="lbImg" alt=""></div>
+<footer>Adverthinking AI · contoh dibuat lewat tool kita sendiri di akun Google, gratis · diperbarui otomatis</footer>
+<script>
+const NAMA = {
+  product_photo:'Foto Produk AI', content:'Banner Iklan AI', studio_ai:'Model & Avatar AI', model_produk:'Model + Produk AI', poster_feed:'Poster Feed', thumbnail:'Thumbnail YouTube', typography:'Poster Tipografi', menu_fnb:'Menu F&B', face_card:'Analisa Wajah & Gaya', photo_enhance:'Edit Foto Jadi Pro', feed_nada:'Feed Satu Nada', slide:'Slide Berantai', banner_ulasan:'Banner Ulasan', logo_mockup:'Logo & Mockup Brand',
+  cast:'Cast: Karakter & Tempat', ugc:'UGC Express', sinematik:'Sinematik Produk', drone:'Drone Lokasi', joget:'Joget Tren', transisi:'Transisi', unboxing:'Unboxing Tangan', beforeafter:'Sebelum-Sesudah', fotohidup:'Foto Hidup', food:'Food Shot', catwalk:'Catwalk Lookbook'
+};
+const STUDIO_LINK = { foto:'https://share.gemini.google/MJ38ARMblVro', video:'https://share.gemini.google/hK6PPlAQ3SdH' };
+const LABEL = { brandName:'Brand', namaProduk:'Produk', produk:'Produk', headline:'Headline', adText:'Headline', subheadline:'Sub', cta:'CTA', industry:'Industri', posterType:'Tipe poster', style:'Gaya', colorPalette:'Palet', colors:'Palet', template:'Template', menuItems:'Menu', tipe:'Tipe', kerangka:'Kerangka', expression:'Ekspresi', bgColor:'Background', productPosition:'Posisi', brightness:'Cahaya', humanTalent:'Talent', accessories:'Props', ambiance:'Suasana', goal:'Tujuan', jumlahFeed:'Jumlah feed', jumlahSlide:'Jumlah slide', cover:'Layout slide 1', poin:'Poin', tagline:'Tagline', kategori:'Kategori', tipo:'Tipografi', kepribadian:'Kepribadian', ikon:'Ikon', latar:'Latar', ratio:'Rasio', mode:'Mode', nama:'Nama', deskripsi:'Deskripsi', pakaian:'Pakaian', vibe:'Vibe', bentuk:'Bentuk', waktu:'Waktu' };
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let ITEMS = [], filter = 'semua';
+async function copyText(text, btn) { try { await navigator.clipboard.writeText(text); } catch (e) {} if (btn) { const o = btn.textContent; btn.textContent = 'Tersalin'; setTimeout(() => btn.textContent = o, 1200); } }
+function ratioBox(r) { const [w, h] = String(r || '1:1').split(':').map(Number); return (w && h) ? `${w} / ${h}` : '1 / 1'; }
+function render() {
+  const g = $('#grid'); const list = ITEMS.filter(it => filter === 'semua' || it.tool_id === filter);
+  if (!list.length) { g.innerHTML = '<div class="empty">Belum ada contoh untuk tool ini. Besok pagi biasanya sudah ada.</div>'; return; }
+  g.innerHTML = '';
+  list.forEach(it => {
+    const src = '/' + String(it.file).replace(/^\/+/, '');
+    const card = document.createElement('article'); card.className = 'card glass';
+    const setHtml = Object.entries(it.settingan || {}).filter(([k, v]) => v !== '' && v != null && !['jumlah','castK','castT','durasi'].includes(k)).map(([k, v]) => `<div><b>${esc(LABEL[k] || k)}:</b> ${esc(String(v).replace(/\n/g, ' · '))}</div>`).join('');
+    card.innerHTML = `<div class="box" style="aspect-ratio:${ratioBox(it.ratio)}"><img loading="lazy" src="${src}" alt="${esc(NAMA[it.tool_id] || it.tool_id)}"></div>
+      <div class="meta"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><span class="tool">${esc(NAMA[it.tool_id] || it.tool_id)}</span><span class="chip">${it.studio === 'video' ? 'Studio Video' : 'Studio Foto'}</span></div>
+      <div class="cap">${esc(it.catatan || '')}</div>
+      <div class="acts"><button class="btn" data-a="set">Settingan</button><button class="btn" data-a="prompt">Lihat prompt</button><button class="btn" data-a="copy">Salin prompt</button><a class="btn" target="_blank" rel="noopener" href="${STUDIO_LINK[it.studio] || '/canvas'}">Buka studionya</a></div>
+      <div class="set">${setHtml || '<i>Tanpa settingan tersimpan</i>'}</div>
+      <pre class="prompt">${esc(it.prompt_final || '')}</pre></div>`;
+    card.querySelector('.box').onclick = () => { $('#lbImg').src = src; $('#lb').classList.add('open'); };
+    card.querySelector('[data-a=set]').onclick = e => { const s = card.querySelector('.set'); s.classList.toggle('open'); e.target.classList.toggle('on', s.classList.contains('open')); };
+    card.querySelector('[data-a=prompt]').onclick = e => { const p = card.querySelector('.prompt'); p.classList.toggle('open'); e.target.classList.toggle('on', p.classList.contains('open')); };
+    card.querySelector('[data-a=copy]').onclick = e => copyText(it.prompt_final || '', e.target);
+    g.appendChild(card);
+  });
+}
+function renderFilters() {
+  const per = {}; ITEMS.forEach(it => per[it.tool_id] = (per[it.tool_id] || 0) + 1);
+  const f = $('#filters'); f.innerHTML = '';
+  const mk = (id, label, n) => { const b = document.createElement('button'); b.className = 'btn' + (filter === id ? ' on' : ''); b.textContent = n != null ? `${label} · ${n}` : label; b.onclick = () => { filter = id; renderFilters(); render(); }; return b; };
+  f.appendChild(mk('semua', 'Semua', ITEMS.length));
+  Object.keys(per).sort((a, b) => per[b] - per[a]).forEach(id => f.appendChild(mk(id, NAMA[id] || id, per[id])));
+  const tools = Object.keys(per).length; const studios = new Set(ITEMS.map(i => i.studio)).size; const last = ITEMS.map(i => i.dibuat || '').sort().pop() || '';
+  $('#stats').innerHTML = `<div class="stat"><b>${ITEMS.length}</b> contoh</div><div class="stat"><b>${tools}</b> tool punya contoh</div><div class="stat"><b>${studios}</b> studio</div><div class="stat">Terbaru <b>${esc(last.slice(0, 16).replace('T', ' '))}</b> WIB</div>`;
+}
+fetch('./stok.json', { cache: 'no-store' }).then(r => r.json()).then(j => {
+  ITEMS = (j.items || []).filter(it => !it.dummy && it.file && it.kind === 'image').sort((a, b) => String(b.dibuat || '').localeCompare(String(a.dibuat || '')));
+  renderFilters(); render();
+}).catch(() => { $('#grid').innerHTML = '<div class="empty">Stok belum bisa dimuat. Coba muat ulang.</div>'; });
+</script>
+</body>
+</html>
