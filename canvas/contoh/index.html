@@ -56,6 +56,7 @@
   .lightbox img { max-width:100%; max-height:100%; border-radius:12px; }
   footer { text-align:center; padding:26px; color:var(--dim); font-size:12px; }
   @media (max-width:600px) { .hero h1 { font-size:26px; } .wrap { padding:16px 14px 50px; } }
+.box video{width:100%;height:100%;object-fit:cover;display:block}.box{position:relative}.box .play{position:absolute;left:10px;bottom:10px;font-size:12px;padding:4px 8px;border-radius:999px;background:rgba(0,0,0,.6);color:#fff;pointer-events:none}.lightbox video{max-width:min(92vw,520px);max-height:90vh;border-radius:12px}
 </style>
 </head>
 <body>
@@ -77,7 +78,7 @@
   <div class="filters" id="filters"></div>
   <div class="grid" id="grid"><div class="empty">Memuat contoh…</div></div>
 </div>
-<div class="lightbox" id="lb" onclick="this.classList.remove('open')"><img id="lbImg" alt=""></div>
+<div class="lightbox" id="lb" onclick="closeLb()"><img id="lbImg" alt=""><video id="lbVid" controls playsinline hidden></video></div>
 <footer>Adverthinking AI · contoh dibuat lewat tool kita sendiri di akun Google, gratis · diperbarui otomatis</footer>
 <script>
 const NAMA = {
@@ -87,6 +88,7 @@ const NAMA = {
 const STUDIO_LINK = { foto:'https://share.gemini.google/KRyJSDkHMpje', video:'https://share.gemini.google/hK6PPlAQ3SdH' };
 const LABEL = { brandName:'Brand', namaProduk:'Produk', produk:'Produk', headline:'Headline', adText:'Headline', subheadline:'Sub', cta:'CTA', industry:'Industri', posterType:'Tipe poster', style:'Gaya', colorPalette:'Palet', colors:'Palet', template:'Template', menuItems:'Menu', tipe:'Tipe', kerangka:'Kerangka', expression:'Ekspresi', bgColor:'Background', productPosition:'Posisi', brightness:'Cahaya', humanTalent:'Talent', accessories:'Props', ambiance:'Suasana', goal:'Tujuan', jumlahFeed:'Jumlah feed', jumlahSlide:'Jumlah slide', cover:'Layout slide 1', poin:'Poin', tagline:'Tagline', kategori:'Kategori', tipo:'Tipografi', kepribadian:'Kepribadian', ikon:'Ikon', latar:'Latar', ratio:'Rasio', mode:'Mode', nama:'Nama', deskripsi:'Deskripsi', pakaian:'Pakaian', vibe:'Vibe', bentuk:'Bentuk', waktu:'Waktu' };
 const $ = s => document.querySelector(s);
+function closeLb() { $('#lb').classList.remove('open'); const v = $('#lbVid'); v.pause(); v.removeAttribute('src'); v.load(); }
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let ITEMS = [], filter = 'semua';
 async function copyText(text, btn) { try { await navigator.clipboard.writeText(text); } catch (e) {} if (btn) { const o = btn.textContent; btn.textContent = 'Tersalin'; setTimeout(() => btn.textContent = o, 1200); } }
@@ -99,13 +101,15 @@ function render() {
     const src = '/' + String(it.file).replace(/^\/+/, '');
     const card = document.createElement('article'); card.className = 'card glass';
     const setHtml = Object.entries(it.settingan || {}).filter(([k, v]) => v !== '' && v != null && !['jumlah','castK','castT','durasi'].includes(k)).map(([k, v]) => `<div><b>${esc(LABEL[k] || k)}:</b> ${esc(String(v).replace(/\n/g, ' · '))}</div>`).join('');
-    card.innerHTML = `<div class="box" style="aspect-ratio:${ratioBox(it.ratio)}"><img loading="lazy" src="${src}" alt="${esc(NAMA[it.tool_id] || it.tool_id)}"></div>
+    const isVid = it.kind === 'video'; const poster = it.poster ? '/' + String(it.poster).replace(/^\/+/, '') : '';
+    const media = isVid ? `<video src="${src}" poster="${poster}" muted loop playsinline preload="none" onmouseenter="this.play()" onmouseleave="this.pause()"></video><span class="play">▶ ${esc(it.durasi_detik ? it.durasi_detik + ' dtk' : 'video')}</span>` : `<img loading="lazy" src="${src}" alt="${esc(NAMA[it.tool_id] || it.tool_id)}">`;
+    card.innerHTML = `<div class="box" style="aspect-ratio:${ratioBox(it.ratio)}">${media}</div>
       <div class="meta"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><span class="tool">${esc(NAMA[it.tool_id] || it.tool_id)}</span><span class="chip">${it.studio === 'video' ? 'Studio Video' : 'Studio Foto'}</span></div>
       <div class="cap">${esc(it.catatan || '')}</div>
       <div class="acts"><button class="btn" data-a="set">Settingan</button><button class="btn" data-a="prompt">Lihat prompt</button><button class="btn" data-a="copy">Salin prompt</button><a class="btn" target="_blank" rel="noopener" href="${STUDIO_LINK[it.studio] || '/canvas'}">Buka studionya</a></div>
       <div class="set">${setHtml || '<i>Tanpa settingan tersimpan</i>'}</div>
       <pre class="prompt">${esc(it.prompt_final || '')}</pre></div>`;
-    card.querySelector('.box').onclick = () => { $('#lbImg').src = src; $('#lb').classList.add('open'); };
+    card.querySelector('.box').onclick = () => { if (isVid) { $('#lbImg').hidden = true; const v = $('#lbVid'); v.hidden = false; v.src = src; v.poster = poster; v.muted = false; v.play().catch(() => {}); } else { $('#lbVid').hidden = true; $('#lbImg').hidden = false; $('#lbImg').src = src; } $('#lb').classList.add('open'); };
     card.querySelector('[data-a=set]').onclick = e => { const s = card.querySelector('.set'); s.classList.toggle('open'); e.target.classList.toggle('on', s.classList.contains('open')); };
     card.querySelector('[data-a=prompt]').onclick = e => { const p = card.querySelector('.prompt'); p.classList.toggle('open'); e.target.classList.toggle('on', p.classList.contains('open')); };
     card.querySelector('[data-a=copy]').onclick = e => copyText(it.prompt_final || '', e.target);
@@ -122,7 +126,7 @@ function renderFilters() {
   $('#stats').innerHTML = `<div class="stat"><b>${ITEMS.length}</b> contoh</div><div class="stat"><b>${tools}</b> tool punya contoh</div><div class="stat"><b>${studios}</b> studio</div><div class="stat">Terbaru <b>${esc(last.slice(0, 16).replace('T', ' '))}</b> WIB</div>`;
 }
 fetch('./stok.json', { cache: 'no-store' }).then(r => r.json()).then(j => {
-  ITEMS = (j.items || []).filter(it => !it.dummy && it.vonis !== 'jelek' && it.file && it.kind === 'image').sort((a, b) => String(b.dibuat || '').localeCompare(String(a.dibuat || '')));
+  ITEMS = (j.items || []).filter(it => !it.dummy && it.vonis !== 'jelek' && it.file && (it.kind === 'image' || it.kind === 'video')).sort((a, b) => String(b.dibuat || '').localeCompare(String(a.dibuat || '')));
   renderFilters(); render();
 }).catch(() => { $('#grid').innerHTML = '<div class="empty">Stok belum bisa dimuat. Coba muat ulang.</div>'; });
 </script>
