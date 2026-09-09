@@ -1,6 +1,6 @@
 {
  "versi": 1,
- "diperbarui": "2026-09-08T19:46:43+07:00",
+ "diperbarui": "2026-09-09T21:19:42+07:00",
  "items": [
   {
    "id": "dummy-product_photo-20260908",
@@ -1768,7 +1768,7 @@
    "id": "adv_video_sinematik_kopi-susu-literan_veo1",
    "tool_id": "sinematik",
    "studio": "video",
-   "jalur": "gemini-web-videos",
+   "jalur": "gemini-web",
    "settingan": {
     "namaProduk": "Kopi Susu Gula Aren 1 Liter",
     "kamera": "Dolly in perlahan",
@@ -1795,7 +1795,7 @@
    "id": "adv_video_ugc_kopi-susu-literan_rina_veo1",
    "tool_id": "ugc",
    "studio": "video",
-   "jalur": "gemini-web-videos",
+   "jalur": "gemini-web",
    "settingan": {
     "brandName": "Kopi Laras",
     "style": "review santai",
@@ -1816,6 +1816,320 @@
    "sumber": "Gemini web > Videos (Veo), akun Bolo; frame dari stok kita",
    "versi": "veo-web-1",
    "vonis": "uji"
+  },
+  {
+   "id": "adv_foto_face_card_isi_mtu652xm_1",
+   "tool_id": "face_card",
+   "studio": "foto",
+   "jalur": "canvas",
+   "settingan": {
+    "boardType": "Face Features",
+    "gender": "woman"
+   },
+   "prompt_final": "Act as a senior personal stylist and editorial layout designer. Study the uploaded portrait and produce a premium, magazine-grade analysis board.\n\nFollow these specifications EXACTLY (JSON):\n{\n  \"system_directive\": \"Act as a senior personal stylist and editorial layout designer. Study the uploaded portrait and produce a premium, magazine-grade analysis board.\",\n  \"board_type\": \"Face Features\",\n  \"analysis_focus\": \"face shape, eyes, eyebrows, nose, cheeks, lips — labeled with short bullet-point analysis\",\n  \"subject\": \"a woman based on the uploaded portrait\",\n  \"aspect_ratio\": \"4:5\",\n  \"composition\": \"Editorial magazine-style infographic board: keep the portrait of the person on one side, with clean labeled analysis sections (bullet points, color swatches, mini diagrams) arranged neatly. Premium, aesthetic, well-organized.\",\n  \"style_preset\": \"editorial luxury magazine, clean infographic\",\n  \"typography\": \"elegant, perfectly-spelled labels and headings\",\n  \"identity_lock\": \"CRITICAL: Preserve the facial identity from the uploaded portrait exactly. Do NOT change the person's face.\",\n  \"negative_prompt\": \"misspelled words, distorted face, changed identity, ugly, cluttered, watermark\"\n}\n\nOUTPUT CONTRACT: produce exactly ONE polished, ready-to-publish image. No grid, no collage, no multiple panels, no storyboard unless the spec explicitly asks for a grid. Render any text with correct spelling.",
+   "file": "canvas/contoh/adv_foto_face_card_isi_mtu652xm_1.jpg",
+   "poster": null,
+   "ratio": "4:5",
+   "kind": "image",
+   "dibuat": "2026-09-09T21:19:42+07:00",
+   "catatan": "",
+   "vonis": "uji",
+   "vonis_oleh": ""
+  },
+  {
+   "id": "adv_foto_model_produk_isi_mtu65g2v_1",
+   "tool_id": "model_produk",
+   "studio": "foto",
+   "jalur": "canvas",
+   "settingan": {
+    "namaProduk": "Kopi susu gula aren 1 liter",
+    "deskripsiModel": "Wanita 27 tahun Indonesia, rambut hitam sebahu, kaos abu polos, senyum ramah",
+    "interaksi": "Memegang produk ke arah kamera",
+    "gaya": "UGC Selfie (ala TikTok)"
+   },
+   "prompt_final": "You are a top-tier commercial photographer and casting director. Generate a photorealistic AI model interacting with the uploaded product. CRITICAL RULE: the uploaded product must stay 100% IDENTICAL — same label, text, colors, shape, and proportions. Never redesign, recolor, or invent a different product. The model is generated; the product is sacred.\n\nFollow these specifications EXACTLY (JSON):\n{\n  \"system_directive\": \"You are a top-tier commercial photographer and casting director. Generate a photorealistic AI model interacting with the uploaded product. CRITICAL RULE: the uploaded product must stay 100% IDENTICAL — same label, text, colors, shape, and proportions. Never redesign, recolor, or invent a different product. The model is generated; the product is sacred.\",\n  \"task\": \"photorealistic model photo featuring the uploaded product (Kopi susu gula aren 1 liter)\",\n  \"model_description\": \"Wanita 27 tahun Indonesia, rambut hitam sebahu, kaos abu polos, senyum ramah\",\n  \"interaction\": \"holding the product up toward the camera at chest level, presenting it clearly like a UGC review\",\n  \"photo_style\": \"authentic handheld selfie UGC style, ring-light glow, relatable casual energy, slight wide-angle phone look\",\n  \"aspect_ratio\": \"9:16\",\n  \"must_preserve\": \"the uploaded product 100% identical — label, typography, colors, shape; natural realistic hands with correct fingers\",\n  \"negative_prompt\": \"altered or redesigned product, warped label text, extra or deformed fingers, plastic AI skin, uncanny face, watermark, oversaturation\"\n}\n\nOUTPUT CONTRACT: produce exactly ONE polished, ready-to-publish image. No grid, no collage, no multiple panels, no storyboard unless the spec explicitly asks for a grid. Render any text with correct spelling.",
+   "file": "canvas/contoh/adv_foto_model_produk_isi_mtu65g2v_1.jpg",
+   "poster": null,
+   "ratio": "9:16",
+   "kind": "image",
+   "dibuat": "2026-09-09T21:19:42+07:00",
+   "catatan": "",
+   "vonis": "uji",
+   "vonis_oleh": ""
+  },
+  {
+   "id": "adv_foto_studio_ai_isi_mtu6esxs_1",
+   "tool_id": "studio_ai",
+   "studio": "foto",
+   "jalur": "canvas",
+   "settingan": {
+    "physicalDescription": "Wanita 27 tahun Indonesia, rambut hitam sebahu, kulit sawo matang, senyum ramah",
+    "basicClothingStyle": "Kemeja linen krem, celana bahan hitam",
+    "pose": "Professional",
+    "cameraAngle": "Eye Level",
+    "expression": "Confident",
+    "background": "Studio"
+   },
+   "prompt_final": "You are an elite photorealistic portrait & virtual model photographer. Generate a hyper-realistic, professional photo of a consistent virtual model based on the reference images and specifications below. Preserve the exact facial identity from the reference photos.\n\nFollow these specifications EXACTLY (JSON):\n{\n  \"system_directive\": \"You are an elite photorealistic portrait & virtual model photographer. Generate a hyper-realistic, professional photo of a consistent virtual model based on the reference images and specifications below. Preserve the exact facial identity from the reference photos.\",\n  \"identity_lock\": \"Keep the same face, bone structure, skin tone and identity from the uploaded reference image(s) across the result. Photorealistic, consistent character.\",\n  \"physical_description\": \"Wanita 27 tahun Indonesia, rambut hitam sebahu, kulit sawo matang, senyum ramah\",\n  \"base_clothing\": \"Kemeja linen krem, celana bahan hitam\",\n  \"pose\": \"Professional\",\n  \"camera_angle\": \"Eye Level\",\n  \"facial_expression\": \"Confident\",\n  \"background\": \"Studio\",\n  \"aspect_ratio\": \"1:1\",\n  \"rendering\": \"photorealistic, sharp focus, professional studio-grade lighting, natural skin texture, 8k, DSLR look\",\n  \"negative_prompt\": \"cartoon, illustration, deformed face, extra fingers, plastic skin, watermark, text, blurry, distorted, identity drift, multiple faces\"\n}\n\nOUTPUT CONTRACT: produce exactly ONE polished, ready-to-publish image. No grid, no collage, no multiple panels, no storyboard unless the spec explicitly asks for a grid. Render any text with correct spelling.",
+   "file": "canvas/contoh/adv_foto_studio_ai_isi_mtu6esxs_1.jpg",
+   "poster": null,
+   "ratio": "1:1",
+   "kind": "image",
+   "dibuat": "2026-09-09T21:19:42+07:00",
+   "catatan": "",
+   "vonis": "uji",
+   "vonis_oleh": ""
+  },
+  {
+   "id": "adv_foto_studio_ai_isi_mtu6fs7t_1",
+   "tool_id": "studio_ai",
+   "studio": "foto",
+   "jalur": "canvas",
+   "settingan": {
+    "physicalDescription": "Wanita 27 tahun Indonesia, rambut hitam sebahu, kulit sawo matang, senyum ramah",
+    "basicClothingStyle": "Kemeja linen krem, celana bahan hitam",
+    "pose": "Casual",
+    "cameraAngle": "Close Up",
+    "expression": "Smiling",
+    "background": "Cafe"
+   },
+   "prompt_final": "You are an elite photorealistic portrait & virtual model photographer. Generate a hyper-realistic, professional photo of a consistent virtual model based on the reference images and specifications below. Preserve the exact facial identity from the reference photos.\n\nFollow these specifications EXACTLY (JSON):\n{\n  \"system_directive\": \"You are an elite photorealistic portrait & virtual model photographer. Generate a hyper-realistic, professional photo of a consistent virtual model based on the reference images and specifications below. Preserve the exact facial identity from the reference photos.\",\n  \"identity_lock\": \"Keep the same face, bone structure, skin tone and identity from the uploaded reference image(s) across the result. Photorealistic, consistent character.\",\n  \"physical_description\": \"Wanita 27 tahun Indonesia, rambut hitam sebahu, kulit sawo matang, senyum ramah\",\n  \"base_clothing\": \"Kemeja linen krem, celana bahan hitam\",\n  \"pose\": \"Casual\",\n  \"camera_angle\": \"Close Up\",\n  \"facial_expression\": \"Smiling\",\n  \"background\": \"Cafe\",\n  \"aspect_ratio\": \"1:1\",\n  \"rendering\": \"photorealistic, sharp focus, professional studio-grade lighting, natural skin texture, 8k, DSLR look\",\n  \"negative_prompt\": \"cartoon, illustration, deformed face, extra fingers, plastic skin, watermark, text, blurry, distorted, identity drift, multiple faces\"\n}\n\nOUTPUT CONTRACT: produce exactly ONE polished, ready-to-publish image. No grid, no collage, no multiple panels, no storyboard unless the spec explicitly asks for a grid. Render any text with correct spelling.",
+   "file": "canvas/contoh/adv_foto_studio_ai_isi_mtu6fs7t_1.jpg",
+   "poster": null,
+   "ratio": "1:1",
+   "kind": "image",
+   "dibuat": "2026-09-09T21:19:42+07:00",
+   "catatan": "",
+   "vonis": "uji",
+   "vonis_oleh": ""
+  },
+  {
+   "id": "adv_foto_studio_ai_isi_mtu6g3yp_1",
+   "tool_id": "studio_ai",
+   "studio": "foto",
+   "jalur": "canvas",
+   "settingan": {
+    "physicalDescription": "Wanita 27 tahun Indonesia, rambut hitam sebahu, kulit sawo matang, senyum ramah",
+    "basicClothingStyle": "Kemeja linen krem, celana bahan hitam",
+    "pose": "Standing",
+    "cameraAngle": "Wide Shot",
+    "expression": "Professional",
+    "background": "Modern City"
+   },
+   "prompt_final": "You are an elite photorealistic portrait & virtual model photographer. Generate a hyper-realistic, professional photo of a consistent virtual model based on the reference images and specifications below. Preserve the exact facial identity from the reference photos.\n\nFollow these specifications EXACTLY (JSON):\n{\n  \"system_directive\": \"You are an elite photorealistic portrait & virtual model photographer. Generate a hyper-realistic, professional photo of a consistent virtual model based on the reference images and specifications below. Preserve the exact facial identity from the reference photos.\",\n  \"identity_lock\": \"Keep the same face, bone structure, skin tone and identity from the uploaded reference image(s) across the result. Photorealistic, consistent character.\",\n  \"physical_description\": \"Wanita 27 tahun Indonesia, rambut hitam sebahu, kulit sawo matang, senyum ramah\",\n  \"base_clothing\": \"Kemeja linen krem, celana bahan hitam\",\n  \"pose\": \"Standing\",\n  \"camera_angle\": \"Wide Shot\",\n  \"facial_expression\": \"Professional\",\n  \"background\": \"Modern City\",\n  \"aspect_ratio\": \"1:1\",\n  \"rendering\": \"photorealistic, sharp focus, professional studio-grade lighting, natural skin texture, 8k, DSLR look\",\n  \"negative_prompt\": \"cartoon, illustration, deformed face, extra fingers, plastic skin, watermark, text, blurry, distorted, identity drift, multiple faces\"\n}\n\nOUTPUT CONTRACT: produce exactly ONE polished, ready-to-publish image. No grid, no collage, no multiple panels, no storyboard unless the spec explicitly asks for a grid. Render any text with correct spelling.",
+   "file": "canvas/contoh/adv_foto_studio_ai_isi_mtu6g3yp_1.jpg",
+   "poster": null,
+   "ratio": "1:1",
+   "kind": "image",
+   "dibuat": "2026-09-09T21:19:42+07:00",
+   "catatan": "",
+   "vonis": "uji",
+   "vonis_oleh": ""
+  },
+  {
+   "id": "adv_foto_model_produk_isi_mtu6gfdk_1",
+   "tool_id": "model_produk",
+   "studio": "foto",
+   "jalur": "canvas",
+   "settingan": {
+    "namaProduk": "Kopi bubuk Kopi Laras 250g",
+    "deskripsiModel": "Pria 30 tahun Indonesia, rambut pendek rapi, kemeja denim, ramah",
+    "interaksi": "Menunjuk produk sambil senyum",
+    "gaya": "Studio Komersial"
+   },
+   "prompt_final": "You are a top-tier commercial photographer and casting director. Generate a photorealistic AI model interacting with the uploaded product. CRITICAL RULE: the uploaded product must stay 100% IDENTICAL — same label, text, colors, shape, and proportions. Never redesign, recolor, or invent a different product. The model is generated; the product is sacred.\n\nFollow these specifications EXACTLY (JSON):\n{\n  \"system_directive\": \"You are a top-tier commercial photographer and casting director. Generate a photorealistic AI model interacting with the uploaded product. CRITICAL RULE: the uploaded product must stay 100% IDENTICAL — same label, text, colors, shape, and proportions. Never redesign, recolor, or invent a different product. The model is generated; the product is sacred.\",\n  \"task\": \"photorealistic model photo featuring the uploaded product (Kopi bubuk Kopi Laras 250g)\",\n  \"model_description\": \"Pria 30 tahun Indonesia, rambut pendek rapi, kemeja denim, ramah\",\n  \"interaction\": \"pointing excitedly at the product with a delighted expression\",\n  \"photo_style\": \"clean commercial studio shoot, seamless backdrop, professional softbox lighting, advertising grade\",\n  \"aspect_ratio\": \"9:16\",\n  \"must_preserve\": \"the uploaded product 100% identical — label, typography, colors, shape; natural realistic hands with correct fingers\",\n  \"negative_prompt\": \"altered or redesigned product, warped label text, extra or deformed fingers, plastic AI skin, uncanny face, watermark, oversaturation\"\n}\n\nOUTPUT CONTRACT: produce exactly ONE polished, ready-to-publish image. No grid, no collage, no multiple panels, no storyboard unless the spec explicitly asks for a grid. Render any text with correct spelling.",
+   "file": "canvas/contoh/adv_foto_model_produk_isi_mtu6gfdk_1.jpg",
+   "poster": null,
+   "ratio": "9:16",
+   "kind": "image",
+   "dibuat": "2026-09-09T21:19:42+07:00",
+   "catatan": "",
+   "vonis": "uji",
+   "vonis_oleh": ""
+  },
+  {
+   "id": "adv_foto_model_produk_isi_mtu6grm1_1",
+   "tool_id": "model_produk",
+   "studio": "foto",
+   "jalur": "canvas",
+   "settingan": {
+    "namaProduk": "Kopi bubuk Kopi Laras 250g",
+    "deskripsiModel": "Wanita 24 tahun Indonesia, hijab krem, senyum hangat",
+    "interaksi": "Unboxing / membuka kemasan",
+    "gaya": "Lifestyle Outdoor"
+   },
+   "prompt_final": "You are a top-tier commercial photographer and casting director. Generate a photorealistic AI model interacting with the uploaded product. CRITICAL RULE: the uploaded product must stay 100% IDENTICAL — same label, text, colors, shape, and proportions. Never redesign, recolor, or invent a different product. The model is generated; the product is sacred.\n\nFollow these specifications EXACTLY (JSON):\n{\n  \"system_directive\": \"You are a top-tier commercial photographer and casting director. Generate a photorealistic AI model interacting with the uploaded product. CRITICAL RULE: the uploaded product must stay 100% IDENTICAL — same label, text, colors, shape, and proportions. Never redesign, recolor, or invent a different product. The model is generated; the product is sacred.\",\n  \"task\": \"photorealistic model photo featuring the uploaded product (Kopi bubuk Kopi Laras 250g)\",\n  \"model_description\": \"Wanita 24 tahun Indonesia, hijab krem, senyum hangat\",\n  \"interaction\": \"mid-unboxing, opening the product packaging with anticipation\",\n  \"photo_style\": \"natural outdoor lifestyle shot, golden hour sunlight, candid editorial feel\",\n  \"aspect_ratio\": \"9:16\",\n  \"must_preserve\": \"the uploaded product 100% identical — label, typography, colors, shape; natural realistic hands with correct fingers\",\n  \"negative_prompt\": \"altered or redesigned product, warped label text, extra or deformed fingers, plastic AI skin, uncanny face, watermark, oversaturation\"\n}\n\nOUTPUT CONTRACT: produce exactly ONE polished, ready-to-publish image. No grid, no collage, no multiple panels, no storyboard unless the spec explicitly asks for a grid. Render any text with correct spelling.",
+   "file": "canvas/contoh/adv_foto_model_produk_isi_mtu6grm1_1.jpg",
+   "poster": null,
+   "ratio": "9:16",
+   "kind": "image",
+   "dibuat": "2026-09-09T21:19:42+07:00",
+   "catatan": "",
+   "vonis": "uji",
+   "vonis_oleh": ""
+  },
+  {
+   "id": "adv_foto_face_card_isi_mtu6h2tn_1",
+   "tool_id": "face_card",
+   "studio": "foto",
+   "jalur": "canvas",
+   "settingan": {
+    "boardType": "Personal Color",
+    "gender": "woman"
+   },
+   "prompt_final": "Act as a senior personal stylist and editorial layout designer. Study the uploaded portrait and produce a premium, magazine-grade analysis board.\n\nFollow these specifications EXACTLY (JSON):\n{\n  \"system_directive\": \"Act as a senior personal stylist and editorial layout designer. Study the uploaded portrait and produce a premium, magazine-grade analysis board.\",\n  \"board_type\": \"Personal Color\",\n  \"analysis_focus\": \"personal color season, best colors palette swatches, makeup palette, hair & jewelry recommendation\",\n  \"subject\": \"a woman based on the uploaded portrait\",\n  \"aspect_ratio\": \"4:5\",\n  \"composition\": \"Editorial magazine-style infographic board: keep the portrait of the person on one side, with clean labeled analysis sections (bullet points, color swatches, mini diagrams) arranged neatly. Premium, aesthetic, well-organized.\",\n  \"style_preset\": \"editorial luxury magazine, clean infographic\",\n  \"typography\": \"elegant, perfectly-spelled labels and headings\",\n  \"identity_lock\": \"CRITICAL: Preserve the facial identity from the uploaded portrait exactly. Do NOT change the person's face.\",\n  \"negative_prompt\": \"misspelled words, distorted face, changed identity, ugly, cluttered, watermark\"\n}\n\nOUTPUT CONTRACT: produce exactly ONE polished, ready-to-publish image. No grid, no collage, no multiple panels, no storyboard unless the spec explicitly asks for a grid. Render any text with correct spelling.",
+   "file": "canvas/contoh/adv_foto_face_card_isi_mtu6h2tn_1.jpg",
+   "poster": null,
+   "ratio": "4:5",
+   "kind": "image",
+   "dibuat": "2026-09-09T21:19:42+07:00",
+   "catatan": "",
+   "vonis": "uji",
+   "vonis_oleh": ""
+  },
+  {
+   "id": "adv_foto_face_card_isi_mtu6hdzh_1",
+   "tool_id": "face_card",
+   "studio": "foto",
+   "jalur": "canvas",
+   "settingan": {
+    "boardType": "Style Direction",
+    "gender": "woman"
+   },
+   "prompt_final": "Act as a senior personal stylist and editorial layout designer. Study the uploaded portrait and produce a premium, magazine-grade analysis board.\n\nFollow these specifications EXACTLY (JSON):\n{\n  \"system_directive\": \"Act as a senior personal stylist and editorial layout designer. Study the uploaded portrait and produce a premium, magazine-grade analysis board.\",\n  \"board_type\": \"Style Direction\",\n  \"analysis_focus\": \"style categories, overall vibe, color palette, silhouettes, capsule wardrobe suggestions\",\n  \"subject\": \"a woman based on the uploaded portrait\",\n  \"aspect_ratio\": \"4:5\",\n  \"composition\": \"Editorial magazine-style infographic board: keep the portrait of the person on one side, with clean labeled analysis sections (bullet points, color swatches, mini diagrams) arranged neatly. Premium, aesthetic, well-organized.\",\n  \"style_preset\": \"editorial luxury magazine, clean infographic\",\n  \"typography\": \"elegant, perfectly-spelled labels and headings\",\n  \"identity_lock\": \"CRITICAL: Preserve the facial identity from the uploaded portrait exactly. Do NOT change the person's face.\",\n  \"negative_prompt\": \"misspelled words, distorted face, changed identity, ugly, cluttered, watermark\"\n}\n\nOUTPUT CONTRACT: produce exactly ONE polished, ready-to-publish image. No grid, no collage, no multiple panels, no storyboard unless the spec explicitly asks for a grid. Render any text with correct spelling.",
+   "file": "canvas/contoh/adv_foto_face_card_isi_mtu6hdzh_1.jpg",
+   "poster": null,
+   "ratio": "4:5",
+   "kind": "image",
+   "dibuat": "2026-09-09T21:19:42+07:00",
+   "catatan": "",
+   "vonis": "uji",
+   "vonis_oleh": ""
+  },
+  {
+   "id": "adv_foto_photo_enhance_isi_mtu6hrqs_1",
+   "tool_id": "photo_enhance",
+   "studio": "foto",
+   "jalur": "canvas",
+   "settingan": {
+    "jenisFoto": "Foto Produk",
+    "gayaHasil": "Terang & Airy"
+   },
+   "prompt_final": "You are a world-class professional photo retoucher and commercial photographer. ENHANCE the uploaded photo into professional, ready-to-publish quality. CRITICAL RULE: preserve the original subject, people, products, layout and composition EXACTLY as they are — no AI re-imagining, no replacing or moving objects, no altering faces, logos, or text. Only improve quality.\n\nFollow these specifications EXACTLY (JSON):\n{\n  \"system_directive\": \"You are a world-class professional photo retoucher and commercial photographer. ENHANCE the uploaded photo into professional, ready-to-publish quality. CRITICAL RULE: preserve the original subject, people, products, layout and composition EXACTLY as they are — no AI re-imagining, no replacing or moving objects, no altering faces, logos, or text. Only improve quality.\",\n  \"task\": \"professional enhancement of an uploaded Foto Produk\",\n  \"main_issue_to_fix\": \"the photo looks ordinary — elevate it into scroll-stopping professional quality\",\n  \"target_style\": \"bright & airy: soft natural daylight, clean whites, fresh and welcoming feel\",\n  \"must_preserve\": \"all faces, logos, text and key objects 100% identical\",\n  \"cleanup_rules\": \"fix white balance, exposure, and sharpness; remove only small distracting clutter, dust, or noise; never remove main elements\",\n  \"negative_prompt\": \"AI-looking artifacts, changed or beautified faces, warped text or logos, plastic skin, oversaturation, added objects, watermark\"\n}\n\nOUTPUT CONTRACT: produce exactly ONE polished, ready-to-publish image. No grid, no collage, no multiple panels, no storyboard unless the spec explicitly asks for a grid. Render any text with correct spelling.",
+   "file": "canvas/contoh/adv_foto_photo_enhance_isi_mtu6hrqs_1.jpg",
+   "poster": null,
+   "ratio": "Ikut foto asli",
+   "kind": "image",
+   "dibuat": "2026-09-09T21:19:42+07:00",
+   "catatan": "",
+   "vonis": "uji",
+   "vonis_oleh": ""
+  },
+  {
+   "id": "adv_foto_photo_enhance_isi_mtu6i5rm_1",
+   "tool_id": "photo_enhance",
+   "studio": "foto",
+   "jalur": "canvas",
+   "settingan": {
+    "jenisFoto": "Foto Produk",
+    "gayaHasil": "Terang & Airy"
+   },
+   "prompt_final": "You are a world-class professional photo retoucher and commercial photographer. ENHANCE the uploaded photo into professional, ready-to-publish quality. CRITICAL RULE: preserve the original subject, people, products, layout and composition EXACTLY as they are — no AI re-imagining, no replacing or moving objects, no altering faces, logos, or text. Only improve quality.\n\nFollow these specifications EXACTLY (JSON):\n{\n  \"system_directive\": \"You are a world-class professional photo retoucher and commercial photographer. ENHANCE the uploaded photo into professional, ready-to-publish quality. CRITICAL RULE: preserve the original subject, people, products, layout and composition EXACTLY as they are — no AI re-imagining, no replacing or moving objects, no altering faces, logos, or text. Only improve quality.\",\n  \"task\": \"professional enhancement of an uploaded Foto Produk\",\n  \"main_issue_to_fix\": \"the photo looks ordinary — elevate it into scroll-stopping professional quality\",\n  \"target_style\": \"bright & airy: soft natural daylight, clean whites, fresh and welcoming feel\",\n  \"must_preserve\": \"all faces, logos, text and key objects 100% identical\",\n  \"cleanup_rules\": \"fix white balance, exposure, and sharpness; remove only small distracting clutter, dust, or noise; never remove main elements\",\n  \"negative_prompt\": \"AI-looking artifacts, changed or beautified faces, warped text or logos, plastic skin, oversaturation, added objects, watermark\"\n}\n\nOUTPUT CONTRACT: produce exactly ONE polished, ready-to-publish image. No grid, no collage, no multiple panels, no storyboard unless the spec explicitly asks for a grid. Render any text with correct spelling.",
+   "file": "canvas/contoh/adv_foto_photo_enhance_isi_mtu6i5rm_1.jpg",
+   "poster": null,
+   "ratio": "Ikut foto asli",
+   "kind": "image",
+   "dibuat": "2026-09-09T21:19:42+07:00",
+   "catatan": "",
+   "vonis": "uji",
+   "vonis_oleh": ""
+  },
+  {
+   "id": "adv_foto_photo_enhance_isi_mtu6ito7_1",
+   "tool_id": "photo_enhance",
+   "studio": "foto",
+   "jalur": "canvas",
+   "settingan": {
+    "jenisFoto": "Foto Orang / Tim",
+    "gayaHasil": "Terang & Airy"
+   },
+   "prompt_final": "You are a world-class professional photo retoucher and commercial photographer. ENHANCE the uploaded photo into professional, ready-to-publish quality. CRITICAL RULE: preserve the original subject, people, products, layout and composition EXACTLY as they are — no AI re-imagining, no replacing or moving objects, no altering faces, logos, or text. Only improve quality.\n\nFollow these specifications EXACTLY (JSON):\n{\n  \"system_directive\": \"You are a world-class professional photo retoucher and commercial photographer. ENHANCE the uploaded photo into professional, ready-to-publish quality. CRITICAL RULE: preserve the original subject, people, products, layout and composition EXACTLY as they are — no AI re-imagining, no replacing or moving objects, no altering faces, logos, or text. Only improve quality.\",\n  \"task\": \"professional enhancement of an uploaded Foto Orang / Tim\",\n  \"main_issue_to_fix\": \"the photo looks ordinary — elevate it into scroll-stopping professional quality\",\n  \"target_style\": \"bright & airy: soft natural daylight, clean whites, fresh and welcoming feel\",\n  \"must_preserve\": \"all faces, logos, text and key objects 100% identical\",\n  \"cleanup_rules\": \"fix white balance, exposure, and sharpness; remove only small distracting clutter, dust, or noise; never remove main elements\",\n  \"negative_prompt\": \"AI-looking artifacts, changed or beautified faces, warped text or logos, plastic skin, oversaturation, added objects, watermark\"\n}\n\nOUTPUT CONTRACT: produce exactly ONE polished, ready-to-publish image. No grid, no collage, no multiple panels, no storyboard unless the spec explicitly asks for a grid. Render any text with correct spelling.",
+   "file": "canvas/contoh/adv_foto_photo_enhance_isi_mtu6ito7_1.jpg",
+   "poster": null,
+   "ratio": "Ikut foto asli",
+   "kind": "image",
+   "dibuat": "2026-09-09T21:19:42+07:00",
+   "catatan": "",
+   "vonis": "uji",
+   "vonis_oleh": ""
+  },
+  {
+   "id": "adv_foto_banner_ulasan_isi_mtu6k88c_1",
+   "tool_id": "banner_ulasan",
+   "studio": "foto",
+   "jalur": "canvas",
+   "settingan": {
+    "brandName": "Kopi Laras",
+    "produk": "Kopi bubuk 250g",
+    "headline": "Akhirnya nemu kopi rumahan yang konsisten",
+    "poin": "Aroma masih kuat sampai seduhan terakhir\nGak asam di lambung\nHarga masuk akal buat harian",
+    "cta": "Pesan lewat WhatsApp"
+   },
+   "prompt_final": "You are a senior Indonesian e-commerce ad designer. Create ONE high-converting static product REVIEW banner. The uploaded product photo is the exact product reference: keep design, label, colors, shape unchanged; product must be sharp and at least 25% of the banner area.\n\nFollow these specifications EXACTLY (JSON):\n{\n  \"system_directive\": \"You are a senior Indonesian e-commerce ad designer. Create ONE high-converting static product REVIEW banner. The uploaded product photo is the exact product reference: keep design, label, colors, shape unchanged; product must be sharp and at least 25% of the banner area.\",\n  \"brand_name\": \"Kopi Laras\",\n  \"product\": \"Kopi bubuk 250g\",\n  \"industry_art_direction\": \"clean dewy aesthetic, soft pastel or fresh tones, water/glass texture accents, glowing skin energy\",\n  \"review_framework\": \"name the pain, then show the product as the fix\",\n  \"layout\": \"product hero at center with review card beside\",\n  \"design_style\": \"minimal clean: generous whitespace, restrained palette, precise alignment, quiet premium\",\n  \"headline\": {\n    \"text\": \"Akhirnya nemu kopi rumahan yang konsisten\",\n    \"placement\": \"headline top center\"\n  },\n  \"subheadline\": \"one short line explaining the main benefit\",\n  \"review_points\": [\n    \"✔ Aroma masih kuat sampai seduhan terakhir\",\n    \"✔ Gak asam di lambung\",\n    \"✔ Harga masuk akal buat harian\"\n  ],\n  \"trust_element\": \"none, do not invent ratings, numbers or customer names\",\n  \"cta_button\": {\n    \"text\": \"Pesan lewat WhatsApp\",\n    \"placement\": \"CTA as a clear button bottom center\"\n  },\n  \"human_element\": \"no human, product only\",\n  \"color_palette\": \"palette that fits the industry\",\n  \"claims_rule\": \"soft cosmetic language only (e.g. \\\"terasa lebih segar\\\", \\\"nyaman dipakai\\\"), NO medical or guaranteed-cure claims\",\n  \"typography\": \"clean flat graphic typography (2D design layer), never 3D or extruded letters\",\n  \"aspect_ratio\": \"1:1\",\n  \"negative_prompt\": \"invented rating numbers, fake customer names, fake @username, misspelled words, distorted product, cluttered layout, watermark, 3D letters\"\n}\n\nOUTPUT CONTRACT: produce exactly ONE polished, ready-to-publish image. No grid, no collage, no multiple panels, no storyboard unless the spec explicitly asks for a grid. TEXT RULES: render every quoted word EXACTLY as written (do not paraphrase, omit, translate or add words), big and legible with clean letterforms; never use placeholders like \"text here\"; never print JSON key names or instructions as text; if no text is specified, write short natural Indonesian copy yourself (2 to 5 words per line).",
+   "file": "canvas/contoh/adv_foto_banner_ulasan_isi_mtu6k88c_1.jpg",
+   "poster": null,
+   "ratio": "1:1",
+   "kind": "image",
+   "dibuat": "2026-09-09T21:19:42+07:00",
+   "catatan": "",
+   "vonis": "uji",
+   "vonis_oleh": ""
+  },
+  {
+   "id": "adv_foto_banner_ulasan_isi_mtu6lijf_1",
+   "tool_id": "banner_ulasan",
+   "studio": "foto",
+   "jalur": "canvas",
+   "settingan": {
+    "brandName": "Kopi Laras",
+    "produk": "Kopi bubuk 250g",
+    "kerangka": "Masalah → Solusi",
+    "poin": "Dulu tiap seduh rasanya beda\nSekarang takarannya stabil\nCocok buat yang baru belajar manual brew",
+    "cta": "Cek menu lengkap",
+    "layout": "Produk hero"
+   },
+   "prompt_final": "You are a senior Indonesian e-commerce ad designer. Create ONE high-converting static product REVIEW banner. The uploaded product photo is the exact product reference: keep design, label, colors, shape unchanged; product must be sharp and at least 25% of the banner area.\n\nFollow these specifications EXACTLY (JSON):\n{\n  \"system_directive\": \"You are a senior Indonesian e-commerce ad designer. Create ONE high-converting static product REVIEW banner. The uploaded product photo is the exact product reference: keep design, label, colors, shape unchanged; product must be sharp and at least 25% of the banner area.\",\n  \"brand_name\": \"Kopi Laras\",\n  \"product\": \"Kopi bubuk 250g\",\n  \"industry_art_direction\": \"clean dewy aesthetic, soft pastel or fresh tones, water/glass texture accents, glowing skin energy\",\n  \"review_framework\": \"name the pain, then show the product as the fix\",\n  \"layout\": \"product hero at center with review card beside\",\n  \"design_style\": \"minimal clean: generous whitespace, restrained palette, precise alignment, quiet premium\",\n  \"headline\": {\n    \"instruction\": \"write a strong casual Indonesian headline, max 8 words\",\n    \"placement\": \"headline top center\"\n  },\n  \"subheadline\": \"one short line explaining the main benefit\",\n  \"review_points\": [\n    \"✔ Dulu tiap seduh rasanya beda\",\n    \"✔ Sekarang takarannya stabil\",\n    \"✔ Cocok buat yang baru belajar manual brew\"\n  ],\n  \"trust_element\": \"none, do not invent ratings, numbers or customer names\",\n  \"cta_button\": {\n    \"text\": \"Cek menu lengkap\",\n    \"placement\": \"CTA as a clear button bottom center\"\n  },\n  \"human_element\": \"no human, product only\",\n  \"color_palette\": \"palette that fits the industry\",\n  \"claims_rule\": \"soft cosmetic language only (e.g. \\\"terasa lebih segar\\\", \\\"nyaman dipakai\\\"), NO medical or guaranteed-cure claims\",\n  \"typography\": \"clean flat graphic typography (2D design layer), never 3D or extruded letters\",\n  \"aspect_ratio\": \"1:1\",\n  \"negative_prompt\": \"invented rating numbers, fake customer names, fake @username, misspelled words, distorted product, cluttered layout, watermark, 3D letters\"\n}\n\nOUTPUT CONTRACT: produce exactly ONE polished, ready-to-publish image. No grid, no collage, no multiple panels, no storyboard unless the spec explicitly asks for a grid. TEXT RULES: render every quoted word EXACTLY as written (do not paraphrase, omit, translate or add words), big and legible with clean letterforms; never use placeholders like \"text here\"; never print JSON key names or instructions as text; if no text is specified, write short natural Indonesian copy yourself (2 to 5 words per line).",
+   "file": "canvas/contoh/adv_foto_banner_ulasan_isi_mtu6lijf_1.jpg",
+   "poster": null,
+   "ratio": "1:1",
+   "kind": "image",
+   "dibuat": "2026-09-09T21:19:42+07:00",
+   "catatan": "",
+   "vonis": "uji",
+   "vonis_oleh": ""
+  },
+  {
+   "id": "adv_foto_banner_ulasan_isi_mtu6mstm_1",
+   "tool_id": "banner_ulasan",
+   "studio": "foto",
+   "jalur": "canvas",
+   "settingan": {
+    "brandName": "DesainCepat",
+    "produk": "Kelas desain online 7 hari",
+    "industry": "Jasa / Layanan",
+    "headline": "Kelasnya to the point, gak muter-muter",
+    "poin": "Materi langsung praktek\nRekaman bisa diulang\nAda contoh file siap pakai",
+    "cta": "Lihat kelasnya"
+   },
+   "prompt_final": "You are a senior Indonesian e-commerce ad designer. Create ONE high-converting static product REVIEW banner. The uploaded product photo is the exact product reference: keep design, label, colors, shape unchanged; product must be sharp and at least 25% of the banner area.\n\nFollow these specifications EXACTLY (JSON):\n{\n  \"system_directive\": \"You are a senior Indonesian e-commerce ad designer. Create ONE high-converting static product REVIEW banner. The uploaded product photo is the exact product reference: keep design, label, colors, shape unchanged; product must be sharp and at least 25% of the banner area.\",\n  \"brand_name\": \"DesainCepat\",\n  \"product\": \"Kelas desain online 7 hari\",\n  \"industry_art_direction\": \"Jasa / Layanan\",\n  \"review_framework\": \"name the pain, then show the product as the fix\",\n  \"layout\": \"product hero at center with review card beside\",\n  \"design_style\": \"minimal clean: generous whitespace, restrained palette, precise alignment, quiet premium\",\n  \"headline\": {\n    \"text\": \"Kelasnya to the point, gak muter-muter\",\n    \"placement\": \"headline top center\"\n  },\n  \"subheadline\": \"one short line explaining the main benefit\",\n  \"review_points\": [\n    \"✔ Materi langsung praktek\",\n    \"✔ Rekaman bisa diulang\",\n    \"✔ Ada contoh file siap pakai\"\n  ],\n  \"trust_element\": \"none, do not invent ratings, numbers or customer names\",\n  \"cta_button\": {\n    \"text\": \"Lihat kelasnya\",\n    \"placement\": \"CTA as a clear button bottom center\"\n  },\n  \"human_element\": \"no human, product only\",\n  \"color_palette\": \"palette that fits the industry\",\n  \"claims_rule\": \"honest claims only, no exaggeration\",\n  \"typography\": \"clean flat graphic typography (2D design layer), never 3D or extruded letters\",\n  \"aspect_ratio\": \"1:1\",\n  \"negative_prompt\": \"invented rating numbers, fake customer names, fake @username, misspelled words, distorted product, cluttered layout, watermark, 3D letters\"\n}\n\nOUTPUT CONTRACT: produce exactly ONE polished, ready-to-publish image. No grid, no collage, no multiple panels, no storyboard unless the spec explicitly asks for a grid. TEXT RULES: render every quoted word EXACTLY as written (do not paraphrase, omit, translate or add words), big and legible with clean letterforms; never use placeholders like \"text here\"; never print JSON key names or instructions as text; if no text is specified, write short natural Indonesian copy yourself (2 to 5 words per line).",
+   "file": "canvas/contoh/adv_foto_banner_ulasan_isi_mtu6mstm_1.jpg",
+   "poster": null,
+   "ratio": "1:1",
+   "kind": "image",
+   "dibuat": "2026-09-09T21:19:42+07:00",
+   "catatan": "",
+   "vonis": "uji",
+   "vonis_oleh": ""
   }
  ]
 }
