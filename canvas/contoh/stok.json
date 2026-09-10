@@ -1,6 +1,6 @@
 {
  "versi": 1,
- "diperbarui": "2026-09-09T21:19:42+07:00",
+ "diperbarui": "2026-09-10T09:44:00+07:00",
  "items": [
   {
    "id": "dummy-product_photo-20260908",
@@ -2128,6 +2128,56 @@
    "kind": "image",
    "dibuat": "2026-09-09T21:19:42+07:00",
    "catatan": "",
+   "vonis": "uji",
+   "vonis_oleh": ""
+  },
+  {
+   "id": "adv_foto_product_photo_frozen-food-rumahan_mtuw2b7a_1",
+   "tool_id": "product_photo",
+   "studio": "foto",
+   "jalur": "canvas",
+   "settingan": {
+    "brandName": "Dapur Bunya",
+    "bgColor": "Putih",
+    "productPosition": "Diletakkan",
+    "brightness": "Cinematic",
+    "humanTalent": "Tanpa Talent",
+    "accessories": "Meja",
+    "ambiance": "Studio Lighting",
+    "colorPalette": "sunset-warm",
+    "ratio": "1:1",
+    "jumlah": 1
+   },
+   "prompt_final": "You are an elite commercial product photographer. Create an ultra-realistic, sales-ready product photo. If a product image is provided, preserve its exact identity, label, and shape.\n\nFollow these specifications EXACTLY (JSON):\n{\n  \"system_directive\": \"You are an elite commercial product photographer. Create an ultra-realistic, sales-ready product photo. If a product image is provided, preserve its exact identity, label, and shape.\",\n  \"subject\": \"the product \\\"Dapur Bunya\\\" as the hero\",\n  \"aspect_ratio\": \"1:1\",\n  \"background\": \"Putih\",\n  \"product_position\": \"Diletakkan\",\n  \"lighting\": \"Cinematic studio lighting, Studio Lighting\",\n  \"color_mood\": \"overall color mood & grading: warm sunset amber (#F59E0B) and appetizing red (#EF4444) with rich brown (#7C2D12) on cream (#FFF7ED) - warm, appetizing, cozy\",\n  \"human_talent\": \"no human, product only\",\n  \"props\": \"Meja\",\n  \"style_preset\": \"ultra-realistic photography, 8k, shallow depth of field, premium magazine-grade\",\n  \"composition\": \"Product as the clear hero with balanced negative space, premium and clean.\",\n  \"negative_prompt\": \"text, watermark, distorted label, deformed hands, extra fingers, cluttered, low resolution\"\n}\n\nOUTPUT CONTRACT: produce exactly ONE polished, ready-to-publish image. No grid, no collage, no multiple panels, no storyboard unless the spec explicitly asks for a grid. Render any text with correct spelling.",
+   "file": "canvas/contoh/adv_foto_product_photo_frozen-food-rumahan_mtuw2b7a_1.jpg",
+   "poster": null,
+   "ratio": "1:1",
+   "kind": "image",
+   "dibuat": "2026-09-10T09:27:16+07:00",
+   "catatan": "",
+   "vonis": "uji",
+   "vonis_oleh": ""
+  },
+  {
+   "id": "adv_video_drone_kopi-laras-trenggalek_veo1",
+   "tool_id": "drone",
+   "studio": "video",
+   "jalur": "gemini-web",
+   "settingan": {
+    "namaTempat": "Kopi Laras Trenggalek",
+    "jenisTempat": "kafe dua lantai pinggir jalan dengan halaman parkir luas dan hamparan sawah di belakangnya",
+    "gerak": "Fly-over maju",
+    "waktu": "Golden hour",
+    "ramai": "ramai",
+    "ratio": "16:9"
+   },
+   "prompt_final": "Aerial drone footage of Kopi Laras Trenggalek, a kafe dua lantai pinggir jalan dengan halaman parkir luas dan hamparan sawah di belakangnya. aerial drone flying forward over the location, slow and steady. Time: golden hour, warm low sun. A few customers naturally coming and going. Photorealistic, stabilized gimbal, wide lens, natural colors, realistic scale and shadows. If a reference photo is attached, keep the exact building, signage and surroundings. Audio: gentle wind and ambient environment, no speech.  horizontal 16:9 framing. No text overlays, no captions, no subtitles, no watermark, no logos added.",
+   "file": "canvas/contoh/video/adv_video_drone_kopi-laras-trenggalek_veo1.mp4",
+   "poster": "canvas/contoh/video/adv_video_drone_kopi-laras-trenggalek_veo1.jpg",
+   "ratio": "16:9",
+   "kind": "video",
+   "dibuat": "2026-09-10T09:44:00+07:00",
+   "catatan": "Tanpa frame upload (tool drone allowNoImage). Veo lewat gemini.google.com/videos, 1280x720 10 dtk, di-reencode CRF 30 biar di bawah batas 2.560 KB.",
    "vonis": "uji",
    "vonis_oleh": ""
   }
