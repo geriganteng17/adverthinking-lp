@@ -1,6 +1,6 @@
 {
  "versi": 1,
- "diperbarui": "2026-09-10T09:44:00+07:00",
+ "diperbarui": "2026-09-11T06:53:37+07:00",
  "items": [
   {
    "id": "dummy-product_photo-20260908",
@@ -2178,6 +2178,29 @@
    "kind": "video",
    "dibuat": "2026-09-10T09:44:00+07:00",
    "catatan": "Tanpa frame upload (tool drone allowNoImage). Veo lewat gemini.google.com/videos, 1280x720 10 dtk, di-reencode CRF 30 biar di bawah batas 2.560 KB.",
+   "vonis": "uji",
+   "vonis_oleh": ""
+  },
+  {
+   "id": "adv_video_unboxing_desaincepat_veo1",
+   "tool_id": "unboxing",
+   "studio": "video",
+   "jalur": "gemini-web",
+   "settingan": {
+    "namaProduk": "DesainCepat, box software desain grafis",
+    "kemasan": "box karton persegi warna ungu glossy",
+    "tangan": "Tangan perempuan",
+    "aksi": "Buka lalu angkat ke kamera",
+    "meja": "meja kayu terang dengan kain linen abu-abu",
+    "cahaya": "Cahaya jendela"
+   },
+   "prompt_final": "Hands-only unboxing video, no face visible. A woman's hands with neat natural nails open the packaging, lift the product out and present it toward the camera. Product: DesainCepat, box software desain grafis in a glossy purple square carton box; the product from the reference image must stay 100% identical (label, colors, shape). Surface: bright wooden table with grey linen cloth. Lighting: natural window light, gentle falloff. Close, tactile, ASMR-style pacing, realistic fingers. Audio: soft crinkle and tapping sounds, no speech. Vertical 9:16 framing for Reels/TikTok. No text overlays, no captions, no subtitles, no watermark, no logos added.",
+   "file": "canvas/contoh/video/adv_video_unboxing_desaincepat_veo1.mp4",
+   "poster": "canvas/contoh/video/adv_video_unboxing_desaincepat_veo1.jpg",
+   "ratio": "9:16",
+   "kind": "video",
+   "dibuat": "2026-09-11T06:53:37+07:00",
+   "catatan": "Frame awal = contoh Foto Produk AI kita (DesainCepat, preset Produk digital), diupload lewat Chrome MCP file_upload (jalur baru: paths lokal, tanpa screenshot). Veo 9:16 lewat gemini.google.com/videos.",
    "vonis": "uji",
    "vonis_oleh": ""
   }
