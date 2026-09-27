@@ -1,0 +1,15 @@
+/* ============================================================
+   AURORA GLASS — radius.css
+   Nilai dari pemakaian NYATA komponen app 2.0
+   (grep 4 Agu 2026: rounded-2xl 52x · rounded-full 43x · rounded-xl 29x).
+   ============================================================ */
+:root {
+  --at-radius-panel: 16px;   /* rounded-2xl — panel & kartu utama (default) */
+  --at-radius-inner: 12px;   /* rounded-xl — elemen di dalam kartu */
+  --at-radius-small: 8px;    /* rounded-lg — chip kecil / input */
+  --at-radius-hero: 24px;    /* rounded-3xl — panel raksasa, jarang */
+  --at-radius-pill: 9999px;  /* rounded-full — badge, pill, tombol bulat */
+}
+
+/* Aturan lint (web-premium): SATU nilai radius per kelas elemen —
+   semua kartu sejajar pakai nilai yang sama, jangan campur. */

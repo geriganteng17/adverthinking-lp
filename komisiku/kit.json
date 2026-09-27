@@ -1,0 +1,52 @@
+{
+  "_catatan": "Kit promosi Komisiku (T-283). Dibaca halaman /komisiku/ mode asli. Jenis: video | gambar | caption. File wajib URL https://adverthinking.site/ yang sudah tayang (nol hosting baru). {link} di caption diganti link affiliate otomatis. HARAM: video ugc-1..8 (4 dari 8 hasil StudioPebisnis/PLR, koreksi Bolo 27 Jul) dan foto klien Maximize. poster = gambar sampul video (opsional; tanpa poster, halaman memuat potongan awal video). Caption boleh pakai {link} (link affiliate) dan {harga} (harga produk dari program, mis. Rp100rb).",
+  "kit": [
+    {
+      "jenis": "video",
+      "judul": "Demo cara pakai app",
+      "catatan": "Rekaman layar app Adverthinking",
+      "file": "https://adverthinking.site/demo-app.mp4",
+      "poster": "https://adverthinking.site/demo-poster.jpg"
+    },
+    {
+      "jenis": "video",
+      "judul": "Contoh video sinematik",
+      "catatan": "Hasil tool Konsep Video Sinematik",
+      "file": "https://adverthinking.site/videos/video-sinematik.mp4",
+      "poster": "https://adverthinking.site/images/tools/video_sinematik.webp"
+    },
+    {
+      "jenis": "gambar",
+      "judul": "Contoh poster feed",
+      "catatan": "Hasil tool Desain Poster Feed",
+      "file": "https://adverthinking.site/gallery/poster_feed/poster-feed-01.jpg"
+    },
+    {
+      "jenis": "gambar",
+      "judul": "Contoh poster promo",
+      "catatan": "Hasil tool Desain Poster Feed",
+      "file": "https://adverthinking.site/gallery/poster_feed/poster-09.jpg"
+    },
+    {
+      "jenis": "gambar",
+      "judul": "Contoh menu F&B",
+      "catatan": "Hasil tool Menu F&B",
+      "file": "https://adverthinking.site/gallery/menu_fnb_studio/menu-fnb-07.jpg"
+    },
+    {
+      "jenis": "caption",
+      "judul": "Buat chat WA",
+      "teks": "Buat yang jualan online dan sering bingung bikin foto produk atau caption: Adverthinking isinya tool AI yang tinggal diisi, hasilnya prompt siap tempel ke ChatGPT atau Gemini. Bayar sekali {harga}, bukan langganan. Contoh hasilnya bisa dilihat di sini: {link}"
+    },
+    {
+      "jenis": "caption",
+      "judul": "Buat story IG",
+      "teks": "Foto produk dari HP bisa jadi foto katalog. Contoh-contohnya ada di link ini ya: {link}"
+    },
+    {
+      "jenis": "caption",
+      "judul": "Buat caption TikTok/Reels",
+      "teks": "Bikin konten jualan pakai AI tanpa harus jago nulis prompt. Sekali bayar {harga}. Cek contoh hasilnya: {link}"
+    }
+  ]
+}

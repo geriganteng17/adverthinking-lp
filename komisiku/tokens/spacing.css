@@ -1,0 +1,17 @@
+/* ============================================================
+   AURORA GLASS — spacing.css
+   Skala 4px (Tailwind). Nilai diambil dari pemakaian NYATA di
+   komponen app 2.0 (grep 4 Agu 2026: gap-2/3 dan p-3/p-4 dominan).
+   ============================================================ */
+:root {
+  --at-space-1: 4px;    /* rapat: icon ↔ teks */
+  --at-space-2: 8px;    /* gap default antar elemen kecil (paling sering) */
+  --at-space-3: 12px;   /* gap antar kartu rapat / padding kartu kecil */
+  --at-space-4: 16px;   /* padding panel standar (p-4) */
+  --at-space-6: 24px;   /* jarak antar blok dalam section */
+  --at-space-8: 32px;   /* jarak antar section kecil */
+  --at-space-12: 48px;  /* napas antar section besar */
+}
+
+/* Direktif (dari kamus web-premium): whitespace is the primary design
+   directive — ragu antara dua nilai? ambil yang LEBIH BESAR. */

@@ -1,0 +1,23 @@
+/* ============================================================
+   AURORA GLASS — fonts.css
+   Sumber: App-Adverthinking-2.0/index.css + konvensi konten IG.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --at-font-sans: "Plus Jakarta Sans", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+
+  /* Bobot yang dipakai (jangan load di luar ini) */
+  --at-weight-body: 400;
+  --at-weight-medium: 500;
+  --at-weight-semibold: 600;
+  --at-weight-bold: 700;
+  --at-weight-heading: 800;   /* ExtraBold — WAJIB buat headline
+                                 (vonis Bolo 3 Agu: default Regular = biang "font jelek") */
+
+  --at-tracking-body: .01em;  /* letter-spacing body dari index.css */
+  --at-tracking-label: .16em; /* k-label / eyebrow */
+}
+
+/* Catatan renderer PIL (konten IG): file font lokal = jakarta.ttf (VARIABLE FONT).
+   Wajib set_variation_by_name("ExtraBold") buat headline — lihat KEPUTUSAN.md 3 Agu. */

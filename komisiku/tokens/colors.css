@@ -1,0 +1,37 @@
+/* ============================================================
+   AURORA GLASS — colors.css
+   Sumber kebenaran nilai: App-Adverthinking-2.0/index.css (4 Agu 2026).
+   Selama fase cermin, JANGAN ubah nilai di sini tanpa ubah di index.css
+   (lihat design-system/README.md).
+   ============================================================ */
+:root {
+  /* Panggung (dark-first) */
+  --at-bg: #07070D;            /* latar utama html/body */
+  --at-bg-deep: #0B0B12;       /* stop atas gradien panggung */
+  --at-bg-mid: #08080F;        /* stop bawah gradien panggung */
+  --at-ink: #F4F2EF;           /* teks utama */
+  --at-ink-dim: rgba(230, 224, 216, .28); /* k-label / eyebrow */
+
+  /* Bara (brand) */
+  --at-primary: #F97316;       /* oranye inti */
+  --at-secondary: #FDBA74;     /* amber terang */
+  --at-ember-deep: #E8590C;    /* oranye bakar (ujung gradien) */
+  --at-gold: #F5B540;          /* emas aurora / tint visual */
+  --at-amber-pale: #FFE3C4;    /* pangkal gradien text-ember */
+  --at-glow-soft: #FB923C;     /* blob aurora-1 */
+
+  /* Fungsional */
+  --at-success: #4ADE80;       /* titik status / tint video */
+  --at-on-ember: #2A1002;      /* teks di atas tombol bara */
+  --at-selection: rgba(249, 115, 22, .35);
+
+  /* Gradien siap pakai */
+  --at-grad-ember-text: linear-gradient(94deg, #FFE3C4 5%, #FDBA74 40%, #F97316 90%);
+  --at-grad-ember-btn: linear-gradient(120deg, #FDBA74 0%, #F97316 55%, #E8590C 100%);
+  --at-grad-stage: linear-gradient(175deg, #0B0B12 0%, #07070D 60%, #08080F 100%);
+
+  /* Tint pojok kartu per kategori tool */
+  --at-tint-visual: rgba(245, 181, 64, .16);
+  --at-tint-copy: rgba(249, 115, 22, .17);
+  --at-tint-video: rgba(74, 222, 128, .13);
+}

@@ -1,0 +1,43 @@
+/* ============================================================
+   AURORA GLASS — motion.css
+   Sumber: App-Adverthinking-2.0/index.css. GPU-only: transform+opacity.
+   ============================================================ */
+:root {
+  --at-ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* easing rumah — semua entrance */
+  --at-dur-enter: 440ms;      /* elemen masuk (cascUp) */
+  --at-dur-enter-box: 360ms;  /* box berat mendarat lebih cepat (grounded) */
+  --at-dur-view: 260ms;       /* transisi ganti halaman */
+  --at-stagger: 80ms;         /* jeda antar elemen cascade */
+  --at-dur-pulse: 2.4s;       /* denyut titik status */
+}
+
+/* Entrance cascade — stagger via --i, replay via remount */
+@keyframes at-casc-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.at-casc {
+  opacity: 0;
+  animation: at-casc-up var(--at-dur-enter) var(--at-ease-out) both;
+  animation-delay: calc(var(--i, 0) * var(--at-stagger));
+  will-change: transform, opacity;
+}
+.at-casc--box { animation-duration: var(--at-dur-enter-box); }
+
+@keyframes at-view-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+.at-view-enter { animation: at-view-in var(--at-dur-view) var(--at-ease-out) backwards; }
+
+@keyframes at-soft-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(74,222,128,.35), 0 0 10px rgba(74,222,128,.9); }
+  50%      { box-shadow: 0 0 0 4px rgba(74,222,128,.12), 0 0 10px rgba(74,222,128,.9); }
+}
+.at-pulse-dot { animation: at-soft-pulse var(--at-dur-pulse) ease-in-out infinite; }
+
+/* Wajib: nol gerakan buat yang minta tenang */
+@media (prefers-reduced-motion: reduce) {
+  .at-casc, .at-view-enter { animation: none !important; opacity: 1 !important; transform: none !important; will-change: auto; }
+  .at-pulse-dot { animation: none !important; }
+}
