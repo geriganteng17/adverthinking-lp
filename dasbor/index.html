@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="id" data-tema="gelap">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="dark light">
+<title>Dasbor Adverthinking AI</title>
+<script>
+/* Tema dipasang SEBELUM CSS biar nol kedip putih.
+   Urutan menang: ?tema= di URL > pilihan tersimpan > gelap (bawaan, sama dengan app). */
+(function () {
+  var t = 'gelap';
+  try { var s = localStorage.getItem('dasbor-tema'); if (s === 'terang' || s === 'gelap') t = s; } catch (e) {}
+  try { var q = new URLSearchParams(location.search).get('tema'); if (q === 'terang' || q === 'gelap') t = q; } catch (e) {}
+  document.documentElement.setAttribute('data-tema', t);
+})();
+</script>
+<style>html{background:#07070D}html[data-tema="terang"]{background:#F6F2EC}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.48.0/dist/tabler-icons.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-rute="ringkasan" data-fase="mulai">
+
+<!-- Latar panggung app (StageBackdrop): gradien dalam + 3 aurora + grain -->
+<div class="stage-bg" aria-hidden="true"></div>
+<div class="aurora aurora-1" aria-hidden="true"></div>
+<div class="aurora aurora-2" aria-hidden="true"></div>
+<div class="aurora aurora-3" aria-hidden="true"></div>
+<div class="stage-grain" aria-hidden="true"></div>
+
+<div class="shell" id="shell">
+
+  <aside class="sisi" aria-label="Navigasi samping">
+    <div class="sisi-kaca glass">
+      <a class="merek" href="#ringkasan">
+        <span class="logo-tanda" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 L14.6 9.4 L22 12 L14.6 14.6 L12 22 L9.4 14.6 L2 12 L9.4 9.4 Z" fill="#FFF4E8"/></svg>
+        </span>
+        <span class="merek-teks">
+          <span class="merek-nama">Adverthinking <span class="text-ember">AI</span></span>
+          <span class="merek-sub">Dasbor pemilik</span>
+        </span>
+      </a>
+
+      <div class="sisi-menu">
+        <p class="k-label grup-label"><span class="grup-titik" aria-hidden="true"></span>Mesin jualan</p>
+        <nav class="menu" aria-label="Menu utama">
+          <a href="#ringkasan" data-menu="ringkasan"><i class="ti ti-chart-bar" aria-hidden="true"></i><span>Ringkasan</span></a>
+          <a href="#order" data-menu="order"><i class="ti ti-receipt" aria-hidden="true"></i><span>Order</span><span class="hitung" id="hitung-order" hidden></span></a>
+          <a href="#pembeli" data-menu="pembeli"><i class="ti ti-users" aria-hidden="true"></i><span>Pembeli</span><span class="hitung" id="hitung-pembeli" hidden></span></a>
+          <a href="#affiliate" data-menu="affiliate"><i class="ti ti-affiliate" aria-hidden="true"></i><span>Affiliate</span></a>
+        </nav>
+      </div>
+
+      <div class="kartu-akun">
+        <div class="kartu-akun-baris"><span class="kartu-akun-judul">Akun pemilik</span><span class="kartu-akun-mode">Mode lihat</span></div>
+        <p class="kartu-akun-email" id="akun-email">Bolo</p>
+        <button type="button" class="tombol-garis tombol-keluar" data-keluar><i class="ti ti-logout" aria-hidden="true"></i>Keluar</button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="kolom-utama">
+    <header class="atas">
+      <div class="atas-judul">
+        <span class="logo-tanda logo-tanda--hp" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 L14.6 9.4 L22 12 L14.6 14.6 L12 22 L9.4 14.6 L2 12 L9.4 9.4 Z" fill="#FFF4E8"/></svg>
+        </span>
+        <div class="atas-teks">
+          <p class="jejak-lokasi"><span class="jejak-akar">Dasbor</span><span class="jejak-pisah" aria-hidden="true"> / </span></p>
+          <h1 id="judul"><span class="judul-penuh">Ringkasan</span><span class="judul-pendek">Ringkasan</span></h1>
+          <p class="atas-sub" id="sub-judul"></p>
+        </div>
+      </div>
+      <div class="atas-kanan">
+        <div class="slot-periode" id="slot-periode"></div>
+        <span class="lencana-contoh" data-lencana-contoh hidden title="Nama, email, WA, dan semua angka di layar ini fiktif">Data contoh</span>
+        <button class="tombol-ikon tombol-tema" type="button" data-tema-tombol><i class="ti ti-sun" aria-hidden="true"></i><span class="teks-desktop">Terang</span></button>
+      </div>
+    </header>
+
+    <main class="isi" id="isi" tabindex="-1" aria-live="off">
+      <p class="sr-only">Memuat dasbor…</p>
+    </main>
+  </div>
+
+  <nav class="dok" aria-label="Menu utama">
+    <a href="#ringkasan" data-menu="ringkasan"><i class="ti ti-chart-bar" aria-hidden="true"></i><span>Ringkasan</span></a>
+    <a href="#order" data-menu="order"><i class="ti ti-receipt" aria-hidden="true"></i><span>Order</span></a>
+    <a href="#pembeli" data-menu="pembeli"><i class="ti ti-users" aria-hidden="true"></i><span>Pembeli</span></a>
+    <a href="#affiliate" data-menu="affiliate"><i class="ti ti-affiliate" aria-hidden="true"></i><span>Affiliate</span></a>
+  </nav>
+
+</div>
+
+<!-- ===================== LAYAR MASUK (gaya AuthGate app) ===================== -->
+<section class="layar-masuk" id="layar-masuk" aria-labelledby="judul-masuk" hidden>
+  <div class="masuk-atas">
+    <span class="lencana-contoh" data-lencana-contoh hidden title="Mode contoh: belum tersambung ke akun apa pun">Data contoh</span>
+    <button class="tombol-ikon tombol-tema" type="button" data-tema-tombol><i class="ti ti-sun" aria-hidden="true"></i><span class="teks-desktop">Terang</span></button>
+  </div>
+
+  <div class="kartu-masuk glass">
+    <span class="logo-tanda logo-tanda--besar" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 L14.6 9.4 L22 12 L14.6 14.6 L12 22 L9.4 14.6 L2 12 L9.4 9.4 Z" fill="#FFF4E8"/></svg>
+    </span>
+    <h1 id="judul-masuk">Dasbor Adverthinking <span class="text-ember">AI</span></h1>
+    <p class="masuk-sub" id="sub-masuk">Khusus pemilik. Data pembeli baru kebuka setelah masuk.</p>
+
+    <div class="pesan" id="pesan-masuk" role="status" hidden></div>
+
+    <!-- 1. Masuk -->
+    <form class="form-masuk" id="form-masuk" novalidate>
+      <label class="sr-only" for="email-masuk">Email</label>
+      <div class="kolom-ikon">
+        <i class="ti ti-mail" aria-hidden="true"></i>
+        <input id="email-masuk" name="email" type="email" inputmode="email" autocomplete="username" spellcheck="false" placeholder="Email pemilik">
+      </div>
+      <label class="sr-only" for="sandi-masuk">Password</label>
+      <div class="kolom-ikon">
+        <i class="ti ti-key" aria-hidden="true"></i>
+        <input id="sandi-masuk" name="password" type="password" autocomplete="current-password" placeholder="Password">
+        <button type="button" class="intip" data-intip="sandi-masuk" aria-label="Intip password" aria-pressed="false"><i class="ti ti-eye" aria-hidden="true"></i></button>
+      </div>
+      <button class="btn-ember tombol-utama" type="submit"><span>Masuk</span></button>
+      <button class="tautan-kecil" type="button" data-mode-masuk="lupa">Lupa / bikin password</button>
+    </form>
+
+    <!-- 2. Minta link bikin password -->
+    <form class="form-masuk" id="form-lupa" novalidate hidden>
+      <p class="form-ket">Isi email pemilik. Link buat bikin password baru dikirim ke email itu. Buka link-nya di browser ini juga.</p>
+      <label class="sr-only" for="email-lupa">Email</label>
+      <div class="kolom-ikon">
+        <i class="ti ti-mail" aria-hidden="true"></i>
+        <input id="email-lupa" name="email" type="email" inputmode="email" autocomplete="username" spellcheck="false" placeholder="Email pemilik">
+      </div>
+      <button class="btn-ember tombol-utama" type="submit"><span>Kirim link</span></button>
+      <button class="tautan-kecil" type="button" data-mode-masuk="masuk">Balik ke Masuk</button>
+    </form>
+
+    <!-- 3. Bikin password baru (sesudah buka link email) -->
+    <form class="form-masuk" id="form-baru" novalidate hidden>
+      <p class="form-ket">Bikin password baru, minimal 8 karakter. Sesudah disimpan kamu langsung masuk dasbor.</p>
+      <label class="sr-only" for="sandi-baru">Password baru</label>
+      <div class="kolom-ikon">
+        <i class="ti ti-key" aria-hidden="true"></i>
+        <input id="sandi-baru" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="Password baru">
+        <button type="button" class="intip" data-intip="sandi-baru" aria-label="Intip password baru" aria-pressed="false"><i class="ti ti-eye" aria-hidden="true"></i></button>
+      </div>
+      <label class="sr-only" for="sandi-ulang">Ulangi password baru</label>
+      <div class="kolom-ikon">
+        <i class="ti ti-key" aria-hidden="true"></i>
+        <input id="sandi-ulang" name="password2" type="password" autocomplete="new-password" minlength="8" placeholder="Ulangi password baru">
+      </div>
+      <button class="btn-ember tombol-utama" type="submit"><span>Simpan password</span></button>
+    </form>
+  </div>
+</section>
+
+<div id="laci-wadah"></div>
+<div class="sr-only" id="pengumum" aria-live="polite"></div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
