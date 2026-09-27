@@ -291,14 +291,6 @@ body[data-rute="masuk"] .shell, body[data-fase="masuk"] .shell { display: none; 
   content: ""; position: absolute; left: -1px; top: 8px; bottom: 8px; width: 2.5px; border-radius: 2px;
   background: linear-gradient(180deg, #FDBA74, #F97316); box-shadow: 0 0 12px rgba(249,115,22,.9);
 }
-.hitung {
-  margin-left: auto; min-width: 22px; height: 20px; padding: 0 7px;
-  display: inline-grid; place-items: center;
-  border-radius: var(--at-radius-pill);
-  border: 1px solid var(--oranye-garis); background: var(--oranye-lembut);
-  font-size: 11px; font-weight: var(--at-weight-heading); color: var(--oranye-teks);
-  font-variant-numeric: tabular-nums;
-}
 
 /* Kartu akun di dasar sidebar (gaya kartu "Tier kamu") */
 .kartu-akun {

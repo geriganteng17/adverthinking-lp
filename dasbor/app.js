@@ -683,15 +683,6 @@
       if (a.getAttribute('data-menu') === nama) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
     });
   }
-  function pasangHitungMenu() {
-    var elO = document.getElementById('hitung-order'), elP = document.getElementById('hitung-pembeli');
-    elO.hidden = true; elP.hidden = true;
-    if (S.fase !== 'siap') return;
-    var c = perluDicekOrder(), h = hitungPembeli();
-    if (c.transfer.length) { elO.textContent = c.transfer.length; elO.setAttribute('aria-label', c.transfer.length + ' nunggu transfer'); elO.title = c.transfer.length + ' nunggu transfer'; elO.hidden = false; }
-    var nP = h.tanpaAkun.length + h.lamaBelum.length;
-    if (nP) { elP.textContent = nP; elP.setAttribute('aria-label', nP + ' perlu dicek'); elP.title = nP + ' perlu dicek'; elP.hidden = false; }
-  }
   function pasangAkun() {
     document.getElementById('akun-email').textContent = S.email || 'pemilik';
   }
@@ -819,9 +810,7 @@
   function kosongkanData() {                   // sesudah keluar: data pembeli dibuang dari memori & layar
     D = null; ORDER = []; PEMBELI = []; AFFILIATE = [];
     elIsi.innerHTML = '';
-    halamanAktif = null;
-    pasangHitungMenu();
-  }
+    halamanAktif = null;  }
   function gagalMuat(teks) {
     S.fase = 'gagal';
     S.galat = { judul: 'Data belum bisa dimuat', teks: teks };
@@ -830,9 +819,7 @@
   function siap(data) {
     pasangData(data);
     S.fase = 'siap';
-    pasangAkun();
-    pasangHitungMenu();
-    gambar();
+    pasangAkun();    gambar();
   }
 
   function mulaiContoh() {
@@ -881,9 +868,7 @@
 
   function ambilData() {
     var nomor = ++nomorMuat;
-    S.fase = 'memuat';
-    pasangHitungMenu();
-    gambar();
+    S.fase = 'memuat';    gambar();
     sb.auth.getSession().then(function (r) {
       var sesi = r && r.data && r.data.session;
       if (!sesi) { keMasuk({ jenis: 'info', teks: 'Sesi habis, masuk lagi.' }); return null; }
