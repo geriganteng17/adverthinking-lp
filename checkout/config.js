@@ -6,16 +6,8 @@ window.CHECKOUT_CONFIG = {
   harga: 100000,
   /* ULTIMATE APP: 1 halaman, banyak produk (?produk=). Angka = TAMPILAN; server yang menagih. */
   produkList: {
-    adv50:  { nama: "Adverthinking AI - Prompt Builder", sub: "Akses selamanya · tanpa panduan", harga: 50000, tier: 1, bonus: false,
-              deskripsi: "Generator prompt 21 tools AI marketing: hook, copy iklan, foto produk, skrip UGC, strategi funnel. Kamu dapat PROMPT-nya, generate-nya di ChatGPT/Gemini kamu sendiri. Bayar sekali Rp50.000.",
-              perks: ["21 tools prompt builder", "Sekali bayar, akses selamanya", "Bisa upgrade ke Ultimate kapan pun (+Rp100.000)"],
-              catatan: "Ini paket <b>pancingan</b>: prompt saja, tanpa panduan & video. Semua fitur Ultimate kelihatan di app tapi digembok — buka kapan pun dari dalam app.",
-              cta: "Bayar Rp50.000 & Mulai" },
-    adv150: { nama: "Adverthinking AI Ultimate", sub: "Akses selamanya · semua terbuka", harga: 150000, tier: 2, bonus: true,
-              deskripsi: "Semua yang ada: 21 tools + generate langsung di app (Gemini Canvas) + Brand Profile + Labs + panduan & video tiap tool + 4 bonus-tool (Kalender 30 Hari, Paket Animasi, Skor Iklan, Amunisi Laris). Bayar sekali Rp150.000.",
-              perks: ["21 tools + generate langsung", "Panduan & video tiap tool", "Brand Profile: isi sekali, semua konsisten", "Bonus 4 tools + Amunisi Laris", "Garansi 14 hari uang kembali"],
-              catatan: "Fitur yang masih kami rampungkan ditandai <b>SEGERA</b> di dalam app dan terbuka otomatis begitu jadi — kamu tidak bayar lagi.",
-              cta: "Bayar & Aktifkan Ultimate" },
+    /* adv50 (Rp50rb) & adv150 (Rp150rb) DITUTUP 27 Sep 2026 (T-338, Bolo: "link lama 50rb ... ditutup").
+       Link lama ?produk=adv50/adv150 jatuh ke produk bawaan (Rp100rb); server juga nolak (katalog.ts dijual:false). */
     advup:  { nama: "Upgrade ke Ultimate", sub: "Akun yang sudah ada · +Rp100.000", harga: 100000, tier: 2, upgrade: true, bonus: true,
               deskripsi: "Buka semua gembok di akun kamu: generate langsung, Brand Profile, Labs, panduan & video, 4 bonus-tool. Login tetap pakai email & password lama.",
               perks: ["Semua gembok terbuka", "Tanpa akun baru", "Total sama dengan beli Ultimate langsung"],
