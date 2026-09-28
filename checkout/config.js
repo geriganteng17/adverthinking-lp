@@ -18,7 +18,11 @@ window.CHECKOUT_CONFIG = {
   hargaBump: 39000,
   tampilkanBump: false,
   /* transfer manual: nyala cuma selama channel Midtrans belum aktif */
-  bayarManual: true,
+  bayarManual: false,
+  /* kasir otomatis + cadangan (T-357, 28 Sep 2026): transfer manual = satu kartu metode di samping QRIS/VA */
+  manualCadangan: true,
+  /* kartu Snap yang tampil = channel "Active" di dashboard Midtrans (dicek 28 Sep 2026; BCA VA belum ada) */
+  metodeAktif: ["qris", "bri", "mandiri"],
   rekening: { bank: "BCA", nomor: "8620722953", atasNama: "Geri Bintang Swasana" },
   kontak: { telegram: "https://t.me/adverthinking", email: "adverthinking40@gmail.com" },
   clientKey: "Mid-client-rjsM_hQ2YOmRWMC3",

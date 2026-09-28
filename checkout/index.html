@@ -956,10 +956,21 @@
               <span class="pay-logo">MDR</span>
               <span class="pay-name">Virtual Account Mandiri</span>
             </div>
+            <!-- Cadangan: transfer manual berdampingan (T-357 / T-244 syarat 3). Tampil cuma kalau
+                 config manualCadangan:true + rekening terisi; nama bank diisi dari config. -->
+            <div class="pay-opt" data-method="manual" data-label="Transfer BCA" role="radio" aria-checked="false" tabindex="0">
+              <span class="pay-radio"><i></i></span>
+              <span class="pay-logo" id="po-manual-logo">BCA</span>
+              <span class="pay-name" id="po-manual-nama">Transfer BCA (manual)</span>
+            </div>
           </div>
-          <div class="pay-foot">
+          <div class="pay-foot" id="pay-foot-auto">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
             Diproses payment gateway berlisensi Bank Indonesia. Kami tidak pernah menyimpan data pembayaranmu.
+          </div>
+          <div class="pay-foot" id="pay-foot-manual" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            Transfer manual dicek tangan: akses aktif maks 1 jam setelah bukti transfer diterima (08.00&ndash;22.00 WIB). Mau langsung aktif? Pilih QRIS atau Virtual Account.
           </div>
         </section>
       </div>
@@ -1367,6 +1378,40 @@
     state.method = opt.dataset.method;
     state.methodLabel = opt.dataset.label;
     $("sum-method").textContent = "Metode: " + state.methodLabel;
+    sesuaikanMetode();
+  }
+
+  /* KASIR OTOMATIS + CADANGAN (T-357, 27 Sep 2026). Channel Midtrans Active → QRIS/VA jalur utama,
+     transfer manual tetap ada sebagai satu kartu metode (T-244 syarat 3: selama BCA VA belum Active,
+     jalur BCA manual wajib berdampingan). CFG.metodeAktif = kartu yang channel-nya "Active" di
+     dashboard Midtrans; kartu lain dibuang biar pembeli gak nabrak "No payment channels available"
+     (insiden 6 Sep). Tanpa metodeAktif = semua kartu tampil (perilaku lama). */
+  var CADANGAN = !MANUAL && CFG.manualCadangan === true && CFG.rekening && CFG.rekening.nomor;
+  var microEl = document.querySelector(".cta-micro");
+  var microAwal = microEl ? microEl.innerHTML : "";
+  function pakaiManual(){ return !!MANUAL || state.method === "manual"; }
+  function sesuaikanMetode(){
+    if(MANUAL) return;
+    var manual = state.method === "manual";
+    $("pay-foot-auto").style.display = manual ? "none" : "";
+    $("pay-foot-manual").style.display = manual ? "" : "none";
+    if(microEl) microEl.innerHTML = manual ? "<i></i>Akses diaktifkan maks 1 jam setelah bukti transfer diterima" : microAwal;
+  }
+  if(!MANUAL){
+    var aktif = Array.isArray(CFG.metodeAktif) ? CFG.metodeAktif : null;
+    Array.prototype.slice.call(payGrid.children).forEach(function(o){
+      var m = o.dataset.method;
+      var tampil = m === "manual" ? CADANGAN : (!aktif || aktif.indexOf(m) !== -1);
+      if(!tampil) payGrid.removeChild(o);
+    });
+    if(CADANGAN){
+      var bank = CFG.rekening.bank || "Bank";
+      payGrid.querySelector('[data-method="manual"]').dataset.label = "Transfer " + bank;
+      $("po-manual-logo").textContent = bank;
+      $("po-manual-nama").textContent = "Transfer " + bank + " (manual)";
+    }
+    var pilih = payGrid.querySelector(".pay-opt.selected") || payGrid.querySelector(".pay-opt");
+    if(pilih) selectMethod(pilih);
   }
 
   /* ============ 6. RINGKASAN LIVE ============ */
@@ -1508,7 +1553,7 @@
     });
   }
 
-  function mintaToken(){
+  function mintaToken(viaManual){
     var badan = {
       nama: $("f-nama").value.trim(),
       email: $("f-email").value.trim().toLowerCase(),
@@ -1517,8 +1562,8 @@
       produk: CFG.produk,
       ref: REF || undefined,
       bump: BUMP_TAYANG && state.bump,
-      metode: MANUAL ? "manual" : state.method,
-      manual: !!MANUAL,
+      metode: viaManual ? "manual" : state.method,
+      manual: !!viaManual,
       utm: ambilUtm()
     };
     return fetch(CFG.endpointCreateOrder, {
@@ -1540,12 +1585,13 @@
     tombol.disabled = true;
     bukaModal();
     tampilPane("loading");
+    var viaManual = pakaiManual();
 
-    (MANUAL ? Promise.resolve() : muatSnap())
-      .then(mintaToken)
+    (viaManual ? Promise.resolve() : muatSnap())
+      .then(function(){ return mintaToken(viaManual); })
       .then(function(res){
-        if(MANUAL && res.ok && res.data && res.data.order_id){
-          orderAktif = { order_id: res.data.order_id, token: null };
+        if(viaManual && res.ok && res.data && res.data.order_id){
+          orderAktif = { order_id: res.data.order_id, token: null, manual: true };
           tampilManual(res.data.order_id);
           return;
         }
@@ -1585,7 +1631,7 @@
 
   /* Ulangi bayar: pakai token yang SAMA kalau masih ada (order gak dobel). */
   $("btn-retry").addEventListener("click", function(){
-    if(MANUAL && orderAktif && orderAktif.order_id){ tampilManual(orderAktif.order_id); return; }
+    if(orderAktif && orderAktif.manual){ tampilManual(orderAktif.order_id); return; }
     if(orderAktif && orderAktif.token){
       pasangSnap(orderAktif.token);
     } else {
