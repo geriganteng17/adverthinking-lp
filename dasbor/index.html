@@ -127,18 +127,13 @@
         <button type="button" class="intip" data-intip="sandi-masuk" aria-label="Intip password" aria-pressed="false"><i class="ti ti-eye" aria-hidden="true"></i></button>
       </div>
       <button class="btn-ember tombol-utama" type="submit"><span>Masuk</span></button>
-      <button class="tautan-kecil" type="button" data-mode-masuk="lupa">Lupa / bikin password</button>
+      <button class="tautan-kecil" type="button" data-mode-masuk="lupa">Lupa password?</button>
     </form>
 
-    <!-- 2. Minta link bikin password -->
+    <!-- 2. Lupa password. Email reset Supabase cuma nyampe ke anggota tim akun Supabase (T-359/T-364, 28 Sep),
+         jadi layar ini gak pura-pura ngirim link. Penerima link dari email (form 3) tetap ada buat nanti. -->
     <form class="form-masuk" id="form-lupa" novalidate hidden>
-      <p class="form-ket">Isi email pemilik. Link buat bikin password baru dikirim ke email itu. Buka link-nya di browser ini juga.</p>
-      <label class="sr-only" for="email-lupa">Email</label>
-      <div class="kolom-ikon">
-        <i class="ti ti-mail" aria-hidden="true"></i>
-        <input id="email-lupa" name="email" type="email" inputmode="email" autocomplete="username" spellcheck="false" placeholder="Email pemilik">
-      </div>
-      <button class="btn-ember tombol-utama" type="submit"><span>Kirim link</span></button>
+      <p class="form-ket">Link reset lewat email belum bisa dipakai buat akun ini, karena Supabase cuma ngirim email ke pemilik akun Supabase. Kalau lupa password, bilang ke Claude: <b>"reset password dasbor"</b>. Nanti dipandu bikin password baru, sekitar 2 menit.</p>
       <button class="tautan-kecil" type="button" data-mode-masuk="masuk">Balik ke Masuk</button>
     </form>
 

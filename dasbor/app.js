@@ -734,7 +734,7 @@
   var FORM = { masuk: document.getElementById('form-masuk'), lupa: document.getElementById('form-lupa'), baru: document.getElementById('form-baru') };
   var SUB_MASUK = {
     masuk: 'Khusus pemilik. Data pembeli baru kebuka setelah masuk.',
-    lupa: 'Lupa atau belum punya password? Minta link lewat email.',
+    lupa: 'Lupa password? Begini caranya.',
     baru: 'Satu langkah lagi: bikin password buat akun ini.'
   };
   var IKON_PESAN = { galat: 'alert-circle', info: 'info-circle', sukses: 'check' };
@@ -949,20 +949,9 @@
     }, function (err) { sibuk(FORM.masuk, false, 'Masuk'); tampilPesan({ jenis: 'galat', teks: manusiawi(err) }); });
   });
 
-  FORM.lupa.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var email = document.getElementById('email-lupa').value.trim().toLowerCase();
-    if (email.indexOf('@') < 1) { tampilPesan({ jenis: 'galat', teks: 'Isi email pemilik dulu ya.' }); return; }
-    if (MODE_CONTOH) { tampilPesan({ jenis: 'sukses', teks: 'Mode contoh: email gak dikirim. Di versi asli, link bikin password dikirim ke ' + email + '.' }); return; }
-    if (belumBisaLogin(FORM.lupa)) return;
-    sibuk(FORM.lupa, true, 'Mengirim…');
-    try { localStorage.setItem(KUNCI_FLAG_GANTI, String(Date.now())); } catch (er) { /* gak masalah, penanda utama = code-verifier */ }
-    sb.auth.resetPasswordForEmail(email, { redirectTo: CFG.urlBalik }).then(function (r) {
-      sibuk(FORM.lupa, false, 'Kirim link');
-      if (r.error) { tampilPesan({ jenis: 'galat', teks: manusiawi(r.error) }); return; }
-      tampilPesan({ jenis: 'sukses', teks: 'Cek email ' + email + '. Buka link-nya di browser ini juga, lalu bikin password baru.' });
-    }, function (err) { sibuk(FORM.lupa, false, 'Kirim link'); tampilPesan({ jenis: 'galat', teks: manusiawi(err) }); });
-  });
+  // Form "lupa" sengaja tanpa kirim email: mailer bawaan Supabase cuma ngirim ke anggota tim akun
+  // Supabase (T-364). Nyambungin SMTP sendiri (Resend) = syarat sebelum tombol kirim link balik lagi.
+  FORM.lupa.addEventListener('submit', function (e) { e.preventDefault(); });
 
   FORM.baru.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -1071,7 +1060,6 @@
       if (MODE_CONTOH) mulaiContoh(); else ambilData();
     } else if (t.hasAttribute('data-mode-masuk')) {
       var m = t.getAttribute('data-mode-masuk');
-      if (m === 'lupa') document.getElementById('email-lupa').value = document.getElementById('email-masuk').value;
       modeMasuk(m);
       var kolom = FORM[m] && FORM[m].querySelector('input');
       if (kolom) kolom.focus();
