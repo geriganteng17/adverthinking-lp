@@ -837,7 +837,7 @@
             <div class="step-ic">1</div>
             <div>
               <h2>Data Kamu</h2>
-              <div class="sub">Akses dikirim ke email dan WhatsApp ini, jadi pastikan benar</div>
+              <div class="sub">Akses dikirim ke email ini, jadi pastikan benar</div>
             </div>
           </div>
           <div class="form-grid">
@@ -853,6 +853,7 @@
             <div class="field">
               <label for="f-wa">No. WhatsApp <span class="req">*</span></label>
               <input class="input" id="f-wa" type="tel" placeholder="08xxxxxxxxxx" autocomplete="tel" inputmode="numeric">
+              <div class="hint">Dipakai kalau kami perlu kabari soal pesananmu</div>
             </div>
             <div class="field">
               <label for="f-pass">Buat Password Member Area <span class="req">*</span></label>
@@ -1293,6 +1294,11 @@
     if(bs) bs.parentNode.removeChild(bs);
     var sb = document.getElementById("sum-bump");
     if(sb) sb.parentNode.removeChild(sb);
+    /* langkah 2 (bump) hilang → nomor langkah dirapatkan biar gak loncat 1 → 3 */
+    var noLangkah = 1;
+    Array.prototype.forEach.call(document.querySelectorAll(".step-ic"), function(el){
+      if(/^\d+$/.test(el.textContent.trim())) el.textContent = String(noLangkah++);
+    });
   }
 
   function rupiah(n){
