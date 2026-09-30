@@ -76,6 +76,9 @@
         html, body {
             max-width: 100vw;
             overflow-x: hidden;
+            /* clip = potong samping TANPA bikin wadah gulir, jadi position:sticky tetap jalan
+               (30 Sep, temuan sesi T-379). hidden di atas = cadangan browser lama. */
+            overflow-x: clip;
             box-sizing: border-box;
         }
         *, *::before, *::after {
@@ -83,8 +86,8 @@
         }
     </style>
 
-  <script type="module" crossorigin src="/assets/index-VM-Ebne_.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-DAz1jOSO.css">
+  <script type="module" crossorigin src="/assets/index-BUivJZx2.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DDPXIo6H.css">
 </head>
 <body>
     <div id="root"></div>
