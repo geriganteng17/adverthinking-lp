@@ -695,31 +695,6 @@
   .app-micro{margin-top:10px;font-size:11.5px;color:var(--ink-faint);}
   .app-micro b{color:var(--ink-low);font-weight:600;}
 
-  .behind-card{
-    margin-top:30px;width:100%;max-width:460px;
-    padding:16px 18px;
-    border-radius:var(--r-md);
-    text-align:left;
-  }
-  .behind-card .k-label{display:flex;align-items:center;gap:8px;margin-bottom:11px;}
-  .behind-card .k-label i{width:6px;height:6px;border-radius:50%;background:var(--brand);box-shadow:0 0 8px rgba(249,115,22,.8);flex:none;}
-  .behind-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-  .bf-node{
-    font-size:11px;font-weight:600;letter-spacing:.02em;
-    color:var(--ink-mid);
-    background:rgba(255,255,255,.04);
-    border:1px solid var(--glass-line-soft);
-    padding:6px 11px;border-radius:99px;
-    white-space:nowrap;
-  }
-  .bf-arrow{color:var(--ink-faint);font-size:12px;flex:none;}
-  .behind-card p{margin-top:11px;font-size:11.5px;line-height:1.6;color:var(--ink-faint);}
-  .reset-link{
-    margin-top:26px;font-size:11.5px;color:var(--ink-faint);
-    background:none;border:none;text-decoration:underline dotted;
-    letter-spacing:.02em;
-  }
-  .reset-link:hover{color:var(--ink-mid);}
 
   /* ============================================================
      9. FOOTER
@@ -1165,22 +1140,6 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
       <div class="app-micro">Login pakai <b>email + password</b> yang barusan kamu buat</div>
-
-      <section class="glass behind-card">
-        <div class="k-label"><i></i>Yang terjadi di belakang layar</div>
-        <div class="behind-flow">
-          <span class="bf-node">Webhook payment gateway</span>
-          <span class="bf-arrow">→</span>
-          <span class="bf-node">Verifikasi signature</span>
-          <span class="bf-arrow">→</span>
-          <span class="bf-node">Supabase bikin akun</span>
-          <span class="bf-arrow">→</span>
-          <span class="bf-node">Notif Telegram ke penjual</span>
-        </div>
-        <p>Rantai delivery ini sistem yang sama yang sudah melayani buyer Adverthinking sekarang. Di prototype ini semua disimulasikan di browser, tanpa server.</p>
-      </section>
-
-      <button class="reset-link" id="btn-reset">← kembali ke checkout (reset simulasi)</button>
     </div>
   </div>
 </div>
@@ -1700,11 +1659,6 @@
         .catch(function(){ setTimeout(cek, 3000); });
     })();
   }
-
-  $("btn-reset").addEventListener("click", function(){
-    $("success-view").classList.remove("open");
-    document.body.style.overflow = "";
-  });
 
   /* init */
   renderTotal(false);
